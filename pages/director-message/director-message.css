@@ -1,0 +1,187 @@
+/* ==========================================================================
+   TGVIS — Director's Message Page Styles
+   ==========================================================================
+   
+   Styles for the Director's Message page featuring:
+   1. Director profile card with avatar
+   2. Decorative quote card with large quote mark
+   3. Key commitments grid
+   4. Signature section
+   5. Responsive adjustments
+   
+   ========================================================================== */
+
+
+/* ── Director Profile Section ── */
+.director-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  margin-bottom: var(--space-10);
+}
+
+.director-profile__avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(16, 185, 129, 0.08));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid var(--clr-primary);
+  transition: transform 0.4s ease;
+}
+
+.director-profile__avatar:hover {
+  transform: scale(1.05);
+}
+
+.director-profile__avatar i {
+  font-size: 4rem;
+  color: var(--clr-primary);
+}
+
+.director-profile__info {
+  text-align: center;
+}
+
+.director-profile__name {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.director-profile__title {
+  color: var(--clr-primary);
+  font-weight: 500;
+}
+
+/* ── Message Card ── */
+.director-message {
+  background: var(--bg-secondary);
+  padding: var(--space-10) var(--space-12);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Large decorative quote mark */
+.director-message::before {
+  content: '\201C'; /* Left double quotation mark */
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-6);
+  font-size: 8rem;
+  color: var(--clr-primary);
+  opacity: 0.06;
+  font-family: var(--ff-heading);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.director-message p {
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-5);
+  position: relative;
+  z-index: 1;
+}
+
+.director-message p:first-child {
+  font-size: var(--fs-lg);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* ── Signature Block ── */
+.director-signature {
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-color);
+  position: relative;
+  z-index: 1;
+}
+
+.director-signature__name {
+  font-family: var(--ff-heading);
+  font-weight: 700;
+  color: var(--clr-primary);
+  margin-bottom: var(--space-1);
+}
+
+.director-signature__role {
+  font-size: var(--fs-sm);
+  color: var(--text-tertiary);
+}
+
+/* ── Key Commitments Grid ── */
+.commitments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.commitment-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.commitment-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.commitment-card__icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-3);
+}
+
+.commitment-card__title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.commitment-card__text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .director-message {
+    padding: var(--space-8) var(--space-6);
+  }
+  .director-message::before {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .director-profile__avatar {
+    width: 120px;
+    height: 120px;
+  }
+  .director-profile__avatar i {
+    font-size: 3rem;
+  }
+  .director-message {
+    padding: var(--space-6) var(--space-4);
+  }
+  .commitments-grid {
+    grid-template-columns: 1fr;
+  }
+}

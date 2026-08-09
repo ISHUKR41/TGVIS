@@ -1,0 +1,17 @@
+<!-- TGVIS Campus Hero Placeholder -->
+<!-- Replace this file with an actual campus photo (JPG/PNG, 1920x800px recommended) -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="800" viewBox="0 0 1920 800">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E0F2FE;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="800" fill="url(#sky)" />
+  <rect x="0" y="500" width="1920" height="300" fill="#22C55E" opacity="0.3" />
+  <rect x="300" y="250" width="400" height="300" rx="8" fill="#F5F5DC" opacity="0.7" />
+  <rect x="750" y="200" width="420" height="350" rx="8" fill="#F5F5DC" opacity="0.7" />
+  <rect x="1220" y="280" width="380" height="270" rx="8" fill="#F5F5DC" opacity="0.7" />
+  <text x="960" y="420" text-anchor="middle" fill="#0A6847" font-size="48" font-weight="bold" font-family="Arial">THE GREEN VALLEY INTERNATIONAL SCHOOL</text>
+  <text x="960" y="470" text-anchor="middle" fill="#666" font-size="24" font-family="Arial">Bihta, Patna, Bihar</text>
+</svg>

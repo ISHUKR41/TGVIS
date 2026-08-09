@@ -1,0 +1,267 @@
+/* ==========================================================================
+   TGVIS — Login Page Styles (Shared by Student, Teacher, Admin)
+   ==========================================================================
+   Full-screen split layout with decorative gradient panel and login card.
+   ========================================================================== */
+
+/* ---- Full-Screen Login Container ---- */
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ---- Left Decorative Panel ---- */
+.login-page__side {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 50%, #071f14 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-page__side-content {
+  position: relative;
+  z-index: 2;
+  max-width: 450px;
+}
+
+/* Logo in the left panel */
+.login-page__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-12);
+}
+
+/* Welcome text on the left panel */
+.login-page__side-text h1 {
+  font-size: var(--fs-4xl);
+  color: var(--color-white);
+  line-height: var(--lh-tight);
+  margin-bottom: var(--space-4);
+}
+
+.login-page__side-text h1 span {
+  color: var(--color-secondary);
+}
+
+.login-page__side-text p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--fs-base);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-8);
+}
+
+/* Feature list on left panel */
+.login-page__side-features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.login-page__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--fs-sm);
+}
+
+.login-page__feature i {
+  font-size: var(--fs-lg);
+  color: var(--color-secondary);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 168, 67, 0.1);
+  border-radius: var(--radius-md);
+}
+
+/* ---- Right Form Panel ---- */
+.login-page__form-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  background: var(--bg-primary);
+}
+
+/* ---- Login Card (Glassmorphism) ---- */
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  padding: var(--space-10);
+}
+
+/* Student/Teacher/Admin icon circle at the top */
+.login-card__icon {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-6);
+  color: var(--color-white);
+  font-size: var(--fs-2xl);
+  box-shadow: 0 8px 24px rgba(13, 77, 43, 0.3);
+}
+
+.login-card__title {
+  text-align: center;
+  font-size: var(--fs-2xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.login-card__subtitle {
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-8);
+}
+
+/* ---- Input with icon wrapper ---- */
+.login-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login-input-wrapper > i:first-child {
+  position: absolute;
+  left: var(--space-4);
+  color: var(--text-tertiary);
+  font-size: var(--fs-md);
+  z-index: 1;
+}
+
+.login-input-wrapper .form-input {
+  padding-left: calc(var(--space-4) + var(--space-8));
+}
+
+/* Password visibility toggle button */
+.password-toggle {
+  position: absolute;
+  right: var(--space-4);
+  color: var(--text-tertiary);
+  font-size: var(--fs-md);
+  cursor: pointer;
+  padding: var(--space-1);
+  transition: color var(--transition-fast);
+}
+
+.password-toggle:hover {
+  color: var(--color-primary);
+}
+
+/* ---- Login Options Row (Remember Me + Forgot Password) ---- */
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-6);
+}
+
+.login-checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.login-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.login-forgot {
+  font-size: var(--fs-sm);
+  color: var(--color-primary);
+  font-weight: var(--fw-medium);
+  transition: color var(--transition-fast);
+}
+
+.login-forgot:hover {
+  color: var(--color-primary-light);
+  text-decoration: underline;
+}
+
+/* ---- Footer with other portal links ---- */
+.login-card__footer {
+  text-align: center;
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-gray-200);
+}
+
+.login-card__footer p {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-3);
+}
+
+.login-card__other-portals {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.login-portal-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
+}
+
+.login-portal-link:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(var(--color-primary-rgb), 0.05);
+}
+
+/* Back to website link */
+.login-card__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  font-size: var(--fs-sm);
+  color: var(--text-tertiary);
+  transition: color var(--transition-fast);
+}
+
+.login-card__back:hover {
+  color: var(--color-primary);
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1024px) {
+  .login-page {
+    grid-template-columns: 1fr;
+  }
+
+  .login-page__side {
+    display: none; /* Hide decorative panel on mobile */
+  }
+
+  .login-page__form-area {
+    min-height: 100vh;
+  }
+}

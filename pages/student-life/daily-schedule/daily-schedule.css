@@ -1,0 +1,241 @@
+/* ==========================================================================
+   TGVIS — Daily Schedule Page Styles
+   ==========================================================================
+   
+   Styles specific to the Daily Schedule page. Includes:
+   1. Timeline layout with connecting line
+   2. Time badges with gradient colors
+   3. Schedule cards with hover effects
+   4. Important notes section
+   5. Download timetable CTA
+   6. Responsive adjustments
+   
+   ========================================================================== */
+
+
+/* ── Timeline Layout ── */
+.schedule-timeline {
+  position: relative;
+  padding-left: 48px;
+  margin-top: var(--space-8);
+}
+
+/* Vertical connecting line */
+.schedule-timeline::before {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--clr-primary) 0%,
+    var(--clr-secondary, #10B981) 50%,
+    var(--border-color) 100%
+  );
+}
+
+/* ── Individual Schedule Item ── */
+.schedule-item {
+  position: relative;
+  margin-bottom: var(--space-8);
+  padding-left: var(--space-6);
+}
+
+/* Dot on the timeline */
+.schedule-item::before {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 3px solid var(--clr-primary);
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.schedule-item:hover::before {
+  transform: scale(1.3);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+/* ── Time Badge ── */
+.schedule-item__time {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  font-family: var(--ff-heading);
+  color: #fff;
+  margin-bottom: var(--space-3);
+  letter-spacing: 0.5px;
+}
+
+/* ── Schedule Card ── */
+.schedule-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.schedule-card:hover {
+  transform: translateX(6px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  border-color: var(--clr-primary);
+}
+
+.schedule-card__title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.schedule-card__title i {
+  font-size: 1.4rem;
+}
+
+.schedule-card__desc {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+}
+
+/* ── Timetable Grid ── */
+.timetable-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.timetable-stat {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.timetable-stat:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.timetable-stat__icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-3);
+}
+
+.timetable-stat__number {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.timetable-stat__label {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+/* ── Important Notes ── */
+.schedule-notes {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  border-left: 4px solid var(--clr-primary);
+  margin-top: var(--space-10);
+}
+
+.schedule-notes__title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.schedule-notes__list {
+  list-style: none;
+  padding: 0;
+}
+
+.schedule-notes__list li {
+  padding: var(--space-2) 0;
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  line-height: var(--lh-relaxed);
+}
+
+.schedule-notes__list li i {
+  color: var(--clr-primary);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* ── Download CTA ── */
+.schedule-download {
+  text-align: center;
+  margin-top: var(--space-10);
+  padding: var(--space-8);
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .schedule-timeline {
+    padding-left: 36px;
+  }
+  .schedule-timeline::before {
+    left: 14px;
+  }
+  .schedule-item::before {
+    left: -26px;
+  }
+  .timetable-overview {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .schedule-timeline {
+    padding-left: 28px;
+  }
+  .schedule-timeline::before {
+    left: 10px;
+  }
+  .schedule-item::before {
+    left: -22px;
+    width: 12px;
+    height: 12px;
+  }
+  .schedule-card {
+    padding: var(--space-4);
+  }
+  .timetable-overview {
+    grid-template-columns: 1fr;
+  }
+}

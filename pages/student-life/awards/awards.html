@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<!-- =====================================================================
+     TGVIS — Awards & Recognition Page
+     =====================================================================
+     
+     PURPOSE:
+     Showcases all award categories at TGVIS — academic excellence, sports
+     achievements, cultural stars, attendance records, and character awards.
+     Includes the Annual Day ceremony highlight and house point system.
+     
+     CONTENT SECTIONS:
+     1. Page Hero — banner with breadcrumb
+     2. Award Categories — 6 category cards with icons
+     3. House Point System — inter-house competition
+     4. Annual Ceremony — prize distribution highlight
+     5. Past Winners — honour roll highlights
+     6. CTA — nominate/participate prompt
+     
+     ===================================================================== -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awards & Recognition — TGVIS | The Green Valley International School</title>
+  <meta name="description" content="TGVIS Awards — Academic toppers, sports champions, cultural achievers, and special recognition for outstanding student achievement at The Green Valley International School.">
+
+  <!-- ======== Favicon ======== -->
+  <link rel="icon" type="image/png" href="../../../assets/images/logo/logo.png">
+
+  <!-- ======== Google Fonts: Inter + Outfit ======== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ======== RemixIcon CDN ======== -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- ======== Global Stylesheets ======== -->
+  <link rel="stylesheet" href="../../../assets/css/global.css">
+  <link rel="stylesheet" href="../../../assets/css/components.css">
+  <link rel="stylesheet" href="../../../assets/css/animations.css">
+
+  <!-- ======== Page-specific Styles ======== -->
+  <style>
+    /* ── House Card ── */
+    .house-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .house-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      transition: height 0.3s ease;
+    }
+    .house-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
+    .house-card:hover::before { height: 6px; }
+    .house-card__name {
+      font-family: var(--ff-heading);
+      font-size: var(--fs-lg);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: var(--space-4) 0 var(--space-2);
+    }
+    .house-card__points {
+      font-family: var(--ff-heading);
+      font-size: var(--fs-2xl);
+      font-weight: 800;
+    }
+    .house-card__label {
+      font-size: var(--fs-xs);
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ── Honour Roll ── */
+    .honour-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-8);
+    }
+    .honour-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      transition: all 0.3s ease;
+    }
+    .honour-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .honour-card__year {
+      display: inline-block;
+      padding: var(--space-1) var(--space-3);
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--clr-primary);
+      border-radius: var(--radius-full);
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      margin-bottom: var(--space-3);
+    }
+    .honour-card__name {
+      font-family: var(--ff-heading);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .honour-card__detail {
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+    }
+    .honour-card__award {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+      font-size: var(--fs-xs);
+      color: var(--clr-secondary, #10B981);
+      font-weight: 600;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .honour-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ======== Preloader ======== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__text">TGVIS</div>
+    <div class="preloader__bar"><div class="preloader__bar-fill"></div></div>
+  </div>
+  <div class="page-transition"></div>
+
+  <!-- ======== NAVBAR (Injected dynamically by navbar.js) ======== -->
+  <nav class="navbar" id="navbar"></nav>
+
+
+  <!-- ================================================================
+       HERO SECTION — Page banner with breadcrumb
+       ================================================================ -->
+  <section class="page-hero">
+    <img src="../../../assets/images/hero/campus.png" alt="Awards & Recognition" class="page-hero__bg">
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <h1 class="page-hero__title">Awards & Recognition</h1>
+      <p class="page-hero__subtitle">Celebrating excellence, effort, and the spirit of achievement</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../../index.html" class="breadcrumb__link">Home</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <a href="../../life-at-tgvis/life-at-tgvis.html" class="breadcrumb__link">Student Life</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <span class="breadcrumb__current">Awards & Recognition</span>
+      </nav>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       AWARD CATEGORIES — 6 types of recognition
+       ================================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">We Celebrate You</span>
+        <h2 class="section-title">Award <span class="text-gradient-gold">Categories</span></h2>
+        <div class="divider"></div>
+        <p style="color:var(--text-secondary);max-width:600px;margin:0 auto;margin-top:var(--space-4);">
+          At TGVIS, we believe every achievement deserves recognition. Our comprehensive awards system honours academic, sports, cultural, and character excellence.
+        </p>
+      </div>
+
+      <div class="grid-3 grid-animated">
+        <!-- Academic Excellence Award -->
+        <div class="feature-card reveal stagger-1" style="padding:var(--space-8);text-align:center;">
+          <div style="width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,#F59E0B,#D97706);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);">
+            <i class="ri-trophy-line" style="font-size:2rem;color:white;"></i>
+          </div>
+          <h4 class="feature-card__title">Academic Excellence Award</h4>
+          <p class="feature-card__text">Recognizing class toppers, subject toppers, and students with outstanding academic performance throughout the year.</p>
+        </div>
+
+        <!-- Sports Achievement Award -->
+        <div class="feature-card reveal stagger-2" style="padding:var(--space-8);text-align:center;">
+          <div style="width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,#22C55E,#16A34A);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);">
+            <i class="ri-medal-line" style="font-size:2rem;color:white;"></i>
+          </div>
+          <h4 class="feature-card__title">Sports Achievement Award</h4>
+          <p class="feature-card__text">Honoring athletes who excel in inter-house, inter-school, and district-level sports competitions.</p>
+        </div>
+
+        <!-- Cultural Star Award -->
+        <div class="feature-card reveal stagger-3" style="padding:var(--space-8);text-align:center;">
+          <div style="width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,#A855F7,#9333EA);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);">
+            <i class="ri-palette-line" style="font-size:2rem;color:white;"></i>
+          </div>
+          <h4 class="feature-card__title">Cultural Star Award</h4>
+          <p class="feature-card__text">Celebrating talent in music, dance, drama, art, and other performing and visual arts.</p>
+        </div>
+
+        <!-- Most Improved Student -->
+        <div class="feature-card reveal stagger-4" style="padding:var(--space-8);text-align:center;">
+          <div style="width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,#3B82F6,#2563EB);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);">
+            <i class="ri-line-chart-line" style="font-size:2rem;color:white;"></i>
+          </div>
+          <h4 class="feature-card__title">Most Improved Student</h4>
+          <p class="feature-card__text">Recognizing students who show remarkable improvement in academics, behaviour, or overall personality development.</p>
+        </div>
+
+        <!-- Character & Values Award -->
+        <div class="feature-card reveal stagger-5" style="padding:var(--space-8);text-align:center;">
+          <div style="width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,#EF4444,#DC2626);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);">
+            <i class="ri-heart-line" style="font-size:2rem;color:white;"></i>
+          </div>
+          <h4 class="feature-card__title">Character & Values Award</h4>
+          <p class="feature-card__text">Honouring students who exemplify school values — respect, integrity, compassion, and community service.</p>
+        </div>
+
+        <!-- 100% Attendance Award -->
+        <div class="feature-card reveal stagger-6" style="padding:var(--space-8);text-align:center;">
+          <div style="width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,#EC4899,#DB2777);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);">
+            <i class="ri-star-line" style="font-size:2rem;color:white;"></i>
+          </div>
+          <h4 class="feature-card__title">100% Attendance Award</h4>
+          <p class="feature-card__text">Special recognition for students with perfect attendance throughout the academic year — dedication in its purest form.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       HOUSE POINT SYSTEM — Inter-house competition tracker
+       ================================================================ -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Inter-House Competition</span>
+        <h2 class="section-title">House <span class="text-gradient">Points System</span></h2>
+        <div class="divider"></div>
+        <p style="color:var(--text-secondary);max-width:600px;margin:0 auto;margin-top:var(--space-4);">
+          Students are divided into four houses. Every academic, sports, and cultural achievement earns points for their house. The winning house receives the prestigious House Trophy at Annual Day.
+        </p>
+      </div>
+
+      <div class="grid-4" style="gap:var(--space-6);">
+        <!-- Red House -->
+        <div class="house-card reveal stagger-1">
+          <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#EF4444,#DC2626);display:flex;align-items:center;justify-content:center;margin:0 auto;">
+            <i class="ri-fire-line" style="font-size:1.6rem;color:white;"></i>
+          </div>
+          <div class="house-card__name">Red House</div>
+          <div class="house-card__points" style="color:#EF4444;">🔥</div>
+          <div class="house-card__label">Phoenix House</div>
+          <div style="background:linear-gradient(135deg,#EF4444,#DC2626);position:absolute;top:0;left:0;right:0;height:4px;"></div>
+        </div>
+
+        <!-- Blue House -->
+        <div class="house-card reveal stagger-2">
+          <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#3B82F6,#2563EB);display:flex;align-items:center;justify-content:center;margin:0 auto;">
+            <i class="ri-drop-line" style="font-size:1.6rem;color:white;"></i>
+          </div>
+          <div class="house-card__name">Blue House</div>
+          <div class="house-card__points" style="color:#3B82F6;">🌊</div>
+          <div class="house-card__label">Neptune House</div>
+          <div style="background:linear-gradient(135deg,#3B82F6,#2563EB);position:absolute;top:0;left:0;right:0;height:4px;"></div>
+        </div>
+
+        <!-- Green House -->
+        <div class="house-card reveal stagger-3">
+          <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#22C55E,#16A34A);display:flex;align-items:center;justify-content:center;margin:0 auto;">
+            <i class="ri-leaf-line" style="font-size:1.6rem;color:white;"></i>
+          </div>
+          <div class="house-card__name">Green House</div>
+          <div class="house-card__points" style="color:#22C55E;">🌿</div>
+          <div class="house-card__label">Terra House</div>
+          <div style="background:linear-gradient(135deg,#22C55E,#16A34A);position:absolute;top:0;left:0;right:0;height:4px;"></div>
+        </div>
+
+        <!-- Yellow House -->
+        <div class="house-card reveal stagger-4">
+          <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#F59E0B,#D97706);display:flex;align-items:center;justify-content:center;margin:0 auto;">
+            <i class="ri-sun-line" style="font-size:1.6rem;color:white;"></i>
+          </div>
+          <div class="house-card__name">Yellow House</div>
+          <div class="house-card__points" style="color:#F59E0B;">☀️</div>
+          <div class="house-card__label">Helios House</div>
+          <div style="background:linear-gradient(135deg,#F59E0B,#D97706);position:absolute;top:0;left:0;right:0;height:4px;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       ANNUAL CEREMONY — Prize distribution highlight
+       ================================================================ -->
+  <section class="section">
+    <div class="container" style="max-width:700px;text-align:center;">
+      <div class="section-header reveal">
+        <span class="section-label">Annual Day</span>
+        <h2 class="section-title">Prize Distribution <span class="text-gradient">Ceremony</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="reveal" style="background:var(--bg-secondary);padding:var(--space-10);border-radius:var(--radius-xl);border:1px solid var(--border-color);">
+        <i class="ri-award-line" style="font-size:4rem;color:#F59E0B;"></i>
+        <h3 style="margin:var(--space-4) 0;color:var(--text-primary);font-family:var(--ff-heading);font-weight:700;">Annual Day & Prize Distribution</h3>
+        <p style="color:var(--text-secondary);line-height:var(--lh-relaxed);">
+          Every year, our Annual Day celebration is the grand stage where we honour our achievers. Students receive trophies, medals, and certificates from our chief guest in front of the entire school community — parents, teachers, and fellow students. It is a day of pride, joy, and motivation for the entire TGVIS family.
+        </p>
+        <p style="color:var(--text-secondary);margin-top:var(--space-4);font-style:italic;">
+          "Excellence is not a singular act, but a habit." — Aristotle
+        </p>
+        <div style="margin-top:var(--space-6);display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+          <div style="text-align:center;">
+            <div style="font-family:var(--ff-heading);font-size:var(--fs-2xl);font-weight:800;color:var(--text-primary);">200+</div>
+            <div style="font-size:var(--fs-xs);color:var(--text-tertiary);">Awards Given Annually</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-family:var(--ff-heading);font-size:var(--fs-2xl);font-weight:800;color:var(--text-primary);">50+</div>
+            <div style="font-size:var(--fs-xs);color:var(--text-tertiary);">Trophies & Shields</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-family:var(--ff-heading);font-size:var(--fs-2xl);font-weight:800;color:var(--text-primary);">6</div>
+            <div style="font-size:var(--fs-xs);color:var(--text-tertiary);">Award Categories</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       HONOUR ROLL — Past award winners highlights
+       ================================================================ -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Hall of Fame</span>
+        <h2 class="section-title">Our <span class="text-gradient-gold">Honour Roll</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="honour-grid">
+        <div class="honour-card reveal stagger-1">
+          <span class="honour-card__year">2024-25</span>
+          <div class="honour-card__name">Academic Excellence — Class Toppers</div>
+          <p class="honour-card__detail">Top performers from each class recognized for exceptional exam scores and consistent academic performance.</p>
+          <div class="honour-card__award"><i class="ri-trophy-line"></i> Gold Medal + Certificate</div>
+        </div>
+        <div class="honour-card reveal stagger-2">
+          <span class="honour-card__year">2024-25</span>
+          <div class="honour-card__name">Sports Star — Athletics Champion</div>
+          <p class="honour-card__detail">Outstanding athletes from inter-school and district-level competitions in cricket, football, and athletics.</p>
+          <div class="honour-card__award"><i class="ri-medal-line"></i> Trophy + Sports Kit</div>
+        </div>
+        <div class="honour-card reveal stagger-3">
+          <span class="honour-card__year">2024-25</span>
+          <div class="honour-card__name">Cultural Star — Best Performer</div>
+          <p class="honour-card__detail">Students who excelled in dance, music, art, and drama performances at school and inter-school events.</p>
+          <div class="honour-card__award"><i class="ri-star-line"></i> Medal + Certificate</div>
+        </div>
+        <div class="honour-card reveal stagger-4">
+          <span class="honour-card__year">2023-24</span>
+          <div class="honour-card__name">Perfect Attendance — Dedication Award</div>
+          <p class="honour-card__detail">Students who maintained 100% attendance throughout the academic year without a single day of absence.</p>
+          <div class="honour-card__award"><i class="ri-heart-line"></i> Certificate + Badge</div>
+        </div>
+        <div class="honour-card reveal stagger-5">
+          <span class="honour-card__year">2023-24</span>
+          <div class="honour-card__name">Most Improved Student</div>
+          <p class="honour-card__detail">Students showing the greatest academic and personal growth over the year, recognized for effort and perseverance.</p>
+          <div class="honour-card__award"><i class="ri-line-chart-line"></i> Certificate + Book Voucher</div>
+        </div>
+        <div class="honour-card reveal stagger-6">
+          <span class="honour-card__year">2023-24</span>
+          <div class="honour-card__name">Best House — House Trophy Winner</div>
+          <p class="honour-card__detail">The house that accumulated the most points across academics, sports, and cultural events throughout the year.</p>
+          <div class="honour-card__award"><i class="ri-shield-star-line"></i> Rolling Trophy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       CTA — Encourage participation
+       ================================================================ -->
+  <section class="section">
+    <div class="container" style="max-width:700px;text-align:center;">
+      <div class="reveal" style="background:linear-gradient(135deg,var(--bg-secondary),var(--bg-primary));padding:var(--space-10);border-radius:var(--radius-xl);border:1px solid var(--border-color);">
+        <i class="ri-lightbulb-flash-line" style="font-size:3rem;color:#F59E0B;"></i>
+        <h3 style="font-family:var(--ff-heading);font-size:var(--fs-xl);font-weight:700;color:var(--text-primary);margin:var(--space-4) 0 var(--space-3);">
+          Every Student is a Winner
+        </h3>
+        <p style="color:var(--text-secondary);margin-bottom:var(--space-6);line-height:var(--lh-relaxed);">
+          At TGVIS, we believe that every child has unique talents. Our awards system is designed to recognize excellence in ALL areas — not just academics. Participate, push your limits, and be recognized!
+        </p>
+        <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+          <a href="../../events/events.html" class="btn btn--primary">
+            <i class="ri-calendar-event-line"></i> Upcoming Events
+          </a>
+          <a href="../clubs-societies/clubs-societies.html" class="btn btn--secondary">
+            <i class="ri-team-line"></i> Join a Club
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======== FOOTER (Injected dynamically by navbar.js) ======== -->
+  <footer class="footer"></footer>
+
+  <!-- ======== Back to Top ======== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="ri-arrow-up-line"></i>
+  </button>
+
+  <!-- ======== Scripts ======== -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
+  <script src="../../../assets/js/utils.js" defer></script>
+  <script src="../../../assets/js/navbar.js" defer></script>
+  <script src="../../../assets/js/global.js" defer></script>
+  <script src="../../../assets/js/animations.js" defer></script>
+</body>
+</html>

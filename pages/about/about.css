@@ -1,0 +1,252 @@
+/* ==========================================================================
+   TGVIS — About Us Page Styles
+   ==========================================================================
+   Styles specific to the About page: story grid, VMV cards, timeline,
+   team cards. All shared components use global/components CSS.
+   ========================================================================== */
+
+/* ---- About Story Grid (Image + Text side by side) ---- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.about-grid__image {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+}
+
+/* ---- Vision / Mission / Values Cards ---- */
+.vmv-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10);
+  text-align: center;
+  border: 1px solid var(--color-gray-200);
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative top border gradient that animates on hover */
+.vmv-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-smooth);
+}
+
+.vmv-card:hover::before {
+  transform: scaleX(1);
+}
+
+.vmv-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(13, 77, 43, 0.2);
+}
+
+/* Icon circle at the top of each VMV card */
+.vmv-card__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.1), rgba(var(--color-secondary-rgb), 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-6);
+  font-size: var(--fs-3xl);
+  color: var(--color-primary);
+  transition: all var(--transition-smooth);
+}
+
+.vmv-card:hover .vmv-card__icon {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: rotate(10deg) scale(1.1);
+}
+
+.vmv-card__title {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--space-4);
+  color: var(--text-primary);
+}
+
+.vmv-card__text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+}
+
+
+/* ---- Achievement Timeline ---- */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: var(--space-12);
+}
+
+/* Vertical line connecting timeline dots */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+  border-radius: var(--radius-full);
+}
+
+/* Individual timeline item */
+.timeline__item {
+  position: relative;
+  padding: var(--space-8) 0;
+  padding-left: var(--space-10);
+}
+
+/* Timeline dot (circle on the vertical line) */
+.timeline__dot {
+  position: absolute;
+  left: calc(-1 * var(--space-12) + 12px);
+  top: var(--space-10);
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  border: 4px solid var(--bg-primary);
+  box-shadow: 0 0 0 3px var(--color-primary);
+  z-index: 2;
+}
+
+/* Timeline content card */
+.timeline__content {
+  background: var(--bg-secondary);
+  padding: var(--space-6) var(--space-8);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-smooth);
+}
+
+.timeline__content:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(var(--color-primary-rgb), 0.2);
+}
+
+/* Year/phase label */
+.timeline__year {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  background: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--color-primary);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  margin-bottom: var(--space-3);
+}
+
+.timeline__content h4 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-2);
+  color: var(--text-primary);
+}
+
+.timeline__content p {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+}
+
+@media (max-width: 767px) {
+  .timeline {
+    padding-left: var(--space-10);
+  }
+
+  .timeline::before {
+    left: 15px;
+  }
+
+  .timeline__dot {
+    left: calc(-1 * var(--space-10) + 7px);
+    width: 16px;
+    height: 16px;
+  }
+}
+
+
+/* ---- Team Cards ---- */
+.team-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  text-align: center;
+  border: 1px solid var(--color-gray-200);
+  transition: all var(--transition-smooth);
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(var(--color-primary-rgb), 0.2);
+}
+
+/* Avatar circle */
+.team-card__avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.08), rgba(var(--color-secondary-rgb), 0.08));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-6);
+  border: 3px solid var(--color-gray-200);
+  overflow: hidden;
+  transition: border-color var(--transition-base);
+}
+
+.team-card:hover .team-card__avatar {
+  border-color: var(--color-primary);
+}
+
+.team-card__name {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.team-card__role {
+  font-size: var(--fs-sm);
+  color: var(--color-primary);
+  font-weight: var(--fw-medium);
+  margin-bottom: var(--space-4);
+}
+
+.team-card__bio {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+}

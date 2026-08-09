@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!-- TGVIS — Timetable Page -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timetable — TGVIS | The Green Valley International School</title>
+  <meta name="description" content="TGVIS school timetable — Daily schedule, period timings, and weekly class routine for all students.">
+  <link rel="icon" type="image/png" href="../../assets/images/logo/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/global.css"><link rel="stylesheet" href="../../assets/css/components.css"><link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../admissions/admissions.css">
+</head>
+<body>
+  <div class="preloader" id="preloader"><div class="preloader__text">TGVIS</div><div class="preloader__bar"><div class="preloader__bar-fill"></div></div></div><div class="page-transition"></div>
+  <!-- ======== NAVBAR (Injected dynamically by navbar.js) ======== -->
+  <nav class="navbar" id="navbar"></nav>
+
+  <section class="page-hero"><img src="../../assets/images/hero/campus.png" alt="Timetable" class="page-hero__bg"><div class="page-hero__overlay"></div><div class="page-hero__content"><h1 class="page-hero__title">School Timetable</h1><p class="page-hero__subtitle">A structured daily routine designed for optimal learning and development</p><nav class="breadcrumb"><a href="../../index.html" class="breadcrumb__link">Home</a><i class="ri-arrow-right-s-line breadcrumb__separator"></i><span class="breadcrumb__current">Timetable</span></nav></div></section>
+
+  <!-- General Timings -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-label">Daily Routine</span><h2 class="section-title">School <span class="text-gradient-gold">Timings</span></h2><div class="divider"></div></div>
+      <div class="table-wrapper reveal" style="max-width:800px;margin:0 auto;">
+        <table class="data-table">
+          <thead><tr><th>Activity</th><th>Time</th><th>Duration</th></tr></thead>
+          <tbody>
+            <tr><td>🚌 School Bus Departure</td><td>7:00 AM</td><td>—</td></tr>
+            <tr><td>🏫 School Gate Opens</td><td>7:30 AM</td><td>—</td></tr>
+            <tr><td>🙏 Morning Assembly</td><td>7:45 AM - 8:00 AM</td><td>15 min</td></tr>
+            <tr><td>📚 Period 1</td><td>8:00 AM - 8:40 AM</td><td>40 min</td></tr>
+            <tr><td>📚 Period 2</td><td>8:40 AM - 9:20 AM</td><td>40 min</td></tr>
+            <tr><td>📚 Period 3</td><td>9:20 AM - 10:00 AM</td><td>40 min</td></tr>
+            <tr><td>☕ Short Break</td><td>10:00 AM - 10:15 AM</td><td>15 min</td></tr>
+            <tr><td>📚 Period 4</td><td>10:15 AM - 10:55 AM</td><td>40 min</td></tr>
+            <tr><td>📚 Period 5</td><td>10:55 AM - 11:35 AM</td><td>40 min</td></tr>
+            <tr><td>🍱 Lunch Break</td><td>11:35 AM - 12:15 PM</td><td>40 min</td></tr>
+            <tr><td>📚 Period 6</td><td>12:15 PM - 12:55 PM</td><td>40 min</td></tr>
+            <tr><td>📚 Period 7</td><td>12:55 PM - 1:35 PM</td><td>40 min</td></tr>
+            <tr><td>📚 Period 8 (Tuition/Activity)</td><td>1:35 PM - 2:15 PM</td><td>40 min</td></tr>
+            <tr><td>🏠 Dispersal</td><td>2:15 PM - 2:30 PM</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Special Days -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-label">Weekly</span><h2 class="section-title">Special <span class="text-gradient">Activity Days</span></h2><div class="divider"></div></div>
+      <div class="grid-3 grid-animated">
+        <div class="feature-card reveal stagger-1"><div class="feature-card__icon"><i class="ri-basketball-line"></i></div><h4 class="feature-card__title">Sports Day (Mon & Wed)</h4><p class="feature-card__text">Dedicated sports periods on Monday and Wednesday for outdoor games, physical training, and house competitions.</p></div>
+        <div class="feature-card reveal stagger-2"><div class="feature-card__icon"><i class="ri-palette-line"></i></div><h4 class="feature-card__title">Activity Day (Friday)</h4><p class="feature-card__text">Friday afternoon is reserved for clubs, art, music, dance, drama, and other extracurricular activities.</p></div>
+        <div class="feature-card reveal stagger-3"><div class="feature-card__icon"><i class="ri-book-shelf-line"></i></div><h4 class="feature-card__title">Library Day (Tuesday)</h4><p class="feature-card__text">Each class has a designated library period on Tuesday for reading, book exchange, and research activities.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER (Injected dynamically by navbar.js) ======== -->
+  <footer class="footer"></footer>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
+  <script src="../../assets/js/utils.js" defer></script>
+  <script src="../../assets/js/navbar.js" defer></script>
+  <script src="../../assets/js/global.js" defer></script>
+  <script src="../../assets/js/animations.js" defer></script>
+</body>
+</html>

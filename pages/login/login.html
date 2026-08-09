@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!-- =====================================================================
+     TGVIS — Unified Login Portal
+     =====================================================================
+     
+     PURPOSE:
+     A single login page that supports three roles — Student, Teacher,
+     and Admin. Users switch between roles using pill-style tabs. Each
+     tab shows a dedicated form with appropriate fields.
+     
+     URL HASH ROUTING:
+     - login.html#student  → Opens Student login tab
+     - login.html#teacher  → Opens Teacher login tab
+     - login.html#admin    → Opens Admin login tab
+     
+     FILE ORGANIZATION:
+     - login.html  → Page structure (this file)
+     - login.css   → All page-specific styles (glassmorphism, tabs, forms)
+     - login.js    → Tab switching, password toggle, form submission logic
+     
+     NOTE:
+     Login forms are currently placeholders (show alert on submit).
+     Backend integration (Firebase Auth, Node.js API, etc.) can be
+     plugged into the handleLogin() function in login.js.
+     
+     ===================================================================== -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — TGVIS Portal | The Green Valley International School</title>
+  <meta name="description" content="Login to the TGVIS student, teacher, or admin portal. Access grades, attendance, timetable, and school resources.">
+
+  <!-- ======== Favicon ======== -->
+  <link rel="icon" type="image/png" href="../../assets/images/logo/logo.png">
+
+  <!-- ======== Google Fonts: Inter + Outfit ======== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ======== RemixIcon CDN ======== -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- ======== Stylesheets ======== -->
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <!-- ======== Back to Home — Floating pill button ======== -->
+  <a href="../../index.html" class="login-back">
+    <i class="ri-arrow-left-line"></i> Back to Home
+  </a>
+
+
+  <!-- ================================================================
+       LOGIN PAGE — Full-screen centered login with role tabs
+       ================================================================ -->
+  <main class="login-page">
+    <div class="login-card">
+
+      <!-- ── School Logo & Title ── -->
+      <div class="login-card__logo">
+        <img src="../../assets/images/logo/logo.png" alt="TGVIS Logo" width="56" height="56">
+        <h1>TGVIS Portal</h1>
+        <p>The Green Valley International School, Bihta</p>
+      </div>
+
+      <!-- ── Role Tabs — Student / Teacher / Admin ── -->
+      <div class="login-tabs">
+        <button class="login-tabs__btn active" data-role="student" onclick="switchTab('student')">
+          <i class="ri-graduation-cap-line"></i> Student
+        </button>
+        <button class="login-tabs__btn" data-role="teacher" onclick="switchTab('teacher')">
+          <i class="ri-user-star-line"></i> Teacher
+        </button>
+        <button class="login-tabs__btn" data-role="admin" onclick="switchTab('admin')">
+          <i class="ri-shield-user-line"></i> Admin
+        </button>
+      </div>
+
+
+      <!-- ============================================================
+           STUDENT LOGIN FORM
+           ============================================================ -->
+      <form class="login-form active" id="form-student" onsubmit="handleLogin(event, 'student')">
+        <!-- Student ID -->
+        <div class="form-group">
+          <label for="student-id">Student ID / Registration No.</label>
+          <div class="form-group__input-wrap">
+            <i class="ri-user-line"></i>
+            <input type="text" id="student-id" placeholder="e.g. TGVIS2025001" required autocomplete="username">
+          </div>
+        </div>
+        <!-- Password -->
+        <div class="form-group">
+          <label for="student-pass">Password</label>
+          <div class="form-group__input-wrap">
+            <i class="ri-lock-line"></i>
+            <input type="password" id="student-pass" placeholder="Enter your password" required autocomplete="current-password">
+            <button type="button" class="password-toggle" onclick="togglePassword('student-pass', this)">
+              <i class="ri-eye-off-line"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Remember / Forgot -->
+        <div class="form-row">
+          <label><input type="checkbox"> Remember me</label>
+          <a href="#">Forgot Password?</a>
+        </div>
+        <!-- Submit -->
+        <button type="submit" class="login-btn">
+          <i class="ri-login-box-line"></i> Sign In as Student
+        </button>
+      </form>
+
+
+      <!-- ============================================================
+           TEACHER LOGIN FORM
+           ============================================================ -->
+      <form class="login-form" id="form-teacher" onsubmit="handleLogin(event, 'teacher')">
+        <!-- Employee ID -->
+        <div class="form-group">
+          <label for="teacher-id">Employee ID</label>
+          <div class="form-group__input-wrap">
+            <i class="ri-user-star-line"></i>
+            <input type="text" id="teacher-id" placeholder="e.g. TGVIS-T-042" required autocomplete="username">
+          </div>
+        </div>
+        <!-- Password -->
+        <div class="form-group">
+          <label for="teacher-pass">Password</label>
+          <div class="form-group__input-wrap">
+            <i class="ri-lock-line"></i>
+            <input type="password" id="teacher-pass" placeholder="Enter your password" required autocomplete="current-password">
+            <button type="button" class="password-toggle" onclick="togglePassword('teacher-pass', this)">
+              <i class="ri-eye-off-line"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Remember / Forgot -->
+        <div class="form-row">
+          <label><input type="checkbox"> Remember me</label>
+          <a href="#">Forgot Password?</a>
+        </div>
+        <!-- Submit -->
+        <button type="submit" class="login-btn">
+          <i class="ri-login-box-line"></i> Sign In as Teacher
+        </button>
+      </form>
+
+
+      <!-- ============================================================
+           ADMIN LOGIN FORM
+           ============================================================ -->
+      <form class="login-form" id="form-admin" onsubmit="handleLogin(event, 'admin')">
+        <!-- Admin Username -->
+        <div class="form-group">
+          <label for="admin-id">Admin Username</label>
+          <div class="form-group__input-wrap">
+            <i class="ri-shield-user-line"></i>
+            <input type="text" id="admin-id" placeholder="e.g. admin@tgvis" required autocomplete="username">
+          </div>
+        </div>
+        <!-- Password -->
+        <div class="form-group">
+          <label for="admin-pass">Password</label>
+          <div class="form-group__input-wrap">
+            <i class="ri-lock-line"></i>
+            <input type="password" id="admin-pass" placeholder="Enter admin password" required autocomplete="current-password">
+            <button type="button" class="password-toggle" onclick="togglePassword('admin-pass', this)">
+              <i class="ri-eye-off-line"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Remember / Forgot -->
+        <div class="form-row">
+          <label><input type="checkbox"> Remember me</label>
+          <a href="#">Reset Credentials</a>
+        </div>
+        <!-- Submit -->
+        <button type="submit" class="login-btn">
+          <i class="ri-login-box-line"></i> Sign In as Admin
+        </button>
+      </form>
+
+
+      <!-- ── Help Footer ── -->
+      <div class="login-card__footer">
+        Need help? <a href="../contact/contact.html">Contact School Office</a>
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- ======== Login Page JavaScript ======== -->
+  <script src="login.js"></script>
+
+</body>
+</html>

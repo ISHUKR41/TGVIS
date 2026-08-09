@@ -1,0 +1,120 @@
+/* ==========================================================================
+   TGVIS — Fee Structure Page Styles
+   ==========================================================================
+   
+   Styles for the fee structure page including:
+   1. Fee table with responsive scrolling
+   2. Fee category tabs
+   3. Payment option cards
+   4. Scholarship notice
+   5. Responsive adjustments
+   
+   ========================================================================== */
+
+
+/* ── Fee Table Wrapper — horizontal scroll on mobile ── */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+/* ── Data Table ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+  font-size: var(--fs-sm);
+}
+
+.data-table thead {
+  background: linear-gradient(135deg, var(--clr-primary), var(--clr-secondary, #10B981));
+}
+
+.data-table th {
+  padding: var(--space-4) var(--space-5);
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  font-family: var(--ff-heading);
+  letter-spacing: 0.3px;
+}
+
+.data-table td {
+  padding: var(--space-4) var(--space-5);
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.2s ease;
+}
+
+.data-table tbody tr:hover td {
+  background: rgba(99, 102, 241, 0.03);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Highlight class-specific rows */
+.data-table td:first-child {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: var(--ff-heading);
+}
+
+/* ── Payment Cards ── */
+.payment-card {
+  padding: var(--space-6);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  text-align: center;
+  flex: 1;
+  min-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.payment-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.payment-card__icon {
+  font-size: var(--fs-3xl);
+  color: var(--clr-primary);
+  margin-bottom: var(--space-3);
+}
+
+.payment-card__title {
+  font-family: var(--ff-heading);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.payment-card__text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+/* ── Scholarship Notice ── */
+.scholarship-notice {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  border-left: 4px solid #F59E0B;
+  margin-top: var(--space-10);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .data-table {
+    font-size: var(--fs-xs);
+  }
+  .data-table th,
+  .data-table td {
+    padding: var(--space-3);
+  }
+}

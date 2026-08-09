@@ -1,0 +1,110 @@
+/* ==========================================================================
+   TGVIS — Admissions Page Styles
+   ========================================================================== */
+
+/* ---- Admission Steps (Vertical numbered steps) ---- */
+.admission-steps {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.admission-step {
+  display: flex;
+  gap: var(--space-6);
+  align-items: flex-start;
+  padding: var(--space-8);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  transition: all var(--transition-smooth);
+  position: relative;
+}
+
+.admission-step:hover {
+  transform: translateX(8px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(var(--color-primary-rgb), 0.3);
+}
+
+/* Step number circle */
+.admission-step__number {
+  min-width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-white);
+  flex-shrink: 0;
+}
+
+.admission-step__content h3 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-2);
+  color: var(--text-primary);
+}
+
+.admission-step__content p {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+}
+
+/* ---- Data Table (Age Criteria) ---- */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  padding: var(--space-4) var(--space-6);
+  text-align: left;
+  border-bottom: 1px solid var(--color-gray-200);
+  font-size: var(--fs-sm);
+}
+
+.data-table th {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  font-size: var(--fs-xs);
+}
+
+.data-table tbody tr:hover {
+  background: rgba(var(--color-primary-rgb), 0.03);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 767px) {
+  .admission-step {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+  }
+
+  .admission-step:hover {
+    transform: translateY(-4px);
+  }
+}

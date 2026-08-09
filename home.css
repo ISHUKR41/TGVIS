@@ -1,0 +1,857 @@
+/* ==========================================================================
+   TGVIS — Homepage Specific Styles
+   ==========================================================================
+   
+   This CSS file contains styles ONLY used on the homepage (index.html).
+   Global and shared component styles are in global.css and components.css.
+   
+   Sections styled here:
+   1. Hero Section — full-screen landing area
+   2. Welcome Section — school introduction grid
+   3. Why Choose Section — feature cards grid
+   4. Programs Section — tabbed academic display
+   5. Stats Section — animated counter bar
+   6. Testimonials — review carousel
+   7. CTA Banner — admissions call-to-action
+   
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. HERO SECTION
+   --------------------------------------------------------------------------
+   Full-viewport hero with background image, overlay, particles, 
+   animated text, CTA buttons, and scroll indicator.
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Background image — covers the entire hero area */
+.hero__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Dark gradient overlay — ensures text is readable over any image */
+.hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(13, 77, 43, 0.88) 0%,
+    rgba(8, 50, 28, 0.92) 40%,
+    rgba(15, 17, 23, 0.85) 100%
+  );
+  z-index: 2;
+}
+
+/* Particle effect container — positioned above overlay but below content */
+.hero__particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Floating decorative shapes container */
+.hero__shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Main content — centered text and buttons */
+.hero__content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding: var(--space-20) var(--container-padding);
+  max-width: 900px;
+}
+
+/* Badge above the heading — "Excellence in Education" */
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-5);
+  background: rgba(212, 168, 67, 0.15);
+  border: 1px solid rgba(212, 168, 67, 0.3);
+  border-radius: var(--radius-full);
+  color: var(--color-secondary);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  margin-bottom: var(--space-8);
+  backdrop-filter: blur(8px);
+}
+
+.hero__badge i {
+  font-size: var(--fs-md);
+}
+
+/* Main hero heading */
+.hero__title {
+  font-size: var(--fs-6xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-white);
+  line-height: 1.05;
+  margin-bottom: var(--space-6);
+  letter-spacing: -0.03em;
+}
+
+/* Hero subtitle / description */
+.hero__subtitle {
+  font-size: var(--fs-md);
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 650px;
+  margin: 0 auto var(--space-10);
+  line-height: var(--lh-relaxed);
+}
+
+/* CTA buttons row */
+.hero__cta-group {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-12);
+}
+
+/* Quick stats row at the bottom of hero */
+.hero__stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-10);
+  padding-top: var(--space-8);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Individual stat item */
+.hero__stat {
+  text-align: center;
+}
+
+.hero__stat-number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-secondary);
+  line-height: 1;
+}
+
+.hero__stat-label {
+  display: block;
+  font-size: var(--fs-xs);
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: var(--space-1);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+
+/* Scroll indicator — bouncing arrow at the bottom */
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  animation: float 3s ease-in-out infinite;
+}
+
+.hero__scroll-indicator i {
+  font-size: var(--fs-lg);
+}
+
+/* ---- HERO RESPONSIVE ---- */
+@media (max-width: 767px) {
+  .hero__title {
+    font-size: var(--fs-3xl);
+  }
+
+  .hero__subtitle {
+    font-size: var(--fs-base);
+  }
+
+  .hero__stats {
+    flex-wrap: wrap;
+    gap: var(--space-6);
+  }
+
+  .hero__stat {
+    flex: 0 0 45%;
+  }
+
+  .hero__cta-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__scroll-indicator {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: var(--fs-2xl);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   2. WELCOME SECTION
+   --------------------------------------------------------------------------
+   Two-column layout: image on the left, text on the right.
+   Features an overlapping "years of excellence" badge on the image.
+   -------------------------------------------------------------------------- */
+
+.welcome__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+/* Image wrapper — contains the image frame and the experience badge */
+.welcome__image-wrapper {
+  position: relative;
+}
+
+/* Image with a decorative border frame */
+.welcome__image-frame {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+}
+
+/* Decorative border around the image frame */
+.welcome__image-frame::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: 10px;
+  bottom: 10px;
+  border: 3px solid var(--color-secondary);
+  border-radius: var(--radius-xl);
+  z-index: -1;
+  opacity: 0.4;
+}
+
+.welcome__image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Experience badge — overlaps the bottom-right of the image */
+.welcome__experience-badge {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 140px;
+  height: 140px;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  border: 4px solid var(--bg-primary);
+  z-index: 2;
+}
+
+.welcome__experience-number {
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-secondary);
+  line-height: 1;
+}
+
+.welcome__experience-text {
+  font-size: var(--fs-xs);
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  line-height: 1.3;
+  margin-top: var(--space-1);
+}
+
+/* Highlights grid — 2x2 mini feature icons */
+.welcome__highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin: var(--space-8) 0;
+}
+
+.welcome__highlight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+  transition: all var(--transition-base);
+}
+
+.welcome__highlight:hover {
+  background: rgba(var(--color-primary-rgb), 0.08);
+  color: var(--color-primary);
+}
+
+.welcome__highlight i {
+  font-size: var(--fs-xl);
+  color: var(--color-primary);
+}
+
+@media (max-width: 1024px) {
+  .welcome__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+
+  .welcome__image {
+    height: 300px;
+  }
+
+  .welcome__experience-badge {
+    bottom: -15px;
+    right: 20px;
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   3. PROGRAMS SECTION (Tabbed Display)
+   -------------------------------------------------------------------------- */
+
+.programs__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.programs__text h3 {
+  margin-bottom: var(--space-4);
+  color: var(--text-primary);
+}
+
+.programs__text p {
+  margin-bottom: var(--space-6);
+}
+
+/* Feature list with check icons */
+.programs__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+.programs__features li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+.programs__features li i {
+  color: var(--color-accent);
+  font-size: var(--fs-md);
+  min-width: 20px;
+}
+
+.programs__image {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.programs__image img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .programs__content {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .programs__image {
+    order: -1;
+  }
+
+  .programs__image img {
+    height: 220px;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   4. STATS SECTION
+   --------------------------------------------------------------------------
+   Full-width colored band with animated counter numbers.
+   -------------------------------------------------------------------------- */
+
+.stats-section {
+  position: relative;
+  padding: var(--space-20) 0;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  overflow: hidden;
+}
+
+/* Subtle pattern overlay */
+.stats-section__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+    circle at 20% 80%,
+    rgba(255, 255, 255, 0.04) 0%,
+    transparent 50%
+  ),
+  radial-gradient(
+    circle at 80% 20%,
+    rgba(212, 168, 67, 0.06) 0%,
+    transparent 50%
+  );
+}
+
+.stats-section__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-8);
+  position: relative;
+  z-index: 2;
+}
+
+.stats-section__item {
+  text-align: center;
+  padding: var(--space-6);
+}
+
+.stats-section__item .stat-card__icon {
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: var(--space-4);
+}
+
+.stats-section__number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--fs-4xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-white);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.stats-section__label {
+  font-size: var(--fs-sm);
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  font-weight: var(--fw-medium);
+}
+
+@media (max-width: 767px) {
+  .stats-section__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  .stats-section__number {
+    font-size: var(--fs-2xl);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   5. TESTIMONIALS SECTION
+   -------------------------------------------------------------------------- */
+
+.testimonials {
+  background: var(--bg-tertiary);
+}
+
+/* Testimonial card styling */
+.testimonial-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-gray-200);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Star rating display */
+.testimonial-card__stars {
+  display: flex;
+  gap: var(--space-1);
+  margin-bottom: var(--space-4);
+  color: #F59E0B; /* Amber gold for stars */
+  font-size: var(--fs-md);
+}
+
+/* Quote text */
+.testimonial-card__text {
+  font-size: var(--fs-base);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+  font-style: italic;
+  flex: 1;
+  margin-bottom: var(--space-6);
+  position: relative;
+  padding-left: var(--space-6);
+}
+
+/* Opening quote mark */
+.testimonial-card__text::before {
+  content: '"';
+  position: absolute;
+  left: 0;
+  top: -5px;
+  font-family: var(--font-heading);
+  font-size: var(--fs-4xl);
+  color: var(--color-primary);
+  opacity: 0.2;
+  line-height: 1;
+}
+
+/* Author info row */
+.testimonial-card__author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-gray-200);
+}
+
+/* Avatar circle with initials */
+.testimonial-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-sm);
+  min-width: 48px;
+}
+
+.testimonial-card__name {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.testimonial-card__role {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+}
+
+/* Swiper navigation buttons */
+.testimonials__nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.testimonials__nav-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  font-size: var(--fs-lg);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  background: var(--bg-secondary);
+}
+
+.testimonials__nav-btn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Swiper pagination dots */
+.testimonials__slider .swiper-pagination {
+  position: relative;
+  margin-top: var(--space-6);
+}
+
+.testimonials__slider .swiper-pagination-bullet {
+  background: var(--color-gray-300);
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+  transition: all var(--transition-base);
+}
+
+.testimonials__slider .swiper-pagination-bullet-active {
+  background: var(--color-primary);
+  width: 28px;
+  border-radius: var(--radius-full);
+}
+
+
+/* --------------------------------------------------------------------------
+   6. CTA BANNER
+   -------------------------------------------------------------------------- */
+
+.cta-banner {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 50%, #0a3d1f 100%);
+  padding: var(--space-20) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative circle in background */
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: rgba(212, 168, 67, 0.06);
+  border-radius: var(--radius-full);
+}
+
+.cta-banner__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  position: relative;
+  z-index: 2;
+}
+
+.cta-banner__label {
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  background: rgba(212, 168, 67, 0.15);
+  border-radius: var(--radius-full);
+  color: var(--color-secondary);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  margin-bottom: var(--space-4);
+}
+
+.cta-banner__title {
+  font-size: var(--fs-3xl);
+  color: var(--color-white);
+  margin-bottom: var(--space-4);
+}
+
+.cta-banner__title span {
+  color: var(--color-secondary);
+}
+
+.cta-banner__description {
+  font-size: var(--fs-base);
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 500px;
+}
+
+.cta-banner__actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .cta-banner__content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cta-banner__title {
+    font-size: var(--fs-2xl);
+  }
+
+  .cta-banner__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta-banner__actions .btn {
+    width: 100%;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   7. PHOTO GALLERY SECTION
+   --------------------------------------------------------------------------
+   CSS Grid masonry-style gallery with hover overlay effects.
+   -------------------------------------------------------------------------- */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 220px);
+  gap: var(--space-4);
+}
+
+/* Wide tile spans 2 columns */
+.gallery-tile--wide {
+  grid-column: span 2;
+}
+
+/* Tall tile spans 2 rows */
+.gallery-tile--tall {
+  grid-row: span 2;
+}
+
+/* Base gallery tile */
+.gallery-tile {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Image inside tile */
+.gallery-tile__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+  opacity: 0.9;
+}
+
+/* Dark overlay with label — shown on hover */
+.gallery-tile__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0) 50%
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-6);
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+}
+
+.gallery-tile__overlay span {
+  color: var(--color-white);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  font-family: var(--font-heading);
+  transform: translateY(10px);
+  transition: transform var(--transition-smooth);
+}
+
+/* Hover effects */
+.gallery-tile:hover .gallery-tile__img {
+  transform: scale(1.06);
+}
+
+.gallery-tile:hover .gallery-tile__overlay {
+  opacity: 1;
+}
+
+.gallery-tile:hover .gallery-tile__overlay span {
+  transform: translateY(0);
+}
+
+/* Responsive gallery */
+@media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+
+  .gallery-tile--wide { grid-column: span 2; }
+  .gallery-tile--tall { grid-row: span 1; }
+}
+
+@media (max-width: 767px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .gallery-tile--wide { grid-column: span 1; }
+  .gallery-tile { height: 200px; }
+}
+
+/* --------------------------------------------------------------------------
+   8. NEWS TICKER layout fix
+   -------------------------------------------------------------------------- */
+.news-ticker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-6);
+}

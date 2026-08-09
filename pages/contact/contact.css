@@ -1,0 +1,236 @@
+/* ==========================================================================
+   TGVIS — Contact Us | Page-Specific Styles
+   ==========================================================================
+   
+   Styles for the Contact page including:
+   1. Contact Info Cards — icon cards for address, phone, email, WhatsApp
+   2. Contact Form — styled form inputs, labels, textarea, submit button
+   3. Google Maps Embed — responsive map container
+   4. Social Media Link Cards — hoverable social platform buttons
+   5. Form-Map Split Grid — side-by-side layout on desktop
+   
+   DEPENDENCIES: global.css, components.css
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. CONTACT INFO CARDS
+   --------------------------------------------------------------------------
+   Individual cards for each contact method (address, phone, email, WhatsApp).
+   Each has a colored icon, title, text, and optional action link.
+   -------------------------------------------------------------------------- */
+
+.contact-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  text-align: center;
+  border: 1px solid var(--color-gray-200);
+  transition: all var(--transition-smooth);
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+
+/* Icon circle at top of card */
+.contact-card__icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(var(--color-primary-rgb), 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-6);
+  font-size: 1.75rem;
+  color: var(--color-primary);
+}
+
+.contact-card__title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--space-3);
+  color: var(--text-primary);
+}
+
+.contact-card__text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+/* Action link at bottom (e.g., "Get Directions") */
+.contact-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.contact-card__link:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. CONTACT FORM + MAP SPLIT GRID
+   --------------------------------------------------------------------------
+   Two-column layout: contact form on left, Google Map on right.
+   Stacks vertically on mobile.
+   -------------------------------------------------------------------------- */
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+/* Form wrapper styling */
+.contact-form-wrapper {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  border: 1px solid var(--color-gray-200);
+}
+
+/* Individual form field group */
+.form-group {
+  margin-bottom: var(--space-6);
+}
+
+.form-label {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+/* Input, select, and textarea base styles */
+.form-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-base);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: 1.5px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  outline: none;
+}
+
+/* Focus state — green highlight border */
+.form-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.1);
+}
+
+/* Textarea specific */
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. GOOGLE MAPS EMBED
+   -------------------------------------------------------------------------- */
+
+.contact-map-wrapper {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  border: 1px solid var(--color-gray-200);
+}
+
+.contact-map {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.contact-map iframe {
+  display: block;
+  width: 100%;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. SOCIAL MEDIA LINK CARDS
+   --------------------------------------------------------------------------
+   Hoverable cards for each social platform with icon and label.
+   -------------------------------------------------------------------------- */
+
+.social-link-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-8);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-gray-200);
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  transition: all var(--transition-smooth);
+  min-width: 120px;
+}
+
+.social-link-card i {
+  font-size: 2rem;
+  color: var(--color-primary);
+  transition: transform var(--transition-smooth);
+}
+
+.social-link-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+
+.social-link-card:hover i {
+  transform: scale(1.2);
+}
+
+
+/* --------------------------------------------------------------------------
+   5. RESPONSIVE ADJUSTMENTS
+   -------------------------------------------------------------------------- */
+
+/* Tablet and below: stack form and map vertically */
+@media (max-width: 1024px) {
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .contact-form-wrapper,
+  .contact-map-wrapper {
+    padding: var(--space-6);
+  }
+
+  .contact-card {
+    padding: var(--space-6);
+  }
+
+  .social-link-card {
+    padding: var(--space-4) var(--space-6);
+    min-width: 100px;
+  }
+}

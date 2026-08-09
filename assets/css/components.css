@@ -1,0 +1,1646 @@
+/* ==========================================================================
+   TGVIS — Reusable Components Stylesheet
+   ==========================================================================
+   
+   This file contains all SHARED UI components used across multiple pages.
+   Each component is self-contained with its own styles. Components include:
+   
+   1. Preloader — animated loading screen shown while page loads
+   2. Navbar — sticky glassmorphism navigation with mega-menu
+   3. Buttons — primary, secondary, ghost, outline variants
+   4. Cards — glass cards, image cards, stat cards
+   5. Hero Banner — page-level hero with breadcrumb
+   6. Breadcrumbs — navigation path indicator
+   7. Form Inputs — styled text inputs, textareas, selects
+   8. Badges & Tags — small labels for categories and status
+   9. Footer — multi-column footer with social links
+   10. Back-to-Top — floating scroll button
+   11. WhatsApp Button — fixed WhatsApp quick contact
+   12. News Ticker — scrolling announcements bar
+   
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. PRELOADER
+   --------------------------------------------------------------------------
+   Full-screen overlay shown while the page loads. Features the school logo
+   with a spinning animation. Fades out once content is ready.
+   -------------------------------------------------------------------------- */
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-preloader);
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+/* When loading is complete, this class is added to fade out the preloader */
+.preloader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* School name text in the preloader */
+.preloader__text {
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  margin-top: var(--space-6);
+  letter-spacing: var(--ls-wide);
+}
+
+/* Animated loading bar below the text */
+.preloader__bar {
+  width: 200px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  margin-top: var(--space-6);
+  overflow: hidden;
+  position: relative;
+}
+
+/* The animated fill that moves left to right */
+.preloader__bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: var(--color-secondary);
+  border-radius: var(--radius-full);
+  animation: preloaderSlide 1.2s ease-in-out infinite;
+}
+
+@keyframes preloaderSlide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(600%); }
+}
+
+
+/* --------------------------------------------------------------------------
+   2. NAVBAR (Glassmorphism Navigation)
+   --------------------------------------------------------------------------
+   Sticky top navigation bar with:
+   - Transparent background that becomes solid on scroll
+   - Glassmorphism blur effect
+   - Responsive hamburger menu for mobile
+   - Dropdown/mega-menu for complex navigation
+   -------------------------------------------------------------------------- */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  z-index: var(--z-navbar);
+  transition: all var(--transition-smooth);
+  display: flex;
+  align-items: center;
+}
+
+/* When user scrolls down, navbar becomes solid with glassmorphism */
+.navbar.scrolled {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--shadow-md);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* Dark mode scrolled navbar */
+[data-theme="dark"] .navbar.scrolled {
+  background: var(--glass-bg-dark);
+}
+
+/* Container inside the navbar — holds logo and menu */
+.navbar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--container-2xl);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* School logo section — logo image + school name */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  z-index: 10;
+}
+
+/* Logo image (the school crest/emblem) */
+.navbar__logo-img {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 2px solid var(--color-secondary);
+}
+
+/* School name text next to the logo */
+.navbar__logo-text {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-lg);
+  color: var(--color-white);
+  line-height: var(--lh-tight);
+  transition: color var(--transition-base);
+}
+
+/* On scroll, logo text changes to dark color for contrast */
+.navbar.scrolled .navbar__logo-text {
+  color: var(--text-primary);
+}
+
+/* Small text below the school name (e.g., "Bihta, Bihar") */
+.navbar__logo-subtitle {
+  font-size: var(--fs-xs);
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: var(--fw-regular);
+  display: block;
+  transition: color var(--transition-base);
+}
+
+.navbar.scrolled .navbar__logo-subtitle {
+  color: var(--text-tertiary);
+}
+
+/* Navigation menu — the list of links */
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* Individual navigation link */
+.navbar__link {
+  position: relative;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+/* On scroll, nav links change to dark text */
+.navbar.scrolled .navbar__link {
+  color: var(--text-primary);
+}
+
+/* Hover state for nav links — subtle background highlight */
+.navbar__link:hover {
+  color: var(--color-secondary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar.scrolled .navbar__link:hover {
+  background: var(--bg-tertiary);
+  color: var(--color-primary);
+}
+
+/* Active/current page indicator — a dot below the link text */
+.navbar__link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--color-secondary);
+  border-radius: var(--radius-full);
+}
+
+/* Dropdown indicator arrow (for menus with sub-items) */
+.navbar__link--dropdown {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.navbar__link--dropdown i {
+  font-size: var(--fs-sm);
+  transition: transform var(--transition-base);
+}
+
+/* Rotate arrow when dropdown is open */
+.navbar__link--dropdown.open i {
+  transform: rotate(180deg);
+}
+
+/* Dropdown menu panel */
+.navbar__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-gray-200);
+  padding: var(--space-3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all var(--transition-base);
+  z-index: var(--z-dropdown);
+}
+
+/* Show dropdown on hover (desktop) */
+.navbar__item:hover .navbar__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Individual dropdown item */
+.navbar__dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.navbar__dropdown-link:hover {
+  background: var(--bg-tertiary);
+  color: var(--color-primary);
+}
+
+.navbar__dropdown-link i {
+  font-size: var(--fs-md);
+  color: var(--color-primary);
+  width: 24px;
+  text-align: center;
+}
+
+/* Navigation item container (wraps link + dropdown) */
+.navbar__item {
+  position: relative;
+}
+
+/* Right side of navbar — dark mode toggle, CTA button */
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Dark mode toggle button */
+.navbar__theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-size: var(--fs-lg);
+  transition: all var(--transition-base);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar.scrolled .navbar__theme-toggle {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+.navbar__theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(20deg);
+}
+
+/* CTA (Call-to-Action) button in navbar — "Apply Now" */
+.navbar__cta {
+  padding: var(--space-2) var(--space-5);
+  background: var(--color-secondary);
+  color: var(--color-white);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
+  box-shadow: 0 2px 8px rgba(212, 168, 67, 0.3);
+}
+
+.navbar__cta:hover {
+  background: var(--color-secondary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(212, 168, 67, 0.4);
+}
+
+/* ---- HAMBURGER MENU (Mobile) ----
+   Three horizontal lines that transform into an X when clicked */
+
+.navbar__hamburger {
+  display: none;       /* Hidden on desktop — shown via media query */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 10;
+  gap: 5px;
+}
+
+/* Individual hamburger line */
+.navbar__hamburger-line {
+  width: 24px;
+  height: 2px;
+  background: var(--color-white);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
+}
+
+.navbar.scrolled .navbar__hamburger-line {
+  background: var(--text-primary);
+}
+
+/* Hamburger transforms into X when menu is open */
+.navbar__hamburger.active .navbar__hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar__hamburger.active .navbar__hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.navbar__hamburger.active .navbar__hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile menu overlay background */
+.navbar__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: var(--z-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+}
+
+.navbar__overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. BUTTONS
+   --------------------------------------------------------------------------
+   Multiple button variants for different contexts:
+   - Primary (green) — main CTA actions
+   - Secondary (gold) — secondary actions
+   - Ghost — transparent with border
+   - Outline — transparent with colored border
+   -------------------------------------------------------------------------- */
+
+/* Base button styles shared by all variants */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-8);
+  font-family: var(--font-primary);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/* Magnetic hover effect — button slightly follows mouse cursor */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-100%);
+  transition: transform var(--transition-smooth);
+}
+
+.btn:hover::before {
+  transform: translateX(0);
+}
+
+/* ---- Primary Button (Deep Green) ---- */
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 4px 16px rgba(13, 77, 43, 0.3);
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-light);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(13, 77, 43, 0.4);
+}
+
+.btn--primary:active {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(13, 77, 43, 0.3);
+}
+
+/* ---- Secondary Button (Gold) ---- */
+.btn--secondary {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  box-shadow: 0 4px 16px rgba(212, 168, 67, 0.3);
+}
+
+.btn--secondary:hover {
+  background: var(--color-secondary-light);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(212, 168, 67, 0.4);
+}
+
+/* ---- Ghost Button (Transparent with white border) ---- */
+.btn--ghost {
+  background: transparent;
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-white);
+  transform: translateY(-3px);
+}
+
+/* ---- Outline Button (Transparent with green border) ---- */
+.btn--outline {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn--outline:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-3px);
+}
+
+/* ---- Button Sizes ---- */
+.btn--sm {
+  padding: var(--space-2) var(--space-5);
+  font-size: var(--fs-xs);
+}
+
+.btn--lg {
+  padding: var(--space-4) var(--space-10);
+  font-size: var(--fs-base);
+}
+
+/* ---- Button with icon ---- */
+.btn i {
+  font-size: var(--fs-md);
+  transition: transform var(--transition-base);
+}
+
+.btn:hover i {
+  transform: translateX(4px);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. CARDS
+   --------------------------------------------------------------------------
+   Reusable card components for displaying content blocks.
+   -------------------------------------------------------------------------- */
+
+/* ---- Glass Card ----
+   Uses glassmorphism effect with blurred background */
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  transition: all var(--transition-smooth);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ---- Image Card ----
+   Card with an image on top and text content below */
+.card-image {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-smooth);
+}
+
+.card-image:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Image container with aspect ratio and hover zoom */
+.card-image__img-wrapper {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+}
+
+.card-image__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.card-image:hover .card-image__img {
+  transform: scale(1.05);
+}
+
+/* Gradient overlay on the image (for text readability) */
+.card-image__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+}
+
+/* Text content area below the image */
+.card-image__content {
+  padding: var(--space-6);
+}
+
+.card-image__title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--space-2);
+}
+
+.card-image__text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+/* ---- Stat Card ----
+   Used for displaying statistics (e.g., "500+ Students") */
+.stat-card {
+  text-align: center;
+  padding: var(--space-8) var(--space-6);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  transition: all var(--transition-smooth);
+}
+
+.stat-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Large number display in the stat card */
+.stat-card__number {
+  font-family: var(--font-heading);
+  font-size: var(--fs-4xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+/* Label below the number (e.g., "Students Enrolled") */
+.stat-card__label {
+  font-size: var(--fs-sm);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  font-weight: var(--fw-medium);
+}
+
+/* Icon above the number */
+.stat-card__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4);
+  color: var(--color-white);
+  font-size: var(--fs-xl);
+}
+
+/* ---- Feature Card ----
+   Card with an icon, title, and description */
+.feature-card {
+  padding: var(--space-8);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  /* Decorative gradient line at the top of the card */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-smooth);
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+.feature-card:hover {
+  border-color: rgba(13, 77, 43, 0.2);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-card__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  background: rgba(var(--color-primary-rgb), 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-6);
+  font-size: var(--fs-2xl);
+  color: var(--color-primary);
+  transition: all var(--transition-smooth);
+}
+
+.feature-card:hover .feature-card__icon {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: scale(1.1) rotate(5deg);
+}
+
+.feature-card__title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--space-3);
+}
+
+.feature-card__text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+}
+
+
+/* --------------------------------------------------------------------------
+   5. PAGE HERO BANNER
+   --------------------------------------------------------------------------
+   Full-width hero section used at the top of every sub-page.
+   Contains a background image, overlay, page title, and breadcrumb.
+   -------------------------------------------------------------------------- */
+
+.page-hero {
+  position: relative;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  margin-top: 0;  /* Navbar is fixed, hero sits under it */
+}
+
+/* Background image with parallax-ready positioning */
+.page-hero__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Dark gradient overlay for text readability */
+.page-hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(13, 77, 43, 0.85) 0%,
+    rgba(8, 61, 32, 0.9) 100%
+  );
+}
+
+/* Content container inside the hero */
+.page-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-6);
+}
+
+/* Page title in the hero */
+.page-hero__title {
+  font-size: var(--fs-4xl);
+  color: var(--color-white);
+  margin-bottom: var(--space-4);
+  font-weight: var(--fw-bold);
+}
+
+/* Subtitle or description in the hero */
+.page-hero__subtitle {
+  font-size: var(--fs-md);
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .page-hero {
+    height: 300px;
+  }
+  .page-hero__title {
+    font-size: var(--fs-2xl);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   6. BREADCRUMBS
+   --------------------------------------------------------------------------
+   Shows the navigation path (e.g., Home > About Us > Director's Message).
+   Helps users understand where they are on the site.
+   -------------------------------------------------------------------------- */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: var(--space-4);
+}
+
+.breadcrumb__link {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb__link:hover {
+  color: var(--color-secondary);
+}
+
+/* Separator between breadcrumb items */
+.breadcrumb__separator {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: var(--fs-xs);
+}
+
+/* Current page in breadcrumb — not a link, uses gold color */
+.breadcrumb__current {
+  color: var(--color-secondary);
+  font-weight: var(--fw-medium);
+}
+
+
+/* --------------------------------------------------------------------------
+   7. FORM INPUTS
+   --------------------------------------------------------------------------
+   Styled form elements for contact forms, inquiry forms, and login pages.
+   -------------------------------------------------------------------------- */
+
+/* Form group — wraps a label + input pair */
+.form-group {
+  margin-bottom: var(--space-6);
+}
+
+/* Form label */
+.form-label {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+/* Required field indicator (red asterisk) */
+.form-label--required::after {
+  content: ' *';
+  color: var(--color-error);
+}
+
+/* Text input, email input, password input, textarea */
+.form-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-base);
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+/* Focus state — green border with subtle glow */
+.form-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.1);
+}
+
+/* Placeholder text color */
+.form-input::placeholder {
+  color: var(--color-gray-400);
+}
+
+/* Error state — red border */
+.form-input--error {
+  border-color: var(--color-error);
+}
+
+/* Success state — green border */
+.form-input--success {
+  border-color: var(--color-success);
+}
+
+/* Error message text below input */
+.form-error {
+  font-size: var(--fs-xs);
+  color: var(--color-error);
+  margin-top: var(--space-1);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* Textarea specific styles */
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Select dropdown */
+.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right var(--space-3) center;
+  background-size: 16px;
+  padding-right: var(--space-10);
+}
+
+
+/* --------------------------------------------------------------------------
+   8. BADGES & TAGS
+   --------------------------------------------------------------------------
+   Small colored labels for categorization and status display.
+   -------------------------------------------------------------------------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+
+.badge--primary {
+  background: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--color-primary);
+}
+
+.badge--secondary {
+  background: rgba(var(--color-secondary-rgb), 0.1);
+  color: var(--color-secondary);
+}
+
+.badge--success {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-success);
+}
+
+.badge--warning {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--color-warning);
+}
+
+.badge--error {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-error);
+}
+
+
+/* --------------------------------------------------------------------------
+   9. FOOTER
+   --------------------------------------------------------------------------
+   Multi-column footer with:
+   - School info and logo
+   - Quick links columns
+   - Contact information
+   - Newsletter signup
+   - Social media links
+   - Copyright bar
+   -------------------------------------------------------------------------- */
+
+.footer {
+  background: var(--color-gray-900);
+  color: var(--color-gray-300);
+  padding-top: var(--space-20);
+}
+
+/* Main footer grid layout — 4 columns on desktop */
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: var(--space-12);
+  padding-bottom: var(--space-16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ---- Footer Brand Column ---- */
+.footer__brand {
+  max-width: 300px;
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.footer__logo-img {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-secondary);
+}
+
+.footer__logo-text {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  line-height: var(--lh-tight);
+}
+
+.footer__description {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-6);
+  color: var(--color-gray-400);
+}
+
+/* Social media links row */
+.footer__social {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.footer__social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray-400);
+  font-size: var(--fs-md);
+  transition: all var(--transition-base);
+}
+
+.footer__social-link:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-3px);
+}
+
+/* ---- Footer Links Columns ---- */
+.footer__heading {
+  font-family: var(--font-heading);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  color: var(--color-white);
+  margin-bottom: var(--space-6);
+  position: relative;
+  padding-bottom: var(--space-3);
+}
+
+/* Gold underline below footer headings */
+.footer__heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--color-secondary);
+  border-radius: var(--radius-full);
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.footer__link {
+  font-size: var(--fs-sm);
+  color: var(--color-gray-400);
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.footer__link:hover {
+  color: var(--color-secondary);
+  transform: translateX(4px);
+}
+
+.footer__link i {
+  font-size: var(--fs-xs);
+  color: var(--color-secondary);
+}
+
+/* ---- Footer Contact Info ---- */
+.footer__contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.footer__contact-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: var(--radius-full);
+  background: rgba(var(--color-primary-rgb), 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  font-size: var(--fs-sm);
+}
+
+.footer__contact-text {
+  font-size: var(--fs-sm);
+  color: var(--color-gray-400);
+  line-height: var(--lh-normal);
+}
+
+/* ---- Footer Newsletter ---- */
+.footer__newsletter {
+  margin-top: var(--space-6);
+}
+
+.footer__newsletter-form {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.footer__newsletter-input {
+  flex: 1;
+  padding: var(--space-3) var(--space-4);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  color: var(--color-white);
+  font-size: var(--fs-sm);
+}
+
+.footer__newsletter-input::placeholder {
+  color: var(--color-gray-500);
+}
+
+.footer__newsletter-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.2);
+}
+
+.footer__newsletter-btn {
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--radius-full);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm);
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.footer__newsletter-btn:hover {
+  background: var(--color-primary-light);
+}
+
+/* ---- Footer Bottom Bar ---- */
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-6) 0;
+  font-size: var(--fs-xs);
+  color: var(--color-gray-500);
+}
+
+.footer__bottom-links {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.footer__bottom-link {
+  color: var(--color-gray-500);
+  transition: color var(--transition-fast);
+}
+
+.footer__bottom-link:hover {
+  color: var(--color-secondary);
+}
+
+/* ---- FOOTER RESPONSIVE ---- */
+@media (max-width: 1024px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 767px) {
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: var(--space-4);
+    text-align: center;
+  }
+
+  .footer__newsletter-form {
+    flex-direction: column;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   10. BACK-TO-TOP BUTTON
+   --------------------------------------------------------------------------
+   Floating circular button that appears after scrolling down.
+   Clicking it smoothly scrolls the user back to the top of the page.
+   -------------------------------------------------------------------------- */
+
+.back-to-top {
+  position: fixed;
+  bottom: var(--space-8);
+  right: var(--space-8);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-sticky);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+}
+
+/* Show the button after scrolling 500px */
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--color-primary-light);
+  transform: translateY(-4px);
+}
+
+
+/* --------------------------------------------------------------------------
+   11. WHATSAPP FLOATING BUTTON
+   --------------------------------------------------------------------------
+   Fixed WhatsApp button in the bottom-left corner for instant inquiries.
+   This is a common pattern on Indian school websites.
+   -------------------------------------------------------------------------- */
+
+.whatsapp-btn {
+  position: fixed;
+  bottom: var(--space-8);
+  left: var(--space-8);
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: #25D366;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-2xl);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+  z-index: var(--z-sticky);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+  animation: whatsappPulse 2s ease-in-out infinite;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
+}
+
+/* Subtle pulse animation to draw attention */
+@keyframes whatsappPulse {
+  0%, 100% { box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4); }
+  50% { box-shadow: 0 4px 24px rgba(37, 211, 102, 0.6); }
+}
+
+/* Tooltip that appears on hover */
+.whatsapp-btn__tooltip {
+  position: absolute;
+  right: calc(100% + var(--space-3));
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--color-gray-900);
+  color: var(--color-white);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-fast);
+}
+
+.whatsapp-btn:hover .whatsapp-btn__tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* --------------------------------------------------------------------------
+   12. NEWS TICKER
+   --------------------------------------------------------------------------
+   Horizontal scrolling bar showing latest announcements/updates.
+   Positioned just below the navbar or above the footer.
+   -------------------------------------------------------------------------- */
+
+.news-ticker {
+  background: var(--color-primary);
+  padding: var(--space-3) 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.news-ticker__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-4);
+  background: var(--color-secondary);
+  color: var(--color-white);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  border-radius: var(--radius-full);
+  position: relative;
+  z-index: 2;
+}
+
+/* Scrolling text container */
+.news-ticker__scroll {
+  display: inline-block;
+  padding-left: var(--space-6);
+  animation: tickerScroll 30s linear infinite;
+}
+
+.news-ticker__item {
+  display: inline;
+  padding: 0 var(--space-10);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--fs-sm);
+}
+
+/* Dot separator between ticker items */
+.news-ticker__item::after {
+  content: '•';
+  padding-left: var(--space-10);
+  color: var(--color-secondary);
+}
+
+/* Continuous scrolling animation — speed controlled by animation duration */
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.news-ticker:hover .news-ticker__scroll {
+  animation-play-state: paused; /* Pause on hover so users can read */
+}
+
+
+/* --------------------------------------------------------------------------
+   13. ACCORDION / FAQ
+   --------------------------------------------------------------------------
+   Expandable content sections used for FAQs and detailed information.
+   -------------------------------------------------------------------------- */
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.accordion__item {
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.accordion__item.active {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.accordion__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  cursor: pointer;
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+}
+
+.accordion__header:hover {
+  color: var(--color-primary);
+}
+
+.accordion__icon {
+  font-size: var(--fs-lg);
+  color: var(--color-primary);
+  transition: transform var(--transition-base);
+}
+
+.accordion__item.active .accordion__icon {
+  transform: rotate(45deg);
+}
+
+.accordion__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-smooth);
+}
+
+.accordion__content-inner {
+  padding: 0 var(--space-6) var(--space-6);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+}
+
+
+/* --------------------------------------------------------------------------
+   14. TABS
+   --------------------------------------------------------------------------
+   Tabbed interface for switching between content panels.
+   -------------------------------------------------------------------------- */
+
+.tabs {
+  width: 100%;
+}
+
+.tabs__nav {
+  display: flex;
+  gap: var(--space-1);
+  border-bottom: 2px solid var(--color-gray-200);
+  margin-bottom: var(--space-8);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabs__btn {
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-tertiary);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.tabs__btn:hover {
+  color: var(--color-primary);
+}
+
+.tabs__btn.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  font-weight: var(--fw-semibold);
+}
+
+.tabs__panel {
+  display: none;
+  animation: tabFadeIn 0.4s ease;
+}
+
+.tabs__panel.active {
+  display: block;
+}
+
+@keyframes tabFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* --------------------------------------------------------------------------
+   15. RESPONSIVE GRID LAYOUTS
+   --------------------------------------------------------------------------
+   Pre-built grid layouts for common patterns (2-col, 3-col, 4-col).
+   -------------------------------------------------------------------------- */
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-8);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-8);
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 767px) {
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   MOBILE NAVBAR STYLES
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  .navbar__menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px;
+    max-width: 85%;
+    height: 100vh;
+    background: var(--bg-secondary);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: calc(var(--navbar-height) + var(--space-6)) var(--space-6) var(--space-6);
+    gap: var(--space-1);
+    overflow-y: auto;
+    transition: right var(--transition-smooth);
+    z-index: var(--z-overlay);
+    box-shadow: var(--shadow-2xl);
+  }
+
+  .navbar__menu.active {
+    right: 0;
+  }
+
+  .navbar__link {
+    color: var(--text-primary);
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .navbar__link:hover {
+    background: var(--bg-tertiary);
+    color: var(--color-primary);
+  }
+
+  .navbar__dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    display: none;
+    margin-top: var(--space-2);
+  }
+
+  .navbar__item.open .navbar__dropdown {
+    display: block;
+  }
+
+  .navbar__actions {
+    display: none;
+  }
+
+  /* Show CTA and theme toggle inside mobile menu */
+  .navbar__mobile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    width: 100%;
+    margin-top: var(--space-6);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-gray-200);
+  }
+}
+
+@media (min-width: 1025px) {
+  .navbar__mobile-actions {
+    display: none;
+  }
+}

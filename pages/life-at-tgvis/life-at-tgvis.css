@@ -1,0 +1,201 @@
+/* ==========================================================================
+   TGVIS — Life at TGVIS | Page-Specific Styles
+   ==========================================================================
+   
+   Styles unique to the "Life at TGVIS" page that are NOT shared with other
+   pages. Includes:
+   
+   1. Value Pills — animated floating badge chips for core values
+   2. Tuition Highlight — split layout card for the tuition program feature
+   3. Photo Gallery — masonry-style image grid (future expansion)
+   4. Page-specific responsive adjustments
+   
+   DEPENDENCIES: Requires global.css and components.css to be loaded first.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. VALUE PILLS
+   --------------------------------------------------------------------------
+   Floating pill-shaped badges that display the school's core values.
+   They have a subtle hover animation that lifts them up slightly.
+   -------------------------------------------------------------------------- */
+
+/* Container for value pills — flexbox with wrapping */
+.values-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: center;
+  margin-top: var(--space-8);
+}
+
+/* Base pill style — rounded capsule shape */
+.value-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  transition: all var(--transition-smooth);
+  cursor: default;
+}
+
+/* Green variant — for primary-color values */
+.value-pill--green {
+  background: rgba(var(--color-primary-rgb), 0.08);
+  color: var(--color-primary);
+  border: 1px solid rgba(var(--color-primary-rgb), 0.15);
+}
+
+/* Gold variant — for secondary-color values */
+.value-pill--gold {
+  background: rgba(var(--color-secondary-rgb), 0.1);
+  color: var(--color-secondary-dark);
+  border: 1px solid rgba(var(--color-secondary-rgb), 0.2);
+}
+
+/* Hover effect — subtle lift and enhanced shadow */
+.value-pill:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.value-pill--green:hover {
+  background: rgba(var(--color-primary-rgb), 0.15);
+}
+
+.value-pill--gold:hover {
+  background: rgba(var(--color-secondary-rgb), 0.18);
+}
+
+
+/* --------------------------------------------------------------------------
+   2. TUITION HIGHLIGHT
+   --------------------------------------------------------------------------
+   A special feature card that highlights TGVIS's integrated tuition program.
+   Uses a side-by-side layout with icon on the left, content on the right.
+   -------------------------------------------------------------------------- */
+
+/* Main container — horizontal layout on desktop, vertical on mobile */
+.tuition-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-10);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-12);
+  border: 1px solid var(--color-gray-200);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-smooth);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Hover state — subtle lift */
+.tuition-highlight:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Large icon circle on the left */
+.tuition-highlight__icon {
+  width: 100px;
+  height: 100px;
+  min-width: 100px;
+  border-radius: var(--radius-2xl);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: var(--color-white);
+  flex-shrink: 0;
+}
+
+/* Text content area */
+.tuition-highlight__content h3 {
+  font-size: var(--fs-xl);
+  margin-bottom: var(--space-4);
+  color: var(--text-primary);
+}
+
+.tuition-highlight__content p {
+  font-size: var(--fs-base);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+/* Feature checklist */
+.tuition-highlight__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tuition-highlight__features li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+/* Green checkmark icon */
+.tuition-highlight__features li i {
+  color: var(--color-accent);
+  font-size: var(--fs-md);
+  flex-shrink: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. RESPONSIVE ADJUSTMENTS
+   --------------------------------------------------------------------------
+   Mobile and tablet adaptations for page-specific components.
+   -------------------------------------------------------------------------- */
+
+/* ---- Tablet (below 768px) ---- */
+@media (max-width: 767px) {
+  /* Stack tuition highlight vertically on mobile */
+  .tuition-highlight {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-8);
+  }
+
+  /* Smaller icon on mobile */
+  .tuition-highlight__icon {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    font-size: 2rem;
+  }
+
+  /* Center the checklist items on mobile */
+  .tuition-highlight__features {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  /* Slightly smaller value pills on mobile */
+  .value-pill {
+    font-size: var(--fs-xs);
+    padding: var(--space-2) var(--space-4);
+  }
+}
+
+/* ---- Small Mobile (below 480px) ---- */
+@media (max-width: 480px) {
+  .tuition-highlight {
+    padding: var(--space-6);
+  }
+
+  .values-grid {
+    gap: var(--space-3);
+  }
+}

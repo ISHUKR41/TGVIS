@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!-- =====================================================================
+     TGVIS — Class WhatsApp Groups Page
+     Purpose: Lists all class-wise WhatsApp group links for parents & students.
+     Each class (Nursery to Class 10) has its own dedicated group link.
+     ===================================================================== -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class WhatsApp Groups — TGVIS | The Green Valley International School</title>
+  <meta name="description" content="Join your class WhatsApp group at TGVIS. Stay updated with homework, circulars, events, and parent-teacher communication.">
+
+  <!-- ======== Favicon ======== -->
+  <link rel="icon" type="image/png" href="../../assets/images/logo/logo.png">
+
+  <!-- ======== Google Fonts: Inter + Outfit ======== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ======== RemixIcon CDN ======== -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- ======== Global Stylesheets ======== -->
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+
+  <!-- ======== Page-specific Styles ======== -->
+  <link rel="stylesheet" href="whatsapp-groups.css">
+</head>
+<body>
+  <!-- ======== Preloader ======== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__text">TGVIS</div>
+    <div class="preloader__bar"><div class="preloader__bar-fill"></div></div>
+  </div>
+  <div class="page-transition"></div>
+
+  <!-- ======== NAVBAR (Injected dynamically by navbar.js) ======== -->
+  <nav class="navbar" id="navbar"></nav>
+
+  <!-- ================================================================
+       HERO SECTION — Page banner with breadcrumb navigation
+       ================================================================ -->
+  <section class="page-hero">
+    <img src="../../assets/images/hero/campus.png" alt="WhatsApp Groups" class="page-hero__bg">
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <h1 class="page-hero__title">Class WhatsApp Groups</h1>
+      <p class="page-hero__subtitle">Stay connected with your child's class — homework, updates, and announcements</p>
+      <nav class="breadcrumb">
+        <a href="../../index.html" class="breadcrumb__link">Home</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <a href="../community/community.html" class="breadcrumb__link">Community</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <span class="breadcrumb__current">WhatsApp Groups</span>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       MAIN CONTENT — Class-wise WhatsApp Group Cards
+       ================================================================ -->
+  <section class="section">
+    <div class="container">
+      <!-- Section Header -->
+      <div class="section-header reveal">
+        <span class="section-label">Stay Connected</span>
+        <h2 class="section-title">Join Your <span class="text-gradient">Class Group</span></h2>
+        <div class="divider"></div>
+        <p style="color:var(--text-secondary);max-width:600px;margin:0 auto;margin-top:var(--space-4);">
+          Each class has a dedicated WhatsApp group for parents and students. Click the button below to join your class group and stay updated with daily activities, homework, and school circulars.
+        </p>
+      </div>
+
+      <!-- ── WhatsApp Cards Grid ── -->
+      <div class="whatsapp-grid">
+
+        <!-- Nursery -->
+        <div class="wa-card reveal stagger-1">
+          <div class="wa-card__icon"><i class="ri-whatsapp-line"></i></div>
+          <h3 class="wa-card__class">Nursery</h3>
+          <p class="wa-card__desc">Daily activities, rhymes, artwork updates & parent-teacher messages</p>
+          <a href="#" class="wa-card__btn" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Join Group
+          </a>
+        </div>
+
+        <!-- LKG -->
+        <div class="wa-card reveal stagger-2">
+          <div class="wa-card__icon"><i class="ri-whatsapp-line"></i></div>
+          <h3 class="wa-card__class">LKG</h3>
+          <p class="wa-card__desc">Learning milestones, fun activities, homework & event reminders</p>
+          <a href="#" class="wa-card__btn" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Join Group
+          </a>
+        </div>
+
+        <!-- UKG -->
+        <div class="wa-card reveal stagger-3">
+          <div class="wa-card__icon"><i class="ri-whatsapp-line"></i></div>
+          <h3 class="wa-card__class">UKG</h3>
+          <p class="wa-card__desc">Pre-primary readiness, creative projects, assessments & circulars</p>
+          <a href="#" class="wa-card__btn" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Join Group
+          </a>
+        </div>
+
+        <!-- Class 1 -->
+        <div class="wa-card reveal stagger-1">
+          <div class="wa-card__icon"><i class="ri-whatsapp-line"></i></div>
+          <h3 class="wa-card__class">Class 1</h3>
+          <p class="wa-card__desc">Primary foundation — homework, classwork photos, test schedules</p>
+          <a href="#" class="wa-card__btn" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Join Group
+          </a>
+        </div>
+
+        <!-- Class 2 -->
+        <div class="wa-card reveal stagger-2">
+          <div class="wa-card__icon"><i class="ri-whatsapp-line"></i></div>
+          <h3 class="wa-card__class">Class 2</h3>
+          <p class="wa-card__desc">Academic progress, activity updates, parent notices & event alerts</p>
+          <a href="#" class="wa-card__btn" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Join Group
+          </a>
+        </div>
+
+        <!-- Class 3 -->
+        <div class="wa-card reveal stagger-3">
+          <div class="wa-card__icon"><i class="ri-whatsapp-line"></i></div>
+          <h3 class="wa-card__class">Class 3</h3>
+          <p class="wa-card__desc">Subject-wise homework, project guidelines, exam schedules & tips</p>
+          <a href="#" class="wa-card__btn" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Join Group
+          </a>
+        </div>
+
+        <!-- Class 4 -->
+        <div class="wa-card reveal stagger-1">
+          <div class="wa-card__icon"><i class="ri-whatsapp-line"></i></div>
+          <h3 class="wa-card__class">Class 4</h3>
+          <p class="wa-card__desc">Study materials, competition updates, PTM reminders & circulars</p>
+          <a href="#" class="wa-card__btn" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Join Group
+          </a>
+        </div>
+
+        <!-- Class 5 -->
+        <div class="wa-card reveal stagger-2">
+          <div class="wa-card__icon"><i class="ri-whatsapp-line"></i></div>
+          <h3 class="wa-card__class">Class 5</h3>
+          <p class="wa-card__desc">Board readiness prep, weekly reports, sports & cultural event alerts</p>
+          <a href="#" class="wa-card__btn" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Join Group
+          </a>
+        </div>
+
+        <!-- Class 6 -->
+        <div class="wa-card reveal stagger-3">
+          <div class="wa-card__icon"><i class="ri-whatsapp-line"></i></div>
+          <h3 class="wa-card__class">Class 6</h3>
+          <p class="wa-card__desc">Middle school updates, subject teachers' notes, lab/activity schedules</p>
+          <a href="#" class="wa-card__btn" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Join Group
+          </a>
+        </div>
+
+        <!-- Class 7 -->
+        <div class="wa-card reveal stagger-1">
+          <div class="wa-card__icon"><i class="ri-whatsapp-line"></i></div>
+          <h3 class="wa-card__class">Class 7</h3>
+          <p class="wa-card__desc">Assignment tracking, project deadlines, exam timetable & results</p>
+          <a href="#" class="wa-card__btn" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Join Group
+          </a>
+        </div>
+
+        <!-- Class 8 -->
+        <div class="wa-card reveal stagger-2">
+          <div class="wa-card__icon"><i class="ri-whatsapp-line"></i></div>
+          <h3 class="wa-card__class">Class 8</h3>
+          <p class="wa-card__desc">Pre-board preparation, career guidance, scholarship alerts & updates</p>
+          <a href="#" class="wa-card__btn" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Join Group
+          </a>
+        </div>
+
+        <!-- Class 9 -->
+        <div class="wa-card reveal stagger-3">
+          <div class="wa-card__icon"><i class="ri-whatsapp-line"></i></div>
+          <h3 class="wa-card__class">Class 9</h3>
+          <p class="wa-card__desc">Board prep begins — study plans, mock tests, important dates & notices</p>
+          <a href="#" class="wa-card__btn" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Join Group
+          </a>
+        </div>
+
+        <!-- Class 10 -->
+        <div class="wa-card reveal stagger-1">
+          <div class="wa-card__icon"><i class="ri-whatsapp-line"></i></div>
+          <h3 class="wa-card__class">Class 10</h3>
+          <p class="wa-card__desc">Board exam strategy, practice papers, admit card alerts & results</p>
+          <a href="#" class="wa-card__btn" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Join Group
+          </a>
+        </div>
+
+        <!-- Tuition Centre -->
+        <div class="wa-card reveal stagger-2" style="border-left:4px solid #F59E0B;">
+          <div class="wa-card__icon" style="background:rgba(245,158,11,0.1);color:#F59E0B;">
+            <i class="ri-whatsapp-line"></i>
+          </div>
+          <h3 class="wa-card__class">Tuition Centre</h3>
+          <p class="wa-card__desc">Extra coaching schedules, doubt sessions, mock test dates & batch info</p>
+          <a href="#" class="wa-card__btn" style="background:#F59E0B;" target="_blank" rel="noopener noreferrer">
+            <i class="ri-whatsapp-line"></i> Join Group
+          </a>
+        </div>
+
+      </div>
+
+      <!-- ── Important Rules Notice ── -->
+      <div class="wa-notice reveal">
+        <h3 class="wa-notice__title">
+          <i class="ri-information-line" style="color:#25D366;"></i>
+          Important Guidelines
+        </h3>
+        <ul class="wa-notice__list">
+          <li><i class="ri-checkbox-circle-line"></i> Groups are managed by class teachers and school administration</li>
+          <li><i class="ri-checkbox-circle-line"></i> Only parents/guardians of enrolled students may join</li>
+          <li><i class="ri-checkbox-circle-line"></i> Share only school-related content — no spam, ads, or forwarded messages</li>
+          <li><i class="ri-checkbox-circle-line"></i> For private concerns, contact the class teacher directly via school office</li>
+          <li><i class="ri-checkbox-circle-line"></i> Group links are updated at the start of each academic session</li>
+          <li><i class="ri-checkbox-circle-line"></i> Contact <strong>TGVIS Office</strong> if your group link is expired or not working</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======== FOOTER (Injected dynamically by navbar.js) ======== -->
+  <footer class="footer"></footer>
+
+  <!-- ======== Back to Top ======== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+
+  <!-- ======== Scripts ======== -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
+  <script src="../../assets/js/utils.js" defer></script>
+  <script src="../../assets/js/navbar.js" defer></script>
+  <script src="../../assets/js/global.js" defer></script>
+  <script src="../../assets/js/animations.js" defer></script>
+</body>
+</html>

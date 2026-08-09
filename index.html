@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     TGVIS — The Green Valley International School | Homepage
+     ==========================================================================
+     
+     This is the MAIN ENTRY POINT of the TGVIS website.
+     It serves as the landing page that visitors see first.
+     
+     PAGE STRUCTURE:
+     1. Preloader — animated loading screen
+     2. Navbar — glassmorphism sticky navigation
+     3. Hero Section — full-screen with GSAP animation
+     4. News Ticker — scrolling announcements
+     5. Quick Stats — animated counters
+     6. Welcome Section — school introduction
+     7. Why Choose TGVIS — feature cards
+     8. Academic Programs — tabbed program display
+     9. Campus Life — photo gallery
+     10. Latest Events — event carousel
+     11. Testimonials — parent/student reviews
+     12. CTA Banner — admissions call-to-action
+     13. Footer — site-wide footer
+     14. Back-to-Top — floating scroll button
+     15. WhatsApp — floating contact button
+     
+     EXTERNAL LIBRARIES (loaded via CDN):
+     - Google Fonts (Inter + Outfit)
+     - Remix Icons
+     - GSAP + ScrollTrigger
+     - Lenis (smooth scroll)
+     - Swiper.js (sliders)
+     - CountUp.js (number animation)
+     - tsParticles (hero particles)
+     
+     ========================================================================== -->
+<html lang="en" data-theme="light">
+<head>
+  <!-- ---- META TAGS ---- -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags — helps search engines understand and rank this page -->
+  <title>TGVIS — The Green Valley International School | Bihta, Patna | Best CBSE School</title>
+  <meta name="description" content="The Green Valley International School (TGVIS), Bihta — A premier CBSE school offering Nursery to Class 10th education with smart classrooms, sports programs, integrated tuition, and holistic development in Patna, Bihar. Admissions Open 2025-26.">
+  <meta name="keywords" content="TGVIS, Green Valley International School, Bihta, school in Bihta, CBSE school Patna, best school Bihta, admissions open 2025, nursery to class 10, integrated tuition, school near Patna, Bihar school">
+  <meta name="author" content="The Green Valley International School, Bihta">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="geo.region" content="IN-BR">
+  <meta name="geo.placename" content="Bihta, Patna, Bihar">
+  <link rel="canonical" href="https://www.tgvis.edu.in/">
+  
+  <!-- Open Graph Meta Tags — for social media sharing (Facebook, LinkedIn) -->
+  <meta property="og:title" content="TGVIS — The Green Valley International School, Bihta">
+  <meta property="og:description" content="A premier CBSE school in Bihta, Patna offering Nursery to Class 10th education with smart classrooms, sports, and integrated tuition. Admissions Open 2025-26.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.tgvis.edu.in/">
+  <meta property="og:image" content="https://www.tgvis.edu.in/assets/images/hero/campus.png">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:site_name" content="The Green Valley International School">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TGVIS — Best CBSE School in Bihta, Patna">
+  <meta name="twitter:description" content="Nursery to Class 10 | Smart Classrooms | Integrated Tuition | Sports | Admissions Open">
+  <meta name="twitter:image" content="https://www.tgvis.edu.in/assets/images/hero/campus.png">
+
+  <!-- Structured Data (JSON-LD Schema) — helps Google show rich results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "School",
+    "name": "The Green Valley International School",
+    "alternateName": "TGVIS",
+    "url": "https://www.tgvis.edu.in",
+    "logo": "https://www.tgvis.edu.in/assets/images/logo/logo.png",
+    "image": "https://www.tgvis.edu.in/assets/images/hero/campus.png",
+    "description": "A premier CBSE school in Bihta, Patna offering quality education from Nursery to Class 10th with smart classrooms, sports programs, and integrated tuition.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rameshwar Building, Bihta",
+      "addressLocality": "Bihta",
+      "addressRegion": "Bihar",
+      "postalCode": "801103",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "25.5617",
+      "longitude": "84.8571"
+    },
+    "telephone": "+91-XXXXXXXXXX",
+    "email": "info@tgvis.edu.in",
+    "sameAs": [
+      "https://www.facebook.com/people/The-Green-Valley-International-School-Bihta/100088041550841/",
+      "https://maps.app.goo.gl/94xhFw4nFaQEhpw77"
+    ],
+    "foundingDate": "2010",
+    "numberOfEmployees": {
+      "@type": "QuantitativeValue",
+      "value": "50"
+    }
+  }
+  </script>
+  
+  <!-- Favicon — the small icon in the browser tab -->
+  <link rel="icon" type="image/png" href="assets/images/logo/logo.png">
+  <link rel="apple-touch-icon" href="assets/images/logo/logo.png">
+
+  <!-- ---- EXTERNAL FONTS (Google Fonts) ----
+       Inter: Clean, modern body font — excellent readability
+       Outfit: Geometric heading font — modern and bold -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ---- ICON LIBRARY (Remix Icons) ----
+       Free, open-source icon set with 2800+ icons
+       Documentation: https://remixicon.com -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- ---- SWIPER.JS STYLES ----
+       Required CSS for the Swiper slider component -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <!-- ---- OUR STYLESHEETS ----
+       Load order matters: global → components → animations → page-specific -->
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+  <!-- ====================================================================
+       1. PRELOADER
+       ====================================================================
+       Full-screen loading overlay with animated school branding.
+       Automatically fades out when the page finishes loading (handled by global.js).
+       ==================================================================== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__text">TGVIS</div>
+    <div class="preloader__bar">
+      <div class="preloader__bar-fill"></div>
+    </div>
+  </div>
+
+
+  <!-- ====================================================================
+       2. PAGE TRANSITION OVERLAY
+       ====================================================================
+       Green curtain that animates when navigating between pages.
+       Creates a polished, app-like transition experience.
+       ==================================================================== -->
+  <div class="page-transition"></div>
+
+
+  <!-- ====================================================================
+       3. NAVBAR (Sticky Glassmorphism Navigation)
+       ====================================================================
+       Fixed at the top of the viewport. Starts transparent over the hero
+       section, then becomes a solid glass bar on scroll.
+       
+       Contains:
+       - School logo + name (left)
+       - Navigation links with dropdowns (center)
+       - Dark mode toggle + CTA button (right)
+       - Hamburger menu (mobile only)
+       ==================================================================== -->
+  <nav class="navbar" id="navbar">
+    <!-- Dark overlay behind mobile menu -->
+    <div class="navbar__overlay" id="navOverlay"></div>
+
+    <div class="navbar__container">
+      <!-- ---- LOGO ---- -->
+      <a href="index.html" class="navbar__logo" aria-label="TGVIS Home">
+        <img src="assets/images/logo/logo.png" alt="TGVIS Logo" class="navbar__logo-img" width="44" height="44">
+        <div>
+          <span class="navbar__logo-text">TGVIS</span>
+          <span class="navbar__logo-subtitle">Bihta, Bihar</span>
+        </div>
+      </a>
+
+      <!-- ---- NAVIGATION LINKS ---- -->
+      <ul class="navbar__menu" id="navMenu">
+        <!-- Home -->
+        <li class="navbar__item">
+          <a href="index.html" class="navbar__link active">Home</a>
+        </li>
+
+        <!-- About Us (with dropdown) -->
+        <li class="navbar__item">
+          <a href="#" class="navbar__link navbar__link--dropdown">
+            About <i class="ri-arrow-down-s-line"></i>
+          </a>
+          <div class="navbar__dropdown">
+            <a href="pages/about/about.html" class="navbar__dropdown-link">
+              <i class="ri-school-line"></i> About TGVIS
+            </a>
+            <a href="pages/director-message/director-message.html" class="navbar__dropdown-link">
+              <i class="ri-user-voice-line"></i> Director's Message
+            </a>
+          </div>
+        </li>
+
+        <!-- Admissions (with dropdown) -->
+        <li class="navbar__item">
+          <a href="#" class="navbar__link navbar__link--dropdown">
+            Admissions <i class="ri-arrow-down-s-line"></i>
+          </a>
+          <div class="navbar__dropdown">
+            <a href="pages/admissions/admissions.html" class="navbar__dropdown-link">
+              <i class="ri-file-list-3-line"></i> Admission Process
+            </a>
+            <a href="pages/fees/fees.html" class="navbar__dropdown-link">
+              <i class="ri-money-rupee-circle-line"></i> Fee Structure
+            </a>
+            <a href="pages/uniform/uniform.html" class="navbar__dropdown-link">
+              <i class="ri-t-shirt-line"></i> Uniform
+            </a>
+          </div>
+        </li>
+
+        <!-- Academics (with dropdown) -->
+        <li class="navbar__item">
+          <a href="#" class="navbar__link navbar__link--dropdown">
+            Curriculum <i class="ri-arrow-down-s-line"></i>
+          </a>
+          <div class="navbar__dropdown">
+            <a href="pages/academics/academics.html" class="navbar__dropdown-link">
+              <i class="ri-book-open-line"></i> Academics
+            </a>
+            <a href="pages/sports/sports.html" class="navbar__dropdown-link">
+              <i class="ri-trophy-line"></i> Sports
+            </a>
+            <a href="pages/extracurricular/extracurricular.html" class="navbar__dropdown-link">
+              <i class="ri-palette-line"></i> Extracurricular
+            </a>
+            <a href="pages/outreach/outreach.html" class="navbar__dropdown-link">
+              <i class="ri-hand-heart-line"></i> Outreach
+            </a>
+          </div>
+        </li>
+
+        <!-- Student Life (with dropdown) -->
+        <li class="navbar__item">
+          <a href="#" class="navbar__link navbar__link--dropdown">
+            Student Life <i class="ri-arrow-down-s-line"></i>
+          </a>
+          <div class="navbar__dropdown">
+            <a href="pages/life-at-tgvis/life-at-tgvis.html" class="navbar__dropdown-link">
+              <i class="ri-heart-pulse-line"></i> Life at TGVIS
+            </a>
+            <a href="pages/student-life/leadership/leadership.html" class="navbar__dropdown-link">
+              <i class="ri-vip-crown-line"></i> Leadership
+            </a>
+            <a href="pages/student-life/daily-schedule/daily-schedule.html" class="navbar__dropdown-link">
+              <i class="ri-time-line"></i> Daily Schedule
+            </a>
+            <a href="pages/student-life/clubs-societies/clubs-societies.html" class="navbar__dropdown-link">
+              <i class="ri-team-line"></i> Clubs & Societies
+            </a>
+            <a href="pages/student-life/awards/awards.html" class="navbar__dropdown-link">
+              <i class="ri-medal-line"></i> Awards & Recognition
+            </a>
+            <a href="pages/timetable/timetable.html" class="navbar__dropdown-link">
+              <i class="ri-calendar-schedule-line"></i> Timetable
+            </a>
+          </div>
+        </li>
+
+        <!-- More (with dropdown) -->
+        <li class="navbar__item">
+          <a href="#" class="navbar__link navbar__link--dropdown">
+            More <i class="ri-arrow-down-s-line"></i>
+          </a>
+          <div class="navbar__dropdown">
+            <a href="pages/events/events.html" class="navbar__dropdown-link">
+              <i class="ri-calendar-event-line"></i> Events
+            </a>
+            <a href="pages/centres-of-excellence/centres-of-excellence.html" class="navbar__dropdown-link">
+              <i class="ri-star-line"></i> Centres of Excellence
+            </a>
+            <a href="pages/latest-updates/latest-updates.html" class="navbar__dropdown-link">
+              <i class="ri-newspaper-line"></i> Latest Updates
+            </a>
+            <a href="pages/community/community.html" class="navbar__dropdown-link">
+              <i class="ri-community-line"></i> Community
+            </a>
+            <a href="pages/whatsapp-groups/whatsapp-groups.html" class="navbar__dropdown-link">
+              <i class="ri-whatsapp-line"></i> Class WhatsApp Groups
+            </a>
+            <a href="pages/alumni/alumni.html" class="navbar__dropdown-link">
+              <i class="ri-graduation-cap-line"></i> Alumni
+            </a>
+            <a href="pages/careers/careers.html" class="navbar__dropdown-link">
+              <i class="ri-briefcase-line"></i> Careers
+            </a>
+            <a href="pages/contact/contact.html" class="navbar__dropdown-link">
+              <i class="ri-phone-line"></i> Contact Us
+            </a>
+          </div>
+        </li>
+
+        <!-- Login (with dropdown) -->
+        <li class="navbar__item">
+          <a href="#" class="navbar__link navbar__link--dropdown">
+            Login <i class="ri-arrow-down-s-line"></i>
+          </a>
+          <div class="navbar__dropdown">
+            <a href="pages/login/student-login/student-login.html" class="navbar__dropdown-link">
+              <i class="ri-user-line"></i> Student Login
+            </a>
+            <a href="pages/login/teacher-login/teacher-login.html" class="navbar__dropdown-link">
+              <i class="ri-user-settings-line"></i> Teacher Login
+            </a>
+            <a href="pages/login/admin-login/admin-login.html" class="navbar__dropdown-link">
+              <i class="ri-admin-line"></i> Admin Login
+            </a>
+          </div>
+        </li>
+
+        <!-- Mobile-only actions (shown inside slide menu) -->
+        <li class="navbar__mobile-actions">
+          <button class="navbar__theme-toggle" id="themeToggleMobile" aria-label="Toggle dark mode">
+            <i class="ri-moon-line"></i>
+          </button>
+          <a href="pages/admissions/admissions.html" class="btn btn--secondary btn--sm w-full text-center">
+            Apply Now <i class="ri-arrow-right-line"></i>
+          </a>
+        </li>
+      </ul>
+
+      <!-- ---- RIGHT SIDE ACTIONS (Desktop) ---- -->
+      <div class="navbar__actions desktop-only">
+        <button class="navbar__theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <i class="ri-moon-line"></i>
+        </button>
+        <a href="pages/admissions/admissions.html" class="navbar__cta">
+          Apply Now <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+
+      <!-- ---- HAMBURGER MENU (Mobile) ---- -->
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle navigation menu">
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+
+  <!-- ====================================================================
+       4. HERO SECTION (Full-Screen Landing)
+       ====================================================================
+       The first thing visitors see. Features:
+       - Full-viewport background image with gradient overlay
+       - Animated heading text (GSAP word-by-word reveal)
+       - CTA buttons for admissions and virtual tour
+       - Floating decorative elements
+       - Subtle particle effect (tsParticles)
+       ==================================================================== -->
+  <section class="hero" id="hero">
+    <!-- Background image of the school campus -->
+    <div class="hero__bg">
+      <img src="assets/images/hero/campus.png" alt="TGVIS Campus" class="img-cover">
+    </div>
+
+    <!-- Dark gradient overlay for text readability -->
+    <div class="hero__overlay"></div>
+
+    <!-- Particle effect container (initialized by tsParticles) -->
+    <div class="hero__particles" id="heroParticles"></div>
+
+    <!-- Floating decorative shapes (animated in CSS) -->
+    <div class="hero__shapes">
+      <div class="floating-shape" style="width:300px;height:300px;background:rgba(212,168,67,0.1);top:10%;left:-5%;"></div>
+      <div class="floating-shape" style="width:200px;height:200px;background:rgba(16,185,129,0.08);bottom:15%;right:-3%;"></div>
+      <div class="floating-shape" style="width:150px;height:150px;background:rgba(255,255,255,0.05);top:40%;right:20%;"></div>
+    </div>
+
+    <!-- Main hero content -->
+    <div class="hero__content container">
+      <!-- Small badge above the heading -->
+      <div class="hero__badge reveal">
+        <i class="ri-award-line"></i>
+        <span>Excellence in Education Since Establishment</span>
+      </div>
+
+      
+
+      <!-- Main heading — animated word-by-word by GSAP -->
+      <h1 class="hero__title">
+        Nurturing Minds,<br>
+        <span class="text-gradient-gold">Shaping Futures</span>
+      </h1>
+
+      <!-- Subtitle / tagline -->
+      <p class="hero__subtitle">
+        The Green Valley International School, Bihta — Where every child discovers their potential through holistic education, modern facilities, and values-driven learning from Nursery to Class 10th.
+      </p>
+
+      <!-- Call-to-Action buttons -->
+      <div class="hero__cta-group">
+        <a href="pages/admissions/admissions.html" class="btn btn--secondary btn--lg">
+          <i class="ri-edit-line"></i> Admissions Open 2025-26
+        </a>
+        <a href="pages/life-at-tgvis/life-at-tgvis.html" class="btn btn--ghost btn--lg">
+          <i class="ri-play-circle-line"></i> Explore Campus
+        </a>
+      </div>
+
+      <!-- Quick stats row below the CTA -->
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <span class="hero__stat-number counter" data-target="500" data-suffix="+">0</span>
+          <span class="hero__stat-label">Students</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-number counter" data-target="50" data-suffix="+">0</span>
+          <span class="hero__stat-label">Expert Faculty</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-number counter" data-target="15" data-suffix="+">0</span>
+          <span class="hero__stat-label">Years of Excellence</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-number counter" data-target="100" data-suffix="%">0</span>
+          <span class="hero__stat-label">Board Results</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator at bottom of hero -->
+    <!-- <div class="hero__scroll-indicator">
+      <span>Scroll to explore</span>
+      <i class="ri-arrow-down-line"></i>
+    </div> -->
+  </section>
+
+
+  <!-- ====================================================================
+       5. NEWS TICKER (Scrolling Announcements)
+       ====================================================================
+       A horizontal scrolling bar showing latest updates and announcements.
+       Pauses on hover so users can read the text.
+       ==================================================================== -->
+  <div class="news-ticker">
+    <span class="news-ticker__label">
+      <i class="ri-megaphone-line"></i> Updates
+    </span>
+    <div class="news-ticker__scroll">
+      <span class="news-ticker__item">Admissions Open for Session 2025-26 — Apply Now!</span>
+      <span class="news-ticker__item">Annual Sports Day — 15th November 2025</span>
+      <span class="news-ticker__item">TGVIS students shine in State-Level Science Olympiad</span>
+      <span class="news-ticker__item">Parent-Teacher Meeting — 20th November 2025</span>
+      <span class="news-ticker__item">Winter Break: 25th December to 5th January</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="news-ticker__item">Admissions Open for Session 2025-26 — Apply Now!</span>
+      <span class="news-ticker__item">Annual Sports Day — 15th November 2025</span>
+      <span class="news-ticker__item">TGVIS students shine in State-Level Science Olympiad</span>
+      <span class="news-ticker__item">Parent-Teacher Meeting — 20th November 2025</span>
+      <span class="news-ticker__item">Winter Break: 25th December to 5th January</span>
+    </div>
+  </div>
+
+
+  <!-- ====================================================================
+       6. WELCOME SECTION
+       ====================================================================
+       Brief introduction to the school with the director's photo and
+       a summary of the school's philosophy and values.
+       ==================================================================== -->
+  <section class="section welcome" id="welcome">
+    <div class="container">
+      <div class="welcome__grid">
+        <!-- Left column: Image -->
+        <div class="welcome__image-wrapper reveal reveal--left">
+          <div class="welcome__image-frame">
+            <img src="assets/images/hero/campus.png" alt="TGVIS Campus Life" class="welcome__image">
+          </div>
+          <!-- Experience badge overlaying the image -->
+          <div class="welcome__experience-badge">
+            <span class="welcome__experience-number counter" data-target="15" data-suffix="+">0</span>
+            <span class="welcome__experience-text">Years of<br>Excellence</span>
+          </div>
+        </div>
+
+        <!-- Right column: Text content -->
+        <div class="welcome__content reveal reveal--right">
+          <span class="section-label">Welcome to TGVIS</span>
+          <h2 class="section-title">Where Learning Meets <span class="text-gradient-gold">Inspiration</span></h2>
+          <div class="divider" style="margin: var(--space-6) 0;"></div>
+          <p class="lead">
+            The Green Valley International School, nestled in the heart of Bihta, Patna, is more than just a school — it is a thriving community dedicated to nurturing young minds and building future leaders.
+          </p>
+          <p>
+            Since our establishment, we have been committed to providing world-class education from Nursery to Class 10th, combined with strong moral values and holistic development. Our integrated tuition programs further ensure that every student achieves academic excellence.
+          </p>
+
+          <!-- Key highlights in a compact grid -->
+          <div class="welcome__highlights">
+            <div class="welcome__highlight">
+              <i class="ri-book-open-line"></i>
+              <span>CBSE Curriculum</span>
+            </div>
+            <div class="welcome__highlight">
+              <i class="ri-shield-check-line"></i>
+              <span>Safe Campus</span>
+            </div>
+            <div class="welcome__highlight">
+              <i class="ri-computer-line"></i>
+              <span>Smart Classrooms</span>
+            </div>
+            <div class="welcome__highlight">
+              <i class="ri-run-line"></i>
+              <span>Sports Programs</span>
+            </div>
+          </div>
+
+          <a href="pages/about/about.html" class="btn btn--primary">
+            Learn More About Us <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       7. WHY CHOOSE TGVIS (Feature Cards)
+       ====================================================================
+       A grid of 6 feature cards highlighting the school's unique strengths.
+       Each card has an icon, title, and description with hover effects.
+       ==================================================================== -->
+  <section class="section section--alt why-choose" id="whyChoose">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Why Choose Us</span>
+        <h2 class="section-title">The TGVIS <span class="text-gradient">Advantage</span></h2>
+        <div class="divider"></div>
+        <p class="section-description">
+          Discover what makes The Green Valley International School the preferred choice for parents in Bihta and beyond.
+        </p>
+      </div>
+
+      <!-- 3-column feature grid (collapses to 1 on mobile) -->
+      <div class="grid-3 grid-animated">
+        <!-- Card 1: Academic Excellence -->
+        <div class="feature-card reveal stagger-1">
+          <div class="feature-card__icon">
+            <i class="ri-book-read-line"></i>
+          </div>
+          <h4 class="feature-card__title">Academic Excellence</h4>
+          <p class="feature-card__text">
+            Comprehensive CBSE curriculum with experienced faculty, smart classrooms, and personalised attention for every student from Nursery to Class 10th.
+          </p>
+        </div>
+
+        <!-- Card 2: Sports & Fitness -->
+        <div class="feature-card reveal stagger-2">
+          <div class="feature-card__icon">
+            <i class="ri-basketball-line"></i>
+          </div>
+          <h4 class="feature-card__title">Sports & Fitness</h4>
+          <p class="feature-card__text">
+            State-of-the-art sports facilities including cricket, football, basketball, athletics, and yoga. Dedicated coaches nurture sporting talent.
+          </p>
+        </div>
+
+        <!-- Card 3: Safe & Secure -->
+        <div class="feature-card reveal stagger-3">
+          <div class="feature-card__icon">
+            <i class="ri-shield-star-line"></i>
+          </div>
+          <h4 class="feature-card__title">Safe & Secure</h4>
+          <p class="feature-card__text">
+            24/7 CCTV surveillance, trained security staff, fire safety systems, and comprehensive child protection policies ensure a safe learning environment.
+          </p>
+        </div>
+
+        <!-- Card 4: Qualified Faculty -->
+        <div class="feature-card reveal stagger-4">
+          <div class="feature-card__icon">
+            <i class="ri-user-star-line"></i>
+          </div>
+          <h4 class="feature-card__title">Expert Faculty</h4>
+          <p class="feature-card__text">
+            Our team of 50+ highly qualified and trained teachers are passionate about education, providing individual attention and mentoring to every child.
+          </p>
+        </div>
+
+        <!-- Card 5: Holistic Development -->
+        <div class="feature-card reveal stagger-5">
+          <div class="feature-card__icon">
+            <i class="ri-seedling-line"></i>
+          </div>
+          <h4 class="feature-card__title">Holistic Development</h4>
+          <p class="feature-card__text">
+            Beyond academics — art, music, dance, drama, debate, and community service programs build well-rounded individuals with strong values.
+          </p>
+        </div>
+
+        <!-- Card 6: Integrated Tuition -->
+        <div class="feature-card reveal stagger-6">
+          <div class="feature-card__icon">
+            <i class="ri-lightbulb-line"></i>
+          </div>
+          <h4 class="feature-card__title">Integrated Tuition</h4>
+          <p class="feature-card__text">
+            Unique in-school tuition programs provide extra academic support, doubt-clearing sessions, and exam preparation within the school itself.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       8. ACADEMIC PROGRAMS (Tabbed Display)
+       ====================================================================
+       Showcases the school's academic levels using an interactive tab
+       system: Nursery, Primary (1-5), Middle (6-8), Secondary (9-10).
+       ==================================================================== -->
+  <section class="section programs" id="programs">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Our Programs</span>
+        <h2 class="section-title">Nurturing Growth at <span class="text-gradient-gold">Every Stage</span></h2>
+        <div class="divider"></div>
+        <p class="section-description">
+          From the earliest years to board examinations, our tailored programs ensure age-appropriate learning and development.
+        </p>
+      </div>
+
+      <div class="tabs reveal">
+        <!-- Tab navigation buttons -->
+        <div class="tabs__nav">
+          <button class="tabs__btn active" data-tab="nursery">
+            <i class="ri-plant-line"></i> Nursery & KG
+          </button>
+          <button class="tabs__btn" data-tab="primary">
+            <i class="ri-book-2-line"></i> Primary (1-5)
+          </button>
+          <button class="tabs__btn" data-tab="middle">
+            <i class="ri-flask-line"></i> Middle (6-8)
+          </button>
+          <button class="tabs__btn" data-tab="secondary">
+            <i class="ri-graduation-cap-line"></i> Secondary (9-10)
+          </button>
+        </div>
+
+        <!-- Tab content panels -->
+        <div class="tabs__panel active" id="nursery">
+          <div class="programs__content">
+            <div class="programs__text">
+              <h3>Early Childhood Education</h3>
+              <p>Our Nursery and Kindergarten programs create a magical, play-based learning environment where children aged 3-5 develop foundational skills through creative exploration, storytelling, sensory activities, and social interaction.</p>
+              <ul class="programs__features">
+                <li><i class="ri-check-line"></i> Play-based learning methodology</li>
+                <li><i class="ri-check-line"></i> Montessori-inspired activities</li>
+                <li><i class="ri-check-line"></i> Introduction to English, Hindi & Mathematics</li>
+                <li><i class="ri-check-line"></i> Art, Music & Physical Development</li>
+                <li><i class="ri-check-line"></i> Safe, colorful, child-friendly classrooms</li>
+                <li><i class="ri-check-line"></i> Dedicated trained early-childhood educators</li>
+              </ul>
+              <a href="pages/academics/academics.html" class="btn btn--outline btn--sm">
+                Learn More <i class="ri-arrow-right-line"></i>
+              </a>
+            </div>
+            <div class="programs__image">
+              <img src="assets/images/hero/campus.png" alt="Nursery Program" class="rounded-lg">
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs__panel" id="primary">
+          <div class="programs__content">
+            <div class="programs__text">
+              <h3>Primary School (Class 1-5)</h3>
+              <p>Building strong academic foundations with a structured yet creative approach. Students develop reading fluency, numerical skills, scientific curiosity, and social awareness through hands-on learning experiences.</p>
+              <ul class="programs__features">
+                <li><i class="ri-check-line"></i> CBSE-aligned comprehensive curriculum</li>
+                <li><i class="ri-check-line"></i> English, Hindi, Mathematics, EVS, Computer Science</li>
+                <li><i class="ri-check-line"></i> Smart classroom technology integration</li>
+                <li><i class="ri-check-line"></i> Activity-based & experiential learning</li>
+                <li><i class="ri-check-line"></i> Regular assessments with parent feedback</li>
+                <li><i class="ri-check-line"></i> Library & reading programs</li>
+              </ul>
+              <a href="pages/academics/academics.html" class="btn btn--outline btn--sm">
+                Learn More <i class="ri-arrow-right-line"></i>
+              </a>
+            </div>
+            <div class="programs__image">
+              <img src="assets/images/hero/campus.png" alt="Primary Program" class="rounded-lg">
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs__panel" id="middle">
+          <div class="programs__content">
+            <div class="programs__text">
+              <h3>Middle School (Class 6-8)</h3>
+              <p>An exciting phase where students explore deeper concepts in science, mathematics, and humanities. Our middle school program encourages critical thinking, project-based learning, and discovery of personal interests.</p>
+              <ul class="programs__features">
+                <li><i class="ri-check-line"></i> Advanced CBSE curriculum with lab work</li>
+                <li><i class="ri-check-line"></i> Science, Mathematics, Social Studies, Languages</li>
+                <li><i class="ri-check-line"></i> Fully equipped Science & Computer Labs</li>
+                <li><i class="ri-check-line"></i> Project-based and collaborative learning</li>
+                <li><i class="ri-check-line"></i> Olympiad preparation & competitive exam coaching</li>
+                <li><i class="ri-check-line"></i> Personality development & public speaking</li>
+              </ul>
+              <a href="pages/academics/academics.html" class="btn btn--outline btn--sm">
+                Learn More <i class="ri-arrow-right-line"></i>
+              </a>
+            </div>
+            <div class="programs__image">
+              <img src="assets/images/hero/campus.png" alt="Middle School Program" class="rounded-lg">
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs__panel" id="secondary">
+          <div class="programs__content">
+            <div class="programs__text">
+              <h3>Secondary School (Class 9-10)</h3>
+              <p>Preparing students for CBSE Board Examinations with focused academic coaching, integrated tuition support, and career guidance. Our secondary program ensures strong results and readiness for higher education.</p>
+              <ul class="programs__features">
+                <li><i class="ri-check-line"></i> CBSE Board Examination preparation</li>
+                <li><i class="ri-check-line"></i> Science, Commerce stream guidance</li>
+                <li><i class="ri-check-line"></i> Integrated tuition & doubt-clearing sessions</li>
+                <li><i class="ri-check-line"></i> Mock tests & exam strategy workshops</li>
+                <li><i class="ri-check-line"></i> Career counselling & higher education guidance</li>
+                <li><i class="ri-check-line"></i> 100% Board result track record</li>
+              </ul>
+              <a href="pages/academics/academics.html" class="btn btn--outline btn--sm">
+                Learn More <i class="ri-arrow-right-line"></i>
+              </a>
+            </div>
+            <div class="programs__image">
+              <img src="assets/images/hero/campus.png" alt="Secondary Program" class="rounded-lg">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       9. STATISTICS SECTION
+       ====================================================================
+       Animated counter section showing key school metrics.
+       Numbers count up when they scroll into view.
+       ==================================================================== -->
+  <section class="stats-section">
+    <div class="stats-section__overlay"></div>
+    <div class="container">
+      <div class="stats-section__grid">
+        <div class="stats-section__item reveal stagger-1">
+          <div class="stat-card__icon">
+            <i class="ri-calendar-check-line"></i>
+          </div>
+          <span class="stats-section__number counter" data-target="15" data-suffix="+">0</span>
+          <span class="stats-section__label">Years of Excellence</span>
+        </div>
+        <div class="stats-section__item reveal stagger-2">
+          <div class="stat-card__icon">
+            <i class="ri-user-smile-line"></i>
+          </div>
+          <span class="stats-section__number counter" data-target="500" data-suffix="+">0</span>
+          <span class="stats-section__label">Happy Students</span>
+        </div>
+        <div class="stats-section__item reveal stagger-3">
+          <div class="stat-card__icon">
+            <i class="ri-user-star-line"></i>
+          </div>
+          <span class="stats-section__number counter" data-target="50" data-suffix="+">0</span>
+          <span class="stats-section__label">Expert Teachers</span>
+        </div>
+        <div class="stats-section__item reveal stagger-4">
+          <div class="stat-card__icon">
+            <i class="ri-trophy-line"></i>
+          </div>
+          <span class="stats-section__number counter" data-target="100" data-suffix="%">0</span>
+          <span class="stats-section__label">Board Results</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       10. PHOTO GALLERY (Campus Life)
+       ====================================================================
+       A visually rich photo gallery showcasing campus life.
+       Uses CSS grid with masonry-style layout.
+       ==================================================================== -->
+  <section class="section campus-gallery" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Campus Life</span>
+        <h2 class="section-title">Life at <span class="text-gradient-gold">TGVIS</span></h2>
+        <div class="divider"></div>
+        <p class="section-description">
+          Moments from our vibrant campus — classrooms, sports, celebrations, and everyday learning.
+        </p>
+      </div>
+
+      <!-- Gallery grid — 6 placeholder tiles with school colors -->
+      <div class="gallery-grid reveal">
+        <div class="gallery-tile gallery-tile--wide" style="background:linear-gradient(135deg,#0D4D2B,#14713E);">
+          <img src="assets/images/hero/campus.png" alt="TGVIS Campus Building" class="gallery-tile__img">
+          <div class="gallery-tile__overlay"><span>Our Campus</span></div>
+        </div>
+        <div class="gallery-tile" style="background:linear-gradient(135deg,#1A5C35,#0D4D2B);">
+          <img src="assets/images/hero/campus.png" alt="Smart Classroom TGVIS" class="gallery-tile__img">
+          <div class="gallery-tile__overlay"><span>Smart Classrooms</span></div>
+        </div>
+        <div class="gallery-tile" style="background:linear-gradient(135deg,#D4A843,#B8922F);">
+          <img src="assets/images/hero/campus.png" alt="TGVIS Sports Ground" class="gallery-tile__img">
+          <div class="gallery-tile__overlay"><span>Sports Ground</span></div>
+        </div>
+        <div class="gallery-tile" style="background:linear-gradient(135deg,#10B981,#059669);">
+          <img src="assets/images/hero/campus.png" alt="TGVIS Library" class="gallery-tile__img">
+          <div class="gallery-tile__overlay"><span>Library</span></div>
+        </div>
+        <div class="gallery-tile gallery-tile--tall" style="background:linear-gradient(135deg,#2563EB,#1D4ED8);">
+          <img src="assets/images/hero/campus.png" alt="Annual Day TGVIS" class="gallery-tile__img">
+          <div class="gallery-tile__overlay"><span>Annual Day</span></div>
+        </div>
+        <div class="gallery-tile" style="background:linear-gradient(135deg,#7C3AED,#6D28D9);">
+          <img src="assets/images/hero/campus.png" alt="TGVIS Science Lab" class="gallery-tile__img">
+          <div class="gallery-tile__overlay"><span>Science Lab</span></div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:var(--space-8);" class="reveal">
+        <a href="pages/life-at-tgvis/life-at-tgvis.html" class="btn btn--outline">
+          <i class="ri-images-line"></i> View More Photos
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       11. TESTIMONIALS (Swiper Carousel)
+       ====================================================================
+       Parent and student testimonials displayed in a Swiper slider.
+       Autoplay with manual navigation controls.
+       ==================================================================== -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Testimonials</span>
+        <h2 class="section-title">What Parents <span class="text-gradient-gold">Say About Us</span></h2>
+        <div class="divider"></div>
+        <p class="section-description">
+          Hear from the families who have trusted TGVIS with their children's education.
+        </p>
+      </div>
+
+      <!-- Swiper container for testimonial carousel -->
+      <div class="swiper testimonials__slider reveal">
+        <div class="swiper-wrapper">
+          <!-- Testimonial 1 -->
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-card__stars">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+              <p class="testimonial-card__text">
+                "TGVIS has been transformative for our daughter. The teachers are caring and dedicated, and the school's focus on both academics and values is exactly what we were looking for. We couldn't be happier!"
+              </p>
+              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar">RS</div>
+                <div>
+                  <h5 class="testimonial-card__name">Rajesh Sharma</h5>
+                  <span class="testimonial-card__role">Parent of Class 7 Student</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-card__stars">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+              <p class="testimonial-card__text">
+                "The integrated tuition program is a game-changer. My son's academic performance improved significantly since joining TGVIS. The school truly goes above and beyond for its students."
+              </p>
+              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar">PK</div>
+                <div>
+                  <h5 class="testimonial-card__name">Priya Kumar</h5>
+                  <span class="testimonial-card__role">Parent of Class 9 Student</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-card__stars">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-half-fill"></i>
+              </div>
+              <p class="testimonial-card__text">
+                "From sports to academics, from cultural activities to discipline — TGVIS covers it all. The campus is beautiful, the staff is professional, and the results speak for themselves."
+              </p>
+              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar">AV</div>
+                <div>
+                  <h5 class="testimonial-card__name">Amit Verma</h5>
+                  <span class="testimonial-card__role">Parent of Class 4 Student</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 4 -->
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-card__stars">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+              <p class="testimonial-card__text">
+                "As a student, I love coming to school every day. The teachers make learning fun, and there are so many activities to participate in. TGVIS is like a second home to me!"
+              </p>
+              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar">SK</div>
+                <div>
+                  <h5 class="testimonial-card__name">Sneha Kumari</h5>
+                  <span class="testimonial-card__role">Class 8 Student</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swiper navigation -->
+        <div class="swiper-pagination"></div>
+        <div class="testimonials__nav">
+          <button class="testimonials__nav-btn testimonials__nav-btn--prev" aria-label="Previous testimonial">
+            <i class="ri-arrow-left-line"></i>
+          </button>
+          <button class="testimonials__nav-btn testimonials__nav-btn--next" aria-label="Next testimonial">
+            <i class="ri-arrow-right-line"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       11. CTA BANNER (Admissions Call-to-Action)
+       ====================================================================
+       A vibrant gradient banner encouraging visitors to apply for admission.
+       Positioned before the footer for maximum visibility.
+       ==================================================================== -->
+  <section class="cta-banner reveal">
+    <div class="container">
+      <div class="cta-banner__content">
+        <div class="cta-banner__text">
+          <span class="cta-banner__label">Admissions Open 2025-26</span>
+          <h2 class="cta-banner__title">Give Your Child the Gift of <span>Quality Education</span></h2>
+          <p class="cta-banner__description">
+            Join The Green Valley International School family. Limited seats available for Nursery to Class 10th. Apply now and secure your child's future.
+          </p>
+        </div>
+        <div class="cta-banner__actions">
+          <a href="pages/admissions/admissions.html" class="btn btn--secondary btn--lg">
+            <i class="ri-edit-line"></i> Apply Now
+          </a>
+          <a href="pages/contact/contact.html" class="btn btn--ghost btn--lg">
+            <i class="ri-phone-line"></i> Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       12. FOOTER
+       ====================================================================
+       Multi-column footer with school info, quick links, contact details,
+       social media, newsletter signup, and copyright.
+       ==================================================================== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- Column 1: School Brand & Social -->
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <img src="assets/images/logo/logo.png" alt="TGVIS Logo" class="footer__logo-img" width="52" height="52">
+            <div class="footer__logo-text">
+              The Green Valley<br>International School
+            </div>
+          </div>
+          <p class="footer__description">
+            Nurturing minds and shaping futures since establishment. A premier CBSE school in Bihta, Patna offering holistic education from Nursery to Class 10th.
+          </p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+            <a href="#" class="footer__social-link" aria-label="YouTube"><i class="ri-youtube-fill"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Twitter"><i class="ri-twitter-x-fill"></i></a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div>
+          <h4 class="footer__heading">Quick Links</h4>
+          <ul class="footer__links">
+            <li><a href="pages/about/about.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> About Us</a></li>
+            <li><a href="pages/admissions/admissions.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Admissions</a></li>
+            <li><a href="pages/academics/academics.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Academics</a></li>
+            <li><a href="pages/fees/fees.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Fee Structure</a></li>
+            <li><a href="pages/events/events.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Events</a></li>
+            <li><a href="pages/careers/careers.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Careers</a></li>
+            <li><a href="pages/contact/contact.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Student Corner -->
+        <div>
+          <h4 class="footer__heading">Student Corner</h4>
+          <ul class="footer__links">
+            <li><a href="pages/life-at-tgvis/life-at-tgvis.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Life at TGVIS</a></li>
+            <li><a href="pages/student-life/clubs-societies/clubs-societies.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Clubs & Societies</a></li>
+            <li><a href="pages/sports/sports.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Sports</a></li>
+            <li><a href="pages/timetable/timetable.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Timetable</a></li>
+            <li><a href="pages/uniform/uniform.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Uniform</a></li>
+            <li><a href="pages/login/student-login/student-login.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Student Login</a></li>
+            <li><a href="pages/login/teacher-login/teacher-login.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Teacher Login</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact Info -->
+        <div>
+          <h4 class="footer__heading">Contact Us</h4>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon"><i class="ri-map-pin-line"></i></div>
+            <p class="footer__contact-text">
+              The Green Valley International School,<br>
+              Bihta, Patna, Bihar — 801103
+            </p>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon"><i class="ri-phone-line"></i></div>
+            <p class="footer__contact-text">
+              +91 XXXXX XXXXX<br>
+              +91 XXXXX XXXXX
+            </p>
+          </div>
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon"><i class="ri-mail-line"></i></div>
+            <p class="footer__contact-text">
+              info@tgvis.edu.in<br>
+              admissions@tgvis.edu.in
+            </p>
+          </div>
+
+          <!-- Newsletter Signup -->
+          <div class="footer__newsletter">
+            <h5 style="color: var(--color-white); margin-bottom: var(--space-3); font-size: var(--fs-sm);">Stay Updated</h5>
+            <form class="footer__newsletter-form" onsubmit="return false;">
+              <input type="email" class="footer__newsletter-input" placeholder="Your email address" aria-label="Email for newsletter">
+              <button type="submit" class="footer__newsletter-btn">
+                <i class="ri-send-plane-line"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer__bottom">
+        <p>&copy; <span class="current-year">2025</span> The Green Valley International School. All Rights Reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="#" class="footer__bottom-link">Privacy Policy</a>
+          <a href="#" class="footer__bottom-link">Terms of Service</a>
+          <a href="#" class="footer__bottom-link">Mandatory Disclosure</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ====================================================================
+       13. BACK-TO-TOP BUTTON
+       ====================================================================
+       Floating button that appears after scrolling down 500px.
+       ==================================================================== -->
+  <button class="back-to-top" id="backToTop" aria-label="Scroll to top">
+    <i class="ri-arrow-up-line"></i>
+  </button>
+
+
+  <!-- ====================================================================
+       14. WHATSAPP FLOATING BUTTON
+       ====================================================================
+       Fixed button in bottom-left for instant WhatsApp enquiry.
+       Common pattern on Indian school websites for quick parent contact.
+       ==================================================================== -->
+  <a href="https://wa.me/91XXXXXXXXXX?text=Hello%20TGVIS!%20I%20would%20like%20to%20know%20about%20admissions." 
+     class="whatsapp-btn" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     aria-label="Contact us on WhatsApp">
+    <i class="ri-whatsapp-line"></i>
+    <span class="whatsapp-btn__tooltip">Chat with us!</span>
+  </a>
+
+
+  <!-- ====================================================================
+       EXTERNAL SCRIPTS (CDN)
+       ====================================================================
+       Order matters: Libraries first, then our custom scripts.
+       Using 'defer' ensures scripts load after HTML is parsed.
+       ==================================================================== -->
+
+  <!-- GSAP (GreenSock) — Advanced animation engine -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <!-- GSAP ScrollTrigger — Scroll-based animation triggers -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  
+  <!-- Lenis — Smooth scroll library -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
+  
+  <!-- Swiper.js — Touch-friendly sliders/carousels -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+
+  <!-- CountUp.js — Animated number counters -->
+  <script src="https://cdn.jsdelivr.net/npm/countup.js@2.8.0/dist/countUp.umd.js" defer></script>
+
+  <!-- Our custom scripts -->
+  <script src="assets/js/utils.js" defer></script>
+  <script src="assets/js/global.js" defer></script>
+  <script src="assets/js/animations.js" defer></script>
+  <script src="home.js" defer></script>
+
+</body>
+</html>

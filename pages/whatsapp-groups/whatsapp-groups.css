@@ -1,0 +1,170 @@
+/* ==========================================================================
+   TGVIS — WhatsApp Groups Page Styles
+   ==========================================================================
+   
+   Styles specific to the Class WhatsApp Groups page. Includes:
+   1. WhatsApp cards grid layout
+   2. Card hover animations with green accent
+   3. Join button with WhatsApp branding
+   4. Important guidelines notice
+   5. Responsive adjustments
+   
+   ========================================================================== */
+
+
+/* ── WhatsApp Groups Grid ── */
+.whatsapp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+/* ── Individual WhatsApp Card ── */
+.wa-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  text-align: center;
+  border: 1px solid var(--border-color);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Green top accent bar — hidden by default, animates on hover */
+.wa-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #25D366, #128C7E);
+  transform: scaleX(0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover state — lift + glow + accent bar */
+.wa-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(37, 211, 102, 0.15);
+  border-color: rgba(37, 211, 102, 0.3);
+}
+
+.wa-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ── WhatsApp Icon Circle ── */
+.wa-card__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4);
+  font-size: 1.8rem;
+  color: #25D366;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.wa-card:hover .wa-card__icon {
+  transform: scale(1.1) rotate(5deg);
+  background: rgba(37, 211, 102, 0.2);
+}
+
+/* ── Class Label ── */
+.wa-card__class {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+/* ── Description ── */
+.wa-card__desc {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-6);
+  line-height: var(--lh-relaxed);
+}
+
+/* ── Join Button ── */
+.wa-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  background: #25D366;
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.wa-card__btn:hover {
+  background: #128C7E;
+  transform: scale(1.05);
+}
+
+.wa-card__btn i {
+  font-size: 1.2rem;
+}
+
+/* ── Important Notice Section ── */
+.wa-notice {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  border-left: 4px solid #25D366;
+  margin-top: var(--space-10);
+}
+
+.wa-notice__title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.wa-notice__list {
+  list-style: none;
+  padding: 0;
+}
+
+.wa-notice__list li {
+  padding: var(--space-2) 0;
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.wa-notice__list li i {
+  color: #25D366;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .whatsapp-grid {
+    grid-template-columns: 1fr;
+  }
+  .wa-card {
+    padding: var(--space-6);
+  }
+}

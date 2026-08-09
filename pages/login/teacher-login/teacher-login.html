@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!-- TGVIS — Teacher Login Portal -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Login — TGVIS</title>
+  <meta name="description" content="TGVIS Teacher Portal — Access class management, grade entry, attendance, and academic resources.">
+  <link rel="icon" type="image/png" href="../../../assets/images/logo/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/global.css">
+  <link rel="stylesheet" href="../../../assets/css/components.css">
+  <link rel="stylesheet" href="../../../assets/css/animations.css">
+  <link rel="stylesheet" href="../student-login/student-login.css">
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-page__side">
+      <div class="login-page__side-content">
+        <a href="../../../index.html" class="login-page__logo">
+          <img src="../../../assets/images/logo/logo.png" alt="TGVIS" width="60" height="60" style="border-radius:50%;border:2px solid rgba(255,255,255,0.3);">
+          <div><h2 style="color:white;font-size:var(--fs-xl);">TGVIS</h2><p style="color:rgba(255,255,255,0.7);font-size:var(--fs-xs);">The Green Valley International School</p></div>
+        </a>
+        <div class="login-page__side-text">
+          <h1>Welcome,<br><span>Teacher!</span></h1>
+          <p>Manage your classes, enter grades, take attendance, and access educational resources all in one place.</p>
+        </div>
+        <div class="login-page__side-features">
+          <div class="login-page__feature"><i class="ri-user-settings-line"></i><span>Class & Student Management</span></div>
+          <div class="login-page__feature"><i class="ri-file-edit-line"></i><span>Grade Entry & Report Cards</span></div>
+          <div class="login-page__feature"><i class="ri-calendar-check-line"></i><span>Attendance Management</span></div>
+          <div class="login-page__feature"><i class="ri-book-2-line"></i><span>Lesson Plans & Resources</span></div>
+        </div>
+      </div>
+      <div class="floating-shape" style="width:200px;height:200px;background:rgba(212,168,67,0.1);top:10%;right:-5%;"></div>
+    </div>
+    <div class="login-page__form-area">
+      <div class="login-card">
+        <div class="login-card__icon" style="background:linear-gradient(135deg, #2563EB, #1D4ED8);"><i class="ri-user-settings-line"></i></div>
+        <h2 class="login-card__title">Teacher Login</h2>
+        <p class="login-card__subtitle">Enter your credentials to access the teacher portal</p>
+        <form class="login-form" id="teacherLoginForm" novalidate>
+          <div class="form-group">
+            <label class="form-label form-label--required" for="teacherId">Employee ID</label>
+            <div class="login-input-wrapper"><i class="ri-user-settings-line"></i><input type="text" id="teacherId" class="form-input" placeholder="Enter your Employee ID" required></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label form-label--required" for="teacherPassword">Password</label>
+            <div class="login-input-wrapper"><i class="ri-lock-line"></i><input type="password" id="teacherPassword" class="form-input" placeholder="Enter your password" required><button type="button" class="password-toggle"><i class="ri-eye-off-line"></i></button></div>
+          </div>
+          <div class="login-options">
+            <label class="login-checkbox"><input type="checkbox"><span>Remember me</span></label>
+            <a href="#" class="login-forgot">Forgot Password?</a>
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg w-full"><i class="ri-login-box-line"></i> Sign In</button>
+        </form>
+        <div class="login-card__footer">
+          <p>Other portals:</p>
+          <div class="login-card__other-portals">
+            <a href="../student-login/student-login.html" class="login-portal-link"><i class="ri-user-line"></i> Student Login</a>
+            <a href="../admin-login/admin-login.html" class="login-portal-link"><i class="ri-admin-line"></i> Admin Login</a>
+          </div>
+        </div>
+        <a href="../../../index.html" class="login-card__back"><i class="ri-arrow-left-line"></i> Back to Website</a>
+      </div>
+    </div>
+  </div>
+  <script src="../../../assets/js/utils.js" defer></script>
+  <script src="../student-login/student-login.js" defer></script>
+</body>
+</html>

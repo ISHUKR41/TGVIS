@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     TGVIS — Life at TGVIS Page
+     ==========================================================================
+     
+     PURPOSE:
+     Showcases the vibrant campus life at The Green Valley International School.
+     This page gives prospective parents and students a visual and descriptive
+     tour of what a typical day looks like at TGVIS.
+     
+     CONTENT SECTIONS:
+     1. Page Hero — immersive banner with school motto
+     2. A Day at TGVIS — 6 cards covering daily activities
+     3. Campus Facilities — 6 facility highlights with icons
+     4. Core Values — animated pill badges showing school values
+     5. Student Testimonials — what students say
+     6. Photo Gallery — campus life image grid
+     7. Call to Action — admissions prompt
+     
+     DEPENDENCIES:
+     - global.css, components.css, animations.css (shared design system)
+     - life-at-tgvis.css (page-specific styles defined below)
+     - life-at-tgvis.js (page-specific interactions & animations)
+     - GSAP + ScrollTrigger (scroll-triggered reveal animations)
+     - Lenis (smooth scrolling)
+     - navbar.js (dynamic navbar + footer injection)
+     
+     ========================================================================== -->
+<html lang="en" data-theme="light">
+<head>
+  <!-- ---- Core Meta Tags ---- -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ---- SEO Meta Tags ---- -->
+  <title>Life at TGVIS — The Green Valley International School, Bihta</title>
+  <meta name="description" content="Experience the vibrant campus life at TGVIS Bihta — smart classrooms, sports, cultural events, morning assembly, labs, and a nurturing community. Nursery to Class 10.">
+  <meta name="keywords" content="TGVIS campus life, school facilities Bihta, student activities, smart classrooms, school sports, campus tour">
+  <meta name="author" content="The Green Valley International School">
+
+  <!-- ---- Favicon ---- -->
+  <link rel="icon" type="image/png" href="../../assets/images/logo/logo.png">
+
+  <!-- ---- Google Fonts (Inter + Outfit) ---- -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ---- Remix Icons (2800+ icons) ---- -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- ---- Stylesheets (load order: global → components → animations → page) ---- -->
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="life-at-tgvis.css">
+</head>
+<body>
+
+  <!-- ======== PRELOADER ======== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__text">TGVIS</div>
+    <div class="preloader__bar"><div class="preloader__bar-fill"></div></div>
+  </div>
+
+  <!-- ======== PAGE TRANSITION OVERLAY ======== -->
+  <div class="page-transition"></div>
+
+  <!-- ======== NAVBAR (Injected dynamically by navbar.js) ======== -->
+  <nav class="navbar" id="navbar"></nav>
+
+
+  <!-- ====================================================================
+       SECTION 1: PAGE HERO BANNER
+       ====================================================================
+       Full-width hero with background image, green overlay, page title,
+       and breadcrumb navigation. Sets the visual tone for the page.
+       ==================================================================== -->
+  <section class="page-hero">
+    <img src="../../assets/images/hero/campus.png" alt="TGVIS Campus Life" 
+         class="page-hero__bg" loading="eager">
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <h1 class="page-hero__title">Life at TGVIS</h1>
+      <p class="page-hero__subtitle">
+        A vibrant community where learning, friendship, and growth come together
+      </p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html" class="breadcrumb__link">Home</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <span class="breadcrumb__current">Life at TGVIS</span>
+      </nav>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       SECTION 2: A DAY AT TGVIS
+       ====================================================================
+       Six feature cards showing the daily rhythm of school life — from
+       morning assembly to dismissal. Each card has an icon, title, and
+       description. Uses staggered reveal animations on scroll.
+       ==================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Campus Experience</span>
+        <h2 class="section-title">A Day at <span class="text-gradient-gold">TGVIS</span></h2>
+        <div class="divider"></div>
+        <p class="section-description">
+          From morning assembly to the final bell, every moment at TGVIS is 
+          designed to inspire, educate, and empower.
+        </p>
+      </div>
+
+      <!-- 3-column responsive grid of daily activity cards -->
+      <div class="grid-3 grid-animated">
+        <!-- Card 1: Morning Assembly -->
+        <div class="feature-card reveal stagger-1">
+          <div class="feature-card__icon"><i class="ri-sun-line"></i></div>
+          <h4 class="feature-card__title">Morning Assembly</h4>
+          <p class="feature-card__text">
+            Every day begins with prayer, national anthem, thought of the day, 
+            and important announcements — setting a positive tone for the day.
+          </p>
+        </div>
+
+        <!-- Card 2: Interactive Classrooms -->
+        <div class="feature-card reveal stagger-2">
+          <div class="feature-card__icon"><i class="ri-book-read-line"></i></div>
+          <h4 class="feature-card__title">Interactive Classrooms</h4>
+          <p class="feature-card__text">
+            Smart classrooms with digital boards, group discussions, hands-on 
+            activities, and personalised attention from dedicated teachers.
+          </p>
+        </div>
+
+        <!-- Card 3: Lab & Practicals -->
+        <div class="feature-card reveal stagger-3">
+          <div class="feature-card__icon"><i class="ri-flask-line"></i></div>
+          <h4 class="feature-card__title">Lab & Practicals</h4>
+          <p class="feature-card__text">
+            Fully equipped science and computer labs where students experiment, 
+            code, and discover the joy of hands-on learning.
+          </p>
+        </div>
+
+        <!-- Card 4: Sports & Play -->
+        <div class="feature-card reveal stagger-4">
+          <div class="feature-card__icon"><i class="ri-basketball-line"></i></div>
+          <h4 class="feature-card__title">Sports & Play</h4>
+          <p class="feature-card__text">
+            Dedicated sports periods with professional coaching in cricket, 
+            football, basketball, athletics, yoga, and indoor games.
+          </p>
+        </div>
+
+        <!-- Card 5: Creative Arts -->
+        <div class="feature-card reveal stagger-5">
+          <div class="feature-card__icon"><i class="ri-palette-line"></i></div>
+          <h4 class="feature-card__title">Creative Arts</h4>
+          <p class="feature-card__text">
+            Art, music, dance, and drama sessions nurture creativity and 
+            self-expression. Regular performances showcase student talent.
+          </p>
+        </div>
+
+        <!-- Card 6: Lunch & Recreation -->
+        <div class="feature-card reveal stagger-6">
+          <div class="feature-card__icon"><i class="ri-restaurant-line"></i></div>
+          <h4 class="feature-card__title">Lunch & Recreation</h4>
+          <p class="feature-card__text">
+            A clean, supervised dining experience with nutritious food options. 
+            Recreational time for socializing and relaxation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       SECTION 3: CAMPUS FACILITIES
+       ====================================================================
+       Highlights the infrastructure that makes TGVIS stand out — smart
+       classrooms, security, transport, medical room, library, and playground.
+       Uses a 2-column grid with alternating background section.
+       ==================================================================== -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Our Campus</span>
+        <h2 class="section-title">World-Class <span class="text-gradient">Facilities</span></h2>
+        <div class="divider"></div>
+        <p class="section-description">
+          Our modern campus is designed to provide a safe, stimulating, and 
+          comfortable learning environment for every student.
+        </p>
+      </div>
+
+      <!-- 3-column auto-responsive grid -->
+      <div class="grid-auto">
+        <!-- Facility 1 -->
+        <div class="feature-card reveal stagger-1">
+          <div class="feature-card__icon" style="background:rgba(59,130,246,0.1);">
+            <i class="ri-computer-line" style="color:#3B82F6;"></i>
+          </div>
+          <h4 class="feature-card__title">Smart Classrooms</h4>
+          <p class="feature-card__text">
+            Every classroom features interactive digital boards, projectors, 
+            and audio-visual systems for engaging, multimedia-rich education.
+          </p>
+        </div>
+
+        <!-- Facility 2 -->
+        <div class="feature-card reveal stagger-2">
+          <div class="feature-card__icon" style="background:rgba(34,197,94,0.1);">
+            <i class="ri-shield-check-line" style="color:#22C55E;"></i>
+          </div>
+          <h4 class="feature-card__title">Safe & Secure Campus</h4>
+          <p class="feature-card__text">
+            24/7 CCTV surveillance, trained security guards, fire safety systems, 
+            and a comprehensive child protection policy ensure complete safety.
+          </p>
+        </div>
+
+        <!-- Facility 3 -->
+        <div class="feature-card reveal stagger-3">
+          <div class="feature-card__icon" style="background:rgba(168,85,247,0.1);">
+            <i class="ri-bus-line" style="color:#A855F7;"></i>
+          </div>
+          <h4 class="feature-card__title">Transport Facility</h4>
+          <p class="feature-card__text">
+            GPS-tracked school buses covering major routes in and around Bihta 
+            for safe, comfortable, and reliable student transportation.
+          </p>
+        </div>
+
+        <!-- Facility 4 -->
+        <div class="feature-card reveal stagger-4">
+          <div class="feature-card__icon" style="background:rgba(239,68,68,0.1);">
+            <i class="ri-first-aid-kit-line" style="color:#EF4444;"></i>
+          </div>
+          <h4 class="feature-card__title">Medical Room</h4>
+          <p class="feature-card__text">
+            A dedicated medical room with first-aid supplies and trained staff 
+            for immediate attention. Regular health check-ups for all students.
+          </p>
+        </div>
+
+        <!-- Facility 5 -->
+        <div class="feature-card reveal stagger-5">
+          <div class="feature-card__icon" style="background:rgba(245,158,11,0.1);">
+            <i class="ri-book-3-line" style="color:#F59E0B;"></i>
+          </div>
+          <h4 class="feature-card__title">Library & Reading Room</h4>
+          <p class="feature-card__text">
+            A well-stocked library with 5000+ books, magazines, and digital 
+            resources. A dedicated reading room for quiet study and research.
+          </p>
+        </div>
+
+        <!-- Facility 6 -->
+        <div class="feature-card reveal stagger-6">
+          <div class="feature-card__icon" style="background:rgba(14,165,233,0.1);">
+            <i class="ri-football-line" style="color:#0EA5E9;"></i>
+          </div>
+          <h4 class="feature-card__title">Playground & Sports Ground</h4>
+          <p class="feature-card__text">
+            A spacious playground for cricket, football, basketball, and athletics. 
+            Separate areas for junior and senior students.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       SECTION 4: CORE VALUES
+       ====================================================================
+       Animated pill badges displaying the 6 core values of TGVIS.
+       These values guide student behavior and school culture.
+       ==================================================================== -->
+  <section class="section">
+    <div class="container" style="max-width:800px;text-align:center;">
+      <div class="section-header reveal">
+        <span class="section-label">Our Culture</span>
+        <h2 class="section-title">Values We <span class="text-gradient-gold">Live By</span></h2>
+        <div class="divider"></div>
+        <p class="section-description">
+          These six core values are woven into every lesson, every interaction, 
+          and every activity at TGVIS.
+        </p>
+      </div>
+
+      <!-- Value pills — styled as floating badges -->
+      <div class="values-grid reveal">
+        <span class="value-pill value-pill--green">🙏 Respect</span>
+        <span class="value-pill value-pill--gold">📚 Excellence</span>
+        <span class="value-pill value-pill--green">💡 Innovation</span>
+        <span class="value-pill value-pill--gold">❤️ Compassion</span>
+        <span class="value-pill value-pill--green">🤝 Integrity</span>
+        <span class="value-pill value-pill--gold">🌱 Growth Mindset</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       SECTION 5: INTEGRATED TUITION PROGRAM
+       ====================================================================
+       Highlights TGVIS's unique tuition facility that runs within the school.
+       This is a key differentiator from other schools in the area.
+       ==================================================================== -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Exclusive Feature</span>
+        <h2 class="section-title">Integrated <span class="text-gradient">Tuition Program</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="tuition-highlight reveal">
+        <div class="tuition-highlight__icon">
+          <i class="ri-lightbulb-flash-line"></i>
+        </div>
+        <div class="tuition-highlight__content">
+          <h3>Extra Academic Support — Built Right In</h3>
+          <p>
+            Unlike other schools, TGVIS offers an <strong>integrated tuition facility</strong> 
+            within the school campus. Students who need extra help or want to practice more 
+            can attend supervised tuition sessions after regular school hours.
+          </p>
+          <ul class="tuition-highlight__features">
+            <li><i class="ri-check-line"></i> Doubt-clearing sessions for all subjects</li>
+            <li><i class="ri-check-line"></i> Exam preparation and revision classes</li>
+            <li><i class="ri-check-line"></i> Dedicated tutors for weak subject areas</li>
+            <li><i class="ri-check-line"></i> Safe campus environment — no need to travel</li>
+            <li><i class="ri-check-line"></i> Available for Class 1 to Class 10 students</li>
+          </ul>
+          <a href="../admissions/admissions.html" class="btn btn--primary" style="margin-top:var(--space-6);">
+            Enquire About Tuition <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       SECTION 6: CALL TO ACTION
+       ====================================================================
+       Encourages visitors to apply for admissions or visit the campus.
+       ==================================================================== -->
+  <section class="section" style="background:linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);">
+    <div class="container" style="text-align:center;max-width:700px;">
+      <div class="reveal">
+        <h2 style="color:var(--color-white);margin-bottom:var(--space-6);">
+          Ready to Be Part of the TGVIS Family?
+        </h2>
+        <p style="color:rgba(255,255,255,0.8);font-size:var(--fs-md);margin-bottom:var(--space-8);line-height:var(--lh-relaxed);">
+          Come visit our campus, meet our teachers, and see firsthand why 
+          hundreds of families in Bihta trust TGVIS with their child's future.
+        </p>
+        <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+          <a href="../admissions/admissions.html" class="btn btn--secondary btn--lg">
+            Apply Now <i class="ri-arrow-right-line"></i>
+          </a>
+          <a href="../contact/contact.html" class="btn btn--ghost btn--lg">
+            Visit Campus <i class="ri-map-pin-line"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======== FOOTER (Injected dynamically by navbar.js) ======== -->
+  <footer class="footer"></footer>
+
+  <!-- ======== BACK TO TOP BUTTON ======== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="ri-arrow-up-line"></i>
+  </button>
+
+  <!-- ======== EXTERNAL SCRIPTS (CDN Libraries) ======== -->
+  <!-- GSAP — Professional-grade animation engine -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <!-- ScrollTrigger — Scroll-based animation triggers -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <!-- Lenis — Buttery smooth scroll experience -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
+
+  <!-- ======== OUR SCRIPTS ======== -->
+  <!-- Load order: utils → navbar (injects nav+footer) → global → animations → page -->
+  <script src="../../assets/js/utils.js" defer></script>
+  <script src="../../assets/js/navbar.js" defer></script>
+  <script src="../../assets/js/global.js" defer></script>
+  <script src="../../assets/js/animations.js" defer></script>
+  <script src="life-at-tgvis.js" defer></script>
+</body>
+</html>

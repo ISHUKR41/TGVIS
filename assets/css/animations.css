@@ -1,0 +1,674 @@
+/* ==========================================================================
+   TGVIS — Animations Stylesheet
+   ==========================================================================
+   
+   This file contains all CSS animation definitions used throughout the site.
+   It works together with animations.js (which uses the Intersection Observer
+   API and GSAP) to trigger these animations when elements scroll into view.
+   
+   Contents:
+   1. Reveal Animations — fade/slide/scale triggered by Intersection Observer
+   2. Stagger Delays — sequential animation delays for grouped elements
+   3. Keyframe Animations — reusable @keyframes definitions
+   4. Hover Micro-Interactions — subtle effects on interactive elements
+   5. Loading/Shimmer Effects — skeleton loaders for content placeholders
+   6. Gradient Animations — animated gradient backgrounds and text
+   7. Accessibility — prefers-reduced-motion overrides
+   
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. REVEAL ANIMATIONS (Scroll-Triggered)
+   --------------------------------------------------------------------------
+   Elements with the '.reveal' class start hidden and animate into view
+   when they enter the viewport. The Intersection Observer in animations.js
+   adds the '.revealed' class to trigger the animation.
+   
+   USAGE: Add class="reveal" to any element, plus a direction modifier:
+   - reveal              → Fade in (default)
+   - reveal reveal--up   → Slide up + fade in
+   - reveal reveal--down → Slide down + fade in
+   - reveal reveal--left → Slide from left + fade in
+   - reveal reveal--right → Slide from right + fade in
+   - reveal reveal--scale → Scale up + fade in
+   - reveal reveal--rotate → Rotate in + fade in
+   -------------------------------------------------------------------------- */
+
+/* Base reveal state — element is invisible and slightly shifted */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 
+    opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+    transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: opacity, transform; /* Hint to browser for GPU acceleration */
+}
+
+/* Revealed state — element is fully visible in its final position */
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1) rotate(0deg);
+}
+
+/* ---- Direction Variants ---- */
+
+/* Slide up from below (default behavior) */
+.reveal--up {
+  transform: translateY(40px);
+}
+
+/* Slide down from above */
+.reveal--down {
+  transform: translateY(-40px);
+}
+
+/* Slide in from the left */
+.reveal--left {
+  transform: translateX(-40px);
+}
+
+/* Slide in from the right */
+.reveal--right {
+  transform: translateX(40px);
+}
+
+/* Scale up from a smaller size */
+.reveal--scale {
+  transform: scale(0.85);
+}
+
+/* Rotate in with a slight tilt */
+.reveal--rotate {
+  transform: rotate(-5deg) translateY(20px);
+}
+
+/* Blur in — element starts blurred and sharpens */
+.reveal--blur {
+  filter: blur(10px);
+  transform: translateY(20px);
+  transition: 
+    opacity 0.8s ease,
+    transform 0.8s ease,
+    filter 0.8s ease;
+}
+
+.reveal--blur.revealed {
+  filter: blur(0);
+}
+
+
+/* --------------------------------------------------------------------------
+   2. STAGGER DELAYS
+   --------------------------------------------------------------------------
+   When multiple elements animate together (e.g., a grid of cards), stagger
+   delays create a cascading "wave" effect where each element appears 
+   slightly after the previous one.
+   
+   USAGE: Add stagger-1 through stagger-8 to sequential elements:
+   <div class="reveal stagger-1">First card</div>
+   <div class="reveal stagger-2">Second card</div>
+   <div class="reveal stagger-3">Third card</div>
+   -------------------------------------------------------------------------- */
+
+.stagger-1 { transition-delay: 0.05s; }
+.stagger-2 { transition-delay: 0.1s; }
+.stagger-3 { transition-delay: 0.15s; }
+.stagger-4 { transition-delay: 0.2s; }
+.stagger-5 { transition-delay: 0.25s; }
+.stagger-6 { transition-delay: 0.3s; }
+.stagger-7 { transition-delay: 0.35s; }
+.stagger-8 { transition-delay: 0.4s; }
+
+
+/* --------------------------------------------------------------------------
+   3. KEYFRAME ANIMATIONS
+   --------------------------------------------------------------------------
+   Reusable @keyframes that can be applied to any element.
+   These are used for continuous animations (like floating or pulsing)
+   rather than one-time reveals.
+   -------------------------------------------------------------------------- */
+
+/* ---- Fade In ---- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---- Fade In Up — element rises while fading in ---- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Fade In Down — element drops while fading in ---- */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Fade In Left — element slides right while fading in ---- */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ---- Fade In Right — element slides left while fading in ---- */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ---- Scale In — element grows from small to full size ---- */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ---- Bounce In — element bounces with an overshoot effect ---- */
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---- Float — gentle up/down floating motion (for decorative elements) ---- */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* ---- Gentle Rotate — slow rotation for decorative backgrounds ---- */
+@keyframes gentleRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Pulse — rhythmic scaling for attention-grabbing elements ---- */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+/* ---- Ping — expanding ring effect (like a notification dot) ---- */
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* ---- Spin — continuous 360° rotation (for loaders) ---- */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Slide In from Left (for page transitions) ---- */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ---- Slide In from Right ---- */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ---- Draw Line — animates a line from zero to full width ---- */
+@keyframes drawLine {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* ---- Typing cursor blink (for hero text typewriter effect) ---- */
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: var(--color-secondary); }
+}
+
+/* ---- Count up number roll animation ---- */
+@keyframes countRoll {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   4. HOVER MICRO-INTERACTIONS
+   --------------------------------------------------------------------------
+   Subtle, professional hover effects that make the interface feel alive
+   without being distracting. Applied to interactive elements.
+   -------------------------------------------------------------------------- */
+
+/* ---- Magnetic Hover — element slightly follows cursor direction ---- */
+.hover-lift {
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ---- Grow on Hover — subtle scale increase ---- */
+.hover-grow {
+  transition: transform var(--transition-base);
+}
+
+.hover-grow:hover {
+  transform: scale(1.03);
+}
+
+/* ---- Glow on Hover — adds a green glow effect ---- */
+.hover-glow {
+  transition: box-shadow var(--transition-smooth);
+}
+
+.hover-glow:hover {
+  box-shadow: var(--shadow-glow);
+}
+
+/* ---- Gold Glow on Hover ---- */
+.hover-glow-gold:hover {
+  box-shadow: var(--shadow-gold);
+}
+
+/* ---- Image Zoom on Hover — for image containers ---- */
+.hover-zoom {
+  overflow: hidden;
+}
+
+.hover-zoom img {
+  transition: transform var(--transition-slow);
+}
+
+.hover-zoom:hover img {
+  transform: scale(1.08);
+}
+
+/* ---- Border Color Change on Hover ---- */
+.hover-border {
+  transition: border-color var(--transition-base);
+}
+
+.hover-border:hover {
+  border-color: var(--color-primary);
+}
+
+/* ---- Underline Grow on Hover (for text links) ---- */
+.hover-underline {
+  position: relative;
+}
+
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width var(--transition-smooth);
+}
+
+.hover-underline:hover::after {
+  width: 100%;
+}
+
+/* ---- Icon Rotate on Hover ---- */
+.hover-rotate-icon:hover i {
+  transform: rotate(15deg);
+  transition: transform var(--transition-base);
+}
+
+/* ---- Arrow Slide on Hover (for "Learn More →" links) ---- */
+.hover-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.hover-arrow i {
+  transition: transform var(--transition-base);
+}
+
+.hover-arrow:hover i {
+  transform: translateX(6px);
+}
+
+
+/* --------------------------------------------------------------------------
+   5. LOADING / SHIMMER EFFECTS
+   --------------------------------------------------------------------------
+   Skeleton loading placeholders shown while real content loads.
+   Creates a shimmering effect that indicates content is on the way.
+   -------------------------------------------------------------------------- */
+
+/* Shimmer animation — a light sweep moving across the skeleton */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Base skeleton class — apply to any element */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-100) 25%,
+    var(--color-gray-50) 50%,
+    var(--color-gray-100) 75%
+  );
+  background-size: 2000px 100%;
+  animation: shimmer 2s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
+
+/* Skeleton variants for common shapes */
+.skeleton--text {
+  height: 16px;
+  width: 80%;
+  margin-bottom: var(--space-3);
+}
+
+.skeleton--title {
+  height: 24px;
+  width: 60%;
+  margin-bottom: var(--space-4);
+}
+
+.skeleton--image {
+  height: 200px;
+  width: 100%;
+}
+
+.skeleton--circle {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+}
+
+
+/* --------------------------------------------------------------------------
+   6. GRADIENT ANIMATIONS
+   --------------------------------------------------------------------------
+   Animated gradients for backgrounds, borders, and text.
+   Used sparingly for visual impact.
+   -------------------------------------------------------------------------- */
+
+/* ---- Moving Gradient Background ----
+   A slow-moving gradient that adds visual interest to hero sections */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient {
+  background: linear-gradient(
+    -45deg,
+    var(--color-primary),
+    var(--color-primary-dark),
+    var(--color-accent),
+    var(--color-primary)
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* ---- Animated Border Gradient ----
+   A border that cycles through brand colors */
+.animated-border {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.animated-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    var(--color-primary),
+    var(--color-secondary),
+    var(--color-accent),
+    var(--color-primary)
+  );
+  background-size: 300% 300%;
+  animation: gradientShift 4s ease infinite;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+/* ---- Animated Gradient Text ----
+   Text with a slowly shifting gradient color */
+@keyframes textGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animated-text-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-secondary),
+    var(--color-accent),
+    var(--color-primary)
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textGradient 6s ease infinite;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. PARALLAX HELPERS
+   --------------------------------------------------------------------------
+   CSS classes used by the parallax JavaScript for subtle depth effects.
+   -------------------------------------------------------------------------- */
+
+/* Elements with parallax effect should not have their own transition
+   on transform, as GSAP handles that */
+.parallax {
+  will-change: transform;
+}
+
+/* Decorative floating shapes — used in hero sections */
+.floating-shape {
+  position: absolute;
+  border-radius: var(--radius-full);
+  opacity: 0.08;
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.floating-shape:nth-child(1) {
+  animation-delay: 0s;
+  animation-duration: 7s;
+}
+
+.floating-shape:nth-child(2) {
+  animation-delay: 1s;
+  animation-duration: 5s;
+}
+
+.floating-shape:nth-child(3) {
+  animation-delay: 2s;
+  animation-duration: 8s;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. PAGE TRANSITION
+   --------------------------------------------------------------------------
+   Smooth transition effect when navigating between pages.
+   -------------------------------------------------------------------------- */
+
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-primary);
+  z-index: calc(var(--z-preloader) + 1);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  pointer-events: none;
+}
+
+.page-transition.active {
+  animation: pageTransition 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes pageTransition {
+  0% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  51% {
+    transform-origin: top;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   9. ACCESSIBILITY — REDUCED MOTION
+   --------------------------------------------------------------------------
+   Users who have enabled "Reduce motion" in their system preferences
+   will see simplified, instant transitions instead of animations.
+   This is CRITICAL for accessibility compliance (WCAG 2.1 Level AA).
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all reveal animations — show elements immediately */
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  /* Disable floating decorative animations */
+  .floating-shape {
+    animation: none;
+  }
+
+  /* Disable gradient shifts */
+  .animated-gradient,
+  .animated-text-gradient {
+    animation: none;
+  }
+
+  /* Disable shimmer loading effects */
+  .skeleton {
+    animation: none;
+  }
+
+  /* Disable hover transforms (keep color changes) */
+  .hover-lift:hover,
+  .hover-grow:hover {
+    transform: none;
+  }
+
+  /* Keep focus indicators visible for keyboard navigation */
+  :focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}

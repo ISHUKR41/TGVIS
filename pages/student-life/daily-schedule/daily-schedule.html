@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<!-- =====================================================================
+     TGVIS — Daily Schedule Page
+     =====================================================================
+     
+     PURPOSE:
+     Shows a detailed breakdown of a typical day at The Green Valley
+     International School. Uses a professional vertical timeline layout
+     with time badges, animated cards, and schedule overview statistics.
+     
+     CONTENT SECTIONS:
+     1. Page Hero — banner with breadcrumb
+     2. Timeline — visual step-by-step daily schedule
+     3. Quick Overview Stats — at-a-glance day summary
+     4. Important Notes — rules and reminders
+     5. Download CTA — timetable download prompt
+     
+     DEPENDENCIES:
+     - global.css, components.css, animations.css (shared styles)
+     - daily-schedule.css (page-specific timeline styles)
+     - GSAP + ScrollTrigger (scroll animations)
+     - Lenis (smooth scrolling)
+     - navbar.js (dynamic nav/footer injection)
+     
+     ===================================================================== -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Schedule — TGVIS | The Green Valley International School</title>
+  <meta name="description" content="A typical day at TGVIS — from morning assembly to dispersal, see how we structure each day for optimal learning and holistic development.">
+
+  <!-- ======== Favicon ======== -->
+  <link rel="icon" type="image/png" href="../../../assets/images/logo/logo.png">
+
+  <!-- ======== Google Fonts: Inter + Outfit ======== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ======== RemixIcon CDN ======== -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- ======== Global + Page Stylesheets ======== -->
+  <link rel="stylesheet" href="../../../assets/css/global.css">
+  <link rel="stylesheet" href="../../../assets/css/components.css">
+  <link rel="stylesheet" href="../../../assets/css/animations.css">
+  <link rel="stylesheet" href="daily-schedule.css">
+</head>
+<body>
+  <!-- ======== Preloader ======== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__text">TGVIS</div>
+    <div class="preloader__bar"><div class="preloader__bar-fill"></div></div>
+  </div>
+  <div class="page-transition"></div>
+
+  <!-- ======== NAVBAR (Injected dynamically by navbar.js) ======== -->
+  <nav class="navbar" id="navbar"></nav>
+
+
+  <!-- ================================================================
+       HERO SECTION — Page banner with breadcrumb
+       ================================================================ -->
+  <section class="page-hero">
+    <img src="../../../assets/images/hero/campus.png" alt="Daily Schedule at TGVIS" class="page-hero__bg">
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <h1 class="page-hero__title">Daily Schedule</h1>
+      <p class="page-hero__subtitle">How a typical day unfolds at The Green Valley International School</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../../index.html" class="breadcrumb__link">Home</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <a href="../../life-at-tgvis/life-at-tgvis.html" class="breadcrumb__link">Student Life</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <span class="breadcrumb__current">Daily Schedule</span>
+      </nav>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       SCHEDULE TIMELINE — Visual step-by-step daily routine
+       ================================================================ -->
+  <section class="section">
+    <div class="container">
+      <!-- Section Header -->
+      <div class="section-header reveal">
+        <span class="section-label">A Day at TGVIS</span>
+        <h2 class="section-title">Structured <span class="text-gradient">Daily Routine</span></h2>
+        <div class="divider"></div>
+        <p style="color:var(--text-secondary);max-width:600px;margin:0 auto;margin-top:var(--space-4);">
+          Every day at TGVIS is carefully designed to balance academics, physical activity, creative expression, and personal growth — ensuring our students develop into well-rounded individuals.
+        </p>
+      </div>
+
+      <!-- ── Timeline ── -->
+      <div class="schedule-timeline">
+
+        <!-- 1. Arrival -->
+        <div class="schedule-item reveal stagger-1">
+          <span class="schedule-item__time" style="background:linear-gradient(135deg,#F59E0B,#D97706);">
+            <i class="ri-sun-line"></i> 7:30 AM
+          </span>
+          <div class="schedule-card">
+            <h3 class="schedule-card__title">
+              <i class="ri-bus-line" style="color:#F59E0B;"></i> Arrival & Welcome
+            </h3>
+            <p class="schedule-card__desc">
+              Students arrive by school bus or personal transport. Campus gates open at 7:30 AM. Duty teachers greet every child with a warm welcome, check uniform compliance, and guide them to their classrooms.
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. Morning Assembly -->
+        <div class="schedule-item reveal stagger-2">
+          <span class="schedule-item__time" style="background:linear-gradient(135deg,#3B82F6,#2563EB);">
+            <i class="ri-flag-line"></i> 7:45 AM
+          </span>
+          <div class="schedule-card">
+            <h3 class="schedule-card__title">
+              <i class="ri-megaphone-line" style="color:#3B82F6;"></i> Morning Assembly
+            </h3>
+            <p class="schedule-card__desc">
+              A disciplined assembly featuring prayer, the national anthem, thought of the day, general knowledge quiz, and important announcements. Head Boy/Girl and house captains lead the assembly on rotation.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3. Academic Block 1 -->
+        <div class="schedule-item reveal stagger-3">
+          <span class="schedule-item__time" style="background:linear-gradient(135deg,#059669,#047857);">
+            <i class="ri-book-open-line"></i> 8:00 – 10:00 AM
+          </span>
+          <div class="schedule-card">
+            <h3 class="schedule-card__title">
+              <i class="ri-booklet-line" style="color:#059669;"></i> Academic Block I (3 Periods)
+            </h3>
+            <p class="schedule-card__desc">
+              Three focused academic periods covering core subjects — Mathematics, Science, English, Hindi, or Social Studies. Smart classroom tools including digital boards, multimedia presentations, and interactive quizzes enhance learning.
+            </p>
+          </div>
+        </div>
+
+        <!-- 4. Short Break -->
+        <div class="schedule-item reveal stagger-4">
+          <span class="schedule-item__time" style="background:linear-gradient(135deg,#EF4444,#DC2626);">
+            <i class="ri-cup-line"></i> 10:00 AM
+          </span>
+          <div class="schedule-card">
+            <h3 class="schedule-card__title">
+              <i class="ri-restaurant-line" style="color:#EF4444;"></i> Short Break (15 min)
+            </h3>
+            <p class="schedule-card__desc">
+              A refreshing 15-minute break for snacks and water. Students can visit the canteen, stretch, and socialize before the next academic block begins.
+            </p>
+          </div>
+        </div>
+
+        <!-- 5. Academic Block 2 -->
+        <div class="schedule-item reveal stagger-5">
+          <span class="schedule-item__time" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED);">
+            <i class="ri-flask-line"></i> 10:15 – 11:35 AM
+          </span>
+          <div class="schedule-card">
+            <h3 class="schedule-card__title">
+              <i class="ri-microscope-line" style="color:#8B5CF6;"></i> Academic Block II (2 Periods)
+            </h3>
+            <p class="schedule-card__desc">
+              Two additional periods including lab work (Science/Computer), elective subjects, or language classes. Hands-on experiments and project-based learning keep students engaged and curious.
+            </p>
+          </div>
+        </div>
+
+        <!-- 6. Lunch Break -->
+        <div class="schedule-item reveal stagger-6">
+          <span class="schedule-item__time" style="background:linear-gradient(135deg,#F97316,#EA580C);">
+            <i class="ri-restaurant-2-line"></i> 11:35 AM
+          </span>
+          <div class="schedule-card">
+            <h3 class="schedule-card__title">
+              <i class="ri-bowl-line" style="color:#F97316;"></i> Lunch Break (40 min)
+            </h3>
+            <p class="schedule-card__desc">
+              A wholesome 40-minute lunch break in the supervised dining area. Students enjoy nutritious home-packed meals, socialize with classmates, and recharge for the afternoon. Hygiene and cleanliness are strictly maintained.
+            </p>
+          </div>
+        </div>
+
+        <!-- 7. Afternoon Session -->
+        <div class="schedule-item reveal stagger-1">
+          <span class="schedule-item__time" style="background:linear-gradient(135deg,#14B8A6,#0D9488);">
+            <i class="ri-basketball-line"></i> 12:15 – 1:35 PM
+          </span>
+          <div class="schedule-card">
+            <h3 class="schedule-card__title">
+              <i class="ri-run-line" style="color:#14B8A6;"></i> Afternoon Session (2 Periods)
+            </h3>
+            <p class="schedule-card__desc">
+              Dedicated to physical education, sports training, art, music, or dance. Students participate in cricket, football, athletics, yoga, and creative workshops. Active learning keeps energy levels high throughout the day.
+            </p>
+          </div>
+        </div>
+
+        <!-- 8. Tuition / Activity -->
+        <div class="schedule-item reveal stagger-2">
+          <span class="schedule-item__time" style="background:linear-gradient(135deg,#EC4899,#DB2777);">
+            <i class="ri-edit-line"></i> 1:35 – 2:15 PM
+          </span>
+          <div class="schedule-card">
+            <h3 class="schedule-card__title">
+              <i class="ri-lightbulb-flash-line" style="color:#EC4899;"></i> Tuition / Activity Period
+            </h3>
+            <p class="schedule-card__desc">
+              Integrated tuition sessions for doubt clearing, extra practice, and revision. On designated days, this period is used for club activities, debating, elocution, quiz preparation, or library time.
+            </p>
+          </div>
+        </div>
+
+        <!-- 9. Dispersal -->
+        <div class="schedule-item reveal stagger-3">
+          <span class="schedule-item__time" style="background:linear-gradient(135deg,#6366F1,#4F46E5);">
+            <i class="ri-home-line"></i> 2:15 PM
+          </span>
+          <div class="schedule-card">
+            <h3 class="schedule-card__title">
+              <i class="ri-home-heart-line" style="color:#6366F1;"></i> Dispersal
+            </h3>
+            <p class="schedule-card__desc">
+              Orderly dispersal with bus students escorted by duty teachers to their designated vehicles. Day scholars are picked up by parents/guardians from the main gate. A safe and supervised journey home for every child!
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       QUICK OVERVIEW — At-a-glance day statistics
+       ================================================================ -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Quick Overview</span>
+        <h2 class="section-title">The Day at <span class="text-gradient-gold">a Glance</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="timetable-overview">
+        <div class="timetable-stat reveal stagger-1">
+          <div class="timetable-stat__icon">📚</div>
+          <div class="timetable-stat__number">8</div>
+          <div class="timetable-stat__label">Academic Periods</div>
+        </div>
+        <div class="timetable-stat reveal stagger-2">
+          <div class="timetable-stat__icon">🏃</div>
+          <div class="timetable-stat__number">2</div>
+          <div class="timetable-stat__label">Sports / Activity Periods</div>
+        </div>
+        <div class="timetable-stat reveal stagger-3">
+          <div class="timetable-stat__icon">🍱</div>
+          <div class="timetable-stat__number">2</div>
+          <div class="timetable-stat__label">Breaks (Short + Lunch)</div>
+        </div>
+        <div class="timetable-stat reveal stagger-4">
+          <div class="timetable-stat__icon">⏰</div>
+          <div class="timetable-stat__number">6h 45m</div>
+          <div class="timetable-stat__label">Total School Hours</div>
+        </div>
+        <div class="timetable-stat reveal stagger-5">
+          <div class="timetable-stat__icon">🙏</div>
+          <div class="timetable-stat__number">1</div>
+          <div class="timetable-stat__label">Morning Assembly</div>
+        </div>
+        <div class="timetable-stat reveal stagger-6">
+          <div class="timetable-stat__icon">📝</div>
+          <div class="timetable-stat__number">1</div>
+          <div class="timetable-stat__label">Tuition / Club Period</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       IMPORTANT NOTES — Rules and reminders about daily routine
+       ================================================================ -->
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <div class="schedule-notes reveal">
+        <h3 class="schedule-notes__title">
+          <i class="ri-information-line" style="color:var(--clr-primary);"></i>
+          Important Notes for Parents & Students
+        </h3>
+        <ul class="schedule-notes__list">
+          <li>
+            <i class="ri-checkbox-circle-line"></i>
+            Students must arrive before <strong>7:45 AM</strong>. Late arrivals require a written explanation from the parent.
+          </li>
+          <li>
+            <i class="ri-checkbox-circle-line"></i>
+            Proper school uniform (including ID card) is mandatory every day. Non-compliance may result in a note to parents.
+          </li>
+          <li>
+            <i class="ri-checkbox-circle-line"></i>
+            Junk food and outside beverages are not permitted on campus. Students should carry a healthy, home-prepared lunch.
+          </li>
+          <li>
+            <i class="ri-checkbox-circle-line"></i>
+            Mobile phones and electronic gadgets are <strong>strictly prohibited</strong> on campus.
+          </li>
+          <li>
+            <i class="ri-checkbox-circle-line"></i>
+            Saturday schedule (if applicable) may differ — check the weekly timetable for details.
+          </li>
+          <li>
+            <i class="ri-checkbox-circle-line"></i>
+            Parents are requested to pick up day scholars within <strong>15 minutes</strong> of dispersal time.
+          </li>
+          <li>
+            <i class="ri-checkbox-circle-line"></i>
+            For special events, sports days, or exam schedules, a revised timetable will be shared via WhatsApp group.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Download CTA -->
+      <div class="schedule-download reveal">
+        <h3 style="font-family:var(--ff-heading);font-size:var(--fs-xl);font-weight:700;color:var(--text-primary);margin-bottom:var(--space-3);">
+          Download the Full Timetable
+        </h3>
+        <p style="font-size:var(--fs-sm);color:var(--text-secondary);margin-bottom:var(--space-6);">
+          Get the complete class-wise period timetable including subject allocation and teacher assignments.
+        </p>
+        <a href="../../timetable/timetable.html" class="btn btn--primary btn--lg">
+          <i class="ri-calendar-schedule-line"></i> View Full Timetable
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======== FOOTER (Injected dynamically by navbar.js) ======== -->
+  <footer class="footer"></footer>
+
+  <!-- ======== Back to Top ======== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="ri-arrow-up-line"></i>
+  </button>
+
+  <!-- ======== Scripts ======== -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
+  <script src="../../../assets/js/utils.js" defer></script>
+  <script src="../../../assets/js/navbar.js" defer></script>
+  <script src="../../../assets/js/global.js" defer></script>
+  <script src="../../../assets/js/animations.js" defer></script>
+</body>
+</html>

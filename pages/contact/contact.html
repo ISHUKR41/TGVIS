@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     TGVIS — Contact Us Page
+     ==========================================================================
+     
+     PURPOSE:
+     Provides all contact information for The Green Valley International School.
+     Includes contact form, Google Maps embed, address, phone, email, and
+     social media links. This is the primary page for parent inquiries.
+     
+     SECTIONS:
+     1. Page Hero Banner
+     2. Contact Information Cards (address, phone, email, hours)
+     3. Contact Form (name, email, subject, message)
+     4. Google Maps Embed (actual school location)
+     5. Social Media Links
+     6. Call to Action
+     
+     DEPENDENCIES:
+     - global.css, components.css, animations.css (design system)
+     - contact.css (page-specific styles)
+     - contact.js (form validation + interactions)
+     - navbar.js (dynamic navigation injection)
+     - GSAP + ScrollTrigger, Lenis
+     
+     ========================================================================== -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — TGVIS | The Green Valley International School, Bihta</title>
+  <meta name="description" content="Get in touch with TGVIS Bihta. Contact us for admissions, inquiries, campus visits, or feedback. Phone, email, WhatsApp, and Google Maps location.">
+  <meta name="keywords" content="TGVIS contact, school contact Bihta, Green Valley school phone, school address Patna">
+  <link rel="icon" type="image/png" href="../../assets/images/logo/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader"><div class="preloader__text">TGVIS</div><div class="preloader__bar"><div class="preloader__bar-fill"></div></div></div>
+  <div class="page-transition"></div>
+
+  <!-- ======== NAVBAR (Injected dynamically by navbar.js) ======== -->
+  <nav class="navbar" id="navbar"></nav>
+
+
+  <!-- ======== PAGE HERO ======== -->
+  <section class="page-hero">
+    <img src="../../assets/images/hero/campus.png" alt="Contact TGVIS" class="page-hero__bg" loading="eager">
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <h1 class="page-hero__title">Contact Us</h1>
+      <p class="page-hero__subtitle">We'd love to hear from you — reach out for admissions, inquiries, or campus visits</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html" class="breadcrumb__link">Home</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <span class="breadcrumb__current">Contact Us</span>
+      </nav>
+    </div>
+  </section>
+
+
+  <!-- ======== CONTACT INFO CARDS ======== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Get In Touch</span>
+        <h2 class="section-title">Reach Out <span class="text-gradient">To Us</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="grid-auto">
+        <!-- Address Card -->
+        <div class="contact-card reveal stagger-1">
+          <div class="contact-card__icon"><i class="ri-map-pin-2-fill"></i></div>
+          <h4 class="contact-card__title">Visit Us</h4>
+          <p class="contact-card__text">
+            Rameshwar Building, Bihta,<br>
+            Patna, Bihar — 801103
+          </p>
+          <a href="https://maps.app.goo.gl/94xhFw4nFaQEhpw77" target="_blank" rel="noopener noreferrer" class="contact-card__link">
+            Get Directions <i class="ri-external-link-line"></i>
+          </a>
+        </div>
+
+        <!-- Phone Card -->
+        <div class="contact-card reveal stagger-2">
+          <div class="contact-card__icon" style="background:rgba(34,197,94,0.1);"><i class="ri-phone-fill" style="color:#22C55E;"></i></div>
+          <h4 class="contact-card__title">Call Us</h4>
+          <p class="contact-card__text">
+            <a href="tel:+91XXXXXXXXXX" style="color:inherit;">+91 XXXXX XXXXX</a><br>
+            <span style="font-size:var(--fs-xs);color:var(--text-tertiary);">Mon – Sat: 8:00 AM – 4:00 PM</span>
+          </p>
+        </div>
+
+        <!-- Email Card -->
+        <div class="contact-card reveal stagger-3">
+          <div class="contact-card__icon" style="background:rgba(59,130,246,0.1);"><i class="ri-mail-fill" style="color:#3B82F6;"></i></div>
+          <h4 class="contact-card__title">Email Us</h4>
+          <p class="contact-card__text">
+            <a href="mailto:info@tgvis.edu.in" style="color:inherit;">info@tgvis.edu.in</a><br>
+            <span style="font-size:var(--fs-xs);color:var(--text-tertiary);">We respond within 24 hours</span>
+          </p>
+        </div>
+
+        <!-- WhatsApp Card -->
+        <div class="contact-card reveal stagger-4">
+          <div class="contact-card__icon" style="background:rgba(37,211,102,0.1);"><i class="ri-whatsapp-fill" style="color:#25D366;"></i></div>
+          <h4 class="contact-card__title">WhatsApp</h4>
+          <p class="contact-card__text">
+            Quick answers to<br>your questions
+          </p>
+          <a href="https://wa.me/91XXXXXXXXXX?text=Hello%20TGVIS%2C%20I%20want%20to%20know%20about%20admissions." target="_blank" class="contact-card__link">
+            Chat Now <i class="ri-whatsapp-line"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======== CONTACT FORM + MAP ======== -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="contact-form-grid">
+        
+        <!-- Left: Contact Form -->
+        <div class="contact-form-wrapper reveal">
+          <h3 style="margin-bottom:var(--space-2);">Send Us a Message</h3>
+          <p style="color:var(--text-secondary);margin-bottom:var(--space-8);font-size:var(--fs-sm);">
+            Fill out the form below and we'll get back to you within 24 hours.
+          </p>
+          
+          <form class="contact-form" id="contactForm" onsubmit="event.preventDefault(); alert('Thank you! We will contact you soon.');">
+            <div class="form-group">
+              <label for="name" class="form-label">Full Name *</label>
+              <input type="text" id="name" class="form-input" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address *</label>
+              <input type="email" id="email" class="form-input" placeholder="your.email@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" id="phone" class="form-input" placeholder="+91 XXXXX XXXXX">
+            </div>
+            <div class="form-group">
+              <label for="subject" class="form-label">Subject *</label>
+              <select id="subject" class="form-input" required>
+                <option value="" disabled selected>Select a subject</option>
+                <option value="admission">Admission Inquiry</option>
+                <option value="fees">Fee Structure</option>
+                <option value="visit">Campus Visit</option>
+                <option value="tuition">Tuition Program</option>
+                <option value="general">General Inquiry</option>
+                <option value="feedback">Feedback</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message" class="form-label">Message *</label>
+              <textarea id="message" class="form-input form-textarea" placeholder="Write your message here..." rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--lg" style="width:100%;">
+              Send Message <i class="ri-send-plane-fill"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- Right: Google Maps Embed -->
+        <div class="contact-map-wrapper reveal">
+          <h3 style="margin-bottom:var(--space-6);">Find Us on the Map</h3>
+          <div class="contact-map">
+            <!-- Google Maps Embed — TGVIS Rameshwar Building, Bihta, Patna, Bihar -->
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.85!2d84.8571!3d25.5617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398d589e79b5e9e5%3A0x9a6a39a8a8b8a8a8!2sThe%20Green%20Valley%20International%20School!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              width="100%" height="400" style="border:0;border-radius:var(--radius-lg);" 
+              allowfullscreen="" loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="TGVIS Location on Google Maps">
+            </iframe>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-4);">
+            <p style="font-size:var(--fs-sm);color:var(--text-tertiary);">
+              <i class="ri-map-pin-line"></i> Rameshwar Building, Bihta, Patna, Bihar — 801103
+            </p>
+            <a href="https://maps.app.goo.gl/94xhFw4nFaQEhpw77" 
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--secondary btn--sm" style="white-space:nowrap;">
+              <i class="ri-map-pin-line"></i> Open in Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======== SOCIAL MEDIA ======== -->
+  <section class="section">
+    <div class="container" style="text-align:center;max-width:600px;">
+      <div class="section-header reveal">
+        <span class="section-label">Stay Connected</span>
+        <h2 class="section-title">Follow Us on <span class="text-gradient-gold">Social Media</span></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="social-links reveal" style="display:flex;gap:var(--space-6);justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/people/The-Green-Valley-International-School-Bihta/100088041550841/" 
+           target="_blank" rel="noopener noreferrer" class="social-link-card">
+          <i class="ri-facebook-fill"></i>
+          <span>Facebook</span>
+        </a>
+        <a href="#" target="_blank" class="social-link-card">
+          <i class="ri-instagram-line"></i>
+          <span>Instagram</span>
+        </a>
+        <a href="#" target="_blank" class="social-link-card">
+          <i class="ri-youtube-fill"></i>
+          <span>YouTube</span>
+        </a>
+        <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="social-link-card">
+          <i class="ri-whatsapp-line"></i>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======== FOOTER (Injected dynamically by navbar.js) ======== -->
+  <footer class="footer"></footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
+  <script src="../../assets/js/utils.js" defer></script>
+  <script src="../../assets/js/navbar.js" defer></script>
+  <script src="../../assets/js/global.js" defer></script>
+  <script src="../../assets/js/animations.js" defer></script>
+  <script src="contact.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1172 @@
+/* ==========================================================================
+   TGVIS — Global Stylesheet (Design System Foundation)
+   ==========================================================================
+   
+   This file is the CORE design system for The Green Valley International School
+   website. Every other CSS file depends on the variables and utilities defined
+   here. It contains:
+   
+   1. CSS Custom Properties (Design Tokens) — colors, spacing, typography, etc.
+   2. Modern CSS Reset — a clean baseline for cross-browser consistency
+   3. Typography Scale — font sizes, weights, and line heights
+   4. Dark Mode Support — via [data-theme="dark"] attribute
+   5. Responsive Breakpoints — mobile-first media queries
+   6. Utility Classes — spacing, alignment, visibility helpers
+   
+   IMPORTANT: This file must be loaded FIRST before any other stylesheet.
+   
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+   --------------------------------------------------------------------------
+   Design tokens are the single source of truth for all visual values.
+   Changing a token here updates the entire website automatically.
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* ---- PRIMARY COLORS ----
+     Deep Forest Green represents growth, nature, and the school's connection
+     to the "Green Valley" identity. Gold represents excellence and prestige. */
+  --color-primary: #0D4D2B;          /* Deep Forest Green — main brand color */
+  --color-primary-light: #14713E;    /* Lighter green for hover states */
+  --color-primary-dark: #083D20;     /* Darker green for active states */
+  --color-primary-rgb: 13, 77, 43;   /* RGB values for alpha transparency */
+
+  --color-secondary: #D4A843;        /* Royal Gold — accent & highlight color */
+  --color-secondary-light: #E0BC6A;  /* Lighter gold for hover states */
+  --color-secondary-dark: #B8922F;   /* Darker gold for active states */
+  --color-secondary-rgb: 212, 168, 67; /* RGB values for alpha transparency */
+
+  /* ---- ACCENT COLORS ----
+     Used for success states, links, and interactive elements */
+  --color-accent: #10B981;           /* Emerald green — success, positive */
+  --color-accent-light: #34D399;     /* Lighter emerald for hover */
+  --color-accent-dark: #059669;      /* Darker emerald for active */
+
+  /* ---- NEUTRAL COLORS ----
+     Grays and whites for backgrounds, borders, and text */
+  --color-white: #FFFFFF;
+  --color-off-white: #FAFAF8;        /* Warm off-white background */
+  --color-gray-50: #F9FAFB;          /* Lightest gray — subtle backgrounds */
+  --color-gray-100: #F3F4F6;         /* Light gray — card backgrounds */
+  --color-gray-200: #E5E7EB;         /* Light gray — borders */
+  --color-gray-300: #D1D5DB;         /* Medium light gray — disabled text */
+  --color-gray-400: #9CA3AF;         /* Medium gray — placeholder text */
+  --color-gray-500: #6B7280;         /* Medium gray — secondary text */
+  --color-gray-600: #4B5563;         /* Dark gray — body text */
+  --color-gray-700: #374151;         /* Darker gray — headings */
+  --color-gray-800: #1F2937;         /* Very dark gray — primary text */
+  --color-gray-900: #111827;         /* Nearly black — bold headings */
+
+  /* ---- SEMANTIC COLORS ----
+     Used for alerts, form validation, and status indicators */
+  --color-success: #10B981;          /* Green — success messages */
+  --color-warning: #F59E0B;          /* Amber — warning messages */
+  --color-error: #EF4444;            /* Red — error messages */
+  --color-info: #3B82F6;             /* Blue — informational messages */
+
+  /* ---- BACKGROUND COLORS ----
+     Main backgrounds for pages, cards, and overlays */
+  --bg-primary: #FAFAF8;             /* Main page background (warm white) */
+  --bg-secondary: #FFFFFF;           /* Card and section backgrounds */
+  --bg-tertiary: #F3F4F6;            /* Alternate section backgrounds */
+  --bg-dark: #0F1117;                /* Dark mode background */
+  --bg-dark-secondary: #1A1D28;      /* Dark mode card background */
+  --bg-dark-tertiary: #252836;       /* Dark mode alternate background */
+
+  /* ---- TEXT COLORS ----
+     Hierarchical text colors for readability */
+  --text-primary: #1A1A2E;           /* Headings and important text */
+  --text-secondary: #4B5563;         /* Body text and descriptions */
+  --text-tertiary: #6B7280;          /* Captions and subtle text */
+  --text-inverse: #F9FAFB;           /* Text on dark backgrounds */
+
+  /* ---- GLASSMORPHISM ----
+     Glass effect values for navbar, cards, and overlays */
+  --glass-bg: rgba(255, 255, 255, 0.7);        /* Glass background */
+  --glass-bg-dark: rgba(15, 17, 23, 0.7);      /* Dark mode glass */
+  --glass-border: rgba(255, 255, 255, 0.2);    /* Glass border */
+  --glass-blur: 20px;                           /* Backdrop blur amount */
+
+  /* ---- TYPOGRAPHY ----
+     Font families loaded from Google Fonts (Inter + Outfit).
+     Inter is used for body text — clean, highly readable.
+     Outfit is used for headings — modern, geometric, eye-catching. */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+  /* ---- FONT SIZES (Fluid Typography with clamp()) ----
+     Using clamp(min, preferred, max) for seamless responsive scaling.
+     Fonts smoothly scale between mobile (375px) and desktop (1440px)
+     without needing media query breakpoints for text sizing.
+     Formula: clamp(mobile-size, viewport-calc, desktop-size) */
+  --fs-xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.8rem);       /* ~11-13px — fine print, badges */
+  --fs-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.9rem);        /* ~13-14px — captions, meta text */
+  --fs-base: clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);      /* ~14-17px — body text (base) */
+  --fs-md: clamp(1rem, 0.93rem + 0.35vw, 1.175rem);         /* ~16-19px — large body text */
+  --fs-lg: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);            /* ~18-22px — lead paragraphs */
+  --fs-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.6rem);         /* ~20-26px — small headings (h5, h6) */
+  --fs-2xl: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);            /* ~24-32px — section subheadings (h4) */
+  --fs-3xl: clamp(1.75rem, 1.4rem + 1.75vw, 2.5rem);        /* ~28-40px — section headings (h3) */
+  --fs-4xl: clamp(2rem, 1.5rem + 2.5vw, 3.25rem);           /* ~32-52px — page headings (h2) */
+  --fs-5xl: clamp(2.25rem, 1.5rem + 3.75vw, 4rem);          /* ~36-64px — hero headings (h1) */
+  --fs-6xl: clamp(2.75rem, 1.75rem + 5vw, 5rem);            /* ~44-80px — display headings */
+
+  /* ---- FONT WEIGHTS ---- */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* ---- LINE HEIGHTS ---- */
+  --lh-tight: 1.1;      /* Headings — compact */
+  --lh-snug: 1.3;       /* Subheadings */
+  --lh-normal: 1.6;     /* Body text — comfortable reading */
+  --lh-relaxed: 1.8;    /* Long-form content */
+
+  /* ---- LETTER SPACING ---- */
+  --ls-tight: -0.02em;  /* Headings — slightly tighter */
+  --ls-normal: 0;       /* Body text */
+  --ls-wide: 0.05em;    /* Uppercase labels, badges */
+  --ls-wider: 0.1em;    /* Extra wide — decorative */
+
+  /* ---- SPACING SCALE ----
+     Consistent spacing using a 4px base unit (0.25rem).
+     This creates visual rhythm across the entire website. */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+
+  /* ---- BORDER RADIUS ----
+     Consistent rounding for UI elements */
+  --radius-sm: 6px;     /* Small — badges, tags */
+  --radius-md: 10px;    /* Medium — inputs, small cards */
+  --radius-lg: 16px;    /* Large — cards, sections */
+  --radius-xl: 24px;    /* Extra large — buttons, featured cards */
+  --radius-2xl: 32px;   /* Double extra large — hero elements */
+  --radius-full: 9999px; /* Full circle — avatars, pills */
+
+  /* ---- SHADOWS ----
+     Multi-layered shadows for realistic depth perception.
+     Based on material design elevation levels. */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
+  --shadow-2xl: 0 24px 64px rgba(0, 0, 0, 0.16);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-glow: 0 0 20px rgba(13, 77, 43, 0.3);    /* Green glow effect */
+  --shadow-gold: 0 0 20px rgba(212, 168, 67, 0.3);   /* Gold glow effect */
+
+  /* ---- TRANSITIONS ----
+     Easing curves for smooth, professional animations.
+     'smooth' is a custom cubic-bezier for natural movement. */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+  --transition-smooth: 500ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-spring: 600ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* ---- Z-INDEX SCALE ----
+     Layering system to prevent z-index chaos */
+  --z-behind: -1;
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-navbar: 500;
+  --z-overlay: 600;
+  --z-modal: 700;
+  --z-popover: 800;
+  --z-toast: 900;
+  --z-preloader: 1000;
+
+  /* ---- LAYOUT ----
+     Maximum widths and content containers */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1200px;
+  --container-2xl: 1400px;
+  --container-padding: var(--space-6);    /* Side padding inside containers */
+  --section-padding: var(--space-24);     /* Top/bottom padding for sections */
+
+  /* ---- NAVBAR ---- */
+  --navbar-height: 80px;
+  --navbar-height-mobile: 64px;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. DARK MODE THEME OVERRIDE
+   --------------------------------------------------------------------------
+   When the user toggles dark mode, the <html> tag gets a 
+   data-theme="dark" attribute. This overrides the light theme tokens.
+   -------------------------------------------------------------------------- */
+
+[data-theme="dark"] {
+  --bg-primary: #0F1117;
+  --bg-secondary: #1A1D28;
+  --bg-tertiary: #252836;
+
+  --text-primary: #F0F0F5;
+  --text-secondary: #A0A4B0;
+  --text-tertiary: #6B7080;
+  --text-inverse: #1A1A2E;
+
+  --glass-bg: rgba(26, 29, 40, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.45);
+
+  --color-gray-100: #252836;
+  --color-gray-200: #2D3142;
+  --color-gray-300: #3D4158;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. MODERN CSS RESET
+   --------------------------------------------------------------------------
+   A modern, minimal reset that removes browser inconsistencies while 
+   preserving useful defaults. Based on Josh Comeau's CSS Reset.
+   -------------------------------------------------------------------------- */
+
+/* Remove ALL default margins — we want full control over spacing */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set the root font size for rem calculations (1rem = 16px) */
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;          /* Native smooth scrolling (Lenis overrides this) */
+  -webkit-text-size-adjust: 100%;   /* Prevent font scaling on iOS landscape */
+  text-size-adjust: 100%;
+  scroll-padding-top: var(--navbar-height); /* Account for sticky navbar on anchor scrolls */
+}
+
+/* Base body styles — sets the default look for the entire page */
+body {
+  font-family: var(--font-primary);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-normal);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;   /* Smoother font rendering on Mac/iOS */
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;                    /* Prevent horizontal scroll from animations */
+  min-height: 100vh;
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+}
+
+/* Make images and media responsive by default — never overflow their containers */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Remove default list styles — we'll add them back only when needed */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove default link styles — we style links contextually */
+a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+/* Make form elements inherit font styles from their parent (they don't by default) */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* Make buttons clickable — the pointer cursor is expected behavior */
+button {
+  cursor: pointer;
+}
+
+/* Prevent textarea from being resized horizontally (only vertical is useful) */
+textarea {
+  resize: vertical;
+}
+
+/* Remove the default number input spinner arrows (they look inconsistent) */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Remove default styling from summary/details elements */
+summary {
+  cursor: pointer;
+}
+
+/* Remove default table spacing — we want precise control */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Ensure strong text is actually bold (some resets remove this) */
+strong,
+b {
+  font-weight: var(--fw-bold);
+}
+
+/* Italic emphasis — ensure it's visually distinct */
+em,
+i {
+  font-style: italic;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. TYPOGRAPHY SCALE
+   --------------------------------------------------------------------------
+   Heading styles using the Outfit font for a modern, geometric look.
+   Body text uses Inter for maximum readability.
+   -------------------------------------------------------------------------- */
+
+/* All headings use the Outfit font family with tight line height */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-primary);
+}
+
+/* Individual heading sizes — each has a specific purpose */
+h1 {
+  font-size: var(--fs-5xl);   /* 60px — Hero headings, page titles */
+  font-weight: var(--fw-extrabold);
+}
+
+h2 {
+  font-size: var(--fs-4xl);   /* 48px — Section headings */
+  font-weight: var(--fw-bold);
+}
+
+h3 {
+  font-size: var(--fs-3xl);   /* 36px — Sub-section headings */
+  font-weight: var(--fw-bold);
+}
+
+h4 {
+  font-size: var(--fs-2xl);   /* 30px — Card headings, feature titles */
+  font-weight: var(--fw-semibold);
+}
+
+h5 {
+  font-size: var(--fs-xl);    /* 24px — Small headings */
+  font-weight: var(--fw-semibold);
+}
+
+h6 {
+  font-size: var(--fs-lg);    /* 20px — Smallest heading */
+  font-weight: var(--fw-semibold);
+}
+
+/* Paragraph defaults — comfortable reading with good spacing */
+p {
+  color: var(--text-secondary);
+  line-height: var(--lh-normal);
+  margin-bottom: var(--space-4);
+}
+
+/* Last paragraph in a container shouldn't have bottom margin */
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* Lead paragraph — used for introductory text that should stand out */
+.lead {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-relaxed);
+  color: var(--text-secondary);
+}
+
+/* Small text — captions, fine print, meta information */
+small,
+.text-small {
+  font-size: var(--fs-sm);
+  color: var(--text-tertiary);
+}
+
+/* Extra small text — badges, labels */
+.text-xs {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  font-weight: var(--fw-semibold);
+}
+
+/* Highlighted text using the school's gold color */
+.text-highlight {
+  color: var(--color-secondary);
+}
+
+/* Green highlighted text using primary color */
+.text-primary-color {
+  color: var(--color-primary);
+}
+
+/* Gradient text effect — used sparingly for impact */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gold gradient text — for premium headings */
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. LAYOUT SYSTEM
+   --------------------------------------------------------------------------
+   Containers, sections, and grid utilities for page structure.
+   Uses a mobile-first approach — styles start small, grow with media queries.
+   -------------------------------------------------------------------------- */
+
+/* Main container — centers content and adds side padding */
+.container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* Narrow container — for text-heavy content (better readability) */
+.container-narrow {
+  max-width: var(--container-md);
+}
+
+/* Wide container — for full-width sections */
+.container-wide {
+  max-width: var(--container-2xl);
+}
+
+/* Standard section — adds consistent vertical padding */
+.section {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+}
+
+/* Section with alternate background — creates visual separation */
+.section--alt {
+  background-color: var(--bg-tertiary);
+}
+
+/* Section header — used at the top of each section */
+.section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--space-16);
+}
+
+/* Section label — small uppercase text above the heading (e.g., "OUR PROGRAMS") */
+.section-label {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+  color: var(--color-secondary);
+  margin-bottom: var(--space-4);
+  position: relative;
+  padding: var(--space-2) var(--space-4);
+}
+
+/* Decorative line below the section label */
+.section-label::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--color-secondary);
+  border-radius: var(--radius-full);
+}
+
+/* Section title — the main heading of each section */
+.section-title {
+  font-size: var(--fs-4xl);
+  margin-bottom: var(--space-6);
+}
+
+/* Section description — supporting text below the title */
+.section-description {
+  font-size: var(--fs-md);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Decorative divider line between sections */
+.divider {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  border-radius: var(--radius-full);
+  margin: var(--space-8) auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. UTILITY CLASSES
+   --------------------------------------------------------------------------
+   Single-purpose helper classes for quick styling adjustments.
+   Named clearly so their purpose is immediately obvious.
+   -------------------------------------------------------------------------- */
+
+/* ---- Display Utilities ---- */
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.d-flex { display: flex !important; }
+.d-grid { display: grid !important; }
+.d-inline { display: inline !important; }
+.d-inline-block { display: inline-block !important; }
+.d-inline-flex { display: inline-flex !important; }
+
+/* ---- Flexbox Utilities ---- */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1; }
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+.gap-8 { gap: var(--space-8); }
+.gap-10 { gap: var(--space-10); }
+.gap-12 { gap: var(--space-12); }
+
+/* ---- Text Alignment ---- */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* ---- Margin Utilities ---- */
+.mt-auto { margin-top: auto; }
+.mb-auto { margin-bottom: auto; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.mt-4 { margin-top: var(--space-4); }
+.mt-6 { margin-top: var(--space-6); }
+.mt-8 { margin-top: var(--space-8); }
+.mt-12 { margin-top: var(--space-12); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
+.mb-12 { margin-bottom: var(--space-12); }
+
+/* ---- Padding Utilities ---- */
+.p-4 { padding: var(--space-4); }
+.p-6 { padding: var(--space-6); }
+.p-8 { padding: var(--space-8); }
+.py-4 { padding-top: var(--space-4); padding-bottom: var(--space-4); }
+.py-8 { padding-top: var(--space-8); padding-bottom: var(--space-8); }
+.px-4 { padding-left: var(--space-4); padding-right: var(--space-4); }
+.px-6 { padding-left: var(--space-6); padding-right: var(--space-6); }
+
+/* ---- Width & Height ---- */
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.min-h-screen { min-height: 100vh; }
+
+/* ---- Overflow ---- */
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+
+/* ---- Position ---- */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+
+/* ---- Border Radius ---- */
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* ---- Visibility (Responsive) ---- */
+.sr-only {
+  /* Screen-reader only — visually hidden but accessible to assistive tech */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- Image Utilities ---- */
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.img-contain {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* ---- Selection Color ----
+   When users highlight text, it appears in the school's brand colors */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* ---- Scrollbar Styling ----
+   Custom scrollbar that matches the design system (Webkit browsers) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-light);
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--bg-tertiary);
+}
+
+
+/* --------------------------------------------------------------------------
+   7. RESPONSIVE BREAKPOINTS
+   --------------------------------------------------------------------------
+   Mobile-first approach: base styles are for mobile (320px+),
+   then we scale up for larger screens using min-width media queries.
+   
+   Breakpoint System:
+   - Small Mobile: max-width 480px   (old/small phones)
+   - Mobile:       max-width 767px   (standard phones)
+   - Tablet:       768px – 1024px    (iPads, tablets)
+   - Laptop:       1025px – 1439px   (laptops, small monitors)
+   - Desktop:      1440px – 1919px   (standard monitors)
+   - Ultra-wide:   1920px+           (large displays, 4K)
+   
+   NOTE: Fluid clamp() typography handles text sizing automatically,
+   so media queries focus on layout and spacing changes only.
+   -------------------------------------------------------------------------- */
+
+/* ---- SMALL MOBILE (480px and below) ----
+   Extra compact layouts for small/old phones */
+@media (max-width: 480px) {
+  :root {
+    --container-padding: var(--space-4);
+    --section-padding: var(--space-12);
+  }
+
+  /* Extra tight section headers on small phones */
+  .section-header {
+    margin-bottom: var(--space-6);
+  }
+
+  /* Stack breadcrumbs vertically if too long */
+  .breadcrumb {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Full-width buttons on tiny screens */
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Smaller hero on small phones */
+  .page-hero {
+    height: 220px;
+  }
+}
+
+/* ---- MOBILE (below 768px) ---- */
+@media (max-width: 767px) {
+  :root {
+    --container-padding: var(--space-4);
+    --section-padding: var(--space-16);
+  }
+
+  .section-header {
+    margin-bottom: var(--space-10);
+  }
+
+  /* Reduce divider width on mobile */
+  .divider {
+    width: 60px;
+    margin: var(--space-4) auto;
+  }
+
+  /* Hide elements that should only appear on desktop */
+  .desktop-only {
+    display: none !important;
+  }
+
+  /* Ensure images don't cause horizontal scroll */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ---- TABLET (768px and above) ---- */
+@media (min-width: 768px) {
+  :root {
+    --container-padding: var(--space-8);
+    --section-padding: var(--space-24);
+  }
+
+  /* Hide elements that should only appear on mobile */
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* ---- LAPTOP (1024px and above) ---- */
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: var(--space-10);
+    --section-padding: var(--space-32);
+  }
+}
+
+/* ---- DESKTOP (1440px and above) ---- */
+@media (min-width: 1440px) {
+  :root {
+    --container-padding: var(--space-12);
+  }
+}
+
+/* ---- ULTRA-WIDE (1920px and above) ----
+   Cap max widths so content doesn't stretch too wide on 4K monitors */
+@media (min-width: 1920px) {
+  :root {
+    --container-padding: var(--space-16);
+  }
+
+  .container {
+    max-width: 1600px;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   8. RESPONSIVE TABLE WRAPPER
+   --------------------------------------------------------------------------
+   Makes data tables horizontally scrollable on mobile devices.
+   Prevents table content from breaking the page layout.
+   -------------------------------------------------------------------------- */
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;    /* Smooth scroll on iOS */
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+}
+
+/* Subtle scroll indicator shadow on the right edge */
+.table-responsive::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(to left, var(--bg-primary), transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+/* Show the shadow when content is scrollable */
+.table-responsive.has-scroll::after {
+  opacity: 1;
+}
+
+/* Base table styling */
+.table-responsive table {
+  width: 100%;
+  min-width: 600px;           /* Forces horizontal scroll if viewport < 600px */
+  border-collapse: collapse;
+}
+
+.table-responsive th,
+.table-responsive td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  font-size: var(--fs-sm);
+  border-bottom: 1px solid var(--color-gray-200);
+  white-space: nowrap;
+}
+
+.table-responsive th {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: var(--fw-semibold);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.table-responsive tr:hover td {
+  background: rgba(var(--color-primary-rgb), 0.03);
+}
+
+/* --------------------------------------------------------------------------
+   DATA TABLE (used in fees, timetable, admissions pages)
+   -------------------------------------------------------------------------- */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-gray-200);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table thead th {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm);
+  padding: var(--space-4) var(--space-6);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.data-table tbody td {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--color-gray-200);
+  transition: background var(--transition-fast);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody tr:nth-child(even) td {
+  background: var(--bg-tertiary);
+}
+
+.data-table tbody tr:hover td {
+  background: rgba(var(--color-primary-rgb), 0.04);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .data-table thead th {
+  background: var(--color-primary-dark);
+}
+
+[data-theme="dark"] .data-table tbody tr:nth-child(even) td {
+  background: var(--bg-tertiary);
+}
+
+/* --------------------------------------------------------------------------
+   SOCIAL LINK CARDS (used on contact page)
+   -------------------------------------------------------------------------- */
+.social-link-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-8);
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-secondary);
+  transition: all var(--transition-smooth);
+  min-width: 100px;
+}
+
+.social-link-card i {
+  font-size: var(--fs-2xl);
+  color: var(--color-primary);
+  transition: transform var(--transition-base);
+}
+
+.social-link-card:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.social-link-card:hover i {
+  transform: scale(1.2);
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT CARD (used on contact page)
+   -------------------------------------------------------------------------- */
+.contact-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  text-align: center;
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-smooth);
+}
+
+.contact-card:hover::before { transform: scaleX(1); }
+.contact-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(var(--color-primary-rgb), 0.2); }
+
+.contact-card__icon {
+  width: 64px; height: 64px; border-radius: var(--radius-full);
+  background: rgba(var(--color-primary-rgb), 0.1);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto var(--space-4);
+  font-size: var(--fs-2xl); color: var(--color-primary);
+}
+
+.contact-card__title { font-family: var(--font-heading); font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin-bottom: var(--space-2); color: var(--text-primary); }
+.contact-card__text { font-size: var(--fs-sm); color: var(--text-secondary); line-height: var(--lh-relaxed); }
+.contact-card__link { display: inline-flex; align-items: center; gap: var(--space-2); margin-top: var(--space-3); font-size: var(--fs-sm); font-weight: var(--fw-medium); color: var(--color-primary); transition: gap var(--transition-base); }
+.contact-card__link:hover { gap: var(--space-3); }
+
+/* --------------------------------------------------------------------------
+   CONTACT FORM LAYOUT (two-column form + map)
+   -------------------------------------------------------------------------- */
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.contact-form-wrapper,
+.contact-map-wrapper {
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10);
+}
+
+.contact-map iframe {
+  width: 100%;
+  border-radius: var(--radius-md);
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .contact-form-grid { grid-template-columns: 1fr; }
+}
+
+/* --------------------------------------------------------------------------
+   BORDER COLOR VARIABLE (sometimes used as var(--border-color))
+   -------------------------------------------------------------------------- */
+:root { --border-color: var(--color-gray-200); }
+[data-theme="dark"] { --border-color: var(--color-gray-200); }
+
+
+/* --------------------------------------------------------------------------
+   9. AUTO-FIT GRID
+   --------------------------------------------------------------------------
+   A modern grid that automatically adjusts the number of columns
+   based on available space using CSS Grid auto-fit + minmax().
+   No media queries needed — the grid is inherently responsive.
+   -------------------------------------------------------------------------- */
+
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-8);
+}
+
+/* Smaller minimum for compact cards */
+.grid-auto-sm {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-6);
+}
+
+/* Larger minimum for feature sections */
+.grid-auto-lg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: var(--space-10);
+}
+
+
+/* --------------------------------------------------------------------------
+   10. ACCESSIBILITY: Reduced Motion
+   --------------------------------------------------------------------------
+   Respects user preference for reduced animations.
+   When enabled, all transitions and animations are minimized.
+   This is important for users with vestibular disorders.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   11. PRINT STYLES
+   --------------------------------------------------------------------------
+   Clean print layout when users print pages (e.g., fee structure).
+   Hides interactive elements that don't make sense on paper.
+   -------------------------------------------------------------------------- */
+
+@media print {
+  /* Hide navigation, footer, and interactive elements */
+  .navbar,
+  .footer,
+  .back-to-top,
+  .whatsapp-btn,
+  .news-ticker,
+  .preloader,
+  .page-transition {
+    display: none !important;
+  }
+
+  /* Remove backgrounds and shadows for ink economy */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .section {
+    padding: 1rem 0;
+  }
+
+  /* Ensure links show their URLs in print */
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  /* Don't show URL for internal anchor links */
+  a[href^="#"]::after,
+  a[href^="javascript"]::after {
+    content: '';
+  }
+}

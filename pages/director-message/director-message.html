@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!-- =====================================================================
+     TGVIS — Director's Message Page
+     =====================================================================
+     
+     PURPOSE:
+     A heartfelt message from the Director of The Green Valley International
+     School, sharing the school's vision, values, and commitment to nurturing
+     every child's potential. Includes a director profile, the full message,
+     key commitments, and a call to visit the campus.
+     
+     CONTENT SECTIONS:
+     1. Page Hero — banner with breadcrumb
+     2. Director Profile — avatar and title
+     3. Director's Message — full letter content
+     4. Key Commitments — 4-card grid of promises
+     5. CTA — visit campus or contact
+     
+     ===================================================================== -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Director's Message — TGVIS | The Green Valley International School</title>
+  <meta name="description" content="A message from the Director of The Green Valley International School, Bihta — sharing the vision and commitment to educational excellence.">
+
+  <!-- ======== Favicon ======== -->
+  <link rel="icon" type="image/png" href="../../assets/images/logo/logo.png">
+
+  <!-- ======== Google Fonts: Inter + Outfit ======== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ======== RemixIcon CDN ======== -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- ======== Stylesheets ======== -->
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="director-message.css">
+</head>
+<body>
+  <!-- ======== Preloader ======== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__text">TGVIS</div>
+    <div class="preloader__bar"><div class="preloader__bar-fill"></div></div>
+  </div>
+  <div class="page-transition"></div>
+
+  <!-- ======== NAVBAR (Injected dynamically by navbar.js) ======== -->
+  <nav class="navbar" id="navbar"></nav>
+
+
+  <!-- ================================================================
+       HERO SECTION — Page banner with breadcrumb
+       ================================================================ -->
+  <section class="page-hero">
+    <img src="../../assets/images/hero/campus.png" alt="TGVIS Campus" class="page-hero__bg">
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <h1 class="page-hero__title">Director's Message</h1>
+      <p class="page-hero__subtitle">A word from our leadership on our vision and commitment</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html" class="breadcrumb__link">Home</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <a href="../about/about.html" class="breadcrumb__link">About</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <span class="breadcrumb__current">Director's Message</span>
+      </nav>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       DIRECTOR'S MESSAGE — Profile + Letter
+       ================================================================ -->
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+
+      <!-- ── Director Profile ── -->
+      <div class="director-profile reveal">
+        <div class="director-profile__avatar">
+          <i class="ri-user-voice-line"></i>
+        </div>
+        <div class="director-profile__info">
+          <h2 class="director-profile__name">The Director</h2>
+          <p class="director-profile__title">The Green Valley International School, Bihta</p>
+        </div>
+      </div>
+
+      <!-- ── Message Content ── -->
+      <div class="director-message reveal">
+        <p>Dear Parents, Students, and Well-Wishers,</p>
+
+        <p>
+          It gives me immense pleasure to welcome you to The Green Valley International School — a place where education meets inspiration, and where every child is nurtured to discover their true potential.
+        </p>
+
+        <p>
+          When we established TGVIS in Bihta, our vision was clear: to create an educational institution that combines academic excellence with strong moral values, where students are not just prepared for examinations but for life itself. We wanted to build a school where every child, regardless of their background, could receive a world-class education right here in our community.
+        </p>
+
+        <p>
+          Over the years, we have witnessed our students grow into confident, responsible, and compassionate individuals. Our dedicated team of 50+ teachers, our modern classrooms with smart boards and digital learning tools, and our unique integrated tuition program have all contributed to creating an environment where learning is a joy.
+        </p>
+
+        <p>
+          We believe that every child is unique and deserves individual attention. That is why we maintain optimum class sizes, provide personalised mentoring, and offer a diverse range of academic, sports, and extracurricular activities. From cricket and football on our playground to art and music in our activity rooms — we ensure holistic development.
+        </p>
+
+        <p>
+          Our consistent 100% board results are a testament to the hard work of our students and the dedication of our faculty. But for us, success is not just about marks — it is about building character, developing critical thinking skills, and fostering a love for lifelong learning. We want our students to become good human beings first, and successful professionals second.
+        </p>
+
+        <p>
+          The integrated tuition program is something we are particularly proud of. Students can avail extra coaching and doubt-clearing sessions right within the school environment, saving parents the hassle and expense of separate tuition centres. This ensures consistent academic support in a familiar and supervised setting.
+        </p>
+
+        <p>
+          I invite you to visit our campus, meet our teachers, and experience the TGVIS difference firsthand. Together, let us nurture your child's dreams and shape a brighter future.
+        </p>
+
+        <!-- Signature -->
+        <div class="director-signature">
+          <p style="font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">With warm regards,</p>
+          <p class="director-signature__name">The Director</p>
+          <p class="director-signature__role">The Green Valley International School, Bihta</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       KEY COMMITMENTS — What the director promises
+       ================================================================ -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Our Promise</span>
+        <h2 class="section-title">Key <span class="text-gradient-gold">Commitments</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="commitments-grid">
+        <div class="commitment-card reveal stagger-1">
+          <div class="commitment-card__icon">📚</div>
+          <h4 class="commitment-card__title">Academic Excellence</h4>
+          <p class="commitment-card__text">Consistent 100% board results with personalised attention for every student.</p>
+        </div>
+        <div class="commitment-card reveal stagger-2">
+          <div class="commitment-card__icon">🧠</div>
+          <h4 class="commitment-card__title">Holistic Development</h4>
+          <p class="commitment-card__text">Balanced growth through academics, sports, arts, and character education.</p>
+        </div>
+        <div class="commitment-card reveal stagger-3">
+          <div class="commitment-card__icon">👨‍🏫</div>
+          <h4 class="commitment-card__title">Expert Faculty</h4>
+          <p class="commitment-card__text">50+ dedicated teachers committed to nurturing each child's unique potential.</p>
+        </div>
+        <div class="commitment-card reveal stagger-4">
+          <div class="commitment-card__icon">🏫</div>
+          <h4 class="commitment-card__title">Integrated Tuition</h4>
+          <p class="commitment-card__text">Extra coaching and doubt-clearing within school — no separate tuition needed.</p>
+        </div>
+        <div class="commitment-card reveal stagger-5">
+          <div class="commitment-card__icon">🤝</div>
+          <h4 class="commitment-card__title">Parent Partnership</h4>
+          <p class="commitment-card__text">Regular PTMs, WhatsApp updates, and transparent communication at all times.</p>
+        </div>
+        <div class="commitment-card reveal stagger-6">
+          <div class="commitment-card__icon">🛡️</div>
+          <h4 class="commitment-card__title">Safe Environment</h4>
+          <p class="commitment-card__text">Supervised campus, CCTV monitoring, and zero-tolerance anti-bullying policy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       CTA — Invitation to visit
+       ================================================================ -->
+  <section class="section">
+    <div class="container" style="max-width:700px;text-align:center;">
+      <div class="reveal" style="background:linear-gradient(135deg,var(--bg-secondary),var(--bg-primary));padding:var(--space-10);border-radius:var(--radius-xl);border:1px solid var(--border-color);">
+        <i class="ri-road-map-line" style="font-size:3rem;color:var(--clr-primary);"></i>
+        <h3 style="font-family:var(--ff-heading);font-size:var(--fs-xl);font-weight:700;color:var(--text-primary);margin:var(--space-4) 0 var(--space-3);">
+          Visit Our Campus
+        </h3>
+        <p style="color:var(--text-secondary);margin-bottom:var(--space-6);line-height:var(--lh-relaxed);">
+          We warmly invite you to experience the TGVIS atmosphere. Schedule a campus visit, meet our teachers, and see our facilities firsthand.
+        </p>
+        <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+          <a href="../contact/contact.html" class="btn btn--primary">
+            <i class="ri-phone-line"></i> Contact Us
+          </a>
+          <a href="../admissions/admissions.html" class="btn btn--secondary">
+            <i class="ri-file-text-line"></i> Apply for Admission
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======== FOOTER (Injected dynamically by navbar.js) ======== -->
+  <footer class="footer"></footer>
+
+  <!-- ======== Back to Top ======== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="ri-arrow-up-line"></i>
+  </button>
+
+  <!-- ======== Scripts ======== -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
+  <script src="../../assets/js/utils.js" defer></script>
+  <script src="../../assets/js/navbar.js" defer></script>
+  <script src="../../assets/js/global.js" defer></script>
+  <script src="../../assets/js/animations.js" defer></script>
+</body>
+</html>
