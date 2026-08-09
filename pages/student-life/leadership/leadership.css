@@ -1,0 +1,254 @@
+/* ==========================================================================
+   TGVIS — Leadership Page Styles
+   ==========================================================================
+   
+   Styles specific to the Student Leadership page.
+   Shows student council, head boy/girl, prefects, and leadership programs.
+   
+   SECTIONS STYLED:
+   1. Leadership Hero Cards — Head Boy/Girl profile cards
+   2. Student Council Grid — Council member cards in a grid
+   3. Leadership Programs — Programs offered for student development
+   4. Achievements Timeline — Leadership milestones
+   
+   DEPENDENCIES: global.css, components.css, animations.css
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. LEADERSHIP HERO CARDS
+   --------------------------------------------------------------------------
+   Two large profile cards side-by-side for Head Boy and Head Girl.
+   On mobile they stack vertically.
+   -------------------------------------------------------------------------- */
+
+.leadership-hero {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-8);
+  margin-bottom: var(--space-16);
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 768px) {
+  .leadership-hero {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+/* Individual leader card — glassmorphism style with hover effect */
+.leader-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--color-gray-200);
+}
+
+.leader-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Leader card image area — maintains a 4:3 aspect ratio */
+.leader-card__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+}
+
+.leader-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.leader-card:hover .leader-card__image img {
+  transform: scale(1.05);
+}
+
+/* Leader info section below the image */
+.leader-card__info {
+  padding: var(--space-6);
+  text-align: center;
+}
+
+.leader-card__role {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  color: var(--color-white);
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-3);
+}
+
+.leader-card__name {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.leader-card__class {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+}
+
+.leader-card__quote {
+  margin-top: var(--space-4);
+  font-style: italic;
+  color: var(--text-tertiary);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  padding: var(--space-3);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  border-left: 3px solid var(--color-secondary);
+}
+
+
+/* --------------------------------------------------------------------------
+   2. STUDENT COUNCIL GRID
+   --------------------------------------------------------------------------
+   A responsive grid showing all student council members with photo,
+   name, position, and class.
+   -------------------------------------------------------------------------- */
+
+.council-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-6);
+}
+
+/* Individual council member card */
+.council-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  text-align: center;
+  border: 1px solid var(--color-gray-200);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.council-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Council member avatar — circular placeholder with initials */
+.council-card__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  overflow: hidden;
+}
+
+.council-card__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.council-card__name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.council-card__position {
+  color: var(--color-primary);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: var(--space-1);
+}
+
+.council-card__class {
+  color: var(--text-tertiary);
+  font-size: var(--fs-xs);
+}
+
+
+/* --------------------------------------------------------------------------
+   3. LEADERSHIP PROGRAMS SECTION
+   --------------------------------------------------------------------------
+   Cards showing various leadership development programs the school offers.
+   -------------------------------------------------------------------------- */
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.program-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  border: 1px solid var(--color-gray-200);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.program-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+}
+
+.program-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.program-card__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-4);
+}
+
+.program-card__title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.program-card__text {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+

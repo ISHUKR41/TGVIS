@@ -1,104 +1,335 @@
 <!DOCTYPE html>
-<!-- TGVIS — Fee Structure Page -->
+<!--
+  TGVIS — Fee Structure Page
+  Shows the complete fee breakdown for all classes (Nursery to Class 10),
+  payment options, included facilities, scholarship info, and a contact CTA.
+-->
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fee Structure — TGVIS | The Green Valley International School</title>
-  <meta name="description" content="TGVIS fee structure for session 2025-26. Transparent and affordable fees for Nursery to Class 10th with payment schedule.">
+
+  <title>Fee Structure 2025-26 — TGVIS | The Green Valley International School, Bihta</title>
+  <meta name="description" content="TGVIS fee structure for session 2025-26. Transparent, affordable fees for Nursery to Class 10th with multiple payment options. Contact us for detailed information.">
+  <meta name="keywords" content="TGVIS fees, school fees Bihta, Green Valley School fee structure, CBSE school fees Patna, school admission fees Bihar">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.tgvis.edu.in/pages/fees/fees.html">
+
   <link rel="icon" type="image/png" href="../../assets/images/logo/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
   <link rel="stylesheet" href="../../assets/css/global.css">
   <link rel="stylesheet" href="../../assets/css/components.css">
   <link rel="stylesheet" href="../../assets/css/animations.css">
   <link rel="stylesheet" href="fees.css">
 </head>
 <body>
-  <div class="preloader" id="preloader"><div class="preloader__text">TGVIS</div><div class="preloader__bar"><div class="preloader__bar-fill"></div></div></div>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__text">TGVIS</div>
+    <div class="preloader__bar"><div class="preloader__bar-fill"></div></div>
+  </div>
   <div class="page-transition"></div>
-  <!-- ======== NAVBAR (Injected dynamically by navbar.js) ======== -->
+
+  <!-- Navbar injected by navbar.js -->
   <nav class="navbar" id="navbar"></nav>
 
-  <section class="page-hero"><img src="../../assets/images/hero/campus.png" alt="TGVIS" class="page-hero__bg"><div class="page-hero__overlay"></div><div class="page-hero__content"><h1 class="page-hero__title">Fee Structure</h1><p class="page-hero__subtitle">Transparent and affordable education for all families</p><nav class="breadcrumb"><a href="../../index.html" class="breadcrumb__link">Home</a><i class="ri-arrow-right-s-line breadcrumb__separator"></i><span class="breadcrumb__current">Fee Structure</span></nav></div></section>
 
+  <!-- ══════════════════════ PAGE HERO ══════════════════════ -->
+  <section class="page-hero">
+    <img src="../../assets/images/hero/campus.png" alt="TGVIS Fee Structure" class="page-hero__bg" loading="eager">
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <h1 class="page-hero__title">Fee Structure 2025-26</h1>
+      <p class="page-hero__subtitle">Transparent, affordable education — quality that every family deserves</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html" class="breadcrumb__link">Home</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <a href="../admissions/admissions.html" class="breadcrumb__link">Admissions</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <span class="breadcrumb__current">Fee Structure</span>
+      </nav>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════ QUICK HIGHLIGHTS ══════════════════════ -->
+  <section class="section" style="padding-bottom:0;">
+    <div class="container">
+      <div class="grid-auto-sm reveal" style="margin-top:0;">
+
+        <div style="display:flex;align-items:center;gap:var(--space-4);padding:var(--space-6);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);">
+          <div style="width:52px;height:52px;border-radius:var(--radius-md);background:rgba(var(--color-primary-rgb),0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i class="ri-shield-check-line" style="font-size:var(--fs-xl);color:var(--color-primary);"></i>
+          </div>
+          <div>
+            <div style="font-family:var(--font-heading);font-weight:700;color:var(--text-primary);font-size:var(--fs-md);">No Hidden Charges</div>
+            <div style="font-size:var(--fs-xs);color:var(--text-secondary);">100% transparent fee breakup</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:var(--space-4);padding:var(--space-6);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);">
+          <div style="width:52px;height:52px;border-radius:var(--radius-md);background:rgba(var(--color-secondary-rgb),0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i class="ri-calendar-line" style="font-size:var(--fs-xl);color:var(--color-secondary);"></i>
+          </div>
+          <div>
+            <div style="font-family:var(--font-heading);font-weight:700;color:var(--text-primary);font-size:var(--fs-md);">Flexible Payment</div>
+            <div style="font-size:var(--fs-xs);color:var(--text-secondary);">Monthly, quarterly, or annual</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:var(--space-4);padding:var(--space-6);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);">
+          <div style="width:52px;height:52px;border-radius:var(--radius-md);background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i class="ri-award-line" style="font-size:var(--fs-xl);color:var(--color-accent);"></i>
+          </div>
+          <div>
+            <div style="font-family:var(--font-heading);font-weight:700;color:var(--text-primary);font-size:var(--fs-md);">Merit Scholarships</div>
+            <div style="font-size:var(--fs-xs);color:var(--text-secondary);">For deserving students</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:var(--space-4);padding:var(--space-6);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);">
+          <div style="width:52px;height:52px;border-radius:var(--radius-md);background:rgba(59,130,246,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i class="ri-group-line" style="font-size:var(--fs-xl);color:#3B82F6;"></i>
+          </div>
+          <div>
+            <div style="font-family:var(--font-heading);font-weight:700;color:var(--text-primary);font-size:var(--fs-md);">Sibling Concession</div>
+            <div style="font-size:var(--fs-xs);color:var(--text-secondary);">Discount for second child onwards</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════ FEE TABLE ══════════════════════ -->
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
         <span class="section-label">Session 2025-26</span>
-        <h2 class="section-title">Fee <span class="text-gradient-gold">Details</span></h2>
+        <h2 class="section-title">Fee <span class="text-gradient-gold">Breakdown</span></h2>
         <div class="divider"></div>
-        <p class="section-description">TGVIS offers quality education at affordable fees. Contact our admissions office for detailed fee information.</p>
+        <p class="section-description">
+          Our fees cover quality education, smart classrooms, labs, sports, and integrated tuition. No surprise charges — ever.
+        </p>
       </div>
 
-      <div class="table-wrapper reveal" style="max-width:900px;margin:0 auto;">
+      <div class="table-wrapper reveal" style="max-width:960px;margin:0 auto;">
         <table class="data-table">
-          <thead><tr><th>Class</th><th>Admission Fee (One-time)</th><th>Annual Tuition Fee</th><th>Monthly Fee</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Class / Programme</th>
+              <th>Admission Fee <small style="font-weight:400;">(One-Time)</small></th>
+              <th>Annual Fee</th>
+              <th>Monthly Fee</th>
+              <th>Includes Tuition</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td>Nursery</td><td>Contact Office</td><td>Contact Office</td><td>Contact Office</td></tr>
-            <tr><td>LKG - UKG</td><td>Contact Office</td><td>Contact Office</td><td>Contact Office</td></tr>
-            <tr><td>Class 1-5</td><td>Contact Office</td><td>Contact Office</td><td>Contact Office</td></tr>
-            <tr><td>Class 6-8</td><td>Contact Office</td><td>Contact Office</td><td>Contact Office</td></tr>
-            <tr><td>Class 9-10</td><td>Contact Office</td><td>Contact Office</td><td>Contact Office</td></tr>
+            <tr>
+              <td>Nursery</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td><i class="ri-check-line" style="color:var(--color-accent);"></i> Yes</td>
+            </tr>
+            <tr>
+              <td>LKG</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td><i class="ri-check-line" style="color:var(--color-accent);"></i> Yes</td>
+            </tr>
+            <tr>
+              <td>UKG</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td><i class="ri-check-line" style="color:var(--color-accent);"></i> Yes</td>
+            </tr>
+            <tr>
+              <td>Class 1 – 2</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td><i class="ri-check-line" style="color:var(--color-accent);"></i> Yes</td>
+            </tr>
+            <tr>
+              <td>Class 3 – 5</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td><i class="ri-check-line" style="color:var(--color-accent);"></i> Yes</td>
+            </tr>
+            <tr>
+              <td>Class 6 – 8</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td><i class="ri-check-line" style="color:var(--color-accent);"></i> Yes</td>
+            </tr>
+            <tr>
+              <td>Class 9 – 10</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td><i class="ri-check-line" style="color:var(--color-accent);"></i> Yes</td>
+            </tr>
+            <tr>
+              <td>Tuition Only (External)</td>
+              <td>—</td>
+              <td>Contact Office</td>
+              <td>Contact Office</td>
+              <td>—</td>
+            </tr>
           </tbody>
         </table>
       </div>
 
-      <div style="text-align:center;margin-top:var(--space-8);font-size:var(--fs-sm);color:var(--text-tertiary);">
-        <p><i class="ri-information-line"></i> Fees are subject to revision. Please contact the school office for the latest fee structure.</p>
-      </div>
+      <p class="reveal" style="text-align:center;margin-top:var(--space-6);font-size:var(--fs-sm);color:var(--text-tertiary);">
+        <i class="ri-information-line"></i> Fees may vary by class and are subject to annual revision. Visit the school office for the current, confirmed rate card.
+      </p>
     </div>
   </section>
 
-  <!-- Fee Includes -->
+
+  <!-- ══════════════════════ WHAT'S INCLUDED ══════════════════════ -->
   <section class="section section--alt">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">What's Included</span>
-        <h2 class="section-title">Fee <span class="text-gradient">Includes</span></h2>
+        <span class="section-label">Value for Money</span>
+        <h2 class="section-title">What Your Fee <span class="text-gradient">Covers</span></h2>
         <div class="divider"></div>
+        <p class="section-description">
+          Your child's fee funds a complete learning experience — not just textbooks, but everything that makes TGVIS special.
+        </p>
       </div>
+
       <div class="grid-3 grid-animated">
-        <div class="feature-card reveal stagger-1"><div class="feature-card__icon"><i class="ri-book-open-line"></i></div><h4 class="feature-card__title">Tuition & Academics</h4><p class="feature-card__text">All classroom teaching, integrated tuition support, lab access, and library facilities.</p></div>
-        <div class="feature-card reveal stagger-2"><div class="feature-card__icon"><i class="ri-basketball-line"></i></div><h4 class="feature-card__title">Sports & Activities</h4><p class="feature-card__text">Sports coaching, extracurricular activities, art & music classes, and events participation.</p></div>
-        <div class="feature-card reveal stagger-3"><div class="feature-card__icon"><i class="ri-shield-check-line"></i></div><h4 class="feature-card__title">Infrastructure</h4><p class="feature-card__text">Smart classroom access, computer lab usage, campus maintenance, and security services.</p></div>
+        <div class="feature-card reveal stagger-1">
+          <div class="feature-card__icon"><i class="ri-book-open-line"></i></div>
+          <h4 class="feature-card__title">Academic Programme</h4>
+          <p class="feature-card__text">Full CBSE curriculum delivery, smart classroom access, laboratory sessions, library membership, and digital learning resources.</p>
+        </div>
+
+        <div class="feature-card reveal stagger-2">
+          <div class="feature-card__icon"><i class="ri-lightbulb-line"></i></div>
+          <h4 class="feature-card__title">Integrated Tuition</h4>
+          <p class="feature-card__text">In-school doubt-clearing sessions, revision classes, mock tests, and personalised coaching — no external tuition needed.</p>
+        </div>
+
+        <div class="feature-card reveal stagger-3">
+          <div class="feature-card__icon"><i class="ri-basketball-line"></i></div>
+          <h4 class="feature-card__title">Sports & Activities</h4>
+          <p class="feature-card__text">Cricket, football, basketball, athletics, yoga, and indoor games with professional coaching. All club activities and cultural programmes.</p>
+        </div>
+
+        <div class="feature-card reveal stagger-4">
+          <div class="feature-card__icon"><i class="ri-computer-line"></i></div>
+          <h4 class="feature-card__title">Infrastructure Access</h4>
+          <p class="feature-card__text">Smart classrooms, computer lab, science lab, library, activity hall, and sports ground — all included in your fee.</p>
+        </div>
+
+        <div class="feature-card reveal stagger-5">
+          <div class="feature-card__icon"><i class="ri-shield-check-line"></i></div>
+          <h4 class="feature-card__title">Safety & Supervision</h4>
+          <p class="feature-card__text">24/7 CCTV, trained security staff, daily supervision, medical room access, and regular health check-ups.</p>
+        </div>
+
+        <div class="feature-card reveal stagger-6">
+          <div class="feature-card__icon"><i class="ri-parent-line"></i></div>
+          <h4 class="feature-card__title">Parent Engagement</h4>
+          <p class="feature-card__text">PTMs, progress reports, WhatsApp group updates, and school events — keeping you connected to your child's journey.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Payment Info -->
+
+  <!-- ══════════════════════ PAYMENT OPTIONS ══════════════════════ -->
   <section class="section">
-    <div class="container" style="max-width:700px;text-align:center;">
+    <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">Payment</span>
+        <span class="section-label">Pay Your Way</span>
         <h2 class="section-title">Payment <span class="text-gradient-gold">Options</span></h2>
         <div class="divider"></div>
       </div>
-      <div class="reveal" style="display:flex;flex-wrap:wrap;gap:var(--space-6);justify-content:center;">
-        <div style="padding:var(--space-6);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);flex:1;min-width:200px;text-align:center;">
-          <i class="ri-money-rupee-circle-line" style="font-size:var(--fs-3xl);color:var(--color-primary);"></i>
-          <h4 style="margin:var(--space-3) 0;">Cash Payment</h4>
-          <p style="font-size:var(--fs-sm);color:var(--text-secondary);">Pay at the school office during working hours</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:var(--space-6);justify-content:center;" class="reveal">
+        <div class="payment-card">
+          <i class="ri-money-rupee-circle-line payment-card__icon"></i>
+          <h4 class="payment-card__title">Cash</h4>
+          <p class="payment-card__text">Pay at the school accounts office during working hours (Mon–Sat, 8 AM–3 PM).</p>
         </div>
-        <div style="padding:var(--space-6);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);flex:1;min-width:200px;text-align:center;">
-          <i class="ri-bank-line" style="font-size:var(--fs-3xl);color:var(--color-primary);"></i>
-          <h4 style="margin:var(--space-3) 0;">Bank Transfer</h4>
-          <p style="font-size:var(--fs-sm);color:var(--text-secondary);">Direct bank transfer (NEFT/RTGS)</p>
+        <div class="payment-card">
+          <i class="ri-bank-line payment-card__icon"></i>
+          <h4 class="payment-card__title">Bank Transfer</h4>
+          <p class="payment-card__text">Direct NEFT/RTGS to the school bank account. Contact the office for account details.</p>
         </div>
-        <div style="padding:var(--space-6);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);flex:1;min-width:200px;text-align:center;">
-          <i class="ri-qr-scan-line" style="font-size:var(--fs-3xl);color:var(--color-primary);"></i>
-          <h4 style="margin:var(--space-3) 0;">UPI Payment</h4>
-          <p style="font-size:var(--fs-sm);color:var(--text-secondary);">Scan QR code or use UPI ID</p>
+        <div class="payment-card">
+          <i class="ri-qr-scan-line payment-card__icon"></i>
+          <h4 class="payment-card__title">UPI / QR Code</h4>
+          <p class="payment-card__text">Scan our UPI QR code at the office for instant digital payment via any UPI app.</p>
+        </div>
+        <div class="payment-card">
+          <i class="ri-bank-card-line payment-card__icon"></i>
+          <h4 class="payment-card__title">Cheque / DD</h4>
+          <p class="payment-card__text">Cheque or demand draft in favour of "The Green Valley International School" payable at Patna.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ======== FOOTER (Injected dynamically by navbar.js) ======== -->
+
+  <!-- ══════════════════════ SCHOLARSHIP NOTICE ══════════════════════ -->
+  <section class="section section--alt">
+    <div class="container" style="max-width:800px;">
+      <div class="scholarship-notice reveal">
+        <h3 class="scholarship-notice__title">
+          <i class="ri-award-line"></i> Scholarships & Concessions
+        </h3>
+        <p>
+          TGVIS believes talent should not be limited by financial constraints. We offer merit-based fee concessions for academically outstanding students, sibling discounts for families with more than one child enrolled, and special support for students from economically weaker sections. Contact the admissions office to learn more about eligibility and the application process.
+        </p>
+        <a href="../admissions/admissions.html" class="btn btn--primary" style="margin-top:var(--space-6);">
+          <i class="ri-file-text-line"></i> Apply for Scholarship
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════ CONTACT CTA ══════════════════════ -->
+  <section class="section">
+    <div class="container" style="max-width:700px;text-align:center;">
+      <div class="reveal" style="background:linear-gradient(135deg,var(--color-primary),var(--color-primary-dark));padding:var(--space-12);border-radius:var(--radius-xl);">
+        <i class="ri-phone-line" style="font-size:3rem;color:var(--color-secondary);"></i>
+        <h2 style="color:var(--color-white);font-size:var(--fs-2xl);margin:var(--space-4) 0 var(--space-3);">Want the Exact Fee Breakup?</h2>
+        <p style="color:rgba(255,255,255,0.8);margin-bottom:var(--space-8);font-size:var(--fs-md);">
+          Our admissions team is happy to walk you through the complete, class-specific fee structure and answer any questions.
+        </p>
+        <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+          <a href="../contact/contact.html" class="btn btn--secondary btn--lg">
+            <i class="ri-phone-line"></i> Contact Office
+          </a>
+          <a href="https://wa.me/91XXXXXXXXXX?text=Hello%20TGVIS%2C%20I%20want%20to%20know%20about%20the%20fee%20structure." target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--lg">
+            <i class="ri-whatsapp-line"></i> WhatsApp Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer injected by navbar.js -->
   <footer class="footer"></footer>
   <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>

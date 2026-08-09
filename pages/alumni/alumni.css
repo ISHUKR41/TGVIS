@@ -1,0 +1,195 @@
+/* ==========================================================================
+   TGVIS — Alumni Page Styles
+   ==========================================================================
+   Styles for the alumni intro split layout, stat boxes,
+   alumni story cards, event cards, and registration form.
+   ========================================================================== */
+
+
+/* ── Alumni Intro — split: text left, stats right ── */
+.alumni-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .alumni-intro { grid-template-columns: 1fr; gap: var(--space-10); }
+}
+
+
+/* ── Alumni Stat boxes ── */
+.alumni-intro__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.alumni-stat {
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  text-align: center;
+  transition: all var(--transition-smooth);
+}
+
+.alumni-stat:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(var(--color-primary-rgb), 0.3);
+}
+
+.alumni-stat__number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--fs-3xl);
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.alumni-stat__label {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+
+/* ── Alumni Success Story Cards ── */
+.alumni-stories {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.alumni-card {
+  display: flex;
+  gap: var(--space-6);
+  align-items: flex-start;
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  transition: all var(--transition-smooth);
+}
+
+.alumni-card:hover {
+  transform: translateX(6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(var(--color-primary-rgb), 0.2);
+}
+
+/* Avatar circle with initials */
+.alumni-card__avatar {
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: var(--fs-md);
+}
+
+.alumni-card__name {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.alumni-card__year {
+  font-size: var(--fs-xs);
+  color: var(--color-secondary);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.alumni-card__role {
+  font-size: var(--fs-sm);
+  color: var(--color-primary);
+  font-weight: 500;
+  margin-bottom: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.alumni-card__quote {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+  font-style: italic;
+  padding-left: var(--space-4);
+  border-left: 3px solid var(--color-secondary);
+}
+
+
+/* ── Alumni Event Cards ── */
+.alumni-event-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  transition: all var(--transition-smooth);
+}
+
+.alumni-event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.alumni-event-card__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-5);
+  font-size: var(--fs-xl);
+  color: var(--color-white);
+}
+
+.alumni-event-card h4 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.alumni-event-card p {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+.alumni-event-card__date {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+  .alumni-intro__stats { grid-template-columns: 1fr 1fr; }
+  .alumni-card { flex-direction: column; align-items: center; text-align: center; }
+  .alumni-card__quote { border-left: none; border-top: 3px solid var(--color-secondary); padding-left: 0; padding-top: var(--space-4); }
+}

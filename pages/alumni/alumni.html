@@ -1,67 +1,329 @@
 <!DOCTYPE html>
-<!-- TGVIS — Alumni Relations Page -->
+<!--
+  TGVIS — Alumni Relations Page
+  ============================================================
+  Sections:
+  1. Page Hero
+  2. Alumni stats + intro
+  3. Ways to get involved (3 cards)
+  4. Alumni success stories
+  5. Upcoming alumni events
+  6. Alumni registration form
+  7. CTA banner
+-->
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alumni Relations — TGVIS | The Green Valley International School</title>
-  <meta name="description" content="TGVIS Alumni Network — Stay connected with your alma mater. Alumni registration, success stories, and upcoming alumni events.">
+  <title>Alumni Relations — TGVIS | The Green Valley International School, Bihta</title>
+  <meta name="description" content="Join the TGVIS alumni network. Stay connected with classmates, mentor current students, and give back to the school that shaped your future. Bihta, Patna, Bihar.">
+  <meta name="keywords" content="TGVIS alumni, Green Valley School alumni, school alumni Bihta, alumni network Bihar">
+  <link rel="canonical" href="https://www.tgvis.edu.in/pages/alumni/alumni.html">
   <link rel="icon" type="image/png" href="../../assets/images/logo/logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/global.css"><link rel="stylesheet" href="../../assets/css/components.css"><link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="alumni.css">
 </head>
 <body>
-  <div class="preloader" id="preloader"><div class="preloader__text">TGVIS</div><div class="preloader__bar"><div class="preloader__bar-fill"></div></div></div><div class="page-transition"></div>
-  <!-- ======== NAVBAR (Injected dynamically by navbar.js) ======== -->
+
+  <div class="preloader" id="preloader">
+    <div class="preloader__text">TGVIS</div>
+    <div class="preloader__bar"><div class="preloader__bar-fill"></div></div>
+  </div>
+  <div class="page-transition"></div>
+
   <nav class="navbar" id="navbar"></nav>
 
-  <section class="page-hero"><img src="../../assets/images/hero/campus.png" alt="Alumni" class="page-hero__bg"><div class="page-hero__overlay"></div><div class="page-hero__content"><h1 class="page-hero__title">Alumni Relations</h1><p class="page-hero__subtitle">Once a Green Valley student, always a Green Valley family member</p><nav class="breadcrumb"><a href="../../index.html" class="breadcrumb__link">Home</a><i class="ri-arrow-right-s-line breadcrumb__separator"></i><span class="breadcrumb__current">Alumni</span></nav></div></section>
-
-  <section class="section">
-    <div class="container" style="max-width:800px;text-align:center;">
-      <div class="section-header reveal"><span class="section-label">Stay Connected</span><h2 class="section-title">Welcome Back, <span class="text-gradient-gold">Alumni!</span></h2><div class="divider"></div></div>
-      <div class="reveal"><p class="lead">We are building a strong alumni community that connects past students, shares success stories, and gives back to the school that shaped your future.</p><p>Whether you graduated last year or a decade ago, TGVIS will always be your home. Join our alumni network and stay connected with your classmates and teachers.</p></div>
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <img src="../../assets/images/hero/campus.png" alt="TGVIS Alumni" class="page-hero__bg" loading="eager">
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <h1 class="page-hero__title">Alumni Relations</h1>
+      <p class="page-hero__subtitle">Once a Green Valley student, always a Green Valley family member</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html" class="breadcrumb__link">Home</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <span class="breadcrumb__current">Alumni</span>
+      </nav>
     </div>
   </section>
 
-  <section class="section section--alt">
+
+  <!-- ALUMNI INTRO + STATS -->
+  <section class="section">
     <div class="container">
-      <div class="section-header reveal"><span class="section-label">Get Involved</span><h2 class="section-title">Ways to <span class="text-gradient">Connect</span></h2><div class="divider"></div></div>
-      <div class="grid-3 grid-animated">
-        <div class="feature-card reveal stagger-1"><div class="feature-card__icon"><i class="ri-user-add-line"></i></div><h4 class="feature-card__title">Register as Alumni</h4><p class="feature-card__text">Fill in the registration form to join our official alumni database. Stay updated on reunions, events, and opportunities.</p></div>
-        <div class="feature-card reveal stagger-2"><div class="feature-card__icon"><i class="ri-user-voice-line"></i></div><h4 class="feature-card__title">Mentor Students</h4><p class="feature-card__text">Share your career experience and guide current students through mentoring sessions, career talks, and workshops.</p></div>
-        <div class="feature-card reveal stagger-3"><div class="feature-card__icon"><i class="ri-calendar-event-line"></i></div><h4 class="feature-card__title">Alumni Meet</h4><p class="feature-card__text">Annual alumni reunion on campus. Reconnect with old friends, meet your teachers, and relive your school memories.</p></div>
+      <div class="alumni-intro reveal">
+        <div class="alumni-intro__text">
+          <span class="section-label">Our Legacy</span>
+          <h2 class="section-title">Always a Part of the <span class="text-gradient-gold">TGVIS Family</span></h2>
+          <div class="divider" style="margin:var(--space-6) 0;"></div>
+          <p class="lead">
+            Wherever life has taken you after TGVIS, this school remains your home. Our alumni network connects graduates across all years, creating a community of shared memories, mutual support, and lifelong friendships.
+          </p>
+          <p>
+            Whether you finished last year or a decade ago, your story is part of what makes TGVIS special. We want to hear from you, learn from you, and grow with you.
+          </p>
+          <a href="#register" class="btn btn--primary" style="margin-top:var(--space-6);">
+            <i class="ri-user-add-line"></i> Join the Alumni Network
+          </a>
+        </div>
+        <div class="alumni-intro__stats">
+          <div class="alumni-stat">
+            <span class="alumni-stat__number counter" data-target="1000" data-suffix="+">0</span>
+            <span class="alumni-stat__label">Registered Alumni</span>
+          </div>
+          <div class="alumni-stat">
+            <span class="alumni-stat__number counter" data-target="15" data-suffix="+">0</span>
+            <span class="alumni-stat__label">Passing Year Batches</span>
+          </div>
+          <div class="alumni-stat">
+            <span class="alumni-stat__number counter" data-target="12" data-suffix="">0</span>
+            <span class="alumni-stat__label">Annual Reunions Held</span>
+          </div>
+          <div class="alumni-stat">
+            <span class="alumni-stat__number counter" data-target="50" data-suffix="+">0</span>
+            <span class="alumni-stat__label">Active Mentors</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Alumni Registration Form -->
+
+  <!-- WAYS TO CONNECT -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Get Involved</span>
+        <h2 class="section-title">Ways to <span class="text-gradient">Stay Connected</span></h2>
+        <div class="divider"></div>
+        <p class="section-description">
+          Being an alumnus is more than a title — it's an active commitment to the school that helped shape who you are.
+        </p>
+      </div>
+
+      <div class="grid-3 grid-animated">
+        <div class="feature-card reveal stagger-1">
+          <div class="feature-card__icon"><i class="ri-user-add-line"></i></div>
+          <h4 class="feature-card__title">Register as Alumni</h4>
+          <p class="feature-card__text">Join our official alumni database. Stay updated on reunions, events, and new opportunities at TGVIS. Your profile helps us connect you with former classmates.</p>
+        </div>
+        <div class="feature-card reveal stagger-2">
+          <div class="feature-card__icon"><i class="ri-user-voice-line"></i></div>
+          <h4 class="feature-card__title">Mentor Students</h4>
+          <p class="feature-card__text">Share your career journey with current students through mentoring sessions, guest lectures, and career talks. Your experience is invaluable guidance for the next generation.</p>
+        </div>
+        <div class="feature-card reveal stagger-3">
+          <div class="feature-card__icon"><i class="ri-calendar-event-line"></i></div>
+          <h4 class="feature-card__title">Annual Alumni Meet</h4>
+          <p class="feature-card__text">Join our annual reunion on campus. Reconnect with teachers and batchmates, walk through the corridors you grew up in, and make new memories together.</p>
+        </div>
+        <div class="feature-card reveal stagger-4">
+          <div class="feature-card__icon"><i class="ri-funds-line"></i></div>
+          <h4 class="feature-card__title">Support Scholarships</h4>
+          <p class="feature-card__text">Contribute to the TGVIS scholarship fund and help a deserving student get the same quality education that shaped your life. Every contribution matters.</p>
+        </div>
+        <div class="feature-card reveal stagger-5">
+          <div class="feature-card__icon"><i class="ri-team-line"></i></div>
+          <h4 class="feature-card__title">Alumni Sports Tournament</h4>
+          <p class="feature-card__text">Join our annual cricket and football alumni tournament. Relive those Sports Day memories while competing against current students and fellow alumni.</p>
+        </div>
+        <div class="feature-card reveal stagger-6">
+          <div class="feature-card__icon"><i class="ri-newspaper-line"></i></div>
+          <h4 class="feature-card__title">Alumni Newsletter</h4>
+          <p class="feature-card__text">Subscribe to our alumni newsletter for school news, achievement spotlights, reunion announcements, and stories from fellow TGVIS graduates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ALUMNI SUCCESS STORIES -->
   <section class="section">
-    <div class="container" style="max-width:600px;">
-      <div class="section-header reveal"><span class="section-label">Join Us</span><h2 class="section-title">Alumni <span class="text-gradient-gold">Registration</span></h2><div class="divider"></div></div>
-      <form class="contact-form reveal" novalidate style="background:var(--bg-secondary);padding:var(--space-8);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);">
-        <div class="form-group"><label class="form-label form-label--required">Full Name</label><input type="text" class="form-input" placeholder="Enter your name" required></div>
-        <div class="form-group"><label class="form-label form-label--required">Passing Year</label><input type="text" class="form-input" placeholder="e.g. 2020" required></div>
-        <div class="form-group"><label class="form-label form-label--required">Phone Number</label><input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX" required></div>
-        <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="your@email.com"></div>
-        <div class="form-group"><label class="form-label">Current Occupation</label><input type="text" class="form-input" placeholder="e.g. Engineer, Student, Business"></div>
-        <div class="form-group"><label class="form-label">Message / Memory to Share</label><textarea class="form-input form-textarea" rows="3" placeholder="Share a favourite school memory..."></textarea></div>
-        <button type="submit" class="btn btn--primary btn--lg w-full" onclick="event.preventDefault();alert('Thank you for registering! We will contact you soon.');"><i class="ri-user-add-line"></i> Register</button>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Proud Alumni</span>
+        <h2 class="section-title">Where Our <span class="text-gradient-gold">Alumni Are Today</span></h2>
+        <div class="divider"></div>
+        <p class="section-description">
+          TGVIS alumni are making their mark across every field — engineering, medicine, government, business, and beyond.
+        </p>
+      </div>
+
+      <div class="alumni-stories reveal">
+        <div class="alumni-card stagger-1">
+          <div class="alumni-card__avatar">RS</div>
+          <div class="alumni-card__info">
+            <h4 class="alumni-card__name">Rahul Sharma</h4>
+            <p class="alumni-card__year">Class of 2018</p>
+            <p class="alumni-card__role"><i class="ri-graduation-cap-line"></i> B.Tech, NIT Patna</p>
+            <p class="alumni-card__quote">"TGVIS gave me the discipline and academic foundation that helped me crack the JEE. I owe my success to the teachers here."</p>
+          </div>
+        </div>
+        <div class="alumni-card stagger-2">
+          <div class="alumni-card__avatar" style="background:linear-gradient(135deg,#A855F7,#9333EA);">PK</div>
+          <div class="alumni-card__info">
+            <h4 class="alumni-card__name">Priya Kumari</h4>
+            <p class="alumni-card__year">Class of 2019</p>
+            <p class="alumni-card__role"><i class="ri-stethoscope-line"></i> MBBS Student, PMCH Patna</p>
+            <p class="alumni-card__quote">"The integrated tuition at TGVIS was a game-changer for my NEET preparation. The science labs made concepts real for me."</p>
+          </div>
+        </div>
+        <div class="alumni-card stagger-3">
+          <div class="alumni-card__avatar" style="background:linear-gradient(135deg,#F59E0B,#D97706);">AV</div>
+          <div class="alumni-card__info">
+            <h4 class="alumni-card__name">Amit Verma</h4>
+            <p class="alumni-card__year">Class of 2016</p>
+            <p class="alumni-card__role"><i class="ri-briefcase-line"></i> Entrepreneur, Patna</p>
+            <p class="alumni-card__quote">"The leadership skills I developed as House Captain at TGVIS gave me the confidence to start my own business at 24."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- UPCOMING ALUMNI EVENTS -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Calendar</span>
+        <h2 class="section-title">Upcoming <span class="text-gradient">Alumni Events</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="grid-3 grid-animated">
+        <div class="alumni-event-card reveal stagger-1">
+          <div class="alumni-event-card__icon" style="background:linear-gradient(135deg,var(--color-primary),var(--color-accent));">
+            <i class="ri-trophy-line"></i>
+          </div>
+          <h4>Annual Alumni Cricket Match</h4>
+          <p>Alumni vs. current Class 10 students. Cheer for your team at the TGVIS ground.</p>
+          <span class="alumni-event-card__date"><i class="ri-calendar-line"></i> January 2026</span>
+        </div>
+        <div class="alumni-event-card reveal stagger-2">
+          <div class="alumni-event-card__icon" style="background:linear-gradient(135deg,var(--color-secondary),#D97706);">
+            <i class="ri-group-line"></i>
+          </div>
+          <h4>Grand Alumni Reunion 2026</h4>
+          <p>All passing year batches welcome. Campus tour, dinner, and awards for distinguished alumni.</p>
+          <span class="alumni-event-card__date"><i class="ri-calendar-line"></i> February 2026</span>
+        </div>
+        <div class="alumni-event-card reveal stagger-3">
+          <div class="alumni-event-card__icon" style="background:linear-gradient(135deg,#3B82F6,#2563EB);">
+            <i class="ri-user-voice-line"></i>
+          </div>
+          <h4>Career Guidance Workshop</h4>
+          <p>Alumni from engineering, medicine, and business share their career paths with Class 9 and 10 students.</p>
+          <span class="alumni-event-card__date"><i class="ri-calendar-line"></i> March 2026</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ALUMNI REGISTRATION FORM -->
+  <section class="section" id="register">
+    <div class="container" style="max-width:680px;">
+      <div class="section-header reveal">
+        <span class="section-label">Join Us</span>
+        <h2 class="section-title">Alumni <span class="text-gradient-gold">Registration</span></h2>
+        <div class="divider"></div>
+        <p class="section-description">
+          Fill in the form below to join our alumni database. It takes under 2 minutes.
+        </p>
+      </div>
+
+      <form class="contact-form reveal" id="alumniForm" novalidate
+            style="background:var(--bg-secondary);padding:var(--space-10);border-radius:var(--radius-xl);border:1px solid var(--color-gray-200);">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);">
+          <div class="form-group">
+            <label class="form-label form-label--required" for="aName">Full Name</label>
+            <input type="text" id="aName" class="form-input" placeholder="Your full name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label form-label--required" for="aYear">Passing Year</label>
+            <input type="number" id="aYear" class="form-input" placeholder="e.g. 2018" min="2005" max="2025" required>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);">
+          <div class="form-group">
+            <label class="form-label form-label--required" for="aPhone">Phone Number</label>
+            <input type="tel" id="aPhone" class="form-input" placeholder="+91 XXXXX XXXXX" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="aEmail">Email Address</label>
+            <input type="email" id="aEmail" class="form-input" placeholder="your@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="aOccupation">Current Occupation</label>
+          <input type="text" id="aOccupation" class="form-input" placeholder="e.g. Software Engineer, Doctor, Business Owner">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="aCity">City You Live In</label>
+          <input type="text" id="aCity" class="form-input" placeholder="e.g. Patna, Delhi, Mumbai">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="aMemory">A Memory You Want to Share</label>
+          <textarea id="aMemory" class="form-input form-textarea" rows="3"
+                    placeholder="Tell us about your favourite moment at TGVIS..."></textarea>
+        </div>
+        <div class="form-group">
+          <label style="display:flex;align-items:center;gap:var(--space-3);font-size:var(--fs-sm);color:var(--text-secondary);cursor:pointer;">
+            <input type="checkbox" id="aMentor" style="width:16px;height:16px;accent-color:var(--color-primary);">
+            I am interested in mentoring current TGVIS students
+          </label>
+        </div>
+        <button type="submit" class="btn btn--primary btn--lg w-full" style="margin-top:var(--space-2);">
+          <i class="ri-check-line"></i> Register as Alumni
+        </button>
       </form>
     </div>
   </section>
 
-  <!-- ======== FOOTER (Injected dynamically by navbar.js) ======== -->
+
+  <!-- CTA -->
+  <section class="cta-banner reveal">
+    <div class="container">
+      <div class="cta-banner__content">
+        <div class="cta-banner__text">
+          <span class="cta-banner__label">Stay in Touch</span>
+          <h2 class="cta-banner__title">Follow Us on <span>Social Media</span></h2>
+          <p class="cta-banner__description">
+            Get updates on school events, alumni news, and reunion announcements on our Facebook page and WhatsApp groups.
+          </p>
+        </div>
+        <div class="cta-banner__actions">
+          <a href="https://www.facebook.com/people/The-Green-Valley-International-School-Bihta/100088041550841/"
+             target="_blank" rel="noopener noreferrer" class="btn btn--secondary btn--lg">
+            <i class="ri-facebook-fill"></i> Facebook
+          </a>
+          <a href="../contact/contact.html" class="btn btn--ghost btn--lg">
+            <i class="ri-phone-line"></i> Contact School
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer"></footer>
   <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/countup.js@2.8.0/dist/countUp.umd.js" defer></script>
   <script src="../../assets/js/utils.js" defer></script>
   <script src="../../assets/js/navbar.js" defer></script>
   <script src="../../assets/js/global.js" defer></script>
   <script src="../../assets/js/animations.js" defer></script>
+  <script src="alumni.js" defer></script>
 </body>
 </html>

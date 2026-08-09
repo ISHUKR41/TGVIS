@@ -1,0 +1,192 @@
+/* ==========================================================================
+   TGVIS — Clubs & Societies Page Styles
+   ==========================================================================
+   
+   Styles for the student clubs and societies directory page.
+   Features a filterable grid of club cards with icons and descriptions.
+   
+   SECTIONS:
+   1. Club Category Filters — horizontal pill-style filter buttons
+   2. Club Cards Grid — responsive card layout with hover effects
+   3. Join CTA Section — call-to-action for joining clubs
+   
+   DEPENDENCIES: global.css, components.css, animations.css
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. CLUB CATEGORY FILTERS
+   -------------------------------------------------------------------------- */
+
+.club-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+  margin-bottom: var(--space-10);
+}
+
+.club-filters .filter-btn {
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-gray-200);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-primary);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.club-filters .filter-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.club-filters .filter-btn.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+
+/* --------------------------------------------------------------------------
+   2. CLUB CARDS GRID
+   -------------------------------------------------------------------------- */
+
+.clubs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+@media (max-width: 640px) {
+  .clubs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Individual club card */
+.club-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  border: 1px solid var(--color-gray-200);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.club-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.club-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.club-card:hover::after {
+  transform: scaleX(1);
+}
+
+/* Club icon container */
+.club-card__icon {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: var(--space-4);
+  background: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--color-primary);
+}
+
+/* Different icon background colors for variety */
+.club-card--science .club-card__icon {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3B82F6;
+}
+
+.club-card--arts .club-card__icon {
+  background: rgba(168, 85, 247, 0.1);
+  color: #A855F7;
+}
+
+.club-card--sports .club-card__icon {
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+}
+
+.club-card--tech .club-card__icon {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10B981;
+}
+
+.club-card__title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--fs-lg);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.club-card__text {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+}
+
+.club-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+}
+
+.club-card__meta i {
+  margin-right: var(--space-1);
+  color: var(--color-primary);
+}
+
+
+/* --------------------------------------------------------------------------
+   3. JOIN CTA SECTION
+   -------------------------------------------------------------------------- */
+
+.join-cta {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  border-radius: var(--radius-xl);
+  padding: var(--space-10) var(--space-8);
+  text-align: center;
+  color: var(--color-white);
+  margin-top: var(--space-12);
+}
+
+.join-cta h3 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+}
+
+.join-cta p {
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 600px;
+  margin: 0 auto var(--space-6);
+  line-height: 1.6;
+}
+

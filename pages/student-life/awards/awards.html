@@ -39,13 +39,14 @@
   <link rel="stylesheet" href="../../../assets/css/global.css">
   <link rel="stylesheet" href="../../../assets/css/components.css">
   <link rel="stylesheet" href="../../../assets/css/animations.css">
+  <link rel="stylesheet" href="awards.css">
 
   <!-- ======== Page-specific Styles ======== -->
   <style>
-    /* ── House Card ── */
+    /* ── House Card — individual house in the inter-house competition ── */
     .house-card {
       background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--color-gray-200);
       border-radius: var(--radius-xl);
       padding: var(--space-6);
       text-align: center;
@@ -68,14 +69,14 @@
     }
     .house-card:hover::before { height: 6px; }
     .house-card__name {
-      font-family: var(--ff-heading);
+      font-family: var(--font-heading);
       font-size: var(--fs-lg);
       font-weight: 700;
       color: var(--text-primary);
       margin: var(--space-4) 0 var(--space-2);
     }
     .house-card__points {
-      font-family: var(--ff-heading);
+      font-family: var(--font-heading);
       font-size: var(--fs-2xl);
       font-weight: 800;
     }
@@ -86,7 +87,7 @@
       letter-spacing: 1px;
     }
 
-    /* ── Honour Roll ── */
+    /* ── Honour Roll grid ── */
     .honour-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -95,7 +96,7 @@
     }
     .honour-card {
       background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--color-gray-200);
       border-radius: var(--radius-xl);
       padding: var(--space-6);
       transition: all 0.3s ease;
@@ -107,15 +108,15 @@
     .honour-card__year {
       display: inline-block;
       padding: var(--space-1) var(--space-3);
-      background: rgba(99, 102, 241, 0.1);
-      color: var(--clr-primary);
+      background: rgba(var(--color-primary-rgb), 0.1);
+      color: var(--color-primary);
       border-radius: var(--radius-full);
       font-size: var(--fs-xs);
       font-weight: 700;
       margin-bottom: var(--space-3);
     }
     .honour-card__name {
-      font-family: var(--ff-heading);
+      font-family: var(--font-heading);
       font-weight: 700;
       color: var(--text-primary);
       margin-bottom: var(--space-2);
@@ -130,7 +131,7 @@
       gap: var(--space-2);
       margin-top: var(--space-3);
       font-size: var(--fs-xs);
-      color: var(--clr-secondary, #10B981);
+      color: var(--color-accent);
       font-weight: 600;
     }
 
@@ -319,9 +320,9 @@
         <div class="divider"></div>
       </div>
 
-      <div class="reveal" style="background:var(--bg-secondary);padding:var(--space-10);border-radius:var(--radius-xl);border:1px solid var(--border-color);">
+      <div class="reveal" style="background:var(--bg-secondary);padding:var(--space-10);border-radius:var(--radius-xl);border:1px solid var(--color-gray-200);">
         <i class="ri-award-line" style="font-size:4rem;color:#F59E0B;"></i>
-        <h3 style="margin:var(--space-4) 0;color:var(--text-primary);font-family:var(--ff-heading);font-weight:700;">Annual Day & Prize Distribution</h3>
+        <h3 style="margin:var(--space-4) 0;color:var(--text-primary);font-family:var(--font-heading);font-weight:700;">Annual Day & Prize Distribution</h3>
         <p style="color:var(--text-secondary);line-height:var(--lh-relaxed);">
           Every year, our Annual Day celebration is the grand stage where we honour our achievers. Students receive trophies, medals, and certificates from our chief guest in front of the entire school community — parents, teachers, and fellow students. It is a day of pride, joy, and motivation for the entire TGVIS family.
         </p>
@@ -330,15 +331,15 @@
         </p>
         <div style="margin-top:var(--space-6);display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
           <div style="text-align:center;">
-            <div style="font-family:var(--ff-heading);font-size:var(--fs-2xl);font-weight:800;color:var(--text-primary);">200+</div>
+            <div style="font-family:var(--font-heading);font-size:var(--fs-2xl);font-weight:800;color:var(--text-primary);">200+</div>
             <div style="font-size:var(--fs-xs);color:var(--text-tertiary);">Awards Given Annually</div>
           </div>
           <div style="text-align:center;">
-            <div style="font-family:var(--ff-heading);font-size:var(--fs-2xl);font-weight:800;color:var(--text-primary);">50+</div>
+            <div style="font-family:var(--font-heading);font-size:var(--fs-2xl);font-weight:800;color:var(--text-primary);">50+</div>
             <div style="font-size:var(--fs-xs);color:var(--text-tertiary);">Trophies & Shields</div>
           </div>
           <div style="text-align:center;">
-            <div style="font-family:var(--ff-heading);font-size:var(--fs-2xl);font-weight:800;color:var(--text-primary);">6</div>
+            <div style="font-family:var(--font-heading);font-size:var(--fs-2xl);font-weight:800;color:var(--text-primary);">6</div>
             <div style="font-size:var(--fs-xs);color:var(--text-tertiary);">Award Categories</div>
           </div>
         </div>
@@ -405,9 +406,9 @@
        ================================================================ -->
   <section class="section">
     <div class="container" style="max-width:700px;text-align:center;">
-      <div class="reveal" style="background:linear-gradient(135deg,var(--bg-secondary),var(--bg-primary));padding:var(--space-10);border-radius:var(--radius-xl);border:1px solid var(--border-color);">
+      <div class="reveal" style="background:linear-gradient(135deg,var(--bg-secondary),var(--bg-primary));padding:var(--space-10);border-radius:var(--radius-xl);border:1px solid var(--color-gray-200);">
         <i class="ri-lightbulb-flash-line" style="font-size:3rem;color:#F59E0B;"></i>
-        <h3 style="font-family:var(--ff-heading);font-size:var(--fs-xl);font-weight:700;color:var(--text-primary);margin:var(--space-4) 0 var(--space-3);">
+        <h3 style="font-family:var(--font-heading);font-size:var(--fs-xl);font-weight:700;color:var(--text-primary);margin:var(--space-4) 0 var(--space-3);">
           Every Student is a Winner
         </h3>
         <p style="color:var(--text-secondary);margin-bottom:var(--space-6);line-height:var(--lh-relaxed);">
@@ -442,5 +443,7 @@
   <script src="../../../assets/js/navbar.js" defer></script>
   <script src="../../../assets/js/global.js" defer></script>
   <script src="../../../assets/js/animations.js" defer></script>
+  <script src="awards.js" defer></script>
 </body>
 </html>
+

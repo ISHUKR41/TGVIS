@@ -1,69 +1,77 @@
 /* ==========================================================================
    TGVIS — Daily Schedule Page Styles
    ==========================================================================
-   
-   Styles specific to the Daily Schedule page. Includes:
-   1. Timeline layout with connecting line
-   2. Time badges with gradient colors
-   3. Schedule cards with hover effects
-   4. Important notes section
-   5. Download timetable CTA
-   6. Responsive adjustments
-   
+
+   All variables use the correct global.css token names:
+   - var(--color-primary)  NOT var(--clr-primary)
+   - var(--font-heading)   NOT var(--ff-heading)
+   - var(--color-gray-200) NOT var(--border-color)
+
+   Sections:
+   1. Timeline layout with connecting line and dots
+   2. Time badges (colorful gradient pills)
+   3. Schedule cards with slide-on-hover effect
+   4. Day-at-a-glance stat grid
+   5. Important notes section
+   6. Download timetable CTA
+   7. Responsive adjustments
    ========================================================================== */
 
 
-/* ── Timeline Layout ── */
+/* ── 1. Timeline Layout ── */
 .schedule-timeline {
   position: relative;
-  padding-left: 48px;
+  padding-left: 52px;
   margin-top: var(--space-8);
 }
 
-/* Vertical connecting line */
+/* Vertical connecting line — gradient from green at top to gold at bottom */
 .schedule-timeline::before {
   content: '';
   position: absolute;
   left: 22px;
   top: 0;
   bottom: 0;
-  width: 2px;
+  width: 3px;
   background: linear-gradient(
     180deg,
-    var(--clr-primary) 0%,
-    var(--clr-secondary, #10B981) 50%,
-    var(--border-color) 100%
+    var(--color-primary) 0%,
+    var(--color-secondary) 60%,
+    var(--color-gray-200) 100%
   );
+  border-radius: var(--radius-full);
 }
 
 /* ── Individual Schedule Item ── */
 .schedule-item {
   position: relative;
   margin-bottom: var(--space-8);
-  padding-left: var(--space-6);
+  padding-left: var(--space-4);
 }
 
-/* Dot on the timeline */
+/* Circle dot on the timeline line */
 .schedule-item::before {
   content: '';
   position: absolute;
-  left: -30px;
-  top: 8px;
-  width: 14px;
-  height: 14px;
+  left: -34px;
+  top: 10px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: var(--bg-primary);
-  border: 3px solid var(--clr-primary);
+  border: 3px solid var(--color-primary);
   z-index: 1;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
 }
 
 .schedule-item:hover::before {
-  transform: scale(1.3);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+  transform: scale(1.4);
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.12);
 }
 
-/* ── Time Badge ── */
+
+/* ── 2. Time Badge ── */
 .schedule-item__time {
   display: inline-flex;
   align-items: center;
@@ -72,29 +80,32 @@
   border-radius: var(--radius-full);
   font-size: var(--fs-xs);
   font-weight: 700;
-  font-family: var(--ff-heading);
+  font-family: var(--font-heading);
   color: #fff;
   margin-bottom: var(--space-3);
   letter-spacing: 0.5px;
+  /* Individual time badge colors are set inline per item */
 }
 
-/* ── Schedule Card ── */
+
+/* ── 3. Schedule Card ── */
 .schedule-card {
   background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
   padding: var(--space-6);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all var(--transition-smooth);
 }
 
+/* Slides slightly right and gains a left border accent on hover */
 .schedule-card:hover {
   transform: translateX(6px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-  border-color: var(--clr-primary);
+  box-shadow: var(--shadow-md);
+  border-left: 3px solid var(--color-primary);
 }
 
 .schedule-card__title {
-  font-family: var(--ff-heading);
+  font-family: var(--font-heading);
   font-size: var(--fs-lg);
   font-weight: 700;
   color: var(--text-primary);
@@ -114,38 +125,44 @@
   line-height: var(--lh-relaxed);
 }
 
-/* ── Timetable Grid ── */
+
+/* ── 4. Day-at-a-glance Stats Grid ── */
 .timetable-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: var(--space-5);
   margin-top: var(--space-8);
 }
 
 .timetable-stat {
   background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-gray-200);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all var(--transition-smooth);
 }
 
 .timetable-stat:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(var(--color-primary-rgb), 0.3);
 }
 
 .timetable-stat__icon {
   font-size: 2rem;
   margin-bottom: var(--space-3);
+  display: block;
 }
 
 .timetable-stat__number {
-  font-family: var(--ff-heading);
+  font-family: var(--font-heading);
   font-size: var(--fs-2xl);
   font-weight: 800;
   color: var(--text-primary);
+  display: block;
+  line-height: 1;
+  margin-bottom: var(--space-2);
 }
 
 .timetable-stat__label {
@@ -153,21 +170,23 @@
   color: var(--text-secondary);
 }
 
-/* ── Important Notes ── */
+
+/* ── 5. Important Notes Card ── */
 .schedule-notes {
   background: var(--bg-secondary);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   padding: var(--space-8);
-  border-left: 4px solid var(--clr-primary);
+  border-left: 4px solid var(--color-primary);
   margin-top: var(--space-10);
+  box-shadow: var(--shadow-sm);
 }
 
 .schedule-notes__title {
-  font-family: var(--ff-heading);
+  font-family: var(--font-heading);
   font-size: var(--fs-lg);
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
   display: flex;
   align-items: center;
   gap: var(--space-3);
@@ -176,10 +195,12 @@
 .schedule-notes__list {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
 .schedule-notes__list li {
-  padding: var(--space-2) 0;
   color: var(--text-secondary);
   font-size: var(--fs-sm);
   display: flex;
@@ -189,25 +210,28 @@
 }
 
 .schedule-notes__list li i {
-  color: var(--clr-primary);
+  color: var(--color-primary);
   margin-top: 3px;
   flex-shrink: 0;
+  font-size: var(--fs-md);
 }
 
-/* ── Download CTA ── */
+
+/* ── 6. Download Timetable CTA ── */
 .schedule-download {
   text-align: center;
   margin-top: var(--space-10);
-  padding: var(--space-8);
+  padding: var(--space-10);
   background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-gray-200);
   border-radius: var(--radius-xl);
 }
 
-/* ── Responsive ── */
+
+/* ── 7. Responsive ── */
 @media (max-width: 768px) {
   .schedule-timeline {
-    padding-left: 36px;
+    padding-left: 38px;
   }
   .schedule-timeline::before {
     left: 14px;
@@ -222,7 +246,7 @@
 
 @media (max-width: 480px) {
   .schedule-timeline {
-    padding-left: 28px;
+    padding-left: 30px;
   }
   .schedule-timeline::before {
     left: 10px;

@@ -1,0 +1,68 @@
+/* ==========================================================================
+   TGVIS — Community Page Styles
+   Uses correct variable names: --font-heading, --color-primary, etc.
+   ========================================================================== */
+
+
+/* ── PTA two-column grid ── */
+.pta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: start;
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 1024px) {
+  .pta-grid { grid-template-columns: 1fr; gap: var(--space-8); }
+}
+
+
+/* ── PTM meeting list ── */
+.pta-meetings {
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+}
+
+.ptm-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.ptm-item:last-of-type {
+  border-bottom: none;
+}
+
+/* Date badge — vertical: month over day */
+.ptm-item__date {
+  min-width: 54px;
+  height: 58px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ptm-item__month {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.ptm-item__day {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  line-height: 1;
+}

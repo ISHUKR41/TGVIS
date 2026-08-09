@@ -1,41 +1,250 @@
 <!DOCTYPE html>
-<!-- TGVIS — Centres of Excellence Page -->
+<!--
+  TGVIS — Centres of Excellence Page
+  ====================================
+  Sections:
+  1. Page Hero
+  2. Intro + quick stats
+  3. Six excellence centres (with features)
+  4. Facility stats bar
+  5. CTA
+-->
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Centres of Excellence — TGVIS | The Green Valley International School</title>
-  <meta name="description" content="TGVIS Centres of Excellence — Specialized departments for Science, Technology, Arts, Sports, and Language that push boundaries of student achievement.">
+  <title>Centres of Excellence — TGVIS | The Green Valley International School, Bihta</title>
+  <meta name="description" content="Discover TGVIS Centres of Excellence — Science Lab, Computer Lab, Arts Studio, Sports Complex, Language Centre, and Integrated Tuition Centre in Bihta, Patna.">
+  <meta name="keywords" content="TGVIS centres of excellence, science lab Bihta, computer lab school Patna, arts centre school Bihar">
+  <link rel="canonical" href="https://www.tgvis.edu.in/pages/centres-of-excellence/centres-of-excellence.html">
   <link rel="icon" type="image/png" href="../../assets/images/logo/logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/global.css"><link rel="stylesheet" href="../../assets/css/components.css"><link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="centres-of-excellence.css">
 </head>
 <body>
-  <div class="preloader" id="preloader"><div class="preloader__text">TGVIS</div><div class="preloader__bar"><div class="preloader__bar-fill"></div></div></div><div class="page-transition"></div>
-  <!-- ======== NAVBAR (Injected dynamically by navbar.js) ======== -->
+
+  <div class="preloader" id="preloader">
+    <div class="preloader__text">TGVIS</div>
+    <div class="preloader__bar"><div class="preloader__bar-fill"></div></div>
+  </div>
+  <div class="page-transition"></div>
   <nav class="navbar" id="navbar"></nav>
 
-  <section class="page-hero"><img src="../../assets/images/hero/campus.png" alt="Centres of Excellence" class="page-hero__bg"><div class="page-hero__overlay"></div><div class="page-hero__content"><h1 class="page-hero__title">Centres of Excellence</h1><p class="page-hero__subtitle">Specialized centres that push the boundaries of student achievement</p><nav class="breadcrumb"><a href="../../index.html" class="breadcrumb__link">Home</a><i class="ri-arrow-right-s-line breadcrumb__separator"></i><span class="breadcrumb__current">Centres of Excellence</span></nav></div></section>
 
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <img src="../../assets/images/hero/campus.png" alt="TGVIS Centres of Excellence" class="page-hero__bg" loading="eager">
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <h1 class="page-hero__title">Centres of Excellence</h1>
+      <p class="page-hero__subtitle">Dedicated spaces where curiosity becomes capability</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html" class="breadcrumb__link">Home</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <span class="breadcrumb__current">Centres of Excellence</span>
+      </nav>
+    </div>
+  </section>
+
+
+  <!-- INTRO -->
   <section class="section">
-    <div class="container">
-      <div class="section-header reveal"><span class="section-label">Specialization</span><h2 class="section-title">Our <span class="text-gradient-gold">Excellence Centres</span></h2><div class="divider"></div><p class="section-description">Each Centre of Excellence at TGVIS is a dedicated hub where students receive focused training, expert mentorship, and advanced resources.</p></div>
-      <div class="grid-2" style="gap:var(--space-8);">
-        <div class="feature-card reveal stagger-1" style="padding:var(--space-10);"><div class="feature-card__icon"><i class="ri-test-tube-line"></i></div><h4 class="feature-card__title">Centre for Science & Innovation</h4><p class="feature-card__text">Fully equipped Physics, Chemistry, and Biology labs. Science exhibitions, Olympiad coaching, and hands-on experiments that make science exciting and tangible for every student.</p></div>
-        <div class="feature-card reveal stagger-2" style="padding:var(--space-10);"><div class="feature-card__icon"><i class="ri-computer-line"></i></div><h4 class="feature-card__title">Centre for Digital Learning</h4><p class="feature-card__text">Modern computer lab with coding workshops, digital literacy programs, and smart classroom technology integration across all classes.</p></div>
-        <div class="feature-card reveal stagger-3" style="padding:var(--space-10);"><div class="feature-card__icon"><i class="ri-palette-line"></i></div><h4 class="feature-card__title">Centre for Arts & Culture</h4><p class="feature-card__text">Dedicated space for visual arts, performing arts, music, dance, and cultural heritage programs. Annual exhibitions and inter-school competitions.</p></div>
-        <div class="feature-card reveal stagger-4" style="padding:var(--space-10);"><div class="feature-card__icon"><i class="ri-trophy-line"></i></div><h4 class="feature-card__title">Centre for Sports Excellence</h4><p class="feature-card__text">Professional coaching in cricket, football, basketball, athletics, and yoga. Training for district and state-level competitions.</p></div>
-        <div class="feature-card reveal stagger-5" style="padding:var(--space-10);"><div class="feature-card__icon"><i class="ri-translate-2"></i></div><h4 class="feature-card__title">Centre for Language & Communication</h4><p class="feature-card__text">English language lab, Hindi creative writing, debate and public speaking training. Building confident communicators who can express ideas effectively.</p></div>
-        <div class="feature-card reveal stagger-6" style="padding:var(--space-10);"><div class="feature-card__icon"><i class="ri-lightbulb-line"></i></div><h4 class="feature-card__title">Integrated Tuition Centre</h4><p class="feature-card__text">Our unique in-school tuition program offering extra academic support, doubt-clearing sessions, mock tests, and personalised coaching for Board exam preparation.</p></div>
+    <div class="container" style="max-width:860px;text-align:center;">
+      <div class="section-header reveal">
+        <span class="section-label">Our Infrastructure</span>
+        <h2 class="section-title">Built for <span class="text-gradient-gold">Exceptional Learning</span></h2>
+        <div class="divider"></div>
+      </div>
+      <p class="lead reveal">
+        Beyond regular classrooms, TGVIS has invested in six dedicated Centres of Excellence — each designed to give students access to advanced resources, expert coaching, and hands-on experiences that go far beyond a textbook.
+      </p>
+
+      <!-- Quick stats row -->
+      <div class="centres-stats reveal">
+        <div class="centres-stat">
+          <span class="centres-stat__number">6</span>
+          <span class="centres-stat__label">Excellence Centres</span>
+        </div>
+        <div class="centres-stat">
+          <span class="centres-stat__number">3</span>
+          <span class="centres-stat__label">Fully Equipped Labs</span>
+        </div>
+        <div class="centres-stat">
+          <span class="centres-stat__number">500+</span>
+          <span class="centres-stat__label">Students Benefiting</span>
+        </div>
+        <div class="centres-stat">
+          <span class="centres-stat__number">5000+</span>
+          <span class="centres-stat__label">Library Books</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ======== FOOTER (Injected dynamically by navbar.js) ======== -->
+
+  <!-- SIX CENTRES (detailed) -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Explore</span>
+        <h2 class="section-title">Our Six <span class="text-gradient">Excellence Centres</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <!-- Centre 1: Science -->
+      <div class="centre-detail reveal">
+        <div class="centre-detail__icon" style="background:linear-gradient(135deg,#3B82F6,#2563EB);">
+          <i class="ri-test-tube-line"></i>
+        </div>
+        <div class="centre-detail__content">
+          <h3 class="centre-detail__title">Centre for Science &amp; Innovation</h3>
+          <p class="centre-detail__text">
+            Three separate laboratories — Physics, Chemistry, and Biology — fully equipped with modern instruments for every CBSE experiment from Class 6 to Class 10. Students do real experiments, not just read about them. The Science Centre also hosts our annual Science Exhibition, where students present working models and original projects.
+          </p>
+          <ul class="centre-detail__features">
+            <li><i class="ri-check-line"></i> Physics Lab with electrical and optics equipment</li>
+            <li><i class="ri-check-line"></i> Chemistry Lab with fume hood and reagent cabinets</li>
+            <li><i class="ri-check-line"></i> Biology Lab with microscopes and preserved specimens</li>
+            <li><i class="ri-check-line"></i> Olympiad preparation coaching every Friday</li>
+            <li><i class="ri-check-line"></i> Annual Science Exhibition open to parents</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Centre 2: Digital -->
+      <div class="centre-detail reveal">
+        <div class="centre-detail__icon" style="background:linear-gradient(135deg,#10B981,#059669);">
+          <i class="ri-computer-line"></i>
+        </div>
+        <div class="centre-detail__content">
+          <h3 class="centre-detail__title">Centre for Digital Learning</h3>
+          <p class="centre-detail__text">
+            A 30-computer lab with high-speed internet connectivity and licensed software. All classrooms are connected to digital boards that allow teachers to use multimedia presentations, educational videos, and interactive quizzes. The Coding Club meets here every Friday, introducing students to programming basics from Class 5 upward.
+          </p>
+          <ul class="centre-detail__features">
+            <li><i class="ri-check-line"></i> 30 computers with internet access</li>
+            <li><i class="ri-check-line"></i> Smart boards in all classrooms (Class 1–10)</li>
+            <li><i class="ri-check-line"></i> Coding Club: Scratch, HTML/CSS, Python basics</li>
+            <li><i class="ri-check-line"></i> Digital literacy as a compulsory subject</li>
+            <li><i class="ri-check-line"></i> MS Office and typing practice for all students</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Centre 3: Arts -->
+      <div class="centre-detail reveal">
+        <div class="centre-detail__icon" style="background:linear-gradient(135deg,#A855F7,#9333EA);">
+          <i class="ri-palette-line"></i>
+        </div>
+        <div class="centre-detail__content">
+          <h3 class="centre-detail__title">Centre for Arts &amp; Culture</h3>
+          <p class="centre-detail__text">
+            A dedicated activity hall for visual arts, music, dance, and drama. Students have access to art materials, musical instruments, and a stage for performances. The Arts Centre is home to our Annual Day rehearsals, Independence Day programs, cultural competitions, and the school magazine editorial team.
+          </p>
+          <ul class="centre-detail__features">
+            <li><i class="ri-check-line"></i> Visual arts: drawing, painting, clay modelling, craft</li>
+            <li><i class="ri-check-line"></i> Music: vocals, harmonium, tabla, and guitar</li>
+            <li><i class="ri-check-line"></i> Dance: classical, folk, and contemporary</li>
+            <li><i class="ri-check-line"></i> Drama and stage performance training</li>
+            <li><i class="ri-check-line"></i> School magazine published annually by students</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Centre 4: Sports -->
+      <div class="centre-detail reveal">
+        <div class="centre-detail__icon" style="background:linear-gradient(135deg,#EF4444,#DC2626);">
+          <i class="ri-trophy-line"></i>
+        </div>
+        <div class="centre-detail__content">
+          <h3 class="centre-detail__title">Centre for Sports Excellence</h3>
+          <p class="centre-detail__text">
+            A full-size sports ground with marked cricket pitch, football field, basketball court, and athletics track. Qualified coaches (not just PE teachers) run structured training sessions for each sport. The Sports Centre trains students for inter-school competitions, district championships, and State-level selections.
+          </p>
+          <ul class="centre-detail__features">
+            <li><i class="ri-check-line"></i> Cricket coaching with professional coaches</li>
+            <li><i class="ri-check-line"></i> Football and basketball on marked fields/courts</li>
+            <li><i class="ri-check-line"></i> Athletics: sprints, long jump, high jump, shot put</li>
+            <li><i class="ri-check-line"></i> Yoga and mindfulness for all classes daily</li>
+            <li><i class="ri-check-line"></i> Indoor games: chess, carrom, table tennis</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Centre 5: Language -->
+      <div class="centre-detail reveal">
+        <div class="centre-detail__icon" style="background:linear-gradient(135deg,#F59E0B,#D97706);">
+          <i class="ri-translate-2"></i>
+        </div>
+        <div class="centre-detail__content">
+          <h3 class="centre-detail__title">Centre for Language &amp; Communication</h3>
+          <p class="centre-detail__text">
+            A language-focused programme that helps every student — regardless of background — communicate clearly and confidently in English and Hindi. Regular debate sessions, elocution competitions, public speaking workshops, and the Spelling Bee challenge are all run through this centre.
+          </p>
+          <ul class="centre-detail__features">
+            <li><i class="ri-check-line"></i> Spoken English sessions from Class 3 onwards</li>
+            <li><i class="ri-check-line"></i> Inter-house Debate Competition each term</li>
+            <li><i class="ri-check-line"></i> Annual Elocution and Spelling Bee contest</li>
+            <li><i class="ri-check-line"></i> Hindi creative writing and poetry workshops</li>
+            <li><i class="ri-check-line"></i> School library with 5000+ books in English and Hindi</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Centre 6: Tuition -->
+      <div class="centre-detail reveal" style="border-left-color: var(--color-secondary);">
+        <div class="centre-detail__icon" style="background:linear-gradient(135deg,var(--color-secondary),#D97706);">
+          <i class="ri-lightbulb-line"></i>
+        </div>
+        <div class="centre-detail__content">
+          <h3 class="centre-detail__title">Integrated Tuition Centre <span style="font-size:var(--fs-sm);color:var(--color-secondary);font-weight:600;">(Exclusive to TGVIS)</span></h3>
+          <p class="centre-detail__text">
+            Unlike most schools, TGVIS runs an in-school tuition programme after regular hours. Students who need extra academic support — or who want to work harder for board exams — can attend supervised sessions without leaving campus. This eliminates the cost and safety concerns of external tuition centres.
+          </p>
+          <ul class="centre-detail__features">
+            <li><i class="ri-check-line"></i> Available for Class 1 to Class 10 students</li>
+            <li><i class="ri-check-line"></i> Subject-wise doubt-clearing by the same teachers</li>
+            <li><i class="ri-check-line"></i> Mock tests and board exam preparation</li>
+            <li><i class="ri-check-line"></i> Supervised on-campus sessions — no travel needed</li>
+            <li><i class="ri-check-line"></i> Significantly more affordable than external coaching</li>
+          </ul>
+          <a href="../admissions/admissions.html" class="btn btn--primary" style="margin-top:var(--space-6);">
+            <i class="ri-file-text-line"></i> Enquire About Tuition
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="cta-banner reveal">
+    <div class="container">
+      <div class="cta-banner__content">
+        <div class="cta-banner__text">
+          <span class="cta-banner__label">See It Yourself</span>
+          <h2 class="cta-banner__title">Visit Our <span>Campus Today</span></h2>
+          <p class="cta-banner__description">
+            No brochure can replace walking through our labs, sports ground, and classrooms. Schedule a campus visit and see the TGVIS difference for yourself.
+          </p>
+        </div>
+        <div class="cta-banner__actions">
+          <a href="../contact/contact.html" class="btn btn--secondary btn--lg"><i class="ri-map-pin-line"></i> Visit Campus</a>
+          <a href="../admissions/admissions.html" class="btn btn--ghost btn--lg"><i class="ri-edit-line"></i> Apply Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer"></footer>
   <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
@@ -43,5 +252,6 @@
   <script src="../../assets/js/navbar.js" defer></script>
   <script src="../../assets/js/global.js" defer></script>
   <script src="../../assets/js/animations.js" defer></script>
+  <script src="centres-of-excellence.js" defer></script>
 </body>
 </html>

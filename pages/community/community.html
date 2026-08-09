@@ -1,41 +1,317 @@
 <!DOCTYPE html>
-<!-- TGVIS — Community Page -->
+<!--
+  TGVIS — Community Page
+  ======================
+  Sections:
+  1. Page Hero
+  2. Community intro + values
+  3. Parent-Teacher Association (PTA)
+  4. WhatsApp groups quick-link
+  5. Community events calendar
+  6. Volunteer opportunities
+  7. CTA
+-->
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Community — TGVIS | The Green Valley International School</title>
-  <meta name="description" content="TGVIS Community — Parent association, alumni network, community outreach, and how we work together for student success.">
+  <title>Community — TGVIS | The Green Valley International School, Bihta</title>
+  <meta name="description" content="The TGVIS community — parents, teachers, alumni, and local partners working together for every student's success in Bihta, Patna, Bihar.">
+  <meta name="keywords" content="TGVIS community, PTA Bihta, parent teacher association, school community Bihar, TGVIS parents">
+  <link rel="canonical" href="https://www.tgvis.edu.in/pages/community/community.html">
   <link rel="icon" type="image/png" href="../../assets/images/logo/logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/global.css"><link rel="stylesheet" href="../../assets/css/components.css"><link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="community.css">
 </head>
 <body>
-  <div class="preloader" id="preloader"><div class="preloader__text">TGVIS</div><div class="preloader__bar"><div class="preloader__bar-fill"></div></div></div><div class="page-transition"></div>
-  <!-- ======== NAVBAR (Injected dynamically by navbar.js) ======== -->
+
+  <div class="preloader" id="preloader">
+    <div class="preloader__text">TGVIS</div>
+    <div class="preloader__bar"><div class="preloader__bar-fill"></div></div>
+  </div>
+  <div class="page-transition"></div>
   <nav class="navbar" id="navbar"></nav>
 
-  <section class="page-hero"><img src="../../assets/images/hero/campus.png" alt="Community" class="page-hero__bg"><div class="page-hero__overlay"></div><div class="page-hero__content"><h1 class="page-hero__title">Our Community</h1><p class="page-hero__subtitle">A family of students, parents, teachers, and alumni united by education</p><nav class="breadcrumb"><a href="../../index.html" class="breadcrumb__link">Home</a><i class="ri-arrow-right-s-line breadcrumb__separator"></i><span class="breadcrumb__current">Community</span></nav></div></section>
 
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <img src="../../assets/images/hero/campus.png" alt="TGVIS Community" class="page-hero__bg" loading="eager">
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <h1 class="page-hero__title">Our Community</h1>
+      <p class="page-hero__subtitle">Students, parents, teachers, and neighbours — all one family</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html" class="breadcrumb__link">Home</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <span class="breadcrumb__current">Community</span>
+      </nav>
+    </div>
+  </section>
+
+
+  <!-- INTRO SECTION -->
   <section class="section">
+    <div class="container" style="max-width:860px;text-align:center;">
+      <div class="section-header reveal">
+        <span class="section-label">Together We Grow</span>
+        <h2 class="section-title">The TGVIS <span class="text-gradient-gold">Family</span></h2>
+        <div class="divider"></div>
+      </div>
+      <p class="lead reveal">
+        A school is only as strong as the community behind it. At TGVIS, we have built a community where parents are partners, teachers are mentors, alumni are role models, and neighbours are friends.
+      </p>
+      <p class="reveal">
+        Every event, every PTM, every WhatsApp update — it all exists so that parents and the school stay in sync, and so that children grow up feeling truly supported.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- COMMUNITY PILLARS -->
+  <section class="section section--alt">
     <div class="container">
-      <div class="section-header reveal"><span class="section-label">Together We Grow</span><h2 class="section-title">The TGVIS <span class="text-gradient-gold">Family</span></h2><div class="divider"></div></div>
+      <div class="section-header reveal">
+        <span class="section-label">Who We Are</span>
+        <h2 class="section-title">The Pillars of <span class="text-gradient">Our Community</span></h2>
+        <div class="divider"></div>
+      </div>
+
       <div class="grid-3 grid-animated">
-        <div class="feature-card reveal stagger-1"><div class="feature-card__icon"><i class="ri-parent-line"></i></div><h4 class="feature-card__title">Parent-Teacher Association</h4><p class="feature-card__text">Active PTA that bridges the gap between home and school. Regular meetings, feedback sessions, and collaborative events strengthen the school-parent partnership.</p></div>
-        <div class="feature-card reveal stagger-2"><div class="feature-card__icon"><i class="ri-graduation-cap-line"></i></div><h4 class="feature-card__title">Alumni Network</h4><p class="feature-card__text">Growing network of TGVIS alumni who give back through mentoring, guest lectures, career guidance, and donations to their alma mater.</p></div>
-        <div class="feature-card reveal stagger-3"><div class="feature-card__icon"><i class="ri-community-line"></i></div><h4 class="feature-card__title">Local Community</h4><p class="feature-card__text">Deep roots in the Bihta community. Open events, community service projects, and cultural celebrations that welcome everyone.</p></div>
-        <div class="feature-card reveal stagger-4"><div class="feature-card__icon"><i class="ri-user-heart-line"></i></div><h4 class="feature-card__title">Student Council</h4><p class="feature-card__text">Democratically elected student council that represents student voice, organizes events, and develops leadership skills.</p></div>
-        <div class="feature-card reveal stagger-5"><div class="feature-card__icon"><i class="ri-service-line"></i></div><h4 class="feature-card__title">Support Staff</h4><p class="feature-card__text">Our dedicated support staff — bus drivers, security guards, cleaning team, and administrative staff — are the backbone of smooth school operations.</p></div>
-        <div class="feature-card reveal stagger-6"><div class="feature-card__icon"><i class="ri-hand-heart-line"></i></div><h4 class="feature-card__title">Volunteer Program</h4><p class="feature-card__text">Parents and community members can volunteer for school events, library management, garden maintenance, and mentoring programs.</p></div>
+        <div class="feature-card reveal stagger-1">
+          <div class="feature-card__icon"><i class="ri-parent-line"></i></div>
+          <h4 class="feature-card__title">Parents & Families</h4>
+          <p class="feature-card__text">Our most important partners. Parents receive regular updates through WhatsApp groups, PTMs, and the school app. Your feedback shapes how we grow.</p>
+        </div>
+        <div class="feature-card reveal stagger-2">
+          <div class="feature-card__icon"><i class="ri-team-line"></i></div>
+          <h4 class="feature-card__title">Teachers & Staff</h4>
+          <p class="feature-card__text">50+ dedicated educators and support staff who come to school every day with one goal: giving every child the best possible learning experience.</p>
+        </div>
+        <div class="feature-card reveal stagger-3">
+          <div class="feature-card__icon"><i class="ri-graduation-cap-line"></i></div>
+          <h4 class="feature-card__title">Alumni Network</h4>
+          <p class="feature-card__text">Past students who mentor current ones, speak at career days, and donate to the scholarship fund. Their success is proof that TGVIS works.</p>
+        </div>
+        <div class="feature-card reveal stagger-4">
+          <div class="feature-card__icon"><i class="ri-user-heart-line"></i></div>
+          <h4 class="feature-card__title">Student Leaders</h4>
+          <p class="feature-card__text">The Student Council, Head Boy/Girl, and House Captains represent student interests and take real responsibility for school life.</p>
+        </div>
+        <div class="feature-card reveal stagger-5">
+          <div class="feature-card__icon"><i class="ri-community-line"></i></div>
+          <h4 class="feature-card__title">Bihta Neighbourhood</h4>
+          <p class="feature-card__text">TGVIS is proud to be part of Bihta. We host open events, run outreach programs in nearby villages, and celebrate local festivals together.</p>
+        </div>
+        <div class="feature-card reveal stagger-6">
+          <div class="feature-card__icon"><i class="ri-service-line"></i></div>
+          <h4 class="feature-card__title">Support Staff</h4>
+          <p class="feature-card__text">Bus drivers, security guards, office staff, and cleaning team — the unsung heroes who keep TGVIS running safely and smoothly every single day.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ======== FOOTER (Injected dynamically by navbar.js) ======== -->
+
+  <!-- PARENT-TEACHER ASSOCIATION -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Parent Partnership</span>
+        <h2 class="section-title">Parent-Teacher <span class="text-gradient-gold">Association</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="pta-grid reveal">
+        <div class="pta-content">
+          <p class="lead">The TGVIS Parent-Teacher Association (PTA) is an active body that ensures the school and parents always work in the same direction — towards better outcomes for every child.</p>
+          <p>The PTA meets quarterly to discuss academic progress, school facilities, safety, events, and any concerns parents may have. All parents are welcome to attend.</p>
+
+          <div style="margin:var(--space-8) 0;">
+            <h4 style="font-family:var(--font-heading);color:var(--text-primary);margin-bottom:var(--space-4);">What the PTA Does</h4>
+            <ul style="display:flex;flex-direction:column;gap:var(--space-3);">
+              <li style="display:flex;gap:var(--space-3);align-items:flex-start;font-size:var(--fs-sm);color:var(--text-secondary);">
+                <i class="ri-checkbox-circle-line" style="color:var(--color-accent);margin-top:2px;flex-shrink:0;"></i>
+                <span>Quarterly meetings with the principal and class teachers to review student progress</span>
+              </li>
+              <li style="display:flex;gap:var(--space-3);align-items:flex-start;font-size:var(--fs-sm);color:var(--text-secondary);">
+                <i class="ri-checkbox-circle-line" style="color:var(--color-accent);margin-top:2px;flex-shrink:0;"></i>
+                <span>Parent representation in school decisions about curriculum and events</span>
+              </li>
+              <li style="display:flex;gap:var(--space-3);align-items:flex-start;font-size:var(--fs-sm);color:var(--text-secondary);">
+                <i class="ri-checkbox-circle-line" style="color:var(--color-accent);margin-top:2px;flex-shrink:0;"></i>
+                <span>Organising Annual Day, Sports Day, and cultural events with parent volunteers</span>
+              </li>
+              <li style="display:flex;gap:var(--space-3);align-items:flex-start;font-size:var(--fs-sm);color:var(--text-secondary);">
+                <i class="ri-checkbox-circle-line" style="color:var(--color-accent);margin-top:2px;flex-shrink:0;"></i>
+                <span>Fundraising for scholarships, library books, and playground equipment</span>
+              </li>
+              <li style="display:flex;gap:var(--space-3);align-items:flex-start;font-size:var(--fs-sm);color:var(--text-secondary);">
+                <i class="ri-checkbox-circle-line" style="color:var(--color-accent);margin-top:2px;flex-shrink:0;"></i>
+                <span>Feedback channel for parents to raise concerns directly with management</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="../contact/contact.html" class="btn btn--primary">
+            <i class="ri-phone-line"></i> Contact the PTA Office
+          </a>
+        </div>
+
+        <div class="pta-meetings">
+          <h4 style="font-family:var(--font-heading);font-weight:700;color:var(--text-primary);margin-bottom:var(--space-6);">Upcoming PTMs</h4>
+
+          <div class="ptm-item">
+            <div class="ptm-item__date">
+              <span class="ptm-item__month">Sep</span>
+              <span class="ptm-item__day">20</span>
+            </div>
+            <div>
+              <div style="font-weight:600;color:var(--text-primary);font-size:var(--fs-base);">First Term PTM</div>
+              <div style="font-size:var(--fs-sm);color:var(--text-secondary);">10:00 AM – 1:00 PM | All Classes</div>
+              <div style="font-size:var(--fs-xs);color:var(--text-tertiary);">First term report cards distributed</div>
+            </div>
+          </div>
+
+          <div class="ptm-item">
+            <div class="ptm-item__date">
+              <span class="ptm-item__month">Nov</span>
+              <span class="ptm-item__day">15</span>
+            </div>
+            <div>
+              <div style="font-weight:600;color:var(--text-primary);font-size:var(--fs-base);">Mid-Year PTM</div>
+              <div style="font-size:var(--fs-sm);color:var(--text-secondary);">10:00 AM – 1:00 PM | All Classes</div>
+              <div style="font-size:var(--fs-xs);color:var(--text-tertiary);">Half-yearly performance review</div>
+            </div>
+          </div>
+
+          <div class="ptm-item">
+            <div class="ptm-item__date">
+              <span class="ptm-item__month">Feb</span>
+              <span class="ptm-item__day">08</span>
+            </div>
+            <div>
+              <div style="font-weight:600;color:var(--text-primary);font-size:var(--fs-base);">Annual PTM</div>
+              <div style="font-size:var(--fs-sm);color:var(--text-secondary);">10:00 AM – 2:00 PM | All Classes</div>
+              <div style="font-size:var(--fs-xs);color:var(--text-tertiary);">Annual report + promotion confirmation</div>
+            </div>
+          </div>
+
+          <p style="font-size:var(--fs-xs);color:var(--text-tertiary);margin-top:var(--space-4);">
+            <i class="ri-information-line"></i> PTM dates may change. Confirmation sent via class WhatsApp group 7 days in advance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- STAY CONNECTED -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Daily Communication</span>
+        <h2 class="section-title">How We Stay <span class="text-gradient">Connected</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="grid-auto-sm grid-animated">
+        <div class="feature-card reveal stagger-1">
+          <div class="feature-card__icon" style="background:rgba(37,211,102,0.1);">
+            <i class="ri-whatsapp-line" style="color:#25D366;"></i>
+          </div>
+          <h4 class="feature-card__title">Class WhatsApp Groups</h4>
+          <p class="feature-card__text">Every class has a dedicated WhatsApp group managed by the class teacher. Daily homework, reminders, test dates, and circulars — all in one place.</p>
+          <a href="../whatsapp-groups/whatsapp-groups.html" class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">
+            Join Your Group <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+
+        <div class="feature-card reveal stagger-2">
+          <div class="feature-card__icon" style="background:rgba(var(--color-primary-rgb),0.1);">
+            <i class="ri-facebook-fill" style="color:var(--color-primary);"></i>
+          </div>
+          <h4 class="feature-card__title">Facebook Page</h4>
+          <p class="feature-card__text">Follow our Facebook page for event photos, school announcements, results, and highlights from school life.</p>
+          <a href="https://www.facebook.com/people/The-Green-Valley-International-School-Bihta/100088041550841/" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">
+            Follow Us <i class="ri-external-link-line"></i>
+          </a>
+        </div>
+
+        <div class="feature-card reveal stagger-3">
+          <div class="feature-card__icon" style="background:rgba(245,158,11,0.1);">
+            <i class="ri-calendar-event-line" style="color:var(--color-secondary);"></i>
+          </div>
+          <h4 class="feature-card__title">Events Calendar</h4>
+          <p class="feature-card__text">Stay ahead of important dates — Sports Day, Annual Day, PTMs, exams, and holidays — all on our school events calendar.</p>
+          <a href="../events/events.html" class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">
+            View Calendar <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+
+        <div class="feature-card reveal stagger-4">
+          <div class="feature-card__icon" style="background:rgba(59,130,246,0.1);">
+            <i class="ri-newspaper-line" style="color:#3B82F6;"></i>
+          </div>
+          <h4 class="feature-card__title">Latest Updates</h4>
+          <p class="feature-card__text">Circulars, notices, results, and news — published regularly on our Latest Updates page so you never miss important information.</p>
+          <a href="../latest-updates/latest-updates.html" class="btn btn--outline btn--sm" style="margin-top:var(--space-4);">
+            Read Updates <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- VOLUNTEER -->
+  <section class="section">
+    <div class="container" style="max-width:800px;text-align:center;">
+      <div class="section-header reveal">
+        <span class="section-label">Get Involved</span>
+        <h2 class="section-title">Volunteer with <span class="text-gradient-gold">TGVIS</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <p class="lead reveal" style="margin-bottom:var(--space-8);">
+        Want to do more than attend PTMs? TGVIS welcomes parent and community volunteers throughout the year.
+      </p>
+
+      <div class="grid-3 grid-animated" style="text-align:left;">
+        <div class="feature-card reveal stagger-1">
+          <div class="feature-card__icon"><i class="ri-book-open-line"></i></div>
+          <h4 class="feature-card__title">Library Helpers</h4>
+          <p class="feature-card__text">Help catalogue books, run reading programs, and encourage children to develop a love of reading.</p>
+        </div>
+        <div class="feature-card reveal stagger-2">
+          <div class="feature-card__icon"><i class="ri-calendar-check-line"></i></div>
+          <h4 class="feature-card__title">Event Coordinators</h4>
+          <p class="feature-card__text">Help organise Annual Day, Sports Day, and cultural events. From decoration to logistics — every hand helps.</p>
+        </div>
+        <div class="feature-card reveal stagger-3">
+          <div class="feature-card__icon"><i class="ri-user-voice-line"></i></div>
+          <h4 class="feature-card__title">Career Speakers</h4>
+          <p class="feature-card__text">Share your professional experience with students in Classes 8–10. A 30-minute talk can change a child's direction.</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top:var(--space-10);">
+        <a href="../contact/contact.html" class="btn btn--primary btn--lg">
+          <i class="ri-hand-heart-line"></i> Express Interest in Volunteering
+        </a>
+      </div>
+    </div>
+  </section>
+
+
   <footer class="footer"></footer>
   <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
@@ -43,5 +319,6 @@
   <script src="../../assets/js/navbar.js" defer></script>
   <script src="../../assets/js/global.js" defer></script>
   <script src="../../assets/js/animations.js" defer></script>
+  <script src="community.js" defer></script>
 </body>
 </html>

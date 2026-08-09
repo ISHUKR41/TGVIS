@@ -1,24 +1,28 @@
 /* ==========================================================================
    TGVIS — Fee Structure Page Styles
    ==========================================================================
-   
-   Styles for the fee structure page including:
-   1. Fee table with responsive scrolling
-   2. Fee category tabs
-   3. Payment option cards
-   4. Scholarship notice
-   5. Responsive adjustments
-   
+
+   Uses correct global.css token names throughout:
+   - var(--color-primary) NOT var(--clr-primary)
+   - var(--font-heading)  NOT var(--ff-heading)
+   - var(--color-gray-200) NOT var(--border-color)
+
+   Sections:
+   1. Fee table wrapper and data table
+   2. Payment option cards
+   3. Scholarship notice card
+   4. Responsive adjustments
    ========================================================================== */
 
 
-/* ── Fee Table Wrapper — horizontal scroll on mobile ── */
+/* ── 1. Fee Table Wrapper — horizontal scroll on mobile ── */
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-gray-200);
+  box-shadow: var(--shadow-md);
 }
 
 /* ── Data Table ── */
@@ -29,67 +33,101 @@
   font-size: var(--fs-sm);
 }
 
+/* Table header — green gradient bar */
 .data-table thead {
-  background: linear-gradient(135deg, var(--clr-primary), var(--clr-secondary, #10B981));
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
 }
 
 .data-table th {
   padding: var(--space-4) var(--space-5);
-  color: #fff;
-  font-weight: 600;
+  color: var(--color-white);
+  font-weight: var(--fw-semibold);
   text-align: left;
-  font-family: var(--ff-heading);
+  font-family: var(--font-heading);
   letter-spacing: 0.3px;
 }
 
 .data-table td {
   padding: var(--space-4) var(--space-5);
   color: var(--text-secondary);
-  border-bottom: 1px solid var(--border-color);
-  transition: background 0.2s ease;
+  border-bottom: 1px solid var(--color-gray-200);
+  transition: background var(--transition-fast);
 }
 
 .data-table tbody tr:hover td {
-  background: rgba(99, 102, 241, 0.03);
+  background: rgba(var(--color-primary-rgb), 0.03);
 }
 
 .data-table tbody tr:last-child td {
   border-bottom: none;
 }
 
-/* Highlight class-specific rows */
+/* First column — class name is bolder */
 .data-table td:first-child {
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   color: var(--text-primary);
-  font-family: var(--ff-heading);
+  font-family: var(--font-heading);
 }
 
-/* ── Payment Cards ── */
+/* Alternate row shading for readability */
+.data-table tbody tr:nth-child(even) td {
+  background: var(--bg-tertiary);
+}
+
+.data-table tbody tr:nth-child(even):hover td {
+  background: rgba(var(--color-primary-rgb), 0.04);
+}
+
+
+/* ── 2. Payment Option Cards ── */
 .payment-card {
-  padding: var(--space-6);
+  padding: var(--space-8);
   background: var(--bg-secondary);
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-gray-200);
   text-align: center;
   flex: 1;
   min-width: 200px;
-  transition: all 0.3s ease;
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated top border on hover */
+.payment-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-smooth);
+}
+
+.payment-card:hover::before {
+  transform: scaleX(1);
 }
 
 .payment-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(var(--color-primary-rgb), 0.2);
 }
 
 .payment-card__icon {
   font-size: var(--fs-3xl);
-  color: var(--clr-primary);
-  margin-bottom: var(--space-3);
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+  display: block;
 }
 
 .payment-card__title {
-  font-family: var(--ff-heading);
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
   color: var(--text-primary);
   margin-bottom: var(--space-2);
 }
@@ -97,18 +135,44 @@
 .payment-card__text {
   font-size: var(--fs-sm);
   color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
 }
 
-/* ── Scholarship Notice ── */
+
+/* ── 3. Scholarship Notice Card ── */
 .scholarship-notice {
   background: var(--bg-secondary);
   border-radius: var(--radius-xl);
   padding: var(--space-8);
-  border-left: 4px solid #F59E0B;
+  border-left: 4px solid var(--color-secondary);
   margin-top: var(--space-10);
+  box-shadow: var(--shadow-sm);
 }
 
-/* ── Responsive ── */
+.scholarship-notice__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.scholarship-notice__title i {
+  color: var(--color-secondary);
+  font-size: var(--fs-xl);
+}
+
+.scholarship-notice p {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+}
+
+
+/* ── 4. Responsive ── */
 @media (max-width: 768px) {
   .data-table {
     font-size: var(--fs-xs);

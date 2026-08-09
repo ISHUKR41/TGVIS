@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<!-- TGVIS — Sports Page -->
+<!--
+  TGVIS — Sports Page
+  Covers all sports programs: cricket, football, basketball, athletics,
+  yoga, indoor games, achievements, and the house system.
+-->
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sports — TGVIS | The Green Valley International School</title>
-  <meta name="description" content="TGVIS sports programs — Cricket, Football, Basketball, Athletics, Yoga, and Indoor Games with professional coaching and inter-school competitions.">
+  <title>Sports — TGVIS | The Green Valley International School, Bihta</title>
+  <meta name="description" content="TGVIS sports programs — cricket, football, basketball, athletics, yoga, and indoor games with professional coaching and inter-school competitions in Bihta, Patna.">
+  <meta name="keywords" content="TGVIS sports, cricket school Bihta, football coaching, school athletics Bihar, sports day TGVIS">
+  <link rel="canonical" href="https://www.tgvis.edu.in/pages/sports/sports.html">
   <link rel="icon" type="image/png" href="../../assets/images/logo/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,43 +20,187 @@
   <link rel="stylesheet" href="../../assets/css/global.css">
   <link rel="stylesheet" href="../../assets/css/components.css">
   <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="sports.css">
 </head>
 <body>
   <div class="preloader" id="preloader"><div class="preloader__text">TGVIS</div><div class="preloader__bar"><div class="preloader__bar-fill"></div></div></div>
   <div class="page-transition"></div>
-  <!-- ======== NAVBAR (Injected dynamically by navbar.js) ======== -->
   <nav class="navbar" id="navbar"></nav>
 
-  <section class="page-hero"><img src="../../assets/images/hero/campus.png" alt="TGVIS Sports" class="page-hero__bg"><div class="page-hero__overlay"></div><div class="page-hero__content"><h1 class="page-hero__title">Sports at TGVIS</h1><p class="page-hero__subtitle">Building champions through discipline, teamwork, and professional coaching</p><nav class="breadcrumb"><a href="../../index.html" class="breadcrumb__link">Home</a><i class="ri-arrow-right-s-line breadcrumb__separator"></i><a href="../academics/academics.html" class="breadcrumb__link">Curriculum</a><i class="ri-arrow-right-s-line breadcrumb__separator"></i><span class="breadcrumb__current">Sports</span></nav></div></section>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <img src="../../assets/images/hero/campus.png" alt="TGVIS Sports Ground" class="page-hero__bg" loading="eager">
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <h1 class="page-hero__title">Sports at TGVIS</h1>
+      <p class="page-hero__subtitle">Building champions through discipline, teamwork, and the joy of playing</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html" class="breadcrumb__link">Home</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <a href="../academics/academics.html" class="breadcrumb__link">Curriculum</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <span class="breadcrumb__current">Sports</span>
+      </nav>
+    </div>
+  </section>
 
+
+  <!-- Sports Philosophy -->
+  <section class="section">
+    <div class="container" style="max-width:840px;text-align:center;">
+      <div class="section-header reveal">
+        <span class="section-label">Our Approach</span>
+        <h2 class="section-title">Sports Are <span class="text-gradient-gold">Not Optional</span></h2>
+        <div class="divider"></div>
+      </div>
+      <p class="lead reveal">
+        At TGVIS, physical education is a core part of every student's day — not an afterthought. We believe sports teach lessons that classrooms cannot: resilience, teamwork, grace in defeat, and the courage to compete.
+      </p>
+      <p class="reveal">
+        Every student from Class 1 to Class 10 participates in structured sports sessions with qualified coaches. Our facilities include a full cricket ground, football field, basketball court, athletics track, and a dedicated indoor games area.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- Sports Programs Grid -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">What We Play</span>
+        <h2 class="section-title">Our Sports <span class="text-gradient">Programs</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="grid-3 grid-animated">
+        <div class="feature-card reveal stagger-1">
+          <div class="feature-card__icon" style="background:rgba(34,197,94,0.1);">
+            <i class="ri-basketball-line" style="color:#22C55E;"></i>
+          </div>
+          <h4 class="feature-card__title">Cricket</h4>
+          <p class="feature-card__text">Full-pitch cricket on our dedicated ground. Students learn batting, bowling, and fielding from trained coaches. Inter-house and inter-school matches are held regularly.</p>
+          <p style="font-size:var(--fs-xs);color:var(--text-tertiary);margin-top:var(--space-3);">
+            <i class="ri-user-line"></i> Class 4–10 &nbsp;|&nbsp; <i class="ri-calendar-line"></i> Mon, Wed, Fri
+          </p>
+        </div>
+
+        <div class="feature-card reveal stagger-2">
+          <div class="feature-card__icon" style="background:rgba(59,130,246,0.1);">
+            <i class="ri-football-line" style="color:#3B82F6;"></i>
+          </div>
+          <h4 class="feature-card__title">Football</h4>
+          <p class="feature-card__text">Dedicated football field with coaching focused on passing, teamwork, and tactical awareness. Students participate in district-level tournaments.</p>
+          <p style="font-size:var(--fs-xs);color:var(--text-tertiary);margin-top:var(--space-3);">
+            <i class="ri-user-line"></i> Class 3–10 &nbsp;|&nbsp; <i class="ri-calendar-line"></i> Tue, Thu
+          </p>
+        </div>
+
+        <div class="feature-card reveal stagger-3">
+          <div class="feature-card__icon" style="background:rgba(249,115,22,0.1);">
+            <i class="ri-basketball-fill" style="color:#F97316;"></i>
+          </div>
+          <h4 class="feature-card__title">Basketball</h4>
+          <p class="feature-card__text">Regulation basketball court with coaching in dribbling, shooting, and game strategy. Inter-house tournaments build competitive spirit.</p>
+          <p style="font-size:var(--fs-xs);color:var(--text-tertiary);margin-top:var(--space-3);">
+            <i class="ri-user-line"></i> Class 5–10 &nbsp;|&nbsp; <i class="ri-calendar-line"></i> Tue, Thu
+          </p>
+        </div>
+
+        <div class="feature-card reveal stagger-4">
+          <div class="feature-card__icon" style="background:rgba(239,68,68,0.1);">
+            <i class="ri-run-line" style="color:#EF4444;"></i>
+          </div>
+          <h4 class="feature-card__title">Athletics & Track</h4>
+          <p class="feature-card__text">100m sprint, 400m race, relay, long jump, high jump, and shot put. Annual Sports Day showcases our best athletes with district-level selection opportunities.</p>
+          <p style="font-size:var(--fs-xs);color:var(--text-tertiary);margin-top:var(--space-3);">
+            <i class="ri-user-line"></i> All Classes &nbsp;|&nbsp; <i class="ri-calendar-line"></i> Daily PE Period
+          </p>
+        </div>
+
+        <div class="feature-card reveal stagger-5">
+          <div class="feature-card__icon" style="background:rgba(168,85,247,0.1);">
+            <i class="ri-mental-health-line" style="color:#A855F7;"></i>
+          </div>
+          <h4 class="feature-card__title">Yoga & Wellness</h4>
+          <p class="feature-card__text">Morning yoga sessions for strength, flexibility, and mental focus. International Yoga Day celebration with all students. Mindfulness and breathing techniques taught from early classes.</p>
+          <p style="font-size:var(--fs-xs);color:var(--text-tertiary);margin-top:var(--space-3);">
+            <i class="ri-user-line"></i> All Classes &nbsp;|&nbsp; <i class="ri-calendar-line"></i> Every Morning
+          </p>
+        </div>
+
+        <div class="feature-card reveal stagger-6">
+          <div class="feature-card__icon" style="background:rgba(245,158,11,0.1);">
+            <i class="ri-ping-pong-line" style="color:#F59E0B;"></i>
+          </div>
+          <h4 class="feature-card__title">Indoor Games</h4>
+          <p class="feature-card__text">Table tennis, chess, carrom, and badminton. These games develop strategic thinking, patience, and concentration. Chess tournaments are held termly for all age groups.</p>
+          <p style="font-size:var(--fs-xs);color:var(--text-tertiary);margin-top:var(--space-3);">
+            <i class="ri-user-line"></i> All Classes &nbsp;|&nbsp; <i class="ri-calendar-line"></i> Friday Activity
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Achievements -->
   <section class="section">
     <div class="container">
-      <div class="section-header reveal"><span class="section-label">Physical Excellence</span><h2 class="section-title">Our Sports <span class="text-gradient-gold">Programs</span></h2><div class="divider"></div><p class="section-description">At TGVIS, sports are not optional — they are essential. Every student participates in structured physical education with professional coaching.</p></div>
-      <div class="grid-3 grid-animated">
-        <div class="feature-card reveal stagger-1"><div class="feature-card__icon"><i class="ri-basketball-line"></i></div><h4 class="feature-card__title">Cricket</h4><p class="feature-card__text">Full-size cricket ground with professional coaching. Regular practice sessions, inter-house matches, and district-level competitions.</p></div>
-        <div class="feature-card reveal stagger-2"><div class="feature-card__icon"><i class="ri-football-line"></i></div><h4 class="feature-card__title">Football</h4><p class="feature-card__text">Football training on our dedicated field. Building teamwork, strategy, and fitness through the beautiful game.</p></div>
-        <div class="feature-card reveal stagger-3"><div class="feature-card__icon"><i class="ri-basketball-fill"></i></div><h4 class="feature-card__title">Basketball</h4><p class="feature-card__text">Basketball court with regular training sessions. Inter-house tournaments and participation in district competitions.</p></div>
-        <div class="feature-card reveal stagger-4"><div class="feature-card__icon"><i class="ri-run-line"></i></div><h4 class="feature-card__title">Athletics</h4><p class="feature-card__text">Track and field events including sprints, relay races, long jump, high jump, and shot put. Annual Sports Day showcase.</p></div>
-        <div class="feature-card reveal stagger-5"><div class="feature-card__icon"><i class="ri-mental-health-line"></i></div><h4 class="feature-card__title">Yoga & Meditation</h4><p class="feature-card__text">Regular yoga sessions for mental and physical wellness. International Yoga Day celebrations and mindfulness practices.</p></div>
-        <div class="feature-card reveal stagger-6"><div class="feature-card__icon"><i class="ri-ping-pong-line"></i></div><h4 class="feature-card__title">Indoor Games</h4><p class="feature-card__text">Table tennis, chess, carrom, and badminton facilities for developing strategic thinking and hand-eye coordination.</p></div>
+      <div class="section-header reveal">
+        <span class="section-label">Our Record</span>
+        <h2 class="section-title">Sports <span class="text-gradient-gold">Highlights</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="grid-auto reveal">
+        <div style="padding:var(--space-8);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);text-align:center;">
+          <i class="ri-trophy-line" style="font-size:var(--fs-3xl);color:var(--color-secondary);display:block;margin-bottom:var(--space-3);"></i>
+          <h4 style="color:var(--text-primary);margin-bottom:var(--space-2);">District Champions</h4>
+          <p style="font-size:var(--fs-sm);color:var(--text-secondary);">Multiple district-level wins in cricket and athletics across age categories.</p>
+        </div>
+
+        <div style="padding:var(--space-8);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);text-align:center;">
+          <i class="ri-calendar-event-line" style="font-size:var(--fs-3xl);color:var(--color-primary);display:block;margin-bottom:var(--space-3);"></i>
+          <h4 style="color:var(--text-primary);margin-bottom:var(--space-2);">Annual Sports Day</h4>
+          <p style="font-size:var(--fs-sm);color:var(--text-secondary);">A grand event with 20+ events, record-breaking performances, and prizes for all house champions.</p>
+        </div>
+
+        <div style="padding:var(--space-8);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);text-align:center;">
+          <i class="ri-team-line" style="font-size:var(--fs-3xl);color:var(--color-accent);display:block;margin-bottom:var(--space-3);"></i>
+          <h4 style="color:var(--text-primary);margin-bottom:var(--space-2);">4-House Competition</h4>
+          <p style="font-size:var(--fs-sm);color:var(--text-secondary);">Agni, Jal, Prithvi, and Vayu Houses compete year-round for the coveted House Trophy.</p>
+        </div>
+
+        <div style="padding:var(--space-8);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);text-align:center;">
+          <i class="ri-user-star-line" style="font-size:var(--fs-3xl);color:#A855F7;display:block;margin-bottom:var(--space-3);"></i>
+          <h4 style="color:var(--text-primary);margin-bottom:var(--space-2);">Professional Coaches</h4>
+          <p style="font-size:var(--fs-sm);color:var(--text-secondary);">Qualified sports coaches for each discipline — not just PE teachers, but specialists.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section section--alt">
-    <div class="container" style="max-width:800px;text-align:center;">
-      <div class="section-header reveal"><span class="section-label">Achievements</span><h2 class="section-title">Sports <span class="text-gradient">Highlights</span></h2><div class="divider"></div></div>
-      <div class="reveal" style="display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:center;">
-        <div style="padding:var(--space-6);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);min-width:200px;flex:1;"><i class="ri-trophy-line" style="font-size:var(--fs-3xl);color:var(--color-secondary);"></i><h4 style="margin:var(--space-3) 0;">District Champions</h4><p style="font-size:var(--fs-sm);color:var(--text-secondary);">Multiple district-level wins in cricket and athletics</p></div>
-        <div style="padding:var(--space-6);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);min-width:200px;flex:1;"><i class="ri-medal-line" style="font-size:var(--fs-3xl);color:var(--color-secondary);"></i><h4 style="margin:var(--space-3) 0;">Sports Day Stars</h4><p style="font-size:var(--fs-sm);color:var(--text-secondary);">Annual Sports Day with 20+ events and record-breaking performances</p></div>
-        <div style="padding:var(--space-6);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);min-width:200px;flex:1;"><i class="ri-team-line" style="font-size:var(--fs-3xl);color:var(--color-secondary);"></i><h4 style="margin:var(--space-3) 0;">Inter-House System</h4><p style="font-size:var(--fs-sm);color:var(--text-secondary);">4 houses competing year-round in sports, building team spirit</p></div>
+
+  <!-- CTA -->
+  <section class="cta-banner reveal">
+    <div class="container">
+      <div class="cta-banner__content">
+        <div class="cta-banner__text">
+          <span class="cta-banner__label">Join TGVIS</span>
+          <h2 class="cta-banner__title">Is Your Child Ready to <span>Play to Win?</span></h2>
+          <p class="cta-banner__description">Enroll now and let your child discover their sporting potential alongside top-quality academic education.</p>
+        </div>
+        <div class="cta-banner__actions">
+          <a href="../admissions/admissions.html" class="btn btn--secondary btn--lg"><i class="ri-edit-line"></i> Apply Now</a>
+          <a href="../contact/contact.html" class="btn btn--ghost btn--lg"><i class="ri-phone-line"></i> Contact Us</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ======== FOOTER (Injected dynamically by navbar.js) ======== -->
   <footer class="footer"></footer>
   <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
@@ -58,5 +208,6 @@
   <script src="../../assets/js/navbar.js" defer></script>
   <script src="../../assets/js/global.js" defer></script>
   <script src="../../assets/js/animations.js" defer></script>
+  <script src="sports.js" defer></script>
 </body>
 </html>

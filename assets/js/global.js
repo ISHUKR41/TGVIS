@@ -304,6 +304,10 @@ document.addEventListener('DOMContentLoaded', () => {
    * CRITICAL: Properly syncs with GSAP ScrollTrigger to prevent lag.
    * Without this sync, Lenis and ScrollTrigger fight each other,
    * causing the "laggy scrolling" issue.
+   * 
+   * FIX: We use a retry mechanism — if GSAP isn't ready yet when global.js
+   * first runs (due to CDN load timing with defer), we retry after a short
+   * delay to ensure proper sync is established before starting Lenis.
    */
   function initLenis() {
     // Check if Lenis is available (loaded from CDN)
@@ -313,54 +317,80 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Disable Lenis on very low-powered devices (reduces lag on budget phones)
+    // Also disable on mobile browsers where native scroll is already smooth
     const isLowPower = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
-    if (isLowPower) {
-      console.info('TGVIS: Low-power device detected — using native scroll for performance.');
+    const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    
+    if (isLowPower || isMobileDevice) {
+      // Native scroll is faster and smoother on mobile/low-power devices
       return;
     }
 
-    // Create a new Lenis instance with PERFORMANCE-OPTIMIZED settings
+    // Create Lenis instance with smooth, lag-free settings
     const lenis = new Lenis({
-      duration: 0.8,           // Smooth duration — balanced feel
-      lerp: 0.08,              // Lower lerp = smoother, less rubber-banding
+      duration: 0.9,            // Scroll animation duration in seconds
+      lerp: 0.1,                // Linear interpolation factor — lower = smoother
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.8,    // Slightly reduced for smoother feel
-      touchMultiplier: 1.0,    // Native-like touch on mobile
+      wheelMultiplier: 0.85,    // Slightly reduced for comfortable scroll speed
+      touchMultiplier: 1.0,     // 1:1 touch response — feels natural
       infinite: false,
       autoResize: true,
-      overscroll: false,       // Disable overscroll rubber-banding effect
     });
 
-    // Store Lenis instance globally so other scripts can access it
+    // Store globally for back-to-top and anchor scroll access
     window.lenisInstance = lenis;
 
-    // ─── CRITICAL: SYNC LENIS WITH GSAP SCROLLTRIGGER ───
-    // This is the KEY fix for scrolling lag. Without this,
-    // Lenis and ScrollTrigger calculate scroll position independently,
-    // creating a "rubber-banding" / "fighting" effect that feels laggy.
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      // Tell Lenis to update ScrollTrigger on every scroll event
-      lenis.on('scroll', ScrollTrigger.update);
-
-      // Tell GSAP's internal ticker to drive Lenis (instead of a separate rAF loop)
-      // This means Lenis and GSAP share the SAME animation frame — zero desync
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000); // GSAP ticker uses seconds, Lenis uses ms
-      });
-
-      // Disable GSAP's lagSmoothing — it conflicts with Lenis's own smoothing
-      gsap.ticker.lagSmoothing(0);
-    } else {
-      // Fallback: if GSAP is not available, use standalone rAF loop
-      function raf(time) {
-        lenis.raf(time);
+    // ─── CRITICAL SYNC: LENIS + GSAP SCROLLTRIGGER ───────────────────────
+    // This prevents the #1 cause of scroll lag: two separate animation
+    // loops (Lenis RAF and GSAP ticker) running independently and fighting.
+    // 
+    // Solution: Let GSAP's ticker drive Lenis completely, so there is
+    // only ONE animation loop for the entire page.
+    // ─────────────────────────────────────────────────────────────────────
+    function setupGSAPSync() {
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        // GSAP is ready — hook Lenis into it
+        lenis.on('scroll', ScrollTrigger.update);
+        
+        gsap.ticker.add((time) => {
+          lenis.raf(time * 1000); // GSAP ticker = seconds, Lenis needs ms
+        });
+        
+        // Critical: disable GSAP lag smoothing — it conflicts with Lenis
+        gsap.ticker.lagSmoothing(0);
+      } else {
+        // GSAP not available yet — run Lenis standalone with its own rAF
+        // This also handles pages that don't load GSAP at all
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
         requestAnimationFrame(raf);
       }
-      requestAnimationFrame(raf);
     }
+
+    // Try to sync immediately, then retry once after a short delay
+    // to handle cases where GSAP CDN loads slightly after global.js
+    setupGSAPSync();
+    
+    // Second attempt after 200ms in case CDN scripts were slightly delayed
+    setTimeout(() => {
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        // GSAP is now available — ensure ScrollTrigger is registered and synced
+        if (gsap.ticker) {
+          // Only add the listener if it wasn't added already
+          if (!window._lenisGSAPSynced) {
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+            gsap.ticker.lagSmoothing(0);
+            window._lenisGSAPSynced = true;
+          }
+        }
+      }
+    }, 200);
   }
 
   // Initialize Lenis smooth scrolling

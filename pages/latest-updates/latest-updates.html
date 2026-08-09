@@ -1,42 +1,261 @@
 <!DOCTYPE html>
-<!-- TGVIS — Latest Updates / News Page -->
+<!--
+  TGVIS — Latest Updates / News Page
+  =====================================
+  Sections:
+  1. Page Hero
+  2. Featured update (big card)
+  3. All updates grid with category filter
+  4. Subscribe / stay connected CTA
+-->
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Latest Updates — TGVIS | The Green Valley International School</title>
-  <meta name="description" content="Stay up to date with the latest news, circulars, announcements, and updates from The Green Valley International School, Bihta.">
+  <title>Latest Updates — TGVIS | News & Announcements | The Green Valley International School, Bihta</title>
+  <meta name="description" content="Latest news, circulars, results, and announcements from The Green Valley International School, Bihta, Patna, Bihar. Stay updated with TGVIS.">
+  <meta name="keywords" content="TGVIS news, school updates Bihta, TGVIS announcements, school circulars Bihar, TGVIS results">
+  <link rel="canonical" href="https://www.tgvis.edu.in/pages/latest-updates/latest-updates.html">
   <link rel="icon" type="image/png" href="../../assets/images/logo/logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/global.css"><link rel="stylesheet" href="../../assets/css/components.css"><link rel="stylesheet" href="../../assets/css/animations.css">
-  <link rel="stylesheet" href="../events/events.css">
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="latest-updates.css">
 </head>
 <body>
-  <div class="preloader" id="preloader"><div class="preloader__text">TGVIS</div><div class="preloader__bar"><div class="preloader__bar-fill"></div></div></div><div class="page-transition"></div>
-  <!-- ======== NAVBAR (Injected dynamically by navbar.js) ======== -->
+
+  <div class="preloader" id="preloader">
+    <div class="preloader__text">TGVIS</div>
+    <div class="preloader__bar"><div class="preloader__bar-fill"></div></div>
+  </div>
+  <div class="page-transition"></div>
   <nav class="navbar" id="navbar"></nav>
 
-  <section class="page-hero"><img src="../../assets/images/hero/campus.png" alt="Updates" class="page-hero__bg"><div class="page-hero__overlay"></div><div class="page-hero__content"><h1 class="page-hero__title">Latest Updates</h1><p class="page-hero__subtitle">News, circulars, and announcements from TGVIS</p><nav class="breadcrumb"><a href="../../index.html" class="breadcrumb__link">Home</a><i class="ri-arrow-right-s-line breadcrumb__separator"></i><span class="breadcrumb__current">Latest Updates</span></nav></div></section>
 
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <img src="../../assets/images/hero/campus.png" alt="TGVIS Latest Updates" class="page-hero__bg" loading="eager">
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <h1 class="page-hero__title">Latest Updates</h1>
+      <p class="page-hero__subtitle">News, circulars, achievements, and announcements from TGVIS</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html" class="breadcrumb__link">Home</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <span class="breadcrumb__current">Latest Updates</span>
+      </nav>
+    </div>
+  </section>
+
+
+  <!-- FEATURED UPDATE -->
   <section class="section">
     <div class="container">
-      <div class="section-header reveal"><span class="section-label">News & Circulars</span><h2 class="section-title">Recent <span class="text-gradient-gold">Announcements</span></h2><div class="divider"></div></div>
-      <div class="events-grid">
-        <div class="event-card reveal stagger-1"><div class="event-card__date"><span class="event-card__day">08</span><span class="event-card__month">AUG</span></div><div class="event-card__content"><span class="event-card__category event-card__category--academic">Admission</span><h3 class="event-card__title">Admissions Open for 2025-26</h3><p class="event-card__text">Limited seats available for Nursery to Class 10th. Apply now and give your child the gift of quality education at TGVIS.</p></div></div>
-        <div class="event-card reveal stagger-2"><div class="event-card__date"><span class="event-card__day">01</span><span class="event-card__month">AUG</span></div><div class="event-card__content"><span class="event-card__category event-card__category--academic">Academic</span><h3 class="event-card__title">Board Exam Results — 100% Pass Rate</h3><p class="event-card__text">Congratulations to our Class 10 students for achieving 100% pass rate in CBSE Board Examinations!</p></div></div>
-        <div class="event-card reveal stagger-3"><div class="event-card__date"><span class="event-card__day">25</span><span class="event-card__month">JUL</span></div><div class="event-card__content"><span class="event-card__category event-card__category--meeting">Notice</span><h3 class="event-card__title">New Smart Classrooms Inaugurated</h3><p class="event-card__text">5 new smart classrooms with interactive digital boards and multimedia systems are now operational for Classes 6-10.</p></div></div>
-        <div class="event-card reveal stagger-4"><div class="event-card__date"><span class="event-card__day">20</span><span class="event-card__month">JUL</span></div><div class="event-card__content"><span class="event-card__category event-card__category--sports">Sports</span><h3 class="event-card__title">District Cricket Championship Win</h3><p class="event-card__text">TGVIS under-14 cricket team wins the district championship. Congratulations to the players and coach!</p></div></div>
-        <div class="event-card reveal stagger-5"><div class="event-card__date"><span class="event-card__day">15</span><span class="event-card__month">JUL</span></div><div class="event-card__content"><span class="event-card__category event-card__category--cultural">Cultural</span><h3 class="event-card__title">Independence Day Preparations Begin</h3><p class="event-card__text">Rehearsals for the Independence Day celebration have begun. All students are encouraged to participate in cultural programs.</p></div></div>
-        <div class="event-card reveal stagger-6"><div class="event-card__date"><span class="event-card__day">10</span><span class="event-card__month">JUL</span></div><div class="event-card__content"><span class="event-card__category event-card__category--meeting">Circular</span><h3 class="event-card__title">Transport Route Update</h3><p class="event-card__text">New bus routes added for Danapur and Maner areas. Contact the transport office for route details and timing.</p></div></div>
+      <div class="section-header reveal">
+        <span class="section-label">Top Story</span>
+        <h2 class="section-title">Featured <span class="text-gradient-gold">Update</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="featured-update reveal">
+        <div class="featured-update__badge">
+          <i class="ri-award-line"></i> Achievement
+        </div>
+        <h3 class="featured-update__title">TGVIS Class 10 Students Score 100% in CBSE Board Exams</h3>
+        <div class="featured-update__meta">
+          <span><i class="ri-calendar-line"></i> August 1, 2025</span>
+          <span><i class="ri-user-line"></i> TGVIS Administration</span>
+        </div>
+        <p class="featured-update__text">
+          We are incredibly proud to announce that every single student from TGVIS Class 10 has passed the CBSE Board Examinations for the 2024-25 session. Multiple students scored above 90%, with our topper achieving an outstanding aggregate. This result reflects the hard work of our students, the dedication of our teachers, and the support of every TGVIS parent. We congratulate the entire school community on this achievement.
+        </p>
+        <a href="../events/events.html" class="btn btn--primary">
+          <i class="ri-arrow-right-line"></i> See More Achievements
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ======== FOOTER (Injected dynamically by navbar.js) ======== -->
+
+  <!-- ALL UPDATES WITH FILTER -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">News &amp; Circulars</span>
+        <h2 class="section-title">All <span class="text-gradient">Updates</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <!-- Category Filter — injected by JS or static -->
+      <div class="updates-filter reveal" role="group" aria-label="Filter updates by category">
+        <button class="updates-filter__btn active" data-filter="All">All</button>
+        <button class="updates-filter__btn" data-filter="Academic">Academic</button>
+        <button class="updates-filter__btn" data-filter="Admission">Admissions</button>
+        <button class="updates-filter__btn" data-filter="Sports">Sports</button>
+        <button class="updates-filter__btn" data-filter="Cultural">Cultural</button>
+        <button class="updates-filter__btn" data-filter="Notice">Notices</button>
+      </div>
+
+      <!-- Updates Grid -->
+      <div class="updates-grid" id="updatesGrid">
+
+        <article class="update-card reveal stagger-1" data-category="Admission">
+          <div class="update-card__date">
+            <span class="update-card__day">08</span>
+            <span class="update-card__month">AUG</span>
+            <span class="update-card__year">2025</span>
+          </div>
+          <div class="update-card__content">
+            <span class="update-card__tag update-card__tag--admission">Admissions</span>
+            <h3 class="update-card__title">Admissions Open for Session 2025-26</h3>
+            <p class="update-card__text">Limited seats available for Nursery to Class 10th. Apply early to avoid disappointment. Visit the school office or fill our online enquiry form to get started.</p>
+            <a href="../admissions/admissions.html" class="update-card__link">Apply Now <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </article>
+
+        <article class="update-card reveal stagger-2" data-category="Academic">
+          <div class="update-card__date">
+            <span class="update-card__day">01</span>
+            <span class="update-card__month">AUG</span>
+            <span class="update-card__year">2025</span>
+          </div>
+          <div class="update-card__content">
+            <span class="update-card__tag update-card__tag--academic">Academic</span>
+            <h3 class="update-card__title">Board Exam Results — 100% Pass Rate Achieved</h3>
+            <p class="update-card__text">Congratulations to all Class 10 students and their families. 100% pass rate with outstanding individual scores. Special felicitation at the Annual Day in December.</p>
+          </div>
+        </article>
+
+        <article class="update-card reveal stagger-3" data-category="Notice">
+          <div class="update-card__date">
+            <span class="update-card__day">25</span>
+            <span class="update-card__month">JUL</span>
+            <span class="update-card__year">2025</span>
+          </div>
+          <div class="update-card__content">
+            <span class="update-card__tag update-card__tag--notice">Notice</span>
+            <h3 class="update-card__title">5 New Smart Classrooms Inaugurated</h3>
+            <p class="update-card__text">TGVIS has added 5 new smart classrooms equipped with interactive digital boards for Classes 6–10. All classrooms now feature multimedia learning tools.</p>
+          </div>
+        </article>
+
+        <article class="update-card reveal stagger-4" data-category="Sports">
+          <div class="update-card__date">
+            <span class="update-card__day">20</span>
+            <span class="update-card__month">JUL</span>
+            <span class="update-card__year">2025</span>
+          </div>
+          <div class="update-card__content">
+            <span class="update-card__tag update-card__tag--sports">Sports</span>
+            <h3 class="update-card__title">TGVIS Under-14 Team Wins District Cricket Championship</h3>
+            <p class="update-card__text">Our young cricketers beat all district-level competition to bring home the championship trophy. Congratulations to the team and their coach.</p>
+          </div>
+        </article>
+
+        <article class="update-card reveal stagger-5" data-category="Cultural">
+          <div class="update-card__date">
+            <span class="update-card__day">15</span>
+            <span class="update-card__month">JUL</span>
+            <span class="update-card__year">2025</span>
+          </div>
+          <div class="update-card__content">
+            <span class="update-card__tag update-card__tag--cultural">Cultural</span>
+            <h3 class="update-card__title">Independence Day Celebrations — All Students to Participate</h3>
+            <p class="update-card__text">Rehearsals have begun for our 78th Independence Day celebration. Flag hoisting at 8:00 AM. All parents are welcome to attend the ceremony.</p>
+          </div>
+        </article>
+
+        <article class="update-card reveal stagger-6" data-category="Notice">
+          <div class="update-card__date">
+            <span class="update-card__day">10</span>
+            <span class="update-card__month">JUL</span>
+            <span class="update-card__year">2025</span>
+          </div>
+          <div class="update-card__content">
+            <span class="update-card__tag update-card__tag--notice">Notice</span>
+            <h3 class="update-card__title">New Bus Routes Added — Danapur and Maner Coverage</h3>
+            <p class="update-card__text">GPS-tracked buses now cover Danapur and Maner routes. Contact the school transport office for timing, pick-up points, and fare details.</p>
+            <a href="../contact/contact.html" class="update-card__link">Contact Transport Office <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </article>
+
+        <article class="update-card reveal stagger-1" data-category="Academic">
+          <div class="update-card__date">
+            <span class="update-card__day">05</span>
+            <span class="update-card__month">JUL</span>
+            <span class="update-card__year">2025</span>
+          </div>
+          <div class="update-card__content">
+            <span class="update-card__tag update-card__tag--academic">Academic</span>
+            <h3 class="update-card__title">First Term Exam Schedule Released</h3>
+            <p class="update-card__text">First term examinations will be held from September 22–30, 2025. Detailed date-sheets shared with class teachers and via WhatsApp groups.</p>
+            <a href="../timetable/timetable.html" class="update-card__link">View Timetable <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </article>
+
+        <article class="update-card reveal stagger-2" data-category="Sports">
+          <div class="update-card__date">
+            <span class="update-card__day">21</span>
+            <span class="update-card__month">JUN</span>
+            <span class="update-card__year">2025</span>
+          </div>
+          <div class="update-card__content">
+            <span class="update-card__tag update-card__tag--sports">Sports</span>
+            <h3 class="update-card__title">International Yoga Day Celebrated with All Students</h3>
+            <p class="update-card__text">On June 21st, TGVIS held a 45-minute yoga session for all students and staff. Our yoga instructor led exercises in breathing, flexibility, and mindfulness on the school ground.</p>
+          </div>
+        </article>
+
+        <article class="update-card reveal stagger-3" data-category="Notice">
+          <div class="update-card__date">
+            <span class="update-card__day">01</span>
+            <span class="update-card__month">JUN</span>
+            <span class="update-card__year">2025</span>
+          </div>
+          <div class="update-card__content">
+            <span class="update-card__tag update-card__tag--notice">Notice</span>
+            <h3 class="update-card__title">New Session 2025-26 Begins — Welcome Back!</h3>
+            <p class="update-card__text">The new academic session begins on June 2, 2025. All students should report in full uniform with all books. New class allocations posted on the school notice board.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- STAY CONNECTED CTA -->
+  <section class="section">
+    <div class="container" style="max-width:700px;text-align:center;">
+      <div class="section-header reveal">
+        <span class="section-label">Never Miss an Update</span>
+        <h2 class="section-title">Stay <span class="text-gradient-gold">Connected</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="reveal" style="display:flex;flex-direction:column;gap:var(--space-6);">
+        <p style="color:var(--text-secondary);font-size:var(--fs-md);line-height:var(--lh-relaxed);">
+          All important updates are shared via class WhatsApp groups, our Facebook page, and this page. Make sure you're in your child's class group.
+        </p>
+        <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+          <a href="../whatsapp-groups/whatsapp-groups.html" class="btn btn--primary btn--lg">
+            <i class="ri-whatsapp-line"></i> Join Class WhatsApp Group
+          </a>
+          <a href="https://www.facebook.com/people/The-Green-Valley-International-School-Bihta/100088041550841/" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btn--lg">
+            <i class="ri-facebook-fill"></i> Follow on Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer"></footer>
   <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
@@ -44,5 +263,6 @@
   <script src="../../assets/js/navbar.js" defer></script>
   <script src="../../assets/js/global.js" defer></script>
   <script src="../../assets/js/animations.js" defer></script>
+  <script src="latest-updates.js" defer></script>
 </body>
 </html>

@@ -1,12 +1,57 @@
-/* TGVIS — Academics Page JS | Curriculum tabs and scroll animations */
+/* ==========================================================================
+   TGVIS — Academics Page JavaScript
+   ==========================================================================
+
+   Handles:
+   1. GSAP scroll animations for academic level cards
+   2. Animated entrance for the academic philosophy section
+   3. Facility cards stagger animation
+
+   DEPENDENCIES: GSAP + ScrollTrigger (CDN), animations.js
+   ========================================================================== */
+
 document.addEventListener('DOMContentLoaded', () => {
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+
+  if (typeof gsap === 'undefined') return;
+
+  if (typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
-    const items = document.querySelectorAll('.feature-card, .curriculum-card, .program-card');
-    if (items.length) {
-      gsap.from(items, { opacity: 0, y: 50, duration: 0.7, stagger: 0.12, ease: 'power3.out',
-        scrollTrigger: { trigger: items[0].parentElement, start: 'top 80%', toggleActions: 'play none none none' }
-      });
-    }
   }
+
+  /* ── Academic Level Cards — stagger entrance ── */
+  const levelCards = document.querySelectorAll('.feature-card');
+
+  if (levelCards.length && typeof ScrollTrigger !== 'undefined') {
+    levelCards.forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 40,
+        duration: 0.65,
+        delay: i * 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+  }
+
+  /* ── Philosophy intro text — fade-in on scroll ── */
+  const philosophy = document.querySelector('.section-header .lead, .lead');
+  if (philosophy && typeof ScrollTrigger !== 'undefined') {
+    gsap.from(philosophy, {
+      opacity: 0,
+      y: 20,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: philosophy,
+        start: 'top 88%',
+        toggleActions: 'play none none none'
+      }
+    });
+  }
+
 });

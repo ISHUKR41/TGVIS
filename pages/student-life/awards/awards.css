@@ -1,0 +1,217 @@
+/* ==========================================================================
+   TGVIS — Awards & Recognition Page Styles
+   ==========================================================================
+   
+   Styles for the student awards and achievements page.
+   Features a timeline layout and achievement gallery cards.
+   
+   SECTIONS:
+   1. Achievement Stats Bar — quick stats across the top
+   2. Awards Timeline — chronological achievements display
+   3. Achievement Cards — individual award cards
+   4. Gallery Section — photo gallery of award ceremonies
+   
+   DEPENDENCIES: global.css, components.css, animations.css
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. ACHIEVEMENT STATS BAR
+   -------------------------------------------------------------------------- */
+
+.awards-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-12);
+}
+
+@media (max-width: 768px) {
+  .awards-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.award-stat {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  text-align: center;
+  border: 1px solid var(--color-gray-200);
+  transition: transform 0.3s ease;
+}
+
+.award-stat:hover {
+  transform: translateY(-3px);
+}
+
+.award-stat__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-3);
+  background: rgba(var(--color-secondary-rgb), 0.15);
+  color: var(--color-secondary);
+  font-size: 1.25rem;
+}
+
+.award-stat__number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.award-stat__label {
+  color: var(--text-tertiary);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. AWARDS TIMELINE
+   --------------------------------------------------------------------------
+   Vertical timeline showing achievements in chronological order.
+   Line runs down the center on desktop, left-aligned on mobile.
+   -------------------------------------------------------------------------- */
+
+.awards-timeline {
+  position: relative;
+  padding-left: var(--space-10);
+}
+
+/* The vertical timeline line */
+.awards-timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary), var(--color-accent));
+}
+
+/* Individual timeline item */
+.timeline-item {
+  position: relative;
+  padding-bottom: var(--space-8);
+}
+
+/* Timeline dot marker */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * var(--space-10) + 14px);
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  border: 3px solid var(--bg-primary);
+  box-shadow: 0 0 0 2px var(--color-primary);
+  z-index: 1;
+}
+
+.timeline-item__year {
+  display: inline-block;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+}
+
+.timeline-item__title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--fs-lg);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.timeline-item__text {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. ACHIEVEMENT CARDS
+   -------------------------------------------------------------------------- */
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.achievement-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-gray-200);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.achievement-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.achievement-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+}
+
+.achievement-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.achievement-card:hover .achievement-card__image img {
+  transform: scale(1.05);
+}
+
+.achievement-card__body {
+  padding: var(--space-5);
+}
+
+.achievement-card__category {
+  display: inline-block;
+  background: rgba(var(--color-secondary-rgb), 0.15);
+  color: var(--color-secondary-dark);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.achievement-card__title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.achievement-card__text {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+

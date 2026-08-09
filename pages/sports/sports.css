@@ -1,0 +1,213 @@
+/* ==========================================================================
+   TGVIS — Sports Page Styles
+   ==========================================================================
+   
+   Styles for the sports and athletics page — showcasing sports programs,
+   coaching staff, achievements, and facilities.
+   
+   DEPENDENCIES: global.css, components.css, animations.css
+   ========================================================================== */
+
+
+/* Sports programs grid */
+.sports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.sport-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-gray-200);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sport-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.sport-card__image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+}
+
+.sport-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.sport-card:hover .sport-card__image img {
+  transform: scale(1.05);
+}
+
+.sport-card__body {
+  padding: var(--space-5);
+}
+
+.sport-card__title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.sport-card__text {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+.sport-card__tag {
+  display: inline-block;
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+/* Coaches section */
+.coaches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-6);
+}
+
+.coach-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  text-align: center;
+  border: 1px solid var(--color-gray-200);
+  transition: transform 0.3s ease;
+}
+
+.coach-card:hover {
+  transform: translateY(-3px);
+}
+
+.coach-card__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto var(--space-3);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  overflow: hidden;
+}
+
+.coach-card__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.coach-card__name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.coach-card__role {
+  color: var(--color-primary);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+}
+
+/* Sports facilities */
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+.facility-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  border: 1px solid var(--color-gray-200);
+  transition: transform 0.3s ease;
+}
+
+.facility-card:hover {
+  transform: translateX(4px);
+}
+
+.facility-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.facility-card__title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.facility-card__text {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+
+/* Sports achievements stats */
+.sports-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  padding: var(--space-8);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  border-radius: var(--radius-xl);
+  text-align: center;
+  color: var(--color-white);
+  margin: var(--space-12) 0;
+}
+
+@media (max-width: 768px) {
+  .sports-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.sports-stat__number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+}
+
+.sports-stat__label {
+  font-size: var(--fs-sm);
+  opacity: 0.85;
+}
+
+

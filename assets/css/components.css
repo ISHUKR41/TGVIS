@@ -1644,3 +1644,122 @@
     display: none;
   }
 }
+
+
+/* --------------------------------------------------------------------------
+   16. CTA BANNER
+   --------------------------------------------------------------------------
+   A full-width gradient banner used across multiple pages (not just home).
+   Moved here from home.css so any page can use it without loading home.css.
+   -------------------------------------------------------------------------- */
+
+.cta-banner {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 50%, #0a3d1f 100%);
+  padding: var(--space-20) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative circle in background */
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: rgba(212, 168, 67, 0.06);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+}
+
+.cta-banner__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  position: relative;
+  z-index: 2;
+}
+
+.cta-banner__label {
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  background: rgba(212, 168, 67, 0.15);
+  border-radius: var(--radius-full);
+  color: var(--color-secondary);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  margin-bottom: var(--space-4);
+}
+
+.cta-banner__title {
+  font-size: var(--fs-3xl);
+  color: var(--color-white);
+  margin-bottom: var(--space-4);
+}
+
+.cta-banner__title span {
+  color: var(--color-secondary);
+}
+
+.cta-banner__description {
+  font-size: var(--fs-base);
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 500px;
+}
+
+.cta-banner__actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .cta-banner__content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .cta-banner__title {
+    font-size: var(--fs-2xl);
+  }
+  .cta-banner__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .cta-banner__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   17. AUTO-FIT GRIDS
+   --------------------------------------------------------------------------
+   Responsive grids that adjust column count based on available space.
+   Used throughout pages where items should flow naturally.
+   -------------------------------------------------------------------------- */
+
+/* Standard auto grid — min 280px per column */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-8);
+}
+
+/* Small auto grid — min 220px per column (more columns on desktop) */
+.grid-auto-sm {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-6);
+}
+
+/* Large auto grid — min 340px per column (fewer, bigger columns) */
+.grid-auto-lg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: var(--space-10);
+}
