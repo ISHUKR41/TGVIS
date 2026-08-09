@@ -54,15 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Wait for ALL resources (images, fonts, stylesheets) to fully load
-  window.addEventListener('load', () => {
-    // Small delay for a smoother visual transition
-    setTimeout(hidePreloader, 300);
-  });
+  /*
+   * Do not wait for optional CDN libraries or every image before showing the
+   * page. A third-party request should never leave visitors behind a dark
+   * loading layer. The document is already parsed here, so a short delay is
+   * enough to keep the branded hand-off without blocking the first view.
+   */
+  setTimeout(hidePreloader, 180);
 
-  // Safety net: if the page takes too long, hide preloader after 5 seconds
-  // This prevents the user from being stuck on the loading screen
-  setTimeout(hidePreloader, 5000);
+  // Safety net for unusual browser or stylesheet timing problems.
+  setTimeout(hidePreloader, 2000);
 
 
   /* ========================================================================
@@ -101,9 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
       navbar.classList.remove('scrolled');
     }
   }
-
-  // Listen for scroll events (throttled in utils.js for performance)
-  window.addEventListener('scroll', handleNavbarScroll);
 
   // Run once on page load in case the page loads in a scrolled position
   handleNavbarScroll();
@@ -310,87 +308,14 @@ document.addEventListener('DOMContentLoaded', () => {
    * delay to ensure proper sync is established before starting Lenis.
    */
   function initLenis() {
-    // Check if Lenis is available (loaded from CDN)
-    if (typeof Lenis === 'undefined') {
-      console.warn('TGVIS: Lenis not loaded — using native scroll.');
-      return;
-    }
-
-    // Disable Lenis on very low-powered devices (reduces lag on budget phones)
-    // Also disable on mobile browsers where native scroll is already smooth
-    const isLowPower = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
-    const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    
-    if (isLowPower || isMobileDevice) {
-      // Native scroll is faster and smoother on mobile/low-power devices
-      return;
-    }
-
-    // Create Lenis instance with smooth, lag-free settings
-    const lenis = new Lenis({
-      duration: 0.9,            // Scroll animation duration in seconds
-      lerp: 0.1,                // Linear interpolation factor — lower = smoother
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 0.85,    // Slightly reduced for comfortable scroll speed
-      touchMultiplier: 1.0,     // 1:1 touch response — feels natural
-      infinite: false,
-      autoResize: true,
-    });
-
-    // Store globally for back-to-top and anchor scroll access
-    window.lenisInstance = lenis;
-
-    // ─── CRITICAL SYNC: LENIS + GSAP SCROLLTRIGGER ───────────────────────
-    // This prevents the #1 cause of scroll lag: two separate animation
-    // loops (Lenis RAF and GSAP ticker) running independently and fighting.
-    // 
-    // Solution: Let GSAP's ticker drive Lenis completely, so there is
-    // only ONE animation loop for the entire page.
-    // ─────────────────────────────────────────────────────────────────────
-    function setupGSAPSync() {
-      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        // GSAP is ready — hook Lenis into it
-        lenis.on('scroll', ScrollTrigger.update);
-        
-        gsap.ticker.add((time) => {
-          lenis.raf(time * 1000); // GSAP ticker = seconds, Lenis needs ms
-        });
-        
-        // Critical: disable GSAP lag smoothing — it conflicts with Lenis
-        gsap.ticker.lagSmoothing(0);
-      } else {
-        // GSAP not available yet — run Lenis standalone with its own rAF
-        // This also handles pages that don't load GSAP at all
-        function raf(time) {
-          lenis.raf(time);
-          requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-      }
-    }
-
-    // Try to sync immediately, then retry once after a short delay
-    // to handle cases where GSAP CDN loads slightly after global.js
-    setupGSAPSync();
-    
-    // Second attempt after 200ms in case CDN scripts were slightly delayed
-    setTimeout(() => {
-      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        // GSAP is now available — ensure ScrollTrigger is registered and synced
-        if (gsap.ticker) {
-          // Only add the listener if it wasn't added already
-          if (!window._lenisGSAPSynced) {
-            lenis.on('scroll', ScrollTrigger.update);
-            gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-            gsap.ticker.lagSmoothing(0);
-            window._lenisGSAPSynced = true;
-          }
-        }
-      }
-    }, 200);
+    /*
+     * Native browser scrolling is intentionally used here. The previous
+     * Lenis + GSAP setup could create two requestAnimationFrame loops when
+     * the CDN scripts arrived in a different order, which made long pages
+     * feel heavy. CSS scroll-behavior and the small anchor helper below keep
+     * navigation smooth without taking control of the browser's scroll.
+     */
+    window.lenisInstance = null;
   }
 
   // Initialize Lenis smooth scrolling
@@ -421,8 +346,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Listen for scroll events
-  window.addEventListener('scroll', handleBackToTop);
+  /*
+   * Coalesce scroll UI updates into one animation-frame callback. This keeps
+   * the navbar and back-to-top button responsive without doing layout work
+   * for every raw wheel/touch event.
+   */
+  let scrollUpdatePending = false;
+  function scheduleScrollUpdate() {
+    if (scrollUpdatePending) return;
+    scrollUpdatePending = true;
+    requestAnimationFrame(() => {
+      scrollUpdatePending = false;
+      handleNavbarScroll();
+      handleBackToTop();
+    });
+  }
+  window.addEventListener('scroll', scheduleScrollUpdate, { passive: true });
 
   // Scroll to top when the button is clicked
   if (backToTop) {

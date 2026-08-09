@@ -1,0 +1,12 @@
+{
+  "name": "tgvis-school-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The Green Valley International School, Bihta — static multi-page website",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
