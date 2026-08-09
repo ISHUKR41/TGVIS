@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
      3. On toggle, update the data-theme attribute and save to localStorage
      ======================================================================== */
 
-  const themeToggle = document.querySelector('.navbar__theme-toggle');
+   const themeToggles = document.querySelectorAll('.navbar__theme-toggle');
   const htmlElement = document.documentElement;
 
   /**
@@ -253,28 +253,29 @@ document.addEventListener('DOMContentLoaded', () => {
     htmlElement.setAttribute('data-theme', theme);
 
     // Update the toggle button icon
-    if (themeToggle) {
-      const icon = themeToggle.querySelector('i');
-      if (icon) {
+     themeToggles.forEach(toggle => {
+       const icon = toggle.querySelector('i');
+       if (icon) {
         // Sun icon for dark mode (click to switch to light)
         // Moon icon for light mode (click to switch to dark)
         icon.className = theme === 'dark' ? 'ri-sun-line' : 'ri-moon-line';
       }
-    }
+       toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+     });
   }
 
   // Apply the theme immediately on page load
   applyTheme(getPreferredTheme());
 
   // Toggle theme when the button is clicked
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
+   if (themeToggles.length) {
+     themeToggles.forEach(toggle => toggle.addEventListener('click', () => {
       const currentTheme = htmlElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
       applyTheme(newTheme);
       localStorage.setItem('tgvis-theme', newTheme);
-    });
+     }));
   }
 
   // Listen for system theme changes (if user changes OS dark mode setting)
@@ -389,17 +390,19 @@ document.addEventListener('DOMContentLoaded', () => {
    * class to the one that matches the current page URL.
    */
   function highlightActiveNavLink() {
-    const currentPath = window.location.pathname;
+     const currentPath = window.location.pathname;
 
     navLinks.forEach(link => {
       const linkPath = link.getAttribute('href');
 
-      if (!linkPath) return;
+       if (!linkPath || linkPath.startsWith('#') || linkPath === 'javascript:void(0)') return;
+
+       const resolvedPath = new URL(linkPath, window.location.href).pathname;
 
       // Check if the current page URL matches or starts with this link's path
       // This handles both exact matches and nested pages
-      if (currentPath === linkPath || 
-          (linkPath !== '/' && currentPath.startsWith(linkPath))) {
+       if (currentPath === resolvedPath ||
+           (resolvedPath !== '/' && currentPath.startsWith(resolvedPath.replace(/\/index\.html$/, '/')))) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');

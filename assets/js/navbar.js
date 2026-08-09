@@ -84,7 +84,7 @@ function buildNavbarHTML(base) {
       
       <!-- ======== SCHOOL LOGO ======== -->
       <a href="${home}" class="navbar__logo" aria-label="TGVIS Home">
-         <img src="${base}assets/images/campus/tgvis-campus.webp" alt="TGVIS school crest" 
+         <img src="${base}assets/images/logo/logo.png" alt="TGVIS school crest"
              class="navbar__logo-img" width="44" height="44" loading="eager">
         <div>
           <span class="navbar__logo-text">TGVIS</span>
@@ -284,7 +284,7 @@ function buildFooterHTML(base) {
         <!-- ---- Column 1: Brand ---- -->
         <div class="footer__brand">
           <div class="footer__logo">
-            <img src="${base}assets/images/logo/tgvis-crest.webp" alt="TGVIS school crest" 
+            <img src="${base}assets/images/logo/logo.png" alt="TGVIS school crest"
                  class="footer__logo-img" width="52" height="52">
             <div class="footer__logo-text">
               The Green Valley<br>International School
@@ -349,14 +349,14 @@ function buildFooterHTML(base) {
           </div>
           <div class="footer__contact-item">
             <div class="footer__contact-icon"><i class="ri-phone-fill"></i></div>
-            <div class="footer__contact-text">
-              <a href="${p}contact/contact.html" style="color:inherit;">Contact the school office</a>
+             <div class="footer__contact-text">
+               <a href="tel:+918935901010" style="color:inherit;">+91 89359 01010</a>
             </div>
           </div>
           <div class="footer__contact-item">
             <div class="footer__contact-icon"><i class="ri-mail-fill"></i></div>
-            <div class="footer__contact-text">
-              <a href="${p}contact/contact.html" style="color:inherit;">Send an enquiry online</a>
+             <div class="footer__contact-text">
+               <a href="${p}contact/contact.html#contactForm" style="color:inherit;">Send an enquiry online</a>
             </div>
           </div>
 
@@ -398,10 +398,10 @@ function buildFooterHTML(base) {
  */
 function buildWhatsAppHTML() {
   return `
-    <a href="${getBasePath()}pages/contact/contact.html#contactForm"
-       class="whatsapp-btn" aria-label="Contact the TGVIS school office">
-      <i class="ri-message-3-line"></i>
-      <span class="whatsapp-btn__tooltip">Contact the school office</span>
+     <a href="https://wa.me/918935901010?text=Hello%20TGVIS%20School%20Office%2C%20I%20would%20like%20some%20information." target="_blank" rel="noopener noreferrer"
+        class="whatsapp-btn" aria-label="Message the TGVIS school office on WhatsApp">
+       <i class="ri-whatsapp-line"></i>
+       <span class="whatsapp-btn__tooltip">Message us on WhatsApp</span>
     </a>
   `;
 }

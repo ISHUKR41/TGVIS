@@ -2,8 +2,8 @@
    TGVIS — Student Login JavaScript
    ==========================================================================
    Handles login form validation, password visibility toggle, and
-   form submission feedback. This is a frontend-only implementation —
-   no real authentication occurs.
+   clear portal-access feedback. This is a frontend-only implementation —
+   real authentication needs a school-approved backend service.
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---- PASSWORD VISIBILITY TOGGLE ----
      Clicking the eye icon toggles between password and text input types */
   const passwordToggle = document.querySelector('.password-toggle');
-  const passwordInput = document.getElementById('studentPassword');
+  const passwordInput = document.querySelector('input[type="password"]');
 
   if (passwordToggle && passwordInput) {
     passwordToggle.addEventListener('click', () => {
@@ -26,35 +26,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---- FORM VALIDATION & SUBMISSION ----
      Validates Student ID and Password fields before "logging in" */
-  const loginForm = document.getElementById('studentLoginForm');
+  const loginForm = document.querySelector('.login-form');
 
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const studentId = document.getElementById('studentId');
-      const password = document.getElementById('studentPassword');
+       const identityInput = loginForm.querySelector('input[type="text"]');
+       const password = loginForm.querySelector('input[type="password"], input[type="text"][id*="Password"]');
       let isValid = true;
 
       // Validate Student ID
-      if (!studentId.value.trim()) {
-        TGVIS.showFieldError(studentId.parentElement.querySelector('.form-input'), 'Please enter your Student ID');
+       if (!identityInput || !identityInput.value.trim()) {
+         if (identityInput && window.TGVIS) TGVIS.showFieldError(identityInput, 'Please enter your ID or username');
         isValid = false;
       }
 
       // Validate Password
-      if (!password.value.trim()) {
-        TGVIS.showFieldError(password, 'Please enter your password');
+       if (!password || !password.value.trim()) {
+         if (password && window.TGVIS) TGVIS.showFieldError(password, 'Please enter your password');
         isValid = false;
-      } else if (password.value.length < 6) {
-        TGVIS.showFieldError(password, 'Password must be at least 6 characters');
+       } else if (password.value.length < 6) {
+         if (window.TGVIS) TGVIS.showFieldError(password, 'Password must be at least 6 characters');
         isValid = false;
       }
 
       if (isValid) {
-        // Frontend-only: show success message
-        // In production, this would send credentials to a backend API
-        alert('Welcome to TGVIS Student Portal! (This is a demo — backend integration required for real authentication)');
+         const role = (loginForm.id.replace('LoginForm', '') || 'School').replace(/([A-Z])/g, ' $1').trim();
+         const button = loginForm.querySelector('button[type="submit"]');
+         const status = document.createElement('p');
+         status.setAttribute('role', 'status');
+         status.style.cssText = 'margin-top:16px;text-align:center;color:var(--text-secondary);font-size:var(--fs-sm);';
+         status.textContent = `${role} portal access is managed by the school office. Call +91 89359 01010 for credentials.`;
+         loginForm.appendChild(status);
+         if (button) {
+           const original = button.innerHTML;
+           button.innerHTML = '<i class="ri-information-line"></i> Contact School Office';
+           button.disabled = true;
+           setTimeout(() => {
+             button.innerHTML = original;
+             button.disabled = false;
+             status.remove();
+           }, 4000);
+         }
       }
     });
   }

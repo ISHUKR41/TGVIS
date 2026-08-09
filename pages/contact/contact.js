@@ -74,19 +74,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!valid) return;
 
-    /* Show success feedback on the submit button */
+    /*
+     * This static site has no mail server connected yet. WhatsApp is the
+     * school's supplied contact channel, so prepare a clear, pre-filled
+     * enquiry there instead of pretending that a server stored the form.
+     */
     const btn = form.querySelector('button[type="submit"]');
     if (btn) {
-      const original = btn.innerHTML;
-      btn.innerHTML = '<i class="ri-check-line"></i> Message Sent!';
+      const name = form.querySelector('#name').value.trim();
+      const email = form.querySelector('#email').value.trim();
+      const phone = form.querySelector('#phone').value.trim();
+      const subject = form.querySelector('#subject').value;
+      const message = form.querySelector('#message').value.trim();
+      const text = [
+        'Hello TGVIS School Office,',
+        `Name: ${name}`,
+        `Phone: ${phone || 'Not provided'}`,
+        `Email: ${email}`,
+        `Subject: ${subject}`,
+        `Message: ${message}`
+      ].join('\n');
+      window.open(`https://wa.me/918935901010?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+      btn.innerHTML = '<i class="ri-whatsapp-line"></i> WhatsApp Opened';
       btn.style.background = 'var(--color-accent)';
-      btn.disabled = true;
-
       setTimeout(() => {
         form.reset();
-        btn.innerHTML = original;
+        btn.innerHTML = '<i class="ri-send-plane-fill"></i> Send Message';
         btn.style.background = '';
-        btn.disabled = false;
         if (textarea) counter.textContent = '0 / 500 characters';
       }, 3500);
     }

@@ -18,19 +18,28 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       
+      const get = id => form.querySelector(id)?.value.trim() || 'Not provided';
+      const enquiry = [
+        'Hello TGVIS Admissions Office,',
+        `Student: ${get('#studentName')}`,
+        `Parent/Guardian: ${get('#parentName')}`,
+        `Phone: ${get('#admPhone')}`,
+        `Email: ${get('#admEmail')}`,
+        `Class: ${get('#admClass')}`,
+        `Date of birth: ${get('#admDob')}`,
+        `Message: ${get('#admMessage')}`
+      ].join('\n');
+      window.open(`https://wa.me/918935901010?text=${encodeURIComponent(enquiry)}`, '_blank', 'noopener,noreferrer');
       const btn = form.querySelector('button[type="submit"]');
       if (btn) {
         const original = btn.innerHTML;
-        btn.innerHTML = '<i class="ri-check-line"></i> Enquiry Submitted!';
+        btn.innerHTML = '<i class="ri-whatsapp-line"></i> WhatsApp Opened';
         btn.style.background = '#22C55E';
-        btn.disabled = true;
-        
         setTimeout(() => {
           form.reset();
           btn.innerHTML = original;
           btn.style.background = '';
-          btn.disabled = false;
-        }, 3000);
+        }, 3500);
       }
     });
   }

@@ -1,0 +1,1 @@
+- [Verified contact flows](verified-contact-flows.md) — use the supplied office phone and honest WhatsApp handoffs until private links, email, or backend services are confirmed.

@@ -87,13 +87,22 @@ function handleLogin(e, role) {
   /* Capitalize the role name for display */
   var roleName = role.charAt(0).toUpperCase() + role.slice(1);
 
-  /* Show placeholder message */
-  alert(
-    roleName + ' login functionality will be available soon.\n\n' +
-    'Please contact the school office for portal access.\n' +
-    'Phone: +91 XXXXX XXXXX\n' +
-    'Email: info@tgvis.in'
-  );
+  var form = document.getElementById('form-' + role);
+  var button = form && form.querySelector('button[type="submit"]');
+  if (!button) return;
+  var original = button.innerHTML;
+  button.innerHTML = '<i class="ri-information-line"></i> Portal access required';
+  button.disabled = true;
+  var note = form.querySelector('.login-status') || document.createElement('p');
+  note.className = 'login-status';
+  note.setAttribute('role', 'status');
+  note.style.cssText = 'margin-top:16px;text-align:center;color:var(--text-secondary);font-size:var(--fs-sm);';
+  note.textContent = roleName + ' portal access is managed by the school office. Call +91 89359 01010 for your credentials.';
+  if (!note.parentElement) form.appendChild(note);
+  setTimeout(function() {
+    button.innerHTML = original;
+    button.disabled = false;
+  }, 3500);
 }
 
 
