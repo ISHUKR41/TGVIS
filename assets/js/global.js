@@ -444,6 +444,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /*
+   * Newsletter forms are intentionally local until the school connects an
+   * email service. Showing an inline confirmation is more honest and more
+   * accessible than pretending a subscription was sent to a backend.
+   */
+  document.querySelectorAll('[data-newsletter-form]').forEach(form => {
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const status = form.parentElement.querySelector('[data-newsletter-status]');
+      if (status) status.textContent = 'Thanks — updates will be shared once the school newsletter is live.';
+      form.reset();
+    });
+  });
+
 
   /* ========================================================================
      8. PAGE TRANSITION EFFECT

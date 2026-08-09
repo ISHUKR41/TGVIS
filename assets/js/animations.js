@@ -116,6 +116,14 @@ document.addEventListener('DOMContentLoaded', () => {
    * animations across the site.
    */
   function initGSAP() {
+    /*
+     * Scroll-triggered GSAP timelines used to compete with native scrolling
+     * and could create a second animation loop on long pages. Native
+     * IntersectionObserver reveals below provide the same visual hierarchy
+     * with much less work per frame.
+     */
+    return;
+
     // Check if GSAP is available (loaded from CDN)
     if (typeof gsap === 'undefined') {
       console.warn('TGVIS: GSAP not loaded — skipping advanced animations.');

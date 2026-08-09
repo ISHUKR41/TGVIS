@@ -84,7 +84,7 @@ function buildNavbarHTML(base) {
       
       <!-- ======== SCHOOL LOGO ======== -->
       <a href="${home}" class="navbar__logo" aria-label="TGVIS Home">
-        <img src="${base}assets/images/logo/logo.png" alt="TGVIS Logo" 
+         <img src="${base}assets/images/campus/tgvis-campus.webp" alt="TGVIS school crest" 
              class="navbar__logo-img" width="44" height="44" loading="eager">
         <div>
           <span class="navbar__logo-text">TGVIS</span>
@@ -284,7 +284,7 @@ function buildFooterHTML(base) {
         <!-- ---- Column 1: Brand ---- -->
         <div class="footer__brand">
           <div class="footer__logo">
-            <img src="${base}assets/images/logo/logo.png" alt="TGVIS" 
+            <img src="${base}assets/images/logo/tgvis-crest.webp" alt="TGVIS school crest" 
                  class="footer__logo-img" width="52" height="52">
             <div class="footer__logo-text">
               The Green Valley<br>International School
@@ -300,15 +300,8 @@ function buildFooterHTML(base) {
                aria-label="Facebook">
               <i class="ri-facebook-fill"></i>
             </a>
-            <a href="#" class="footer__social-link" target="_blank" aria-label="Instagram">
-              <i class="ri-instagram-line"></i>
-            </a>
-            <a href="#" class="footer__social-link" target="_blank" aria-label="YouTube">
-              <i class="ri-youtube-fill"></i>
-            </a>
-            <a href="https://wa.me/91XXXXXXXXXX?text=Hello%20TGVIS%2C%20I%20want%20to%20know%20about%20admissions." 
-               class="footer__social-link" target="_blank" aria-label="WhatsApp">
-              <i class="ri-whatsapp-line"></i>
+            <a href="${p}contact/contact.html" class="footer__social-link" aria-label="Contact school office">
+              <i class="ri-mail-line"></i>
             </a>
             <a href="https://maps.app.goo.gl/94xhFw4nFaQEhpw77" 
                class="footer__social-link" target="_blank" rel="noopener noreferrer"
@@ -357,13 +350,13 @@ function buildFooterHTML(base) {
           <div class="footer__contact-item">
             <div class="footer__contact-icon"><i class="ri-phone-fill"></i></div>
             <div class="footer__contact-text">
-              <a href="tel:+91XXXXXXXXXX" style="color:inherit;">+91 XXXXX XXXXX</a>
+              <a href="${p}contact/contact.html" style="color:inherit;">Contact the school office</a>
             </div>
           </div>
           <div class="footer__contact-item">
             <div class="footer__contact-icon"><i class="ri-mail-fill"></i></div>
             <div class="footer__contact-text">
-              <a href="mailto:info@tgvis.edu.in" style="color:inherit;">info@tgvis.edu.in</a>
+              <a href="${p}contact/contact.html" style="color:inherit;">Send an enquiry online</a>
             </div>
           </div>
 
@@ -372,12 +365,13 @@ function buildFooterHTML(base) {
             <p style="font-size:var(--fs-sm);margin-bottom:var(--space-3);color:var(--color-gray-400);">
               Subscribe for updates:
             </p>
-            <form class="footer__newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+            <form class="footer__newsletter-form" data-newsletter-form>
               <input type="email" class="footer__newsletter-input" placeholder="Your email" required aria-label="Email for newsletter">
               <button type="submit" class="footer__newsletter-btn">
                 <i class="ri-send-plane-fill"></i>
               </button>
             </form>
+            <p class="footer__newsletter-status" data-newsletter-status aria-live="polite"></p>
           </div>
         </div>
       </div>
@@ -386,9 +380,9 @@ function buildFooterHTML(base) {
       <div class="footer__bottom">
         <p>&copy; ${year} The Green Valley International School, Bihta. All Rights Reserved.</p>
         <div class="footer__bottom-links">
-          <a href="#" class="footer__bottom-link">Privacy Policy</a>
-          <a href="#" class="footer__bottom-link">Terms of Use</a>
-          <a href="${p}contact/contact.html" class="footer__bottom-link">Sitemap</a>
+          <a href="${p}contact/contact.html#privacy" class="footer__bottom-link">Privacy & safeguarding</a>
+          <a href="${p}contact/contact.html#terms" class="footer__bottom-link">Terms of use</a>
+          <a href="${p}contact/contact.html" class="footer__bottom-link">Contact</a>
         </div>
       </div>
     </div>
@@ -404,11 +398,10 @@ function buildFooterHTML(base) {
  */
 function buildWhatsAppHTML() {
   return `
-    <a href="https://wa.me/91XXXXXXXXXX?text=Hello%20TGVIS%2C%20I%20want%20to%20know%20about%20admissions." 
-       class="whatsapp-btn" target="_blank" rel="noopener noreferrer" 
-       aria-label="Chat on WhatsApp">
-      <i class="ri-whatsapp-line"></i>
-      <span class="whatsapp-btn__tooltip">Chat with us!</span>
+    <a href="${getBasePath()}pages/contact/contact.html#contactForm"
+       class="whatsapp-btn" aria-label="Contact the TGVIS school office">
+      <i class="ri-message-3-line"></i>
+      <span class="whatsapp-btn__tooltip">Contact the school office</span>
     </a>
   `;
 }

@@ -264,7 +264,7 @@
 /* Set the root font size for rem calculations (1rem = 16px) */
 html {
   font-size: 100%;
-  scroll-behavior: smooth;          /* Native smooth scrolling (Lenis overrides this) */
+  scroll-behavior: smooth;          /* Native smooth scrolling keeps anchors lightweight */
   -webkit-text-size-adjust: 100%;   /* Prevent font scaling on iOS landscape */
   text-size-adjust: 100%;
   scroll-padding-top: var(--navbar-height); /* Account for sticky navbar on anchor scrolls */
@@ -284,6 +284,23 @@ body {
   overflow-x: hidden;                    /* Prevent horizontal scroll from animations */
   min-height: 100vh;
   transition: background-color var(--transition-slow), color var(--transition-slow);
+}
+
+/* Keep decorative motion from competing with native scrolling on low-power
+   devices. The browser can then maintain a steadier frame rate while the
+   content remains fully usable. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Make images and media responsive by default — never overflow their containers */
