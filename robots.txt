@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# Add an absolute sitemap URL only after the school approves the canonical
-# public domain.
+# Add the sitemap URL after the school approves the final public domain.
+# Do not submit the temporary tgvis.edu.in placeholder as the live domain.

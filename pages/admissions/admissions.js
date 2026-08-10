@@ -12,7 +12,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ---- Enquiry Form Submission ---- */
-  const form = document.querySelector('.admissions-enquiry form, form');
+  const form = document.getElementById('admissionForm');
   
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -33,10 +33,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const btn = form.querySelector('button[type="submit"]');
       if (btn) {
         const original = btn.innerHTML;
+        const status = document.createElement('p');
+        status.setAttribute('role', 'status');
+        status.className = 'form-status';
+        status.textContent = 'Your enquiry is ready. WhatsApp will open so you can send it to the school office.';
+        btn.after(status);
         btn.innerHTML = '<i class="ri-whatsapp-line"></i> WhatsApp Opened';
         btn.style.background = '#22C55E';
         setTimeout(() => {
           form.reset();
+          status.remove();
           btn.innerHTML = original;
           btn.style.background = '';
         }, 3500);

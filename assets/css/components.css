@@ -904,6 +904,17 @@
   color: var(--color-gray-400);
 }
 
+.form-status {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: rgba(var(--color-primary-rgb), 0.06);
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+}
+
 /* Error state — red border */
 .form-input--error {
   border-color: var(--color-error);
