@@ -1,15 +1,18 @@
 /* ==========================================================================
    TGVIS — Latest Updates Page JavaScript
    ==========================================================================
-   Handles news filtering by category and pagination controls.
+   Handles update filtering by category.
    DEPENDENCIES: global.js, animations.js
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* News Category Filter */
-  const filterButtons = document.querySelectorAll('.news-filters .filter-btn');
-  const newsCards = document.querySelectorAll('.news-card');
+  /*
+   * The page markup uses the "updates" naming convention. Keeping the
+   * selectors aligned here prevents a silent no-op when a filter is clicked.
+   */
+  const filterButtons = document.querySelectorAll('.updates-filter__btn');
+  const newsCards = document.querySelectorAll('.update-card');
 
   if (filterButtons.length > 0 && newsCards.length > 0) {
     filterButtons.forEach(button => {
@@ -23,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Filter news cards with smooth animation
         newsCards.forEach((card, index) => {
           const cardCategory = card.getAttribute('data-category');
-          const shouldShow = (filterValue === 'all' || cardCategory === filterValue);
+          const shouldShow = (filterValue === 'All' || cardCategory === filterValue);
 
           if (shouldShow) {
             card.style.display = '';
@@ -45,16 +48,5 @@ document.addEventListener('DOMContentLoaded', () => {
       card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
     });
   }
-
-  /* Pagination — simple page switching */
-  const paginationBtns = document.querySelectorAll('.news-pagination__btn');
-  paginationBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      paginationBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      // In a real app this would load new content; for now it updates the UI
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
 
 }); // END DOMContentLoaded

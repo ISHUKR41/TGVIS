@@ -344,6 +344,14 @@ button {
   cursor: pointer;
 }
 
+/* A visible keyboard ring keeps the multi-page site usable without a mouse.
+   The colour is shared with the design tokens so it remains clear in both
+   light and dark themes. */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
 /* Prevent textarea from being resized horizontally (only vertical is useful) */
 textarea {
   resize: vertical;

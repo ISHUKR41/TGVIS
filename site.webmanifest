@@ -1,0 +1,17 @@
+{
+  "name": "The Green Valley International School, Bihta",
+  "short_name": "TGVIS",
+  "description": "The Green Valley International School website for families in Bihta, Patna, Bihar.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#FAFAF8",
+  "theme_color": "#0D4D2B",
+  "icons": [
+    {
+      "src": "assets/images/logo/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

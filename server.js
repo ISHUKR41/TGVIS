@@ -19,6 +19,7 @@ const MIME_TYPES = {
   '.css': 'text/css; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
+  '.webmanifest': 'application/manifest+json; charset=utf-8',
   '.xml': 'application/xml; charset=utf-8',
   '.txt': 'text/plain; charset=utf-8',
   '.svg': 'image/svg+xml',
@@ -67,10 +68,26 @@ const server = http.createServer((request, response) => {
 
   fs.readFile(filePath, (error, contents) => {
     if (error) {
+      if (error.code === 'ENOENT') {
+        const notFoundPath = path.join(ROOT, '404.html');
+        return fs.readFile(notFoundPath, (notFoundError, notFoundContents) => {
+          if (notFoundError) {
+            response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+            response.end('Not found');
+            return;
+          }
+          response.writeHead(404, {
+            'Content-Type': 'text/html; charset=utf-8',
+            'Cache-Control': 'no-cache',
+            'X-Content-Type-Options': 'nosniff',
+          });
+          response.end(notFoundContents);
+        });
+      }
       response.writeHead(error.code === 'ENOENT' ? 404 : 500, {
         'Content-Type': 'text/plain; charset=utf-8',
       });
-      response.end(error.code === 'ENOENT' ? 'Not found' : 'Server error');
+      response.end('Server error');
       return;
     }
 

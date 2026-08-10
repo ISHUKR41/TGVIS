@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: /sitemap.xml
+# Add an absolute sitemap URL only after the school approves the canonical
+# public domain.

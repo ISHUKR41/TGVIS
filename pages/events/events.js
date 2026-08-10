@@ -42,10 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
   ].join(';');
 
   categories.forEach((cat, i) => {
-    const btn = document.createElement('button');
+     const btn = document.createElement('button');
     btn.type = 'button';
     btn.textContent = cat;
     btn.dataset.filter = cat;
+     btn.setAttribute('aria-pressed', String(i === 0));
 
     const isActive = i === 0;
     applyBtnStyle(btn, isActive);
@@ -54,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
       /* Update button styles */
       bar.querySelectorAll('button').forEach(b => applyBtnStyle(b, false));
       applyBtnStyle(btn, true);
+       bar.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
 
       /* Show / hide cards */
       cards.forEach(card => {
