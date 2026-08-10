@@ -1563,6 +1563,16 @@
   .grid-4 {
     grid-template-columns: 1fr;
   }
+
+  /*
+   * Several long forms use a two-column inline grid on desktop. Override
+   * those presentation hints on phones so labels and controls remain easy
+   * to read and no field is squeezed into a narrow column.
+   */
+  .contact-form > [style*="grid-template-columns:1fr 1fr"],
+  .contact-form .form-row[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 

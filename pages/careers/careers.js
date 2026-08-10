@@ -1,7 +1,9 @@
 /* ==========================================================================
    TGVIS — Careers Page JavaScript
    ==========================================================================
-   Handles the job application form — validation and submit feedback.
+   Handles the job application form — validation and a WhatsApp handoff to
+   the school office. The static site does not pretend to store applications
+   until the school connects an approved application service.
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,11 +37,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!valid) return;
 
-    /* Show success message */
+    /*
+     * No careers inbox has been verified for this imported project. Prepare
+     * the application details in WhatsApp so the office receives a real,
+     * usable enquiry instead of a misleading local "success" message.
+     */
     const btn = form.querySelector('button[type="submit"]');
     if (btn) {
+      const text = [
+        'Hello TGVIS School Office,',
+        'I would like to apply for a position at the school.',
+        `Name: ${name.value.trim()}`,
+        `Phone: ${phone.value.trim()}`,
+        `Email: ${email.value.trim()}`,
+        `Position: ${position.value}`,
+        `Qualification: ${qual.value.trim()}`,
+        `Experience: ${document.getElementById('jExp')?.value.trim() || 'Not provided'}`,
+        `Message: ${document.getElementById('jMsg')?.value.trim() || 'Not provided'}`
+      ].join('\n');
+
+      window.open(`https://wa.me/918935901010?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
       const orig = btn.innerHTML;
-      btn.innerHTML = '<i class="ri-check-double-line"></i> Application Received!';
+      btn.innerHTML = '<i class="ri-whatsapp-line"></i> WhatsApp Opened';
       btn.style.background = 'var(--color-accent)';
       btn.disabled = true;
       setTimeout(() => {
