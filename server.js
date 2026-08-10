@@ -38,6 +38,14 @@ function contentType(filePath, contents) {
       contents.subarray(0, 200).toString('utf8').trimStart().startsWith('<')) {
     return 'image/svg+xml';
   }
+  // The approved school crest may be stored at the legacy .png URL while its
+  // binary content is WebP. Returning the real media type keeps strict browsers
+  // happy when X-Content-Type-Options is enabled.
+  if (path.extname(filePath).toLowerCase() === '.png' &&
+      contents.subarray(0, 12).toString('ascii').startsWith('RIFF') &&
+      contents.subarray(8, 12).toString('ascii') === 'WEBP') {
+    return 'image/webp';
+  }
   return MIME_TYPES[path.extname(filePath).toLowerCase()] || 'application/octet-stream';
 }
 

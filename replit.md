@@ -35,7 +35,12 @@ relative URLs for internal links and do not add hard-coded localhost URLs.
 
 ## Current content notes
 
-The school phone, email, social, and admission-session details should be
-replaced with verified official values before publishing. The image placeholders
-in `assets/images/` can be replaced with approved school photography without
-changing the existing HTML paths.
+- The supplied school office number is used for telephone and WhatsApp handoffs:
+  `+91 89359 01010`.
+- Public class-group invite URLs were not supplied, so the class WhatsApp page
+  creates a pre-filled request to the office rather than inventing private links.
+- The downloaded references in `assets/images/campus/` are school-emblem images
+  supplied through the project brief. Replace them with approved campus,
+  classroom, sports, and student photography when available.
+- Confirm the official email address, admission session dates, school affiliation,
+  and final public domain before publishing SEO metadata as permanent facts.
