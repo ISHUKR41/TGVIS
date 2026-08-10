@@ -188,19 +188,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (dropdownToggle) {
       dropdownToggle.addEventListener('click', (e) => {
-        // Only use click-to-toggle on mobile (desktop uses CSS hover)
-        if (window.innerWidth <= 1024) {
-          e.preventDefault(); // Prevent the link from navigating
+        /*
+         * Dropdown headings are navigation controls, not destination pages.
+         * Preventing the "#" fallback on every viewport keeps mouse, keyboard,
+         * and touch users on the page while desktop hover remains available.
+         */
+        e.preventDefault();
+        const isOpen = item.classList.contains('open');
+        dropdownToggle.setAttribute('aria-expanded', String(!isOpen));
 
+        // On mobile, use an accordion so the slide-out menu stays compact.
+        if (window.innerWidth <= 1024) {
           // Close all OTHER dropdowns first (accordion behavior)
           navItems.forEach(otherItem => {
             if (otherItem !== item) {
               otherItem.classList.remove('open');
+              const otherToggle = otherItem.querySelector('.navbar__link--dropdown');
+              if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
             }
           });
 
           // Toggle THIS dropdown
-          item.classList.toggle('open');
+          item.classList.toggle('open', !isOpen);
         }
       });
     }

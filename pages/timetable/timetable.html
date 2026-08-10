@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/global.css"><link rel="stylesheet" href="../../assets/css/components.css"><link rel="stylesheet" href="../../assets/css/animations.css">
-  <link rel="stylesheet" href="../admissions/admissions.css">
+   <link rel="stylesheet" href="../../assets/css/global.css"><link rel="stylesheet" href="../../assets/css/components.css"><link rel="stylesheet" href="../../assets/css/animations.css">
+   <link rel="stylesheet" href="timetable.css">
 </head>
 <body>
   <div class="preloader" id="preloader"><div class="preloader__text">TGVIS</div><div class="preloader__bar"><div class="preloader__bar-fill"></div></div></div><div class="page-transition"></div>
@@ -21,9 +21,21 @@
   <section class="page-hero"><img src="../../assets/images/hero/campus.png" alt="Timetable" class="page-hero__bg"><div class="page-hero__overlay"></div><div class="page-hero__content"><h1 class="page-hero__title">School Timetable</h1><p class="page-hero__subtitle">A structured daily routine designed for optimal learning and development</p><nav class="breadcrumb"><a href="../../index.html" class="breadcrumb__link">Home</a><i class="ri-arrow-right-s-line breadcrumb__separator"></i><span class="breadcrumb__current">Timetable</span></nav></div></section>
 
   <!-- General Timings -->
-  <section class="section">
+   <section class="section">
     <div class="container">
-      <div class="section-header reveal"><span class="section-label">Daily Routine</span><h2 class="section-title">School <span class="text-gradient-gold">Timings</span></h2><div class="divider"></div></div>
+       <div class="timetable-intro reveal">
+         <div class="timetable-intro__copy">
+           <span class="section-label">Daily Routine</span>
+           <h2 class="section-title">A steady rhythm for <span class="text-gradient-gold">focused learning</span></h2>
+           <div class="divider" style="margin-left:0;"></div>
+           <p class="lead">A clear daily routine gives students time for classroom learning, movement, creative activities, and the support they need to finish the day well.</p>
+           <p class="schedule-note"><i class="ri-time-line"></i><span data-schedule-status>Checking today's school-day status…</span></p>
+         </div>
+         <figure class="timetable-intro__image">
+           <img src="../../assets/images/campus/school-photo-2.webp" alt="The Green Valley International School emblem displayed on campus" loading="lazy" width="474" height="355">
+         </figure>
+       </div>
+       <div class="section-header reveal" style="margin-top:var(--space-16);"><span class="section-label">Period Plan</span><h2 class="section-title">School <span class="text-gradient-gold">Timings</span></h2><div class="divider"></div></div>
       <div class="table-wrapper reveal" style="max-width:800px;margin:0 auto;">
         <table class="data-table">
           <thead><tr><th>Activity</th><th>Time</th><th>Duration</th></tr></thead>
@@ -70,5 +82,6 @@
   <script src="../../assets/js/navbar.js" defer></script>
   <script src="../../assets/js/global.js" defer></script>
   <script src="../../assets/js/animations.js" defer></script>
+   <script src="timetable.js" defer></script>
 </body>
 </html>

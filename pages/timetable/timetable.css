@@ -1,0 +1,64 @@
+/* ==========================================================================
+   TGVIS — Timetable page styles
+   ==========================================================================
+   This file keeps timetable-specific layout decisions beside the page. The
+   shared design system still owns colors, typography, tables, and buttons.
+   ========================================================================== */
+
+.timetable-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  align-items: center;
+  gap: var(--space-10);
+}
+
+.timetable-intro__copy {
+  max-width: 650px;
+}
+
+.timetable-intro__image {
+  min-height: 280px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-gray-200);
+  background: var(--bg-tertiary);
+}
+
+.timetable-intro__image img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.schedule-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding: var(--space-4) var(--space-5);
+  border-left: 3px solid var(--color-secondary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: rgba(var(--color-secondary-rgb), 0.1);
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+}
+
+.schedule-note i {
+  color: var(--color-secondary-dark);
+  font-size: var(--fs-lg);
+}
+
+@media (max-width: 767px) {
+  .timetable-intro {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .timetable-intro__image,
+  .timetable-intro__image img {
+    min-height: 220px;
+  }
+}

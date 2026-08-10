@@ -102,7 +102,7 @@ function buildNavbarHTML(base) {
 
         <!-- ---- About Us (Dropdown) ---- -->
         <li class="navbar__item">
-          <a href="#" class="navbar__link navbar__link--dropdown">
+          <a href="#" class="navbar__link navbar__link--dropdown" role="button" aria-expanded="false">
             About <i class="ri-arrow-down-s-line"></i>
           </a>
           <div class="navbar__dropdown">
@@ -117,7 +117,7 @@ function buildNavbarHTML(base) {
 
         <!-- ---- Admissions (Dropdown) ---- -->
         <li class="navbar__item">
-          <a href="#" class="navbar__link navbar__link--dropdown">
+          <a href="#" class="navbar__link navbar__link--dropdown" role="button" aria-expanded="false">
             Admissions <i class="ri-arrow-down-s-line"></i>
           </a>
           <div class="navbar__dropdown">
@@ -135,7 +135,7 @@ function buildNavbarHTML(base) {
 
         <!-- ---- Curriculum (Dropdown) ---- -->
         <li class="navbar__item">
-          <a href="#" class="navbar__link navbar__link--dropdown">
+          <a href="#" class="navbar__link navbar__link--dropdown" role="button" aria-expanded="false">
             Curriculum <i class="ri-arrow-down-s-line"></i>
           </a>
           <div class="navbar__dropdown">
@@ -156,7 +156,7 @@ function buildNavbarHTML(base) {
 
         <!-- ---- Student Life (Dropdown) ---- -->
         <li class="navbar__item">
-          <a href="#" class="navbar__link navbar__link--dropdown">
+          <a href="#" class="navbar__link navbar__link--dropdown" role="button" aria-expanded="false">
             Student Life <i class="ri-arrow-down-s-line"></i>
           </a>
           <div class="navbar__dropdown">
@@ -183,7 +183,7 @@ function buildNavbarHTML(base) {
 
         <!-- ---- More (Dropdown) ---- -->
         <li class="navbar__item">
-          <a href="#" class="navbar__link navbar__link--dropdown">
+          <a href="#" class="navbar__link navbar__link--dropdown" role="button" aria-expanded="false">
             More <i class="ri-arrow-down-s-line"></i>
           </a>
           <div class="navbar__dropdown">
@@ -216,7 +216,7 @@ function buildNavbarHTML(base) {
 
         <!-- ---- Login (Dropdown) ---- -->
         <li class="navbar__item">
-          <a href="#" class="navbar__link navbar__link--dropdown">
+          <a href="#" class="navbar__link navbar__link--dropdown" role="button" aria-expanded="false">
             Login <i class="ri-arrow-down-s-line"></i>
           </a>
           <div class="navbar__dropdown">
