@@ -44,9 +44,10 @@ important browser behavior.
 ## Contact and enquiry behavior
 
 The supplied school office number is used for telephone and WhatsApp actions:
-`+91 89359 01010`. The contact form validates the enquiry in the browser and
-opens a pre-filled WhatsApp message; it does not pretend that an email or
-database service is connected.
+`+91 89359 01010`. The confirmed school email is
+`tgvisbihta@gmail.com`. The contact and admissions forms validate the enquiry
+in the browser and open a pre-filled WhatsApp message; they do not pretend
+that a database service is connected.
 
 Class WhatsApp invite URLs were not supplied. Each class card therefore
 requests the current, approved link from the school office instead of exposing

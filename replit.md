@@ -43,5 +43,6 @@ relative URLs for internal links and do not add hard-coded localhost URLs.
   `tgvis-campus-life.jpg`, `tgvis-classroom.jpg`, and `tgvis-sports.jpg` files
   are clearly illustrative generated visuals used until the school supplies
   approved campus, classroom, sports, and student photography.
-- Confirm the official email address, admission session dates, school affiliation,
-  and final public domain before publishing SEO metadata as permanent facts.
+- The school office email supplied for public contact is `tgvisbihta@gmail.com`.
+  Confirm admission session dates, school affiliation, and the final public
+  domain before publishing those details as permanent claims.

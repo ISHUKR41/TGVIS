@@ -94,6 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
         `Subject: ${subject}`,
         `Message: ${message}`
       ].join('\n');
+      /*
+       * The school has confirmed WhatsApp as the quickest enquiry handoff.
+       * The email address is also shown on the page for visitors who prefer
+       * a written enquiry, while this static site remains backend-free.
+       */
       window.open(`https://wa.me/918935901010?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
       btn.innerHTML = '<i class="ri-whatsapp-line"></i> WhatsApp Opened';
       btn.style.background = 'var(--color-accent)';

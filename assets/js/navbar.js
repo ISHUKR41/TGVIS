@@ -357,6 +357,7 @@ function buildFooterHTML(base) {
           <div class="footer__contact-item">
             <div class="footer__contact-icon"><i class="ri-mail-fill"></i></div>
              <div class="footer__contact-text">
+               <a href="mailto:tgvisbihta@gmail.com" style="color:inherit;">tgvisbihta@gmail.com</a><br>
                <a href="${p}contact/contact.html#contactForm" style="color:inherit;">Send an enquiry online</a>
             </div>
           </div>
