@@ -179,6 +179,12 @@
   letter-spacing: var(--ls-wide);
 }
 
+/* The hero uses short school snapshots rather than unverified public counts.
+   Keeping these values compact makes the first screen useful and honest. */
+.hero__stat-number {
+  white-space: nowrap;
+}
+
 /* Scroll indicator — bouncing arrow at the bottom */
 .hero__scroll-indicator {
   position: absolute;
@@ -350,7 +356,85 @@
   color: var(--color-primary);
 }
 
+/* Practical directory cards give families a clear route to high-intent
+   pages without making them search through the full navigation. */
+.school-directory {
+  background:
+    radial-gradient(circle at 90% 10%, rgba(var(--color-secondary-rgb), 0.12), transparent 32%),
+    var(--bg-primary);
+}
+
+.directory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.directory-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 116px;
+  padding: var(--space-5);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.directory-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(var(--color-secondary-rgb), 0.8);
+  box-shadow: var(--shadow-lg);
+}
+
+.directory-card__icon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(var(--color-primary-rgb), 0.09);
+  color: var(--color-primary);
+  font-size: var(--fs-xl);
+}
+
+.directory-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.directory-card__body strong {
+  font-family: var(--font-heading);
+  font-size: var(--fs-md);
+}
+
+.directory-card__body small {
+  color: var(--text-tertiary);
+  font-size: var(--fs-xs);
+  line-height: 1.45;
+}
+
+.directory-card__arrow {
+  color: var(--color-secondary-dark);
+  font-size: var(--fs-lg);
+  transition: transform var(--transition-base);
+}
+
+.directory-card:hover .directory-card__arrow {
+  transform: translate(3px, -3px);
+}
+
 @media (max-width: 1024px) {
+  .directory-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .welcome__grid {
     grid-template-columns: 1fr;
     gap: var(--space-12);
@@ -424,6 +508,14 @@
 }
 
 @media (max-width: 767px) {
+  .directory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .directory-card {
+    min-height: 98px;
+  }
+
   .programs__content {
     grid-template-columns: 1fr;
     gap: var(--space-8);

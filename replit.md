@@ -39,8 +39,9 @@ relative URLs for internal links and do not add hard-coded localhost URLs.
   `+91 89359 01010`.
 - Public class-group invite URLs were not supplied, so the class WhatsApp page
   creates a pre-filled request to the office rather than inventing private links.
-- The downloaded references in `assets/images/campus/` are school-emblem images
-  supplied through the project brief. Replace them with approved campus,
-  classroom, sports, and student photography when available.
+- The supplied emblem references remain in `assets/images/campus/`. The
+  `tgvis-campus-life.jpg`, `tgvis-classroom.jpg`, and `tgvis-sports.jpg` files
+  are clearly illustrative generated visuals used until the school supplies
+  approved campus, classroom, sports, and student photography.
 - Confirm the official email address, admission session dates, school affiliation,
   and final public domain before publishing SEO metadata as permanent facts.
