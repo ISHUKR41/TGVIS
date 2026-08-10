@@ -207,7 +207,60 @@
 
 
 /* --------------------------------------------------------------------------
-   5. RESPONSIVE ADJUSTMENTS
+   5. PUBLIC INFORMATION SECTIONS
+   --------------------------------------------------------------------------
+   Reusable, readable cards for privacy, terms, and disclosure content.
+   Keeping these sections on the contact page gives footer links a useful,
+   transparent destination without adding a separate legal framework.
+   -------------------------------------------------------------------------- */
+
+.contact-legal__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.contact-legal__card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  color: var(--text-secondary);
+  line-height: var(--lh-relaxed);
+}
+
+.contact-legal__card--wide {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.contact-legal__card i {
+  display: inline-flex;
+  margin-bottom: var(--space-4);
+  color: var(--color-primary);
+  font-size: 1.75rem;
+}
+
+.contact-legal__card h3 {
+  margin-bottom: var(--space-3);
+  color: var(--text-primary);
+  font-size: var(--fs-xl);
+}
+
+.contact-legal__card p + p {
+  margin-top: var(--space-4);
+}
+
+.contact-legal__card a {
+  color: var(--color-primary);
+  font-weight: var(--fw-semibold);
+}
+
+
+/* --------------------------------------------------------------------------
+   6. RESPONSIVE ADJUSTMENTS
    -------------------------------------------------------------------------- */
 
 /* Tablet and below: stack form and map vertically */
@@ -232,5 +285,13 @@
   .social-link-card {
     padding: var(--space-4) var(--space-6);
     min-width: 100px;
+  }
+
+  .contact-legal__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-legal__card {
+    padding: var(--space-6);
   }
 }
