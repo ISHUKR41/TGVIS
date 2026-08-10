@@ -124,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Toggle the active state on all related elements
     hamburger.classList.toggle('active');
     mobileMenu.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', String(!isOpen));
 
     if (overlay) {
       overlay.classList.toggle('active');
@@ -142,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     hamburger.classList.remove('active');
     mobileMenu.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
 
     if (overlay) {
       overlay.classList.remove('active');

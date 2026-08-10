@@ -1,17 +1,31 @@
-<!-- TGVIS Campus Hero Placeholder -->
-<!-- Replace this file with an actual campus photo (JPG/PNG, 1920x800px recommended) -->
+<!--
+  TGVIS shared page-hero artwork.
+  This is intentionally a lightweight SVG kept at the existing .png URL so
+  every page can use the same stable asset without a build step. Replace it
+  with an approved campus photograph when one is available.
+-->
 <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="800" viewBox="0 0 1920 800">
   <defs>
-    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#E0F2FE;stop-opacity:1" />
+    <linearGradient id="background" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0b3d25;stop-opacity:1" />
+      <stop offset="55%" style="stop-color:#12603a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#082b1b;stop-opacity:1" />
     </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" style="stop-color:#d4a843;stop-opacity:.28" />
+      <stop offset="100%" style="stop-color:#d4a843;stop-opacity:0" />
+    </radialGradient>
+    <pattern id="dots" width="54" height="54" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="2" fill="#fff" opacity=".12"/>
+    </pattern>
   </defs>
-  <rect width="1920" height="800" fill="url(#sky)" />
-  <rect x="0" y="500" width="1920" height="300" fill="#22C55E" opacity="0.3" />
-  <rect x="300" y="250" width="400" height="300" rx="8" fill="#F5F5DC" opacity="0.7" />
-  <rect x="750" y="200" width="420" height="350" rx="8" fill="#F5F5DC" opacity="0.7" />
-  <rect x="1220" y="280" width="380" height="270" rx="8" fill="#F5F5DC" opacity="0.7" />
-  <text x="960" y="420" text-anchor="middle" fill="#0A6847" font-size="48" font-weight="bold" font-family="Arial">THE GREEN VALLEY INTERNATIONAL SCHOOL</text>
-  <text x="960" y="470" text-anchor="middle" fill="#666" font-size="24" font-family="Arial">Bihta, Patna, Bihar</text>
+  <rect width="1920" height="800" fill="url(#background)" />
+  <rect width="1920" height="800" fill="url(#glow)" />
+  <rect width="1920" height="800" fill="url(#dots)" />
+  <path d="M0 680 C240 560 350 770 590 660 S1000 550 1220 675 S1640 790 1920 610 V800 H0Z" fill="#061f14" opacity=".45"/>
+  <path d="M120 0 C290 120 235 230 390 320 M1800 0 C1600 160 1710 260 1500 380" fill="none" stroke="#d4a843" stroke-width="10" opacity=".16"/>
+  <circle cx="960" cy="380" r="188" fill="none" stroke="#d4a843" stroke-width="3" opacity=".35"/>
+  <circle cx="960" cy="380" r="164" fill="none" stroke="#fff" stroke-width="1" opacity=".18"/>
+  <path d="M960 230 C875 300 875 460 960 530 C1045 460 1045 300 960 230Z" fill="#fff" opacity=".08"/>
+  <path d="M960 260 V500 M900 330 C930 345 990 345 1020 330 M895 410 C930 425 990 425 1025 410" fill="none" stroke="#d4a843" stroke-width="4" opacity=".5"/>
 </svg>

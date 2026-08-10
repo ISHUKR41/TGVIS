@@ -33,29 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ── 2. FEE ENQUIRY FORM FEEDBACK ────────────────────────────────────────
-     When the form is submitted, show a success message and reset. */
-  const form = document.getElementById('feeEnquiryForm') || document.querySelector('.contact-form');
-
-  if (form) {
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-
-      const btn = form.querySelector('button[type="submit"]');
-      if (!btn) return;
-
-      const original = btn.innerHTML;
-      btn.innerHTML = '<i class="ri-check-line"></i> Request Sent!';
-      btn.style.background = 'var(--color-accent)';
-      btn.disabled = true;
-
-      setTimeout(() => {
-        form.reset();
-        btn.innerHTML = original;
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 3500);
-    });
-  }
+  /* Fee amounts are intentionally not invented. The page's direct call and
+     WhatsApp links are the verified enquiry handoff for current rate cards. */
 
 });

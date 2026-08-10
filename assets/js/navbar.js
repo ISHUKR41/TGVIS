@@ -254,7 +254,8 @@ function buildNavbarHTML(base) {
       </div>
 
       <!-- ======== HAMBURGER MENU (Mobile Only) ======== -->
-      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle navigation menu">
+       <button class="navbar__hamburger" id="hamburger" aria-label="Toggle navigation menu"
+               aria-controls="navMenu" aria-expanded="false" type="button">
         <span class="navbar__hamburger-line"></span>
         <span class="navbar__hamburger-line"></span>
         <span class="navbar__hamburger-line"></span>
