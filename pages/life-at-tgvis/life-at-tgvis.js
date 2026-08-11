@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const pills = document.querySelectorAll('.value-pill');
     if (!pills.length) return;
 
-    gsap.set(pills, { opacity: 0, y: 24, scale: 0.9 });
+    gsap.set(pills, { y: 24, scale: 0.9 });
 
     gsap.to(pills, {
-      opacity: 1, y: 0, scale: 1,
+      y: 0, scale: 1,
       duration: 0.55,
       stagger: 0.1,
       ease: 'back.out(1.7)',
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!card) return;
 
     gsap.from(card, {
-      opacity: 0, x: -50,
+      x: -50,
       duration: 0.8,
       ease: 'power3.out',
       scrollTrigger: {

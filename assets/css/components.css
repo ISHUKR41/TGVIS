@@ -1664,6 +1664,15 @@
 }
 
 @media (max-width: 767px) {
+  /*
+   * Several enquiry forms use a two-column inline grid on desktop. Collapse
+   * it here so labels and controls remain comfortable on phone screens.
+   */
+  .form-row[style*="grid-template-columns"],
+  form .form-row[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
   .back-to-top {
     right: var(--space-4);
     bottom: var(--space-4);

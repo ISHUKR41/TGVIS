@@ -38,30 +38,22 @@
  * @returns {string} The relative path prefix (e.g., "../../")
  */
 function getBasePath() {
-  const path = window.location.pathname;
+  const segments = window.location.pathname.split('/').filter(Boolean);
 
-  /* Count how many directories deep we are from the site root.
-     We look for the '/pages/' segment in the URL path to determine depth. */
-  
-  /* If we're at the root (index.html), no prefix needed */
-  if (path.endsWith('/index.html') || path.endsWith('/') || path.split('/').filter(Boolean).length <= 1) {
-    /* Check if there are nested folder segments */
-    const segments = path.split('/').filter(Boolean);
-    
-    /* Simple heuristic: count folder depth by looking at path segments */
-    /* For '/TGVIS/index.html' → root → '' */
-    /* For '/TGVIS/pages/about/about.html' → depth 2 → '../../' */
-    /* For '/TGVIS/pages/student-life/leadership/leadership.html' → depth 3 → '../../../' */
+  /*
+   * Remove the current file from the URL, then go up once for every
+   * directory that remains. This works for both:
+   *   /pages/login/login.html                 → ../../
+   *   /pages/login/student-login/student.html → ../../../
+   *
+   * A folder-name lookup is deliberately avoided because new sections can
+   * be added without having to update this shared navigation component.
+   */
+  if (segments.length && /\.html?$/i.test(segments[segments.length - 1])) {
+    segments.pop();
   }
 
-  /* More robust: look for known folder patterns */
-  if (path.includes('/pages/student-life/') || path.includes('/pages/login/')) {
-    return '../../../';
-  } else if (path.includes('/pages/')) {
-    return '../../';
-  }
-
-  return '';
+  return '../'.repeat(segments.length);
 }
 
 

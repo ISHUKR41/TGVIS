@@ -21,6 +21,13 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  /*
+   * Reveal animations are progressive enhancements only. The stylesheet
+   * intentionally keeps all copy visible before and during observation, so a
+   * slow CDN, blocked script, or screenshot taken during page load can never
+   * make a section appear empty.
+   */
+
   /* ========================================================================
      1. INTERSECTION OBSERVER — SCROLL REVEAL SYSTEM
      ========================================================================
@@ -197,25 +204,21 @@ document.addEventListener('DOMContentLoaded', () => {
         heroTimeline
           .from(words, {
             y: 60,
-            opacity: 0,
             duration: 0.8,
             stagger: 0.08,  // Each word appears 80ms after the previous
             ease: 'back.out(1.7)'
           })
           .from('.hero__subtitle', {
             y: 30,
-            opacity: 0,
             duration: 0.6
           }, '-=0.3')  // Start 300ms before the previous animation ends
           .from('.hero__cta-group', {
             y: 30,
-            opacity: 0,
             duration: 0.6,
             ease: 'back.out(1.7)'
           }, '-=0.2')
           .from('.hero__stats', {
             y: 20,
-            opacity: 0,
             duration: 0.5
           }, '-=0.1');
       }
@@ -271,16 +274,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (label) {
-          headerTimeline.from(label, { y: 20, opacity: 0, duration: 0.5 });
+          headerTimeline.from(label, { y: 20, duration: 0.5 });
         }
         if (title) {
-          headerTimeline.from(title, { y: 30, opacity: 0, duration: 0.6 }, '-=0.2');
+          headerTimeline.from(title, { y: 30, duration: 0.6 }, '-=0.2');
         }
         if (divider) {
           headerTimeline.from(divider, { scaleX: 0, duration: 0.5 }, '-=0.3');
         }
         if (description) {
-          headerTimeline.from(description, { y: 20, opacity: 0, duration: 0.5 }, '-=0.2');
+          headerTimeline.from(description, { y: 20, duration: 0.5 }, '-=0.2');
         }
       });
 
@@ -296,7 +299,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         gsap.from(cards, {
           y: 40,
-          opacity: 0,
           duration: 0.6,
           stagger: 0.1,  // 100ms delay between each card
           ease: 'power2.out',
@@ -320,7 +322,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         gsap.from(item, {
           x: direction,
-          opacity: 0,
           duration: 0.7,
           ease: 'power2.out',
           scrollTrigger: {

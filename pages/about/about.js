@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     vmvCards.forEach((card, index) => {
       gsap.from(card, {
         y: 40,
-        opacity: 0,
         duration: 0.7,
         delay: index * 0.15,
         ease: 'power2.out',

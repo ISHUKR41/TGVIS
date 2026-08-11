@@ -17,7 +17,37 @@ document.addEventListener('DOMContentLoaded', () => {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      
+
+      /*
+       * The form is intentionally backend-free, so native browser validation
+       * is disabled in the markup and these checks provide a clear, reliable
+       * client-side experience before opening the WhatsApp handoff.
+       */
+      const requiredFields = ['#studentName', '#parentName', '#admPhone', '#admClass']
+        .map(selector => form.querySelector(selector))
+        .filter(Boolean);
+      let valid = true;
+
+      requiredFields.forEach(field => {
+        const hasValue = field.value.trim();
+        field.classList.toggle('form-input--error', !hasValue);
+        if (!hasValue) valid = false;
+      });
+
+      const email = form.querySelector('#admEmail');
+      if (email && email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        email.classList.add('form-input--error');
+        valid = false;
+      } else if (email) {
+        email.classList.remove('form-input--error');
+      }
+
+      if (!valid) {
+        const firstInvalid = form.querySelector('.form-input--error');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
       const get = id => form.querySelector(id)?.value.trim() || 'Not provided';
       const enquiry = [
         'Hello TGVIS Admissions Office,',
@@ -58,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const steps = document.querySelectorAll('.step-card, .process-step');
     if (steps.length > 0) {
       gsap.from(steps, {
-        opacity: 0,
         y: 50,
         duration: 0.7,
         stagger: 0.2,

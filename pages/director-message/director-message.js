@@ -32,14 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* Wrap each word in a span so GSAP can animate them separately */
     quoteElement.innerHTML = words.map(word => 
-      `<span class="director-quote__word" style="display:inline-block;opacity:0;transform:translateY(10px);">${word}</span>`
+      `<span class="director-quote__word" style="display:inline-block;transform:translateY(10px);">${word}</span>`
     ).join(' ');
 
     /* Animate all word spans with a stagger effect when scrolled into view */
     const wordSpans = quoteElement.querySelectorAll('.director-quote__word');
 
     gsap.to(wordSpans, {
-      opacity: 1,
       y: 0,
       duration: 0.4,
       stagger: 0.03,          /* Each word appears 30ms after the previous one */

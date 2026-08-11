@@ -37,8 +37,9 @@
 
 /* Base reveal state — element is invisible and slightly shifted */
 .reveal {
-  opacity: 0;
-  transform: translateY(30px);
+  /* Safe default: content must never depend on JavaScript to be visible. */
+  opacity: 1;
+  transform: translateY(0);
   transition: 
     opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
     transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -853,10 +854,12 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   /* Disable all reveal animations — show elements immediately */
-  .reveal {
+  .reveal,
+  body.reveal-enabled .reveal:not(.revealed) {
     opacity: 1;
     transform: none;
     transition: none;
+    filter: none;
   }
 
   /* Disable floating decorative animations */
