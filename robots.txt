@@ -22,6 +22,10 @@ Disallow: /pages/login/student-login/
 # Block utility files from being indexed
 Disallow: /_copy_images.py
 Disallow: /detail.txt
+Disallow: /screenshots/
+Disallow: /.cache/
+Disallow: /.local/
+Disallow: /.agents/
 
 # Point Google to our sitemap for faster page discovery
 Sitemap: https://tgvis-bihta.vercel.app/sitemap.xml

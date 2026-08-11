@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  TGVIS — Tuition Programme
+  ============================================================================
+  PURPOSE:
+  This page explains the separate tuition support available at TGVIS in clear,
+  parent-friendly language. Timings, subjects, batches, and fees are kept
+  enquiry-based until the school office publishes an approved schedule.
+
+  FILE ORGANISATION:
+  - tuition.html  → semantic page content and SEO metadata
+  - tuition.css   → styles used only by this page
+  - tuition.js    → small interaction for the enquiry CTA
+  ============================================================================
+-->
+<html lang="en-IN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuition Programme — TGVIS | Bihta, Patna</title>
+  <meta name="description" content="Learn about the TGVIS tuition programme in Bihta, Patna. Ask the school office about available classes, subjects, batches, timings, and fees.">
+  <meta name="keywords" content="TGVIS tuition, tuition classes Bihta, school tuition Patna, Class 6 to 10 tuition Bihar">
+  <meta name="author" content="The Green Valley International School, Bihta">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tgvis-bihta.vercel.app/pages/tuition/tuition.html">
+  <link rel="icon" type="image/png" href="../../assets/images/logo/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="tuition.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOccupationalProgram",
+    "name": "TGVIS Tuition Programme",
+    "provider": {
+      "@type": "School",
+      "name": "The Green Valley International School",
+      "url": "https://tgvis-bihta.vercel.app/"
+    },
+    "areaServed": "Bihta, Patna, Bihar",
+    "description": "School-linked tuition support for families who would like additional academic guidance. Current batches and fees are confirmed by the school office."
+  }
+  </script>
+</head>
+<body>
+  <div class="preloader" id="preloader">
+    <div class="preloader__text">TGVIS</div>
+    <div class="preloader__bar"><div class="preloader__bar-fill"></div></div>
+  </div>
+  <div class="page-transition"></div>
+  <nav class="navbar" id="navbar"></nav>
+
+  <main id="main-content">
+    <section class="page-hero tuition-hero">
+      <img src="../../assets/images/labs/science-lab.png" alt="Students learning in a TGVIS science learning space" class="page-hero__bg" loading="eager">
+      <div class="page-hero__overlay"></div>
+      <div class="page-hero__content">
+        <h1 class="page-hero__title">Tuition Programme</h1>
+        <p class="page-hero__subtitle">Focused academic support for students who want more time to practise, ask questions, and grow with confidence</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html" class="breadcrumb__link">Home</a>
+          <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+          <span class="breadcrumb__current">Tuition Programme</span>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section tuition-intro">
+      <div class="container tuition-intro__grid">
+        <div class="tuition-intro__image reveal">
+          <img src="../../assets/images/campus/classroom-learning.png" alt="A classroom learning session at TGVIS" loading="lazy" width="1024" height="1024">
+          <span class="tuition-intro__badge"><i class="ri-lightbulb-flash-line"></i> Learn with purpose</span>
+        </div>
+        <div class="reveal">
+          <span class="section-label">Extra academic support</span>
+          <h2 class="section-title">A little more guidance can make <span class="text-gradient">a big difference</span></h2>
+          <div class="divider divider--left"></div>
+          <p class="section-description">TGVIS also runs tuition support for families looking for structured revision and additional practice alongside regular school learning.</p>
+          <p class="tuition-copy">The programme is designed to help students strengthen foundations, complete practice work, and approach assessments with a clearer plan. The school office can guide you to the right class, subject, batch, and current fee details.</p>
+          <a class="btn btn--primary btn--lg" href="../contact/contact.html#contactForm"><i class="ri-chat-3-line"></i> Ask about tuition</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">How it helps</span>
+          <h2 class="section-title">Support that stays <span class="text-gradient-gold">practical</span></h2>
+          <div class="divider"></div>
+          <p class="section-description">A simple, consistent approach for students and families.</p>
+        </div>
+        <div class="grid-auto tuition-benefits">
+          <article class="feature-card reveal stagger-1">
+            <div class="feature-card__icon"><i class="ri-book-open-line"></i></div>
+            <h3 class="feature-card__title">Build strong foundations</h3>
+            <p class="feature-card__text">Use guided explanation and regular practice to make difficult topics easier to understand.</p>
+          </article>
+          <article class="feature-card reveal stagger-2">
+            <div class="feature-card__icon"><i class="ri-question-answer-line"></i></div>
+            <h3 class="feature-card__title">Ask without hesitation</h3>
+            <p class="feature-card__text">Students get a focused setting to revisit concepts, clear doubts, and work at a comfortable pace.</p>
+          </article>
+          <article class="feature-card reveal stagger-3">
+            <div class="feature-card__icon"><i class="ri-line-chart-line"></i></div>
+            <h3 class="feature-card__title">Prepare with a plan</h3>
+            <p class="feature-card__text">Revision, practice papers, and assessment guidance help students prepare more steadily.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container tuition-details">
+        <div class="tuition-details__card reveal">
+          <span class="section-label">Ask the school office</span>
+          <h2 class="section-title">Find the right tuition option for your child</h2>
+          <p class="section-description">Programme details can vary by class and session. Please confirm the current subjects, batch timings, availability, and fees directly with TGVIS before enrolling.</p>
+          <div class="tuition-details__actions">
+            <a class="btn btn--primary" href="https://wa.me/918935901010?text=Hello%20TGVIS%20School%20Office%2C%20I%20would%20like%20details%20about%20the%20Tuition%20Programme." target="_blank" rel="noopener noreferrer"><i class="ri-whatsapp-line"></i> Message on WhatsApp</a>
+            <a class="btn btn--outline" href="tel:+918935901010"><i class="ri-phone-line"></i> Call +91 89359 01010</a>
+          </div>
+        </div>
+        <div class="tuition-details__image reveal">
+          <img src="../../assets/images/labs/computer-lab.png" alt="Students using a computer learning facility at TGVIS" loading="lazy" width="1024" height="1024">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"></footer>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
+  <script src="../../assets/js/utils.js" defer></script>
+  <script src="../../assets/js/navbar.js" defer></script>
+  <script src="../../assets/js/global.js" defer></script>
+  <script src="../../assets/js/animations.js" defer></script>
+  <script src="tuition.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+/*
+  TGVIS Tuition Programme — page-specific styles.
+  Shared typography, buttons, cards, and layout tokens stay in assets/css/.
+*/
+
+.tuition-hero .page-hero__bg {
+  object-position: center 42%;
+}
+
+.tuition-intro__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.tuition-intro__image,
+.tuition-details__image {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+}
+
+.tuition-intro__image img,
+.tuition-details__image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 0.86;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.tuition-intro__image:hover img,
+.tuition-details__image:hover img {
+  transform: scale(1.04);
+}
+
+.tuition-intro__badge {
+  position: absolute;
+  left: var(--space-5);
+  bottom: var(--space-5);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-white);
+  background: rgba(13, 77, 43, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-full);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm);
+  backdrop-filter: blur(8px);
+}
+
+.divider--left {
+  margin-left: 0;
+}
+
+.tuition-copy {
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin: var(--space-5) 0 var(--space-7);
+}
+
+.tuition-benefits .feature-card {
+  min-height: 100%;
+}
+
+.tuition-details {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: var(--space-10);
+  align-items: stretch;
+}
+
+.tuition-details__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(var(--space-7), 6vw, var(--space-14));
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.08), rgba(var(--color-secondary-rgb), 0.12));
+  border: 1px solid rgba(var(--color-primary-rgb), 0.12);
+}
+
+.tuition-details__image img {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.tuition-details__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+
+.tuition-details__actions .is-activated {
+  transform: translateY(-2px) scale(0.98);
+}
+
+@media (max-width: 900px) {
+  .tuition-intro__grid,
+  .tuition-details {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  .tuition-details__image {
+    max-height: 420px;
+  }
+}
+
+@media (max-width: 520px) {
+  .tuition-details__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tuition-details__actions .btn {
+    justify-content: center;
+  }
+}

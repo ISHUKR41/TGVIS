@@ -197,6 +197,9 @@ function buildNavbarHTML(base) {
             <a href="${p}whatsapp-groups/whatsapp-groups.html" class="navbar__dropdown-link">
               <i class="ri-whatsapp-line"></i> Class WhatsApp Groups
             </a>
+            <a href="${p}tuition/tuition.html" class="navbar__dropdown-link">
+              <i class="ri-lightbulb-flash-line"></i> Tuition Programme
+            </a>
             <a href="${p}alumni/alumni.html" class="navbar__dropdown-link">
               <i class="ri-graduation-cap-line"></i> Alumni
             </a>

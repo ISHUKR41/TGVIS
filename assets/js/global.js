@@ -27,6 +27,21 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  /*
+   * Add the accessibility skip link centrally so every content page receives
+   * the same keyboard shortcut, including future pages that use the shared
+   * navbar component.
+   */
+  if (!document.querySelector('.skip-link')) {
+    const skipLink = document.createElement('a');
+    skipLink.className = 'skip-link';
+    skipLink.href = '#main-content';
+    skipLink.textContent = 'Skip to main content';
+    document.body.prepend(skipLink);
+  }
+  const mainContent = document.querySelector('main, .hero, .page-hero');
+  if (mainContent && !mainContent.id) mainContent.id = 'main-content';
+
   /* ========================================================================
      1. PRELOADER
      ========================================================================

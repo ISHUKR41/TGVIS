@@ -249,6 +249,13 @@
   transform: rotate(180deg);
 }
 
+/* The mobile accordion marks the parent item as open. Keeping this selector
+   alongside the legacy toggle selector makes the arrow state correct for
+   both the injected navigation and the homepage navigation. */
+.navbar__item.open .navbar__link--dropdown i {
+  transform: rotate(180deg);
+}
+
 /* Dropdown menu panel */
 .navbar__dropdown {
   position: absolute;
@@ -902,6 +909,42 @@
 /* Placeholder text color */
 .form-input::placeholder {
   color: var(--color-gray-400);
+}
+
+/* Shared inline feedback used by contact, admissions, careers, and alumni
+   forms. It stays visible without relying on a browser alert dialog. */
+.form-status {
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  color: var(--color-primary);
+  background: rgba(var(--color-primary-rgb), 0.08);
+  border: 1px solid rgba(var(--color-primary-rgb), 0.16);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+
+.form-input--error {
+  border-color: var(--color-error) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+/* Keyboard users can skip the repeated navigation on every page. */
+.skip-link {
+  position: fixed;
+  top: -5rem;
+  left: var(--space-4);
+  z-index: calc(var(--z-preloader) + 1);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-secondary);
+  color: var(--color-white);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-weight: var(--fw-semibold);
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 0;
 }
 
 .form-status {
