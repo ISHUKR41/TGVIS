@@ -14,10 +14,10 @@
 User-agent: *
 Allow: /
 
-# Block login pages from being indexed (they are private portals)
-Disallow: /pages/login/admin-login/
-Disallow: /pages/login/teacher-login/
-Disallow: /pages/login/student-login/
+# Block every login portal from search results. These pages are private
+# workflows, are marked noindex in their HTML, and are not useful landing
+# pages for families searching for the school.
+Disallow: /pages/login/
 
 # Block utility files from being indexed
 Disallow: /_copy_images.py

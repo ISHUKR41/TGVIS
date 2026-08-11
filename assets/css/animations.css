@@ -853,6 +853,16 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Respect visitors who prefer less motion across every animated element. */
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
   /* Disable all reveal animations — show elements immediately */
   .reveal,
   body.reveal-enabled .reveal:not(.revealed) {

@@ -1624,7 +1624,8 @@
    * to read and no field is squeezed into a narrow column.
    */
   .contact-form > [style*="grid-template-columns:1fr 1fr"],
-  .contact-form .form-row[style*="grid-template-columns:1fr 1fr"] {
+  .contact-form .form-row[style*="grid-template-columns:1fr 1fr"],
+  .contact-form > div[style*="grid-template-columns:1fr 1fr"] {
     grid-template-columns: 1fr !important;
   }
 }

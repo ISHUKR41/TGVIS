@@ -159,11 +159,4 @@
     <changefreq>monthly</changefreq>
   </url>
 
-  <!-- ======== LOGIN PAGES ======== -->
-  <url>
-    <loc>https://tgvis-bihta.vercel.app/pages/login/login.html</loc>
-    <priority>0.4</priority>
-    <changefreq>yearly</changefreq>
-  </url>
-
 </urlset>
