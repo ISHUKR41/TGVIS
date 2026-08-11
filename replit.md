@@ -49,12 +49,12 @@ relative URLs for internal links and do not add hard-coded localhost URLs.
 
 ## SEO and public launch checklist
 
-- Replace the placeholder domain in `sitemap.xml` only after the school
-  approves its official public domain. Add the same absolute sitemap URL to
-  `robots.txt` at that time.
-- Add page-specific canonical, Open Graph, and structured-data URLs only after
-  that domain is confirmed; the homepage intentionally avoids claiming an
-  unapproved domain.
+- The current public URL supplied for launch is `https://tgvis-bihta.vercel.app`.
+  Replace it in the canonical and sitemap files if the school later approves a
+  permanent custom domain, then submit the sitemap in Google Search Console.
+- Page canonical URLs currently use the supplied Vercel launch URL. Update all
+  canonical, Open Graph, structured-data, sitemap, and robots references
+  together if the school later approves a permanent custom domain.
 - Confirm current fees, session dates, affiliation wording, transport details,
   results, and all event dates with the school office.
 - Replace illustrative generated visuals with approved campus, classroom,

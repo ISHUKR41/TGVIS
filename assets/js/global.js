@@ -173,12 +173,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /*
+   * Dropdown destinations are separate links from their parent headings.
+   * Close the mobile drawer when a visitor chooses one, otherwise the new
+   * page can briefly appear behind an open navigation panel on touch devices.
+   */
+  document.querySelectorAll('.navbar__dropdown-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1024) closeMobileMenu();
+    });
+  });
+
   // Close menu on Escape key press (keyboard accessibility)
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeMobileMenu();
     }
   });
+
+  // Restore the page if the browser is resized from mobile to desktop while
+  // the drawer is open. This prevents a hidden overflow lock on desktop.
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1024) closeMobileMenu();
+  }, { passive: true });
 
 
   /* ---- DROPDOWN MENUS (Mobile) ----

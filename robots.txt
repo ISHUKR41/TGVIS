@@ -24,7 +24,7 @@ Disallow: /_copy_images.py
 Disallow: /detail.txt
 
 # Point Google to our sitemap for faster page discovery
-Sitemap: https://www.tgvis.edu.in/sitemap.xml
+Sitemap: https://tgvis-bihta.vercel.app/sitemap.xml
 
 # Additional crawler-specific rules
 User-agent: Googlebot
