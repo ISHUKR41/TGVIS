@@ -344,6 +344,13 @@ button {
   cursor: pointer;
 }
 
+/* A consistent keyboard focus ring keeps the large multi-page site usable
+   for keyboard, switch, and screen-reader users. */
+:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
 /* A visible keyboard ring keeps the multi-page site usable without a mouse.
    The colour is shared with the design tokens so it remains clear in both
    light and dark themes. */

@@ -1,0 +1,36 @@
+/*
+ * TGVIS — Academics page styles
+ * --------------------------------
+ * These rules stay beside the page so the shared design system remains easy
+ * to maintain. The page uses shared cards and grids, with only a few
+ * academic-specific details for facilities and responsive reading comfort.
+ */
+
+.academics-facility-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding: var(--space-4) var(--space-5);
+  border-left: 3px solid var(--color-secondary);
+  background: rgba(var(--color-secondary-rgb), 0.08);
+  color: var(--text-secondary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: var(--fs-sm);
+}
+
+.academics-facility-note i {
+  color: var(--color-secondary-dark);
+  font-size: var(--fs-lg);
+  flex-shrink: 0;
+}
+
+.feature-card.is-hovered {
+  border-color: rgba(var(--color-secondary-rgb), 0.65);
+}
+
+@media (max-width: 767px) {
+  .academics-facility-note {
+    padding: var(--space-4);
+  }
+}
