@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
      DOM REFERENCES
      -------------------------------------------------------------------------- */
 
-  // All month tab buttons (Apr, May, Jun, ... , Mar, and "All")
+  // All month tab buttons (Apr, May, Jun, ... , Mar, and "All").
   const monthTabs = document.querySelectorAll('.month-tab');
 
   // All month blocks in the calendar timeline
@@ -99,13 +99,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const now = new Date();
   const currentMonthIndex = now.getMonth(); // 0 = Jan, 1 = Feb, ..., 11 = Dec
 
-  // Map month index to the data-month values used in our tabs
+  // Map month index to the data-month values used in our tabs.
   const monthMap = [
     'jan', 'feb', 'mar', 'apr', 'may', 'jun',
     'jul', 'aug', 'sep', 'oct', 'nov', 'dec'
   ];
 
   const currentMonthKey = monthMap[currentMonthIndex];
+
+  /*
+   * The academic year runs April to March. In January–March, the current
+   * month belongs to the second half of the displayed session; in April–March
+   * this still gives families a useful visual cue without hiding the full plan.
+   */
 
   // Add a visual indicator to the current month tab
   monthTabs.forEach(tab => {

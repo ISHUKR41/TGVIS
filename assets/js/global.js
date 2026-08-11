@@ -493,7 +493,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const link = e.currentTarget;
     const href = link.getAttribute('href');
 
-    // Skip external links, anchor links, and special links
+    // Skip external links, anchor links, and special links.
+    // Links with a same-page hash are handled by the smooth-scroll block below.
     if (!href || 
         href.startsWith('#') || 
         href.startsWith('http') || 

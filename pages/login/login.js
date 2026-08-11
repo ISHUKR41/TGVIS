@@ -73,9 +73,9 @@ function togglePassword(inputId, btn) {
  * handleLogin — Handles form submission.
  * 
  * CURRENT STATE:
- * This is a placeholder that shows an alert message.
- * In production, this would POST credentials to a backend API
- * (e.g., Node.js, PHP, Firebase Auth) for authentication.
+ * This static site has no verified authentication service. We validate the
+ * browser form and explain the safe next step instead of accepting credentials
+ * that cannot actually be checked.
  * 
  * @param {Event} e — The form submit event
  * @param {string} role — The user's role ('student' | 'teacher' | 'admin')
@@ -97,7 +97,7 @@ function handleLogin(e, role) {
   note.className = 'login-status';
   note.setAttribute('role', 'status');
   note.style.cssText = 'margin-top:16px;text-align:center;color:var(--text-secondary);font-size:var(--fs-sm);';
-  note.textContent = roleName + ' portal access is managed by the school office. Call +91 89359 01010 for your credentials.';
+  note.textContent = roleName + ' portal access is managed by the school office. Call +91 89359 01010 or email tgvisbihta@gmail.com for verified credentials.';
   if (!note.parentElement) form.appendChild(note);
   setTimeout(function() {
     button.innerHTML = original;
