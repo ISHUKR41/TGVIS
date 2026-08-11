@@ -199,6 +199,9 @@ function buildNavbarHTML(base) {
             <a href="${p}community/community.html" class="navbar__dropdown-link">
               <i class="ri-community-line"></i> Community
             </a>
+            <a href="${p}academic-calendar/academic-calendar.html" class="navbar__dropdown-link">
+              <i class="ri-calendar-2-line"></i> Academic Calendar
+            </a>
             <a href="${p}whatsapp-groups/whatsapp-groups.html" class="navbar__dropdown-link">
               <i class="ri-whatsapp-line"></i> Class WhatsApp Groups
             </a>
@@ -335,6 +338,7 @@ function buildFooterHTML(base) {
             <li><a href="${p}extracurricular/extracurricular.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Extracurricular</a></li>
             <li><a href="${p}life-at-tgvis/life-at-tgvis.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Student Life</a></li>
             <li><a href="${p}timetable/timetable.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Timetable</a></li>
+            <li><a href="${p}academic-calendar/academic-calendar.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Academic Calendar</a></li>
             <li><a href="${p}centres-of-excellence/centres-of-excellence.html" class="footer__link"><i class="ri-arrow-right-s-line"></i> Centres of Excellence</a></li>
           </ul>
         </div>

@@ -1,24 +1,254 @@
 <!doctype html>
-<!-- Friendly fallback page for a missing route on the static server. -->
+<!--
+  ==========================================================================
+  TGVIS — 404 Error Page
+  ==========================================================================
+  A friendly, animated "page not found" fallback. When a visitor clicks a
+  broken or outdated link, they see this page instead of a blank error.
+  Features:
+    • Animated 404 number with CSS gradient text
+    • Helpful suggestions with links
+    • School branding and logo
+    • Dark mode support via data-theme
+    • Responsive across all screen sizes
+  ========================================================================== -->
 <html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Page not found — TGVIS</title>
-  <meta name="description" content="The TGVIS page you requested could not be found.">
+  <title>Page Not Found — TGVIS | The Green Valley International School, Bihta</title>
+  <meta name="description" content="The page you are looking for could not be found. Return to The Green Valley International School homepage.">
+  <meta name="robots" content="noindex, nofollow">
   <link rel="icon" type="image/png" href="assets/images/logo/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- Global Styles -->
   <link rel="stylesheet" href="assets/css/global.css">
   <link rel="stylesheet" href="assets/css/components.css">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- Page-specific styles (inline because this is a standalone error page) -->
+  <style>
+    /* ---- 404 Page Layout ---- */
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-8) var(--space-4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated background decoration (subtle floating shapes) */
+    .error-page::before,
+    .error-page::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      z-index: 0;
+      animation: floatShape 8s ease-in-out infinite alternate;
+    }
+    .error-page::before {
+      width: 400px;
+      height: 400px;
+      background: var(--color-primary, #1A5C35);
+      top: -100px;
+      right: -100px;
+    }
+    .error-page::after {
+      width: 300px;
+      height: 300px;
+      background: var(--color-secondary, #D4A843);
+      bottom: -80px;
+      left: -80px;
+      animation-delay: 2s;
+    }
+
+    @keyframes floatShape {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(30px, -30px); }
+    }
+
+    .error-content {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+    }
+
+    /* Logo */
+    .error-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin: 0 auto var(--space-6);
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 0.2s forwards;
+    }
+
+    /* Big 404 number with gradient text */
+    .error-number {
+      font-family: var(--font-heading, 'Outfit', sans-serif);
+      font-size: clamp(6rem, 15vw, 12rem);
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--color-primary, #1A5C35), var(--color-secondary, #D4A843));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-2);
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 0.4s forwards;
+    }
+
+    .error-title {
+      font-family: var(--font-heading, 'Outfit', sans-serif);
+      font-size: var(--fs-2xl, 1.75rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--space-4);
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 0.6s forwards;
+    }
+
+    .error-description {
+      font-size: var(--fs-md, 1.0625rem);
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: var(--space-8);
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 0.8s forwards;
+    }
+
+    /* Action buttons */
+    .error-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      justify-content: center;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 1s forwards;
+    }
+
+    /* Helpful links section */
+    .error-links {
+      margin-top: var(--space-10);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      justify-content: center;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 1.2s forwards;
+    }
+
+    .error-links a {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md, 12px);
+      background: var(--bg-secondary, #f8f8fa);
+      border: 1px solid var(--border-color, rgba(0,0,0,0.06));
+      color: var(--text-secondary);
+      font-size: var(--fs-sm, 0.9375rem);
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .error-links a:hover {
+      color: var(--color-primary, #1A5C35);
+      border-color: var(--color-primary, #1A5C35);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(26, 92, 53, 0.1);
+    }
+
+    .error-links a i {
+      font-size: 1.1rem;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ---- Dark Mode ---- */
+    [data-theme="dark"] .error-links a {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.1);
+    }
+    [data-theme="dark"] .error-links a:hover {
+      border-color: var(--color-gold, #D4A843);
+      color: var(--color-gold, #D4A843);
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 480px) {
+      .error-actions { flex-direction: column; align-items: stretch; }
+      .error-links { flex-direction: column; align-items: stretch; }
+    }
+  </style>
 </head>
 <body>
-  <main class="section" style="min-height:100vh;display:grid;place-items:center;text-align:center;">
-    <div class="container" style="max-width:620px;">
-      <img src="assets/images/logo/logo.png" alt="TGVIS school crest" width="88" height="88" style="margin:0 auto var(--space-6);">
-      <span class="section-label">TGVIS</span>
-      <h1>That page has moved.</h1>
-      <p class="lead">The link may be outdated, but the school website is still here.</p>
-      <a class="btn btn--primary" href="index.html"><i class="ri-home-4-line"></i> Return to homepage</a>
+  <main class="error-page">
+    <div class="error-content">
+      <!-- School Logo -->
+      <img src="assets/images/logo/logo.png" alt="TGVIS school logo" class="error-logo" width="80" height="80">
+
+      <!-- Big 404 Number -->
+      <div class="error-number">404</div>
+
+      <!-- Title -->
+      <h1 class="error-title">This page doesn't exist</h1>
+
+      <!-- Description -->
+      <p class="error-description">
+        The link you followed may be outdated, misspelled, or the page has been moved.
+        Don't worry — you can easily get back to the right place.
+      </p>
+
+      <!-- Primary Actions -->
+      <div class="error-actions">
+        <a class="btn btn--primary btn--lg" href="index.html">
+          <i class="ri-home-4-line"></i> Go to Homepage
+        </a>
+        <a class="btn btn--secondary btn--lg" href="pages/contact/contact.html">
+          <i class="ri-phone-line"></i> Contact Us
+        </a>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="error-links">
+        <a href="pages/admissions/admissions.html">
+          <i class="ri-edit-line"></i> Admissions
+        </a>
+        <a href="pages/about/about.html">
+          <i class="ri-information-line"></i> About Us
+        </a>
+        <a href="pages/fees/fees.html">
+          <i class="ri-money-rupee-circle-line"></i> Fee Structure
+        </a>
+        <a href="pages/events/events.html">
+          <i class="ri-calendar-event-line"></i> Events
+        </a>
+      </div>
     </div>
   </main>
 </body>

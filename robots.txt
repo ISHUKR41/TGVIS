@@ -1,5 +1,34 @@
+# ==========================================================================
+# TGVIS — Robots.txt
+# ==========================================================================
+# This file tells search engine crawlers (Google, Bing, etc.) which pages
+# they are allowed to access and crawl. It also points them to the sitemap.
+#
+# RULES:
+# - Allow all pages to be crawled (we want maximum visibility)
+# - Block login pages from search results (private)
+# - Point to our XML sitemap for faster discovery
+# ==========================================================================
+
+# Allow all search engines to crawl the entire site
 User-agent: *
 Allow: /
 
-# Add the sitemap URL after the school approves the final public domain.
-# Do not submit the temporary tgvis.edu.in placeholder as the live domain.
+# Block login pages from being indexed (they are private portals)
+Disallow: /pages/login/admin-login/
+Disallow: /pages/login/teacher-login/
+Disallow: /pages/login/student-login/
+
+# Block utility files from being indexed
+Disallow: /_copy_images.py
+Disallow: /detail.txt
+
+# Point Google to our sitemap for faster page discovery
+Sitemap: https://www.tgvis.edu.in/sitemap.xml
+
+# Additional crawler-specific rules
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /

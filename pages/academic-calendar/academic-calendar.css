@@ -1,0 +1,281 @@
+/* ==========================================================================
+   TGVIS — Academic Calendar Styles
+   ==========================================================================
+   Page-specific styles for the calendar timeline, month filter tabs,
+   legend dots, and event cards. Fully responsive across all devices.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   CALENDAR LEGEND — Color key at top of page
+   Shows category colors so parents can quickly scan the timeline
+   -------------------------------------------------------------------------- */
+.calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-6);
+  justify-content: center;
+  margin-top: var(--space-6);
+}
+
+/* Each legend item (dot + label) */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Colored circle dot */
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Category-specific dot colors */
+.legend-dot--holiday  { background: #EF4444; }   /* Red */
+.legend-dot--exam     { background: #3B82F6; }   /* Blue */
+.legend-dot--event    { background: #22C55E; }   /* Green */
+.legend-dot--ptm      { background: #8B5CF6; }   /* Purple */
+.legend-dot--vacation { background: #F97316; }   /* Orange */
+
+
+/* --------------------------------------------------------------------------
+   MONTH FILTER TABS — Horizontal scrollable month buttons
+   Lets parents jump to a specific month quickly
+   -------------------------------------------------------------------------- */
+.month-tabs {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: var(--space-10);
+  padding: var(--space-2);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+/* Individual month tab button */
+.month-tab {
+  padding: var(--space-2) var(--space-4);
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.month-tab:hover {
+  color: var(--text-primary);
+  background: rgba(var(--color-primary-rgb), 0.05);
+}
+
+/* Active (selected) month tab */
+.month-tab.active {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(var(--color-primary-rgb), 0.3);
+}
+
+
+/* --------------------------------------------------------------------------
+   CALENDAR TIMELINE — Main month-by-month event list
+   Clean vertical timeline with left-side month headers
+   -------------------------------------------------------------------------- */
+.calendar-timeline {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Individual month block */
+.calendar-month {
+  margin-bottom: var(--space-8);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Month block when hidden by filter */
+.calendar-month.hidden {
+  display: none;
+}
+
+/* Month header (e.g. "April 2025") */
+.calendar-month__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  margin: 0;
+}
+
+.calendar-month__title i {
+  font-size: 1.3rem;
+  opacity: 0.8;
+}
+
+/* Events container inside a month */
+.calendar-events {
+  padding: var(--space-2) 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   CALENDAR EVENT ITEM — Individual date entry
+   Each event has a colored left border and date + description
+   -------------------------------------------------------------------------- */
+.cal-event {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-6);
+  border-left: 4px solid transparent;
+  transition: background 0.2s ease;
+}
+
+.cal-event:hover {
+  background: rgba(var(--color-primary-rgb), 0.03);
+}
+
+/* Date part (e.g., "15 Apr") */
+.cal-event__date {
+  min-width: 100px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+/* Event description text */
+.cal-event__text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Category-specific left border colors */
+.cal-event--holiday  { border-left-color: #EF4444; }
+.cal-event--exam     { border-left-color: #3B82F6; }
+.cal-event--event    { border-left-color: #22C55E; }
+.cal-event--ptm      { border-left-color: #8B5CF6; }
+.cal-event--vacation { border-left-color: #F97316; }
+
+/* Make the event text bold for holidays and vacations (important dates) */
+.cal-event--holiday .cal-event__text,
+.cal-event--vacation .cal-event__text {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+
+/* --------------------------------------------------------------------------
+   DISCLAIMER — Footer note about date changes
+   -------------------------------------------------------------------------- */
+.calendar-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+  padding: var(--space-4) var(--space-5);
+  border-left: 3px solid var(--color-secondary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: rgba(var(--color-secondary-rgb), 0.08);
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+.calendar-disclaimer i {
+  color: var(--color-secondary);
+  font-size: 1.2rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   DARK MODE OVERRIDES
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] .calendar-month {
+  border-color: rgba(255,255,255,0.08);
+}
+
+[data-theme="dark"] .month-tabs {
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.08);
+}
+
+[data-theme="dark"] .cal-event:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE — Mobile & Tablet adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  /* Month tabs scroll horizontally on mobile */
+  .month-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .month-tabs::-webkit-scrollbar { display: none; }
+
+  .month-tab {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--fs-xs);
+  }
+
+  /* Reduce padding inside event rows */
+  .cal-event {
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .cal-event__date {
+    min-width: 80px;
+    font-size: var(--fs-xs);
+  }
+
+  .calendar-month__title {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--fs-md);
+  }
+
+  /* Legend wraps to 2 columns on small screens */
+  .calendar-legend {
+    gap: var(--space-3) var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .cal-event {
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .cal-event__date {
+    min-width: unset;
+  }
+}

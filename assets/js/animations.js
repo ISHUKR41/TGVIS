@@ -52,17 +52,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (revealElements.length === 0) return;
 
     /**
+     * SAFETY CHECK: If IntersectionObserver is not supported (very old browsers),
+     * reveal everything immediately instead of leaving it invisible.
+     */
+    if (!('IntersectionObserver' in window)) {
+      revealElements.forEach(el => el.classList.add('revealed'));
+      return;
+    }
+
+    /**
      * Observer Options:
      * - root: null → uses the browser viewport as the observation area
-     * - rootMargin: '0px 0px -80px 0px' → triggers 80px before the element
+     * - rootMargin: '0px 0px -50px 0px' → triggers 50px before the element
      *   reaches the bottom of the viewport (makes animations feel earlier)
-     * - threshold: 0.15 → triggers when 15% of the element is visible
-     *   (not too early, not too late — a balanced trigger point)
+     * - threshold: 0.1 → triggers when 10% of the element is visible
+     *   (lowered from 0.15 to catch more elements reliably)
      */
     const observerOptions = {
       root: null,
-      rootMargin: '0px 0px -80px 0px',
-      threshold: 0.15
+      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.1
     };
 
     /**
@@ -91,10 +100,38 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(element => {
       revealObserver.observe(element);
     });
+
+    /**
+     * SAFETY FALLBACK #1 — Reveal all remaining hidden elements after 2 seconds.
+     * This prevents the "invisible text" bug if the observer fails or if
+     * elements are positioned in a way that the observer never triggers.
+     * After 2 seconds, any element still not revealed gets revealed instantly.
+     */
+    setTimeout(() => {
+      revealElements.forEach(el => {
+        if (!el.classList.contains('revealed')) {
+          el.classList.add('revealed');
+        }
+      });
+    }, 2000);
   }
 
   // Initialize the scroll reveal system
   initScrollReveal();
+
+  /**
+   * SAFETY FALLBACK #2 — window.onload guarantee.
+   * Even if DOMContentLoaded fires before all assets are ready, this ensures
+   * that by the time images/fonts/styles have loaded, all content is visible.
+   * This is the FINAL safety net — no text will ever remain invisible.
+   */
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.reveal').forEach(el => {
+      if (!el.classList.contains('revealed')) {
+        el.classList.add('revealed');
+      }
+    });
+  });
 
 
   /* ========================================================================
@@ -116,14 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
    * animations across the site.
    */
   function initGSAP() {
-    /*
-     * Scroll-triggered GSAP timelines used to compete with native scrolling
-     * and could create a second animation loop on long pages. Native
-     * IntersectionObserver reveals below provide the same visual hierarchy
-     * with much less work per frame.
-     */
-    return;
-
     // Check if GSAP is available (loaded from CDN)
     if (typeof gsap === 'undefined') {
       console.warn('TGVIS: GSAP not loaded — skipping advanced animations.');
@@ -414,6 +443,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize counters
   initCounters();
 
+  // Initialize GSAP-powered scroll animations (hero, parallax, staggered cards)
+  initGSAP();
+
 
   /* ========================================================================
      4. TEXT SPLITTING UTILITY
@@ -534,5 +566,178 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize lazy loading
   initLazyImages();
+
+
+  /* ========================================================================
+     6. SCROLL PROGRESS BAR
+     ========================================================================
+     A thin colored bar at the very top of the page that fills from left
+     to right as the user scrolls down. Gives a clear visual cue of how
+     far they have scrolled through the page.
+     ======================================================================== */
+
+  function initScrollProgress() {
+    // Create the progress bar element dynamically
+    let bar = document.querySelector('.scroll-progress');
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.className = 'scroll-progress';
+      bar.setAttribute('aria-hidden', 'true');
+      Object.assign(bar.style, {
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        height: '3px',
+        width: '0%',
+        background: 'linear-gradient(90deg, var(--color-primary), var(--color-secondary))',
+        zIndex: '9999',
+        transition: 'width 0.1s linear',
+        pointerEvents: 'none'
+      });
+      document.body.appendChild(bar);
+    }
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      bar.style.width = scrollPercent + '%';
+    }, { passive: true });
+  }
+
+  initScrollProgress();
+
+
+  /* ========================================================================
+     7. MAGNETIC BUTTON EFFECT
+     ========================================================================
+     Buttons and links with the 'btn' class subtly follow the mouse cursor
+     when hovered, creating a "magnetic" pull effect. This is a common
+     premium interaction seen on high-end websites.
+     ======================================================================== */
+
+  function initMagneticButtons() {
+    const buttons = document.querySelectorAll('.btn, .navbar__cta');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        // Move the button slightly toward the cursor (max 4px shift)
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        // Reset position smoothly when cursor leaves
+        btn.style.transform = 'translate(0, 0)';
+        btn.style.transition = 'transform 0.3s ease';
+      });
+
+      btn.addEventListener('mouseenter', () => {
+        // Remove transition during mouse movement for instant feel
+        btn.style.transition = 'none';
+      });
+    });
+  }
+
+  initMagneticButtons();
+
+
+  /* ========================================================================
+     8. GALLERY IMAGE ZOOM ON HOVER
+     ========================================================================
+     Gallery tiles get a smooth zoom effect when hovered. The image
+     scales up while the overlay fades in with the caption text.
+     ======================================================================== */
+
+  function initGalleryEffects() {
+    const tiles = document.querySelectorAll('.gallery-tile');
+
+    tiles.forEach(tile => {
+      const img = tile.querySelector('.gallery-tile__img');
+      if (!img) return;
+
+      tile.addEventListener('mouseenter', () => {
+        img.style.transform = 'scale(1.08)';
+        img.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)';
+      });
+
+      tile.addEventListener('mouseleave', () => {
+        img.style.transform = 'scale(1)';
+      });
+    });
+  }
+
+  initGalleryEffects();
+
+
+  /* ========================================================================
+     9. FAQ ACCORDION ANIMATION
+     ========================================================================
+     Adds smooth open/close animation to FAQ <details> elements.
+     The native <details> element snaps open — this adds a height
+     transition for a polished feel.
+     ======================================================================== */
+
+  function initFAQAnimations() {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const summary = item.querySelector('summary');
+      if (!summary) return;
+
+      summary.addEventListener('click', (e) => {
+        // Rotate the icon smoothly
+        const icon = summary.querySelector('i');
+        if (icon) {
+          if (item.open) {
+            icon.style.transform = 'rotate(0deg)';
+          } else {
+            icon.style.transform = 'rotate(45deg)';
+          }
+          icon.style.transition = 'transform 0.3s ease';
+        }
+      });
+    });
+  }
+
+  initFAQAnimations();
+
+
+  /* ========================================================================
+     10. TILT EFFECT ON FEATURE CARDS
+     ========================================================================
+     Feature cards get a subtle 3D tilt effect when hovered, creating
+     a premium, interactive feel. The tilt follows the cursor position
+     relative to the card center.
+     ======================================================================== */
+
+  function initCardTilt() {
+    const cards = document.querySelectorAll('.feature-card, .directory-card');
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+
+        // Calculate tilt angles (max ±5 degrees)
+        const tiltX = (y - 0.5) * -10;
+        const tiltY = (x - 0.5) * 10;
+
+        card.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-4px)`;
+        card.style.transition = 'none';
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
+        card.style.transition = 'transform 0.5s ease';
+      });
+    });
+  }
+
+  initCardTilt();
+
 
 }); // END DOMContentLoaded

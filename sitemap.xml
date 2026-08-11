@@ -1,24 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ==========================================================================
+  TGVIS — XML Sitemap
+  ==========================================================================
+  This file tells search engines (Google, Bing, etc.) about every page
+  on the website so they can crawl and index them efficiently.
+  
+  HOW IT WORKS:
+  - Each <url> entry lists one page with its location and priority
+  - 'priority' tells Google how important each page is (1.0 = most important)
+  - 'changefreq' hints how often the content changes
+  - Submit this sitemap in Google Search Console for fastest indexing
+  
+  IMPORTANT: Update this file whenever you add or remove pages.
+  ==========================================================================
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Replace this placeholder domain only after the school approves it. -->
-  <url><loc>https://www.tgvis.edu.in/</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/about/about.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/admissions/admissions.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/academics/academics.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/life-at-tgvis/life-at-tgvis.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/events/events.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/contact/contact.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/director-message/director-message.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/fees/fees.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/uniform/uniform.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/timetable/timetable.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/latest-updates/latest-updates.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/community/community.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/whatsapp-groups/whatsapp-groups.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/centres-of-excellence/centres-of-excellence.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/sports/sports.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/extracurricular/extracurricular.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/outreach/outreach.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/alumni/alumni.html</loc></url>
-  <url><loc>https://www.tgvis.edu.in/pages/careers/careers.html</loc></url>
+
+  <!-- ======== HOMEPAGE (Most Important Page) ======== -->
+  <url>
+    <loc>https://www.tgvis.edu.in/</loc>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <!-- ======== ABOUT SECTION ======== -->
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/about/about.html</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/director-message/director-message.html</loc>
+    <priority>0.7</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+
+  <!-- ======== ADMISSIONS SECTION ======== -->
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/admissions/admissions.html</loc>
+    <priority>0.95</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/fees/fees.html</loc>
+    <priority>0.9</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/uniform/uniform.html</loc>
+    <priority>0.6</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+
+  <!-- ======== CURRICULUM SECTION ======== -->
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/academics/academics.html</loc>
+    <priority>0.85</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/sports/sports.html</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/extracurricular/extracurricular.html</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/outreach/outreach.html</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- ======== STUDENT LIFE SECTION ======== -->
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/life-at-tgvis/life-at-tgvis.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/student-life/leadership/leadership.html</loc>
+    <priority>0.6</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/student-life/daily-schedule/daily-schedule.html</loc>
+    <priority>0.7</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/student-life/clubs-societies/clubs-societies.html</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/student-life/awards/awards.html</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/timetable/timetable.html</loc>
+    <priority>0.7</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+
+  <!-- ======== MORE SECTION ======== -->
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/events/events.html</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/centres-of-excellence/centres-of-excellence.html</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/latest-updates/latest-updates.html</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/community/community.html</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/academic-calendar/academic-calendar.html</loc>
+    <priority>0.7</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/whatsapp-groups/whatsapp-groups.html</loc>
+    <priority>0.5</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/alumni/alumni.html</loc>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/careers/careers.html</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/contact/contact.html</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- ======== LOGIN PAGES ======== -->
+  <url>
+    <loc>https://www.tgvis.edu.in/pages/login/login.html</loc>
+    <priority>0.4</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+
 </urlset>

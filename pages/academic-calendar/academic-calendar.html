@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<!--
+  ==========================================================================
+  TGVIS — Academic Calendar Page
+  ==========================================================================
+  PURPOSE:
+  Shows the full academic calendar for TGVIS with:
+    1. Bihar state holidays (government gazetted holidays)
+    2. School-specific events (Annual Day, Sports Day, PTMs, etc.)
+    3. Examination schedule (Unit Tests, Half-Yearly, Annual)
+    4. Monthly timeline view with color-coded categories
+    5. Interactive month filter tabs
+
+  This calendar follows the Bihar state school year (April to March).
+  Holidays are based on the Bihar government gazette for the current year.
+
+  FILE STRUCTURE:
+    academic-calendar.html  → Page structure (this file)
+    academic-calendar.css   → Page-specific styles
+    academic-calendar.js    → Month filter + interactive features
+  ========================================================================== -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Calendar 2025-26 — TGVIS | The Green Valley International School, Bihta</title>
+  <meta name="description" content="TGVIS academic calendar 2025-26 with Bihar state holidays, school events, examination dates, and parent-teacher meeting schedule. Plan your child's year at The Green Valley International School, Bihta.">
+  <meta name="keywords" content="TGVIS calendar, school holidays Bihar 2025, Bihta school calendar, Bihar school holidays, TGVIS exam dates">
+  <link rel="canonical" href="https://www.tgvis.edu.in/pages/academic-calendar/academic-calendar.html">
+  <link rel="icon" type="image/png" href="../../assets/images/logo/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../assets/css/global.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="academic-calendar.css">
+</head>
+<body>
+  <!-- ======== Preloader ======== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__text">TGVIS</div>
+    <div class="preloader__bar"><div class="preloader__bar-fill"></div></div>
+  </div>
+  <div class="page-transition"></div>
+
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar" id="navbar"></nav>
+
+
+  <!-- ================================================================
+       PAGE HERO — Calendar banner
+       ================================================================ -->
+  <section class="page-hero">
+    <img src="../../assets/images/hero/campus-hero.png" alt="The Green Valley International School campus" class="page-hero__bg" loading="eager">
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <h1 class="page-hero__title">Academic Calendar</h1>
+      <p class="page-hero__subtitle">Session 2025–26 — Holidays, exams, events, and important dates for every family</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html" class="breadcrumb__link">Home</a>
+        <i class="ri-arrow-right-s-line breadcrumb__separator"></i>
+        <span class="breadcrumb__current">Academic Calendar</span>
+      </nav>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       CALENDAR LEGEND — Color-coded categories
+       ================================================================ -->
+  <section class="section" style="padding-bottom:0;">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Session 2025–26</span>
+        <h2 class="section-title">Plan Your <span class="text-gradient-gold">Child's Year</span></h2>
+        <div class="divider"></div>
+        <p class="section-description">This calendar covers the full academic year from April 2025 to March 2026. Dates may change — check with your class teacher for the latest updates.</p>
+      </div>
+
+      <!-- Legend -->
+      <div class="calendar-legend reveal">
+        <div class="legend-item">
+          <span class="legend-dot legend-dot--holiday"></span>
+          <span>State Holiday</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot legend-dot--exam"></span>
+          <span>Examination</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot legend-dot--event"></span>
+          <span>School Event</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot legend-dot--ptm"></span>
+          <span>PTM / Meeting</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot legend-dot--vacation"></span>
+          <span>Vacation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       MONTH FILTER TABS
+       ================================================================ -->
+  <section class="section">
+    <div class="container">
+      <!-- Month tab buttons -->
+      <div class="month-tabs reveal" role="tablist" aria-label="Filter calendar by month">
+        <button class="month-tab active" data-month="all" aria-pressed="true">All</button>
+        <button class="month-tab" data-month="apr">Apr</button>
+        <button class="month-tab" data-month="may">May</button>
+        <button class="month-tab" data-month="jun">Jun</button>
+        <button class="month-tab" data-month="jul">Jul</button>
+        <button class="month-tab" data-month="aug">Aug</button>
+        <button class="month-tab" data-month="sep">Sep</button>
+        <button class="month-tab" data-month="oct">Oct</button>
+        <button class="month-tab" data-month="nov">Nov</button>
+        <button class="month-tab" data-month="dec">Dec</button>
+        <button class="month-tab" data-month="jan">Jan</button>
+        <button class="month-tab" data-month="feb">Feb</button>
+        <button class="month-tab" data-month="mar">Mar</button>
+      </div>
+
+
+      <!-- ============================================================
+           CALENDAR TIMELINE — Month-by-month events
+           ============================================================ -->
+      <div class="calendar-timeline" id="calendarTimeline">
+
+        <!-- ═══════════ APRIL 2025 ═══════════ -->
+        <div class="calendar-month" data-month="apr">
+          <h3 class="calendar-month__title"><i class="ri-calendar-line"></i> April 2025</h3>
+          <div class="calendar-events">
+            <div class="cal-event cal-event--event"><span class="cal-event__date">1 Apr</span><span class="cal-event__text">New Academic Session Begins</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">6 Apr</span><span class="cal-event__text">Ram Navami</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">10 Apr</span><span class="cal-event__text">Mahavir Jayanti</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">14 Apr</span><span class="cal-event__text">Dr. Ambedkar Jayanti</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">18 Apr</span><span class="cal-event__text">Good Friday</span></div>
+            <div class="cal-event cal-event--ptm"><span class="cal-event__date">26 Apr</span><span class="cal-event__text">First PTM — Orientation for New Parents</span></div>
+          </div>
+        </div>
+
+        <!-- ═══════════ MAY 2025 ═══════════ -->
+        <div class="calendar-month" data-month="may">
+          <h3 class="calendar-month__title"><i class="ri-calendar-line"></i> May 2025</h3>
+          <div class="calendar-events">
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">1 May</span><span class="cal-event__text">May Day (Labour Day)</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">12 May</span><span class="cal-event__text">Buddha Purnima</span></div>
+            <div class="cal-event cal-event--exam"><span class="cal-event__date">15–22 May</span><span class="cal-event__text">Unit Test 1 (All Classes)</span></div>
+            <div class="cal-event cal-event--vacation"><span class="cal-event__date">25 May – 20 Jun</span><span class="cal-event__text">Summer Vacation</span></div>
+          </div>
+        </div>
+
+        <!-- ═══════════ JUNE 2025 ═══════════ -->
+        <div class="calendar-month" data-month="jun">
+          <h3 class="calendar-month__title"><i class="ri-calendar-line"></i> June 2025</h3>
+          <div class="calendar-events">
+            <div class="cal-event cal-event--vacation"><span class="cal-event__date">1–20 Jun</span><span class="cal-event__text">Summer Vacation (continued)</span></div>
+            <div class="cal-event cal-event--event"><span class="cal-event__date">21 Jun</span><span class="cal-event__text">School Reopens + International Yoga Day</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">27 Jun</span><span class="cal-event__text">Eid-ul-Adha (Bakrid) *</span></div>
+          </div>
+        </div>
+
+        <!-- ═══════════ JULY 2025 ═══════════ -->
+        <div class="calendar-month" data-month="jul">
+          <h3 class="calendar-month__title"><i class="ri-calendar-line"></i> July 2025</h3>
+          <div class="calendar-events">
+            <div class="cal-event cal-event--event"><span class="cal-event__date">1 Jul</span><span class="cal-event__text">Doctor's Day — Health Awareness Week</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">17 Jul</span><span class="cal-event__text">Muharram *</span></div>
+            <div class="cal-event cal-event--event"><span class="cal-event__date">26 Jul</span><span class="cal-event__text">Kargil Vijay Diwas — Patriotic Assembly</span></div>
+            <div class="cal-event cal-event--ptm"><span class="cal-event__date">28 Jul</span><span class="cal-event__text">PTM — Mid-Term Progress Discussion</span></div>
+          </div>
+        </div>
+
+        <!-- ═══════════ AUGUST 2025 ═══════════ -->
+        <div class="calendar-month" data-month="aug">
+          <h3 class="calendar-month__title"><i class="ri-calendar-line"></i> August 2025</h3>
+          <div class="calendar-events">
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">9 Aug</span><span class="cal-event__text">Quit India Day</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">15 Aug</span><span class="cal-event__text">Independence Day — Flag Hoisting Ceremony</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">16 Aug</span><span class="cal-event__text">Janmashtami</span></div>
+            <div class="cal-event cal-event--exam"><span class="cal-event__date">25–30 Aug</span><span class="cal-event__text">Unit Test 2 (All Classes)</span></div>
+          </div>
+        </div>
+
+        <!-- ═══════════ SEPTEMBER 2025 ═══════════ -->
+        <div class="calendar-month" data-month="sep">
+          <h3 class="calendar-month__title"><i class="ri-calendar-line"></i> September 2025</h3>
+          <div class="calendar-events">
+            <div class="cal-event cal-event--event"><span class="cal-event__date">5 Sep</span><span class="cal-event__text">Teachers' Day Celebration</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">15 Sep</span><span class="cal-event__text">Milad-un-Nabi (Prophet's Birthday) *</span></div>
+            <div class="cal-event cal-event--exam"><span class="cal-event__date">22 Sep – 5 Oct</span><span class="cal-event__text">Half-Yearly Examination</span></div>
+          </div>
+        </div>
+
+        <!-- ═══════════ OCTOBER 2025 ═══════════ -->
+        <div class="calendar-month" data-month="oct">
+          <h3 class="calendar-month__title"><i class="ri-calendar-line"></i> October 2025</h3>
+          <div class="calendar-events">
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">2 Oct</span><span class="cal-event__text">Gandhi Jayanti</span></div>
+            <div class="cal-event cal-event--vacation"><span class="cal-event__date">2–12 Oct</span><span class="cal-event__text">Durga Puja / Dussehra Vacation</span></div>
+            <div class="cal-event cal-event--event"><span class="cal-event__date">13 Oct</span><span class="cal-event__text">School Reopens after Puja Break</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">20 Oct</span><span class="cal-event__text">Diwali</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">21 Oct</span><span class="cal-event__text">Govardhan Puja</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">22 Oct</span><span class="cal-event__text">Bhai Dooj</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">27 Oct</span><span class="cal-event__text">Chhath Puja (begins)</span></div>
+            <div class="cal-event cal-event--vacation"><span class="cal-event__date">25–31 Oct</span><span class="cal-event__text">Chhath Vacation (Bihar-specific)</span></div>
+          </div>
+        </div>
+
+        <!-- ═══════════ NOVEMBER 2025 ═══════════ -->
+        <div class="calendar-month" data-month="nov">
+          <h3 class="calendar-month__title"><i class="ri-calendar-line"></i> November 2025</h3>
+          <div class="calendar-events">
+            <div class="cal-event cal-event--event"><span class="cal-event__date">1 Nov</span><span class="cal-event__text">Winter Uniform Starts</span></div>
+            <div class="cal-event cal-event--event"><span class="cal-event__date">10 Nov</span><span class="cal-event__text">Science Exhibition</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">14 Nov</span><span class="cal-event__text">Children's Day — Fun & Games</span></div>
+            <div class="cal-event cal-event--ptm"><span class="cal-event__date">22 Nov</span><span class="cal-event__text">PTM — Half-Yearly Results Discussion</span></div>
+            <div class="cal-event cal-event--exam"><span class="cal-event__date">24–28 Nov</span><span class="cal-event__text">Unit Test 3 (All Classes)</span></div>
+          </div>
+        </div>
+
+        <!-- ═══════════ DECEMBER 2025 ═══════════ -->
+        <div class="calendar-month" data-month="dec">
+          <h3 class="calendar-month__title"><i class="ri-calendar-line"></i> December 2025</h3>
+          <div class="calendar-events">
+            <div class="cal-event cal-event--event"><span class="cal-event__date">15 Dec</span><span class="cal-event__text">Annual Day Celebration</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">25 Dec</span><span class="cal-event__text">Christmas</span></div>
+            <div class="cal-event cal-event--vacation"><span class="cal-event__date">26 Dec – 1 Jan</span><span class="cal-event__text">Winter Vacation</span></div>
+          </div>
+        </div>
+
+        <!-- ═══════════ JANUARY 2026 ═══════════ -->
+        <div class="calendar-month" data-month="jan">
+          <h3 class="calendar-month__title"><i class="ri-calendar-line"></i> January 2026</h3>
+          <div class="calendar-events">
+            <div class="cal-event cal-event--event"><span class="cal-event__date">2 Jan</span><span class="cal-event__text">School Reopens after Winter Break</span></div>
+            <div class="cal-event cal-event--event"><span class="cal-event__date">20 Jan</span><span class="cal-event__text">Annual Sports Day</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">26 Jan</span><span class="cal-event__text">Republic Day — Flag Hoisting + March-Past</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">29 Jan</span><span class="cal-event__text">Basant Panchami / Saraswati Puja</span></div>
+          </div>
+        </div>
+
+        <!-- ═══════════ FEBRUARY 2026 ═══════════ -->
+        <div class="calendar-month" data-month="feb">
+          <h3 class="calendar-month__title"><i class="ri-calendar-line"></i> February 2026</h3>
+          <div class="calendar-events">
+            <div class="cal-event cal-event--event"><span class="cal-event__date">1 Feb</span><span class="cal-event__text">Summer Uniform Resumes</span></div>
+            <div class="cal-event cal-event--exam"><span class="cal-event__date">10–14 Feb</span><span class="cal-event__text">Pre-Board Exam (Class 9 & 10)</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">26 Feb</span><span class="cal-event__text">Maha Shivaratri</span></div>
+            <div class="cal-event cal-event--ptm"><span class="cal-event__date">28 Feb</span><span class="cal-event__text">PTM — Pre-Annual Exam Discussion</span></div>
+          </div>
+        </div>
+
+        <!-- ═══════════ MARCH 2026 ═══════════ -->
+        <div class="calendar-month" data-month="mar">
+          <h3 class="calendar-month__title"><i class="ri-calendar-line"></i> March 2026</h3>
+          <div class="calendar-events">
+            <div class="cal-event cal-event--exam"><span class="cal-event__date">2–20 Mar</span><span class="cal-event__text">Annual Examination (All Classes)</span></div>
+            <div class="cal-event cal-event--holiday"><span class="cal-event__date">14 Mar</span><span class="cal-event__text">Holi</span></div>
+            <div class="cal-event cal-event--event"><span class="cal-event__date">25 Mar</span><span class="cal-event__text">Result Day — Report Cards Distributed</span></div>
+            <div class="cal-event cal-event--ptm"><span class="cal-event__date">28 Mar</span><span class="cal-event__text">Final PTM — Year-End Review</span></div>
+            <div class="cal-event cal-event--event"><span class="cal-event__date">31 Mar</span><span class="cal-event__text">Last Working Day of Session</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Disclaimer -->
+      <p class="calendar-disclaimer reveal">
+        <i class="ri-information-line"></i>
+        <span>* Dates marked with an asterisk depend on moon sighting and may change. All dates are subject to revision by the Bihar State Government. Check with your class teacher for confirmed dates.</span>
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       EXAM SCHEDULE SUMMARY
+       ================================================================ -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Examinations</span>
+        <h2 class="section-title">Exam <span class="text-gradient">Schedule</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="grid-auto-sm grid-animated">
+        <div class="feature-card reveal stagger-1">
+          <div class="feature-card__icon" style="background:rgba(59,130,246,0.1);"><i class="ri-file-edit-line" style="color:#3B82F6;"></i></div>
+          <h4 class="feature-card__title">Unit Test 1</h4>
+          <p class="feature-card__text">May 15–22, 2025<br>Covers syllabus from April–May</p>
+        </div>
+        <div class="feature-card reveal stagger-2">
+          <div class="feature-card__icon" style="background:rgba(249,115,22,0.1);"><i class="ri-file-edit-line" style="color:#F97316;"></i></div>
+          <h4 class="feature-card__title">Unit Test 2</h4>
+          <p class="feature-card__text">August 25–30, 2025<br>Covers syllabus from June–August</p>
+        </div>
+        <div class="feature-card reveal stagger-3">
+          <div class="feature-card__icon" style="background:rgba(234,88,12,0.1);"><i class="ri-book-mark-line" style="color:#EA580C;"></i></div>
+          <h4 class="feature-card__title">Half-Yearly</h4>
+          <p class="feature-card__text">Sep 22 – Oct 5, 2025<br>Covers April–September syllabus</p>
+        </div>
+        <div class="feature-card reveal stagger-4">
+          <div class="feature-card__icon" style="background:rgba(139,92,246,0.1);"><i class="ri-file-edit-line" style="color:#8B5CF6;"></i></div>
+          <h4 class="feature-card__title">Unit Test 3</h4>
+          <p class="feature-card__text">November 24–28, 2025<br>Covers October–November syllabus</p>
+        </div>
+        <div class="feature-card reveal stagger-5">
+          <div class="feature-card__icon" style="background:rgba(220,38,38,0.1);"><i class="ri-book-mark-line" style="color:#DC2626;"></i></div>
+          <h4 class="feature-card__title">Pre-Board</h4>
+          <p class="feature-card__text">February 10–14, 2026<br>Class 9 & 10 only — full syllabus</p>
+        </div>
+        <div class="feature-card reveal stagger-6">
+          <div class="feature-card__icon" style="background:rgba(var(--color-primary-rgb),0.1);"><i class="ri-book-mark-line" style="color:var(--color-primary);"></i></div>
+          <h4 class="feature-card__title">Annual Exam</h4>
+          <p class="feature-card__text">March 2–20, 2026<br>Full syllabus — all classes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================
+       DOWNLOAD / CONTACT CTA
+       ================================================================ -->
+  <section class="section">
+    <div class="container" style="max-width:700px;text-align:center;">
+      <div class="section-header reveal">
+        <span class="section-label">Need More Details?</span>
+        <h2 class="section-title">Get the <span class="text-gradient-gold">Complete Calendar</span></h2>
+        <div class="divider"></div>
+      </div>
+      <p class="reveal" style="color:var(--text-secondary);font-size:var(--fs-md);line-height:1.7;margin-bottom:var(--space-8);">
+        For the most up-to-date calendar, including class-specific exam schedules and event timings, contact the school office or ask in your child's class WhatsApp group.
+      </p>
+      <div class="reveal" style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+        <a href="../whatsapp-groups/whatsapp-groups.html" class="btn btn--primary btn--lg">
+          <i class="ri-whatsapp-line"></i> Class WhatsApp Groups
+        </a>
+        <a href="../contact/contact.html" class="btn btn--secondary btn--lg">
+          <i class="ri-phone-line"></i> Contact Office
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer"></footer>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js" defer></script>
+  <script src="../../assets/js/utils.js" defer></script>
+  <script src="../../assets/js/navbar.js" defer></script>
+  <script src="../../assets/js/global.js" defer></script>
+  <script src="../../assets/js/animations.js" defer></script>
+  <script src="academic-calendar.js" defer></script>
+</body>
+</html>

@@ -629,12 +629,227 @@
 
 
 /* --------------------------------------------------------------------------
-   9. ACCESSIBILITY — REDUCED MOTION
+   9. PREMIUM MICRO-INTERACTIONS
+   --------------------------------------------------------------------------
+   Professional polish animations that give the website a high-end feel.
+   Used across buttons, cards, images, and interactive elements.
+   -------------------------------------------------------------------------- */
+
+/* ---- Magnetic Button Hover ----
+   Buttons lift and gain a glow shadow on hover, creating a 3D "press" feel */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn:hover::after {
+  opacity: 1;
+}
+
+.btn--primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(var(--color-primary-rgb), 0.35);
+}
+
+.btn--secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+
+/* ---- Image Zoom on Card Hover ----
+   Cards containing images get a subtle zoom-in effect on hover */
+.feature-card:hover img,
+.update-card:hover img,
+.gallery-card:hover img {
+  transform: scale(1.05);
+  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+
+/* ---- Text Underline Draw Animation ----
+   Links get a bottom border that "draws in" from left to right on hover */
+.navbar__link::before,
+.footer__link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.navbar__link:hover::before,
+.footer__link:hover::before {
+  width: 100%;
+}
+
+
+/* ---- Pulse Ring ----
+   A subtle pulsing ring effect for important CTA buttons or WhatsApp icons */
+.pulse-ring {
+  position: relative;
+}
+
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid var(--color-primary);
+  animation: pulseRing 2s ease-in-out infinite;
+}
+
+@keyframes pulseRing {
+  0%, 100% { opacity: 0; transform: scale(0.95); }
+  50% { opacity: 0.4; transform: scale(1.05); }
+}
+
+
+/* ---- Page Hero Parallax Drift ----
+   The hero background image has a subtle vertical drift on scroll,
+   creating a natural parallax depth feel without JavaScript */
+.page-hero__bg {
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+
+/* ---- Smooth Card Border Glow ----
+   Feature cards get a subtle green/gold border glow on hover */
+.feature-card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(var(--color-primary-rgb), 0.12);
+  border-color: rgba(var(--color-primary-rgb), 0.2);
+}
+
+
+/* ---- Counter Number Pop ----
+   Numbers in stat counters get a slight scale-up when they finish counting */
+.counter.counted {
+  animation: counterPop 0.3s ease-out;
+}
+
+@keyframes counterPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+
+/* ---- Typing Cursor ----
+   A blinking cursor effect for dynamic text elements */
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  color: var(--color-primary);
+  font-weight: 300;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+
+/* --------------------------------------------------------------------------
+   10. ACCESSIBILITY — REDUCED MOTION
    --------------------------------------------------------------------------
    Users who have enabled "Reduce motion" in their system preferences
    will see simplified, instant transitions instead of animations.
    This is CRITICAL for accessibility compliance (WCAG 2.1 Level AA).
    -------------------------------------------------------------------------- */
+
+/* ---- FAQ Accordion Enhanced Styling ----
+   Smooth icon rotation and content reveal for <details> elements */
+.faq-item summary i {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  margin-left: auto;
+}
+
+.faq-item[open] summary i {
+  transform: rotate(45deg);
+}
+
+.faq-item p {
+  animation: faqSlideDown 0.3s ease forwards;
+}
+
+@keyframes faqSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Gallery Tile Overlay Animation ----
+   Caption overlay slides up smoothly on hover */
+.gallery-tile {
+  overflow: hidden;
+  border-radius: var(--radius-lg, 12px);
+}
+
+.gallery-tile__overlay {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.gallery-tile:hover .gallery-tile__overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-tile__img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.gallery-tile:hover .gallery-tile__img {
+  transform: scale(1.08);
+}
+
+/* ---- Feature Card 3D Depth ----
+   Cards respond to cursor position with a subtle 3D perspective */
+.feature-card,
+.directory-card {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* ---- Smooth Page Load Entry ----
+   Body content fades in smoothly after the preloader disappears */
+body {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
 
 @media (prefers-reduced-motion: reduce) {
   /* Disable all reveal animations — show elements immediately */
@@ -662,8 +877,15 @@
 
   /* Disable hover transforms (keep color changes) */
   .hover-lift:hover,
-  .hover-grow:hover {
+  .hover-grow:hover,
+  .feature-card:hover,
+  .btn:hover {
     transform: none;
+  }
+
+  /* Disable pulse ring */
+  .pulse-ring::before {
+    animation: none;
   }
 
   /* Keep focus indicators visible for keyboard navigation */

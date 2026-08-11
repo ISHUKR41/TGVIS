@@ -282,10 +282,6 @@ document.addEventListener('DOMContentLoaded', () => {
    * initSectionEffects - Adds scroll-based effects to homepage sections.
    */
   function initSectionEffects() {
-    // Keep scrolling on the homepage native and predictable. The lightweight
-    // reveal observer in animations.js already handles entrance motion.
-    return;
-
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
     // Fade-in the welcome section image with a slight zoom
