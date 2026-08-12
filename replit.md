@@ -33,6 +33,13 @@ Use clear English comments when adding a section or behavior. Keep shared
 styles and scripts in `assets/`; keep page-specific code beside its page. Use
 relative URLs for internal links and do not add hard-coded localhost URLs.
 
+The shared refinement layer in `assets/css/global.css` provides the visual
+language used across the site: warm off-white surfaces, forest green, muted
+gold accents, responsive cards, focus states, and reduced-motion safeguards.
+`assets/js/global.js` owns shared navigation, theme switching, tabs, accordions,
+newsletter feedback, and lightweight status toasts. Page scripts own only the
+behavior that belongs to their page.
+
 ## Current content notes
 
 - The supplied school office number is used for telephone and WhatsApp handoffs:
@@ -61,3 +68,6 @@ relative URLs for internal links and do not add hard-coded localhost URLs.
   sports, and student photography when available.
 - Connect a real form/email service and an authenticated student, teacher, and
   admin portal before presenting those workflows as submitted or logged in.
+- Contact, admission, and careers forms now make the handoff explicit: they
+  prepare a WhatsApp enquiry and provide the office phone/email fallback if a
+  browser blocks the new window. No form data is stored by this static site.

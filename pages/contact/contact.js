@@ -99,18 +99,20 @@ document.addEventListener('DOMContentLoaded', () => {
        * The email address is also shown on the page for visitors who prefer
        * a written enquiry, while this static site remains backend-free.
        */
-      window.open(`https://wa.me/918935901010?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+      const whatsappWindow = window.open(`https://wa.me/918935901010?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
       const status = document.createElement('p');
       status.className = 'form-status';
       status.setAttribute('role', 'status');
-      status.textContent = 'WhatsApp opened with your message. Please tap Send to contact the school office.';
+      status.textContent = whatsappWindow
+        ? 'WhatsApp opened with your message. Please tap Send to contact the school office.'
+        : 'Your browser blocked the WhatsApp window. Please call +91 89359 01010 or email tgvisbihta@gmail.com.';
       btn.after(status);
       btn.innerHTML = '<i class="ri-whatsapp-line"></i> WhatsApp Opened';
       btn.style.background = 'var(--color-accent)';
       setTimeout(() => {
         form.reset();
         status.remove();
-        btn.innerHTML = '<i class="ri-send-plane-fill"></i> Send Message';
+        btn.innerHTML = '<i class="ri-whatsapp-line"></i> Continue in WhatsApp';
         btn.style.background = '';
         if (textarea) counter.textContent = '0 / 500 characters';
       }, 3500);

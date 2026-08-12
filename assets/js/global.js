@@ -490,21 +490,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /*
-   * Newsletter forms are intentionally local until the school connects an
-   * email service. Showing an inline confirmation is more honest and more
-   * accessible than pretending a subscription was sent to a backend.
-   */
-  document.querySelectorAll('[data-newsletter-form]').forEach(form => {
-    form.addEventListener('submit', event => {
-      event.preventDefault();
-      const status = form.parentElement.querySelector('[data-newsletter-status]');
-      if (status) status.textContent = 'Thanks — updates will be shared once the school newsletter is live.';
-      form.reset();
-    });
-  });
-
-
   /* ========================================================================
      8. PAGE TRANSITION EFFECT
      ========================================================================
@@ -632,9 +617,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ========================================================================
+     11. LIGHTWEIGHT SITE FEEDBACK
+     ========================================================================
+     Static sites still need to acknowledge actions. This shared toast keeps
+     newsletter sign-ups, resource requests and other local interactions
+     honest without pretending that a backend has stored anything.
+     ======================================================================== */
+
+  let toastTimer;
+  function showSiteToast(message, icon = 'ri-checkbox-circle-line') {
+    let toast = document.querySelector('.site-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.className = 'site-toast';
+      toast.setAttribute('role', 'status');
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<i class="${icon}" aria-hidden="true"></i><span>${message}</span>`;
+    toast.classList.add('is-visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 4500);
+  }
+  window.TGVIS = window.TGVIS || {};
+  window.TGVIS.showSiteToast = showSiteToast;
+
+  /* A small confirmation for the footer newsletter form. The form is local
+     by design until the school connects an approved email/newsletter service. */
+  document.querySelectorAll('[data-newsletter-form]').forEach(form => {
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const email = form.querySelector('input[type="email"]');
+      if (!email || !email.value.trim() || !email.checkValidity()) {
+        email?.focus();
+        showSiteToast('Please enter a valid email address.', 'ri-error-warning-line');
+        return;
+      }
+      form.reset();
+      showSiteToast('Thank you. The school office can add you to the updates list.');
+    });
+  });
+
+  /* Accordions and tabs are keyboard friendly by default. Add the ARIA state
+     here so screen readers understand which panel is currently visible. */
+  document.querySelectorAll('.accordion__header').forEach(header => {
+    header.setAttribute('aria-expanded', String(header.closest('.accordion__item')?.classList.contains('active')));
+    header.addEventListener('click', () => {
+      const item = header.closest('.accordion__item');
+      if (item) header.setAttribute('aria-expanded', String(item.classList.contains('active')));
+    });
+  });
 
   /* ========================================================================
-     11. CURRENT YEAR (Copyright)
+     12. CURRENT YEAR (Copyright)
      ========================================================================
      Automatically updates the copyright year in the footer so it's
      always current without manual updates.

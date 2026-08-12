@@ -56,9 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
         `Message: ${document.getElementById('jMsg')?.value.trim() || 'Not provided'}`
       ].join('\n');
 
-      window.open(`https://wa.me/918935901010?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+      const whatsappWindow = window.open(`https://wa.me/918935901010?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
       const orig = btn.innerHTML;
-      btn.innerHTML = '<i class="ri-whatsapp-line"></i> WhatsApp Opened';
+      btn.innerHTML = whatsappWindow
+        ? '<i class="ri-whatsapp-line"></i> WhatsApp Opened'
+        : '<i class="ri-phone-line"></i> Contact Office';
       btn.style.background = 'var(--color-accent)';
       btn.disabled = true;
       setTimeout(() => {

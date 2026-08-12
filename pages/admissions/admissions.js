@@ -59,14 +59,16 @@ document.addEventListener('DOMContentLoaded', () => {
         `Date of birth: ${get('#admDob')}`,
         `Message: ${get('#admMessage')}`
       ].join('\n');
-      window.open(`https://wa.me/918935901010?text=${encodeURIComponent(enquiry)}`, '_blank', 'noopener,noreferrer');
+      const whatsappWindow = window.open(`https://wa.me/918935901010?text=${encodeURIComponent(enquiry)}`, '_blank', 'noopener,noreferrer');
       const btn = form.querySelector('button[type="submit"]');
       if (btn) {
         const original = btn.innerHTML;
         const status = document.createElement('p');
         status.setAttribute('role', 'status');
         status.className = 'form-status';
-        status.textContent = 'Your enquiry is ready. WhatsApp will open so you can send it to the school office.';
+        status.textContent = whatsappWindow
+          ? 'Your enquiry is ready. Tap Send in WhatsApp to contact the school office.'
+          : 'WhatsApp was blocked. Please call +91 89359 01010 or email tgvisbihta@gmail.com.';
         btn.after(status);
         btn.innerHTML = '<i class="ri-whatsapp-line"></i> WhatsApp Opened';
         btn.style.background = '#22C55E';
