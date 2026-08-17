@@ -1145,13 +1145,20 @@ body {
 }
 
 /* ---- Section Label Slide-In ----
-   Small label text above section titles slides in from left. */
+   Small label text above section titles slides in from left.
+   Only animates inside reveal-enabled containers so labels
+   remain visible when JS fails or is disabled. */
 .section-label {
   display: inline-block;
+}
+
+body.reveal-enabled .reveal .section-label {
+  opacity: 0;
+  transform: translateX(-20px);
   transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
-.revealed .section-label {
+body.reveal-enabled .reveal.revealed .section-label {
   animation: labelSlide 0.5s 0.2s ease both;
 }
 
@@ -1161,14 +1168,18 @@ body {
 }
 
 /* ---- Divider Expand ----
-   The decorative divider line grows from center on reveal. */
-.divider {
+   The decorative divider line grows from center on reveal.
+   IMPORTANT: Only dividers inside a reveal parent animate.
+   Standalone dividers remain fully visible at all times. */
+body.reveal-enabled .reveal .divider,
+body.reveal-enabled .section-header.reveal .divider {
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.revealed .divider {
+body.reveal-enabled .reveal.revealed .divider,
+body.reveal-enabled .section-header.reveal.revealed .divider {
   transform: scaleX(1);
 }
 
