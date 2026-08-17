@@ -1,50 +1,147 @@
 /* ==========================================================================
-   TGVIS — Teacher Login Styles (Overrides shared login layout)
+   TGVIS — Teacher Login Portal Styles
    ==========================================================================
-   Imports the base login styles and adds teacher-specific blue theme overrides.
-   The teacher portal uses a professional blue gradient to visually distinguish
-   it from the student (green/gold) and admin (navy/red) portals.
+   
+   This file imports the base login layout from student-login and adds
+   teacher-specific color overrides. The teacher portal uses a professional
+   blue theme to visually distinguish it from:
+   - Student portal (green & gold)
+   - Admin portal (navy & coral red)
+   
+   TEACHER THEME COLORS:
+   - Primary:   #1e3a5f (Deep Steel Blue)
+   - Accent:    #3B82F6 (Vivid Blue)
+   - Highlight:  #60a5fa (Sky Blue)
+   - Gradient:  Forest Green → Steel Blue → Midnight (#0D4D2B → #1e3a5f → #0c2340)
+   
+   SECTIONS:
+   1. Base import (shared login layout)
+   2. Side panel gradient override
+   3. Typography & icon color overrides
+   4. Button & form accent overrides
+   5. Teacher-specific status indicators
+   6. Responsive adjustments
    ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. BASE IMPORT
+   --------------------------------------------------------------------------
+   Import the complete login layout system from student-login. This gives
+   us the split-screen design, form card, validation states, and all the
+   responsive behavior — we only override colors here. */
 
 @import url('../student-login/student-login.css');
 
 
-/* ---- Teacher-Specific Color Overrides ----
-   Professional blue gradient for the teacher portal side panel */
+/* --------------------------------------------------------------------------
+   2. SIDE PANEL GRADIENT
+   --------------------------------------------------------------------------
+   A deep professional blue gradient that feels academic and trustworthy.
+   Starts from the school's forest green and fades into steel blue. */
 
 .login-page__side {
   background: linear-gradient(135deg, var(--color-primary) 0%, #1e3a5f 50%, #0c2340 100%) !important;
 }
 
-/* Override highlight text to blue */
+/* Decorative floating shape colors match the teacher accent */
+.login-page__side .floating-shape {
+  background: rgba(59, 130, 246, 0.06) !important;
+  border: 1px solid rgba(59, 130, 246, 0.12) !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. TYPOGRAPHY & ICON OVERRIDES
+   --------------------------------------------------------------------------
+   All accent-colored elements on the side panel switch from green/gold
+   to blue to clearly identify this as the teacher portal. */
+
+/* Side panel headline accent span */
 .login-page__side-text h1 span {
   color: #60a5fa !important;
 }
 
-/* Override feature icons to blue */
+/* Feature list icons */
 .login-page__feature i {
   color: #3B82F6 !important;
   background: rgba(59, 130, 246, 0.1) !important;
 }
 
-/* Override login card icon */
+/* "Teacher Access" badge/label if present */
+.login-page__badge {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3B82F6;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. LOGIN CARD & FORM OVERRIDES
+   --------------------------------------------------------------------------
+   The login card icon, submit button, and input focus states all use
+   the blue accent to maintain visual cohesion. */
+
+/* Login card icon (book or apple at the top of the card) */
 .login-card__icon {
   background: linear-gradient(135deg, #2563EB, #1D4ED8) !important;
 }
 
-/* Override submit button to blue */
+/* Submit button — professional blue gradient */
 .login-form .btn--primary,
 .login-form button[type="submit"] {
   background: linear-gradient(135deg, #2563EB, #1D4ED8) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
 }
 
 .login-form .btn--primary:hover,
 .login-form button[type="submit"]:hover {
   background: linear-gradient(135deg, #1D4ED8, #1e40af) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
 }
 
-/* Override form input focus ring to blue */
+.login-form .btn--primary:active,
+.login-form button[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+/* Input focus ring — blue glow */
 .form-input:focus {
   border-color: #3B82F6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Remember-me checkbox accent */
+.form-checkbox:checked {
+  background-color: #3B82F6;
+  border-color: #3B82F6;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. TEACHER STATUS INDICATORS
+   --------------------------------------------------------------------------
+   Status badges for login success/error messages. */
+
+.teacher-status--info {
+  color: #3B82F6;
+  background: rgba(59, 130, 246, 0.08);
+  border-left: 3px solid #3B82F6;
+  padding: var(--space-3) var(--space-4);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: var(--fs-sm);
+}
+
+
+/* --------------------------------------------------------------------------
+   6. RESPONSIVE OVERRIDES
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  .login-page__side {
+    min-height: 200px;
+  }
 }

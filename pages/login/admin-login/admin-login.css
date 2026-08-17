@@ -1,53 +1,156 @@
 /* ==========================================================================
-   TGVIS — Admin Login Styles (Overrides shared login layout)
+   TGVIS — Admin Login Portal Styles
    ==========================================================================
-   This file imports the base login styles and adds admin-specific
-   color overrides. The admin portal uses a dark navy/red theme to 
-   visually distinguish it from student (green/gold) and teacher (blue) portals.
+   
+   This file imports the base login layout from student-login and adds
+   admin-specific color overrides. The admin portal uses a dark navy/red
+   theme to visually distinguish it from:
+   - Student portal (green & gold)
+   - Teacher portal (blue & teal)
+   
+   ADMIN THEME COLORS:
+   - Primary:   #1a1a2e (Dark Navy)
+   - Accent:    #e94560 (Coral Red)
+   - Gradient:  Navy → Dark Blue (#16213e → #0f3460)
+   
+   SECTIONS:
+   1. Base import (shared login layout)
+   2. Side panel gradient override
+   3. Typography & icon color overrides
+   4. Button & form accent overrides
+   5. Admin-specific status indicators
+   6. Responsive adjustments
    ========================================================================== */
 
-/* Import the shared login layout from student-login */
+
+/* --------------------------------------------------------------------------
+   1. BASE IMPORT
+   --------------------------------------------------------------------------
+   Import the complete login layout system from student-login. This gives
+   us the split-screen design, form card, validation states, and all the
+   responsive behavior — we only override colors here. */
+
 @import url('../student-login/student-login.css');
 
 
-/* ---- Admin-Specific Color Overrides ----
-   Navy-to-dark gradient with coral-red accent for the admin portal.
-   This makes it instantly recognizable as the admin panel. */
+/* --------------------------------------------------------------------------
+   2. SIDE PANEL GRADIENT
+   --------------------------------------------------------------------------
+   A dark navy-to-blue gradient that feels authoritative and secure.
+   The gradient direction matches the student portal for visual consistency. */
 
 .login-page__side {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
 }
 
-/* Override the highlight span color in the side text */
+/* Decorative floating shape colors match the admin accent */
+.login-page__side .floating-shape {
+  background: rgba(233, 69, 96, 0.08) !important;
+  border: 1px solid rgba(233, 69, 96, 0.15) !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. TYPOGRAPHY & ICON OVERRIDES
+   --------------------------------------------------------------------------
+   All accent-colored elements on the side panel switch from green/gold
+   to coral red to clearly identify this as the admin portal. */
+
+/* Side panel headline accent span */
 .login-page__side-text h1 span {
   color: #e94560 !important;
 }
 
-/* Override the feature icon color */
+/* Feature list icons */
 .login-page__feature i {
   color: #e94560 !important;
   background: rgba(233, 69, 96, 0.1) !important;
 }
 
-/* Override the login card icon gradient */
+/* "Admin Access" badge/label if present */
+.login-page__badge {
+  background: rgba(233, 69, 96, 0.15);
+  color: #e94560;
+  border: 1px solid rgba(233, 69, 96, 0.25);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. LOGIN CARD & FORM OVERRIDES
+   --------------------------------------------------------------------------
+   The login card icon, submit button, and input focus states all use
+   the coral red accent to maintain visual cohesion. */
+
+/* Login card icon (shield or lock at the top of the card) */
 .login-card__icon {
   background: linear-gradient(135deg, #e94560, #c23152) !important;
 }
 
-/* Override the submit button */
+/* Submit button — bold coral red gradient */
 .login-form .btn,
 .login-form button[type="submit"] {
   background: linear-gradient(135deg, #e94560, #c23152) !important;
   color: white !important;
+  box-shadow: 0 4px 16px rgba(233, 69, 96, 0.3);
 }
 
 .login-form .btn:hover,
 .login-form button[type="submit"]:hover {
   background: linear-gradient(135deg, #c23152, #a0283f) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(233, 69, 96, 0.4);
 }
 
-/* Override form input focus ring */
+.login-form .btn:active,
+.login-form button[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(233, 69, 96, 0.3);
+}
+
+/* Input focus ring — coral red glow */
 .form-input:focus {
   border-color: #e94560;
   box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.15);
+}
+
+/* Remember-me checkbox accent */
+.form-checkbox:checked {
+  background-color: #e94560;
+  border-color: #e94560;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. ADMIN STATUS INDICATORS
+   --------------------------------------------------------------------------
+   Status badges for login success/error messages. */
+
+.admin-status--error {
+  color: #e94560;
+  background: rgba(233, 69, 96, 0.08);
+  border-left: 3px solid #e94560;
+  padding: var(--space-3) var(--space-4);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: var(--fs-sm);
+}
+
+.admin-status--success {
+  color: var(--color-accent);
+  background: rgba(16, 185, 129, 0.08);
+  border-left: 3px solid var(--color-accent);
+  padding: var(--space-3) var(--space-4);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: var(--fs-sm);
+}
+
+
+/* --------------------------------------------------------------------------
+   6. RESPONSIVE OVERRIDES
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  /* On mobile, the side panel becomes a top banner with a shorter height */
+  .login-page__side {
+    min-height: 200px;
+  }
 }

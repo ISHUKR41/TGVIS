@@ -1,8 +1,55 @@
 /* ==========================================================================
-   TGVIS — Outreach Page Styles
+   TGVIS — Outreach & Social Responsibility Page Styles
+   ==========================================================================
+   
+   This file styles the outreach page which showcases the school's community
+   service programs, environmental initiatives, and social responsibility.
+   
+   SECTIONS STYLED:
+   1. Program Cards — community service activities
+   2. Outreach Tags — schedule/frequency badges
+   3. Impact Stats — numbers showing community impact
+   4. Volunteer CTA — call-to-action for participation
+   5. Photo Gallery — outreach activity photos
+   6. Responsive breakpoints
    ========================================================================== */
 
-/* Small tag below each program card showing schedule */
+
+/* --------------------------------------------------------------------------
+   1. OUTREACH PROGRAM CARDS
+   --------------------------------------------------------------------------
+   Cards showing individual outreach programs with icons, descriptions,
+   and schedule tags. Uses the global feature-card as a base. */
+
+.outreach-programs .feature-card {
+  text-align: left;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.outreach-programs .feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Large icon at top of each program card */
+.outreach-programs .feature-card__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: var(--space-4);
+}
+
+
+/* --------------------------------------------------------------------------
+   2. OUTREACH TAGS
+   --------------------------------------------------------------------------
+   Small pill-shaped badges below each program card showing when the
+   activity takes place (e.g., "Every Term", "Monthly"). */
+
 .outreach-tag {
   display: inline-flex;
   align-items: center;
@@ -18,4 +65,161 @@
 
 .outreach-tag i {
   font-size: var(--fs-sm);
+}
+
+/* Gold variant for special programs */
+.outreach-tag--gold {
+  color: var(--color-secondary-dark);
+  background: rgba(var(--color-secondary-rgb), 0.1);
+}
+
+
+/* --------------------------------------------------------------------------
+   3. IMPACT STATS
+   --------------------------------------------------------------------------
+   A horizontal strip showing key outreach statistics (trees planted,
+   families helped, etc.) in a clean, minimal grid. */
+
+.outreach-impact {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-6);
+  text-align: center;
+  padding: var(--space-8) 0;
+}
+
+.outreach-impact__item {
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-gray-200);
+  transition: transform var(--transition-smooth);
+}
+
+.outreach-impact__item:hover {
+  transform: translateY(-3px);
+}
+
+.outreach-impact__number {
+  font-family: var(--font-heading);
+  font-size: var(--fs-3xl);
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.outreach-impact__label {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. VOLUNTEER CTA
+   --------------------------------------------------------------------------
+   A call-to-action section encouraging parents to participate in
+   outreach activities. Uses the cta-banner component as a base. */
+
+.outreach-cta {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-radius: var(--radius-xl);
+  padding: var(--space-12) var(--space-8);
+  text-align: center;
+  color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative circle in the background */
+.outreach-cta::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(212, 168, 67, 0.1);
+  pointer-events: none;
+}
+
+.outreach-cta h3 {
+  font-size: var(--fs-2xl);
+  margin-bottom: var(--space-4);
+}
+
+.outreach-cta p {
+  opacity: 0.85;
+  max-width: 500px;
+  margin: 0 auto var(--space-6);
+}
+
+
+/* --------------------------------------------------------------------------
+   5. PHOTO HIGHLIGHTS
+   --------------------------------------------------------------------------
+   A small photo strip showing outreach activity images in a
+   rounded, uniformly-sized grid. */
+
+.outreach-photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+
+.outreach-photos img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  transition: transform 0.4s ease;
+}
+
+.outreach-photos img:hover {
+  transform: scale(1.03);
+}
+
+
+/* --------------------------------------------------------------------------
+   6. LEAD PARAGRAPH
+   --------------------------------------------------------------------------
+   The introductory paragraph uses a slightly larger font and
+   muted color for easy reading. */
+
+.lead {
+  font-size: var(--fs-md);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--space-6);
+}
+
+
+/* --------------------------------------------------------------------------
+   7. RESPONSIVE BREAKPOINTS
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  .outreach-impact {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  .outreach-cta {
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .outreach-photos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .outreach-impact {
+    grid-template-columns: 1fr;
+  }
+
+  .outreach-photos {
+    grid-template-columns: 1fr;
+  }
 }

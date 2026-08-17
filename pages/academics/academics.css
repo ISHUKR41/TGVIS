@@ -1,10 +1,133 @@
-/*
- * TGVIS — Academics page styles
- * --------------------------------
- * These rules stay beside the page so the shared design system remains easy
- * to maintain. The page uses shared cards and grids, with only a few
- * academic-specific details for facilities and responsive reading comfort.
- */
+/* ==========================================================================
+   TGVIS — Academics Page Styles
+   ==========================================================================
+   
+   This stylesheet covers the curriculum/academics page featuring:
+   1. Subject cards with class-range badges
+   2. Teaching approach highlights
+   3. Facility callout notes
+   4. Assessment timeline
+   5. Responsive adjustments
+   
+   The page uses shared design-system components (feature-card, grid-3,
+   section-header) from components.css. Only academic-specific rules here.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. SUBJECT CARDS
+   --------------------------------------------------------------------------
+   Each card shows a subject area (English, Math, Science, Hindi, etc.)
+   with a colored icon, brief description, and class-range badge. */
+
+.subject-card {
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--bg-primary);
+  border: 1px solid var(--color-gray-200);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.subject-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(var(--color-primary-rgb), 0.2);
+}
+
+.subject-card__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: var(--space-4);
+}
+
+.subject-card__name {
+  font-family: var(--font-heading);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.subject-card__desc {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Small badge showing the class range (e.g. "Class 1–5") */
+.subject-card__badge {
+  display: inline-block;
+  margin-top: var(--space-3);
+  padding: 2px var(--space-3);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  border-radius: var(--radius-full);
+  background: rgba(var(--color-primary-rgb), 0.08);
+  color: var(--color-primary);
+}
+
+
+/* --------------------------------------------------------------------------
+   2. TEACHING APPROACH HIGHLIGHTS
+   --------------------------------------------------------------------------
+   Horizontal strip cards showing the school's teaching methodology
+   (Activity-Based Learning, Smart Classrooms, etc.) */
+
+.approach-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-5);
+}
+
+.approach-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-gray-200);
+  transition: transform var(--transition-smooth);
+}
+
+.approach-card:hover {
+  transform: translateY(-2px);
+}
+
+.approach-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.2rem;
+}
+
+.approach-card__title {
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.approach-card__text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. FACILITY CALLOUT NOTES
+   --------------------------------------------------------------------------
+   Highlighted note box with a left border accent. Used to draw attention
+   to important information like lab availability or exam rules. */
 
 .academics-facility-note {
   display: flex;
@@ -25,12 +148,121 @@
   flex-shrink: 0;
 }
 
+
+/* --------------------------------------------------------------------------
+   4. ASSESSMENT TIMELINE
+   --------------------------------------------------------------------------
+   Minimal timeline showing the exam schedule (Unit Test 1, Half-Yearly,
+   Unit Test 2, Annual) with connected dots. */
+
+.assessment-timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: var(--space-8) 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Connecting line between assessment dots */
+.assessment-timeline::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: var(--color-gray-200);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.assessment-item {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.assessment-item__dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  margin: 0 auto var(--space-3);
+  border: 3px solid var(--bg-primary);
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.assessment-item__name {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+}
+
+.assessment-item__month {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  margin-top: var(--space-1);
+}
+
+
+/* --------------------------------------------------------------------------
+   5. FEATURE CARD HOVER STATE (Academic-specific)
+   -------------------------------------------------------------------------- */
+
 .feature-card.is-hovered {
   border-color: rgba(var(--color-secondary-rgb), 0.65);
 }
 
+
+/* --------------------------------------------------------------------------
+   6. RESPONSIVE BREAKPOINTS
+   -------------------------------------------------------------------------- */
+
 @media (max-width: 767px) {
   .academics-facility-note {
+    padding: var(--space-4);
+  }
+
+  .approach-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .assessment-timeline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-6);
+    padding-left: var(--space-8);
+  }
+
+  .assessment-timeline::before {
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    right: auto;
+    width: 2px;
+    height: auto;
+    transform: none;
+  }
+
+  .assessment-item {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .assessment-item__dot {
+    margin: 0;
+    flex-shrink: 0;
+    position: absolute;
+    left: -28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .subject-card {
     padding: var(--space-4);
   }
 }
