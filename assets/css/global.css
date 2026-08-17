@@ -1433,6 +1433,147 @@ textarea:focus-visible {
   }
 }
 
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE BREAKPOINTS — Mobile-First Grid System
+   --------------------------------------------------------------------------
+   These rules ensure grids, containers, page heroes, navbars, and all
+   shared components work beautifully on every screen size:
+   - 320px (iPhone SE)
+   - 375px (iPhone standard)
+   - 480px (landscape phones)
+   - 768px (tablets)
+   - 1024px (small laptops)
+   - 1280px (desktop)
+   - 1440px+ (large desktop)
+   - 2560px+ (4K screens)
+   -------------------------------------------------------------------------- */
+
+/* --- Extra Small: 320px — 480px --- */
+@media (max-width: 480px) {
+  /* Force single-column grids on tiny screens */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-4);
+  }
+
+  /* Container needs more horizontal padding */
+  .container {
+    padding-inline: var(--space-4);
+  }
+
+  /* Section padding reduced for tight screens */
+  .section {
+    padding-block: var(--space-8);
+  }
+
+  /* Page hero — shorter on mobile */
+  .page-hero {
+    min-height: 260px;
+  }
+
+  .page-hero__title {
+    font-size: var(--fs-3xl);
+  }
+
+  .page-hero__subtitle {
+    font-size: var(--fs-sm);
+  }
+
+  /* Breadcrumb wraps nicely */
+  .breadcrumb {
+    flex-wrap: wrap;
+    font-size: var(--fs-xs);
+  }
+
+  /* Section headers smaller */
+  .section-title {
+    font-size: var(--fs-3xl);
+  }
+
+  /* Buttons stack vertically */
+  .btn--lg {
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--fs-sm);
+  }
+
+  /* Tables scroll horizontally */
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Footer grid stacks */
+  .footer__grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-6);
+  }
+}
+
+/* --- Small: 481px — 768px (Tablets Portrait) --- */
+@media (min-width: 481px) and (max-width: 768px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .page-hero {
+    min-height: 350px;
+  }
+
+  .footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Medium: 769px — 1024px (Tablets Landscape / Small Laptops) --- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* --- Large Desktop: 1440px+ --- */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1320px;
+  }
+
+  .section {
+    padding-block: var(--space-20);
+  }
+}
+
+/* --- Ultra-Wide / 4K: 2560px+ --- */
+@media (min-width: 2560px) {
+  :root {
+    /* Scale entire UI proportionally for large displays */
+    font-size: 18px;
+  }
+
+  .container {
+    max-width: 1600px;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   ACCESSIBILITY — Reduced Motion Preference
+   --------------------------------------------------------------------------
+   When users have "Reduce motion" enabled in their OS settings,
+   all transitions and animations are disabled site-wide. Content
+   appears instantly without any movement or animation.
+   -------------------------------------------------------------------------- */
+
 @media (prefers-reduced-motion: reduce) {
   .card-hover:hover,
   .feature-card:hover,
@@ -1442,5 +1583,15 @@ textarea:focus-visible {
   .contact-card:hover,
   .image-frame:hover img {
     transform: none;
+  }
+
+  /* Kill all animations globally */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

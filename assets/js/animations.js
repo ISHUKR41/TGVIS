@@ -58,6 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // If no elements to animate, exit early (performance optimization)
     if (revealElements.length === 0) return;
 
+    // Signal to CSS that JS is running and reveal animations should be hidden initially
+    document.body.classList.add('reveal-enabled');
+
     /**
      * SAFETY CHECK: If IntersectionObserver is not supported (very old browsers),
      * reveal everything immediately instead of leaving it invisible.
@@ -109,10 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /**
-     * SAFETY FALLBACK #1 — Reveal all remaining hidden elements after 2 seconds.
+     * SAFETY FALLBACK #1 — Reveal all remaining hidden elements after 1.2 seconds.
      * This prevents the "invisible text" bug if the observer fails or if
      * elements are positioned in a way that the observer never triggers.
-     * After 2 seconds, any element still not revealed gets revealed instantly.
+     * Reduced from 2s for faster recovery.
      */
     setTimeout(() => {
       revealElements.forEach(el => {
@@ -120,7 +123,34 @@ document.addEventListener('DOMContentLoaded', () => {
           el.classList.add('revealed');
         }
       });
-    }, 2000);
+    }, 1200);
+
+    /**
+     * MUTATION OBSERVER — Catch dynamically injected .reveal elements.
+     * The navbar and some pages inject HTML after DOMContentLoaded.
+     * Without this, those elements would never be observed and stay invisible.
+     */
+    const mutationObs = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+        mutation.addedNodes.forEach(node => {
+          if (node.nodeType !== 1) return; // skip text nodes
+
+          // Check if the added node itself has .reveal
+          if (node.classList && node.classList.contains('reveal') && !node.classList.contains('revealed')) {
+            revealObserver.observe(node);
+          }
+
+          // Check children of the added node
+          if (node.querySelectorAll) {
+            node.querySelectorAll('.reveal:not(.revealed)').forEach(child => {
+              revealObserver.observe(child);
+            });
+          }
+        });
+      });
+    });
+
+    mutationObs.observe(document.body, { childList: true, subtree: true });
   }
 
   // Initialize the scroll reveal system
@@ -137,6 +167,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!el.classList.contains('revealed')) {
         el.classList.add('revealed');
       }
+    });
+  });
+
+  /**
+   * SAFETY FALLBACK #3 — Global error handler.
+   * If any script on the page crashes, force-reveal all elements
+   * so content is never left invisible because of a JS error.
+   */
+  window.addEventListener('error', () => {
+    document.querySelectorAll('.reveal:not(.revealed)').forEach(el => {
+      el.classList.add('revealed');
     });
   });
 

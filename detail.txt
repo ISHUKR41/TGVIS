@@ -191,3 +191,72 @@ and mera pura kaam complete karo and sab cheez minimalistic hona chaiye pls pura
 
 
 mobile no is 8935901010
+
+
+
+
+
+
+# TGVIS Website — Task Tracker
+
+## Phase 1: Visibility & Safety Net
+- [ ] Fix animations.css — directional transforms for reveal-enabled
+- [ ] Fix animations.js — move reveal-enabled earlier, reduce timeout, add MutationObserver
+- [ ] Fix global.js — add error handler to force-reveal on script crash
+
+## Phase 2: Professional Animations
+- [ ] Add magnetic button hover effect
+- [ ] Add card tilt/3D perspective
+- [ ] Add gradient text shimmer
+- [ ] Add parallax hero scrolling
+- [ ] Add smooth link underline animation
+- [ ] Add gallery Ken Burns effect
+- [ ] Add glassmorphism testimonial cards
+- [ ] Add GSAP word-reveal for hero
+- [ ] Add counter slot-machine effect
+
+## Phase 3: Image Generation
+- [ ] Hero campus banner
+- [ ] Classroom learning scene
+- [ ] Science lab
+- [ ] Computer lab
+- [ ] Sports ground
+- [ ] Library
+- [ ] Cultural event
+- [ ] Awards ceremony
+- [ ] Director portrait placeholder
+
+## Phase 4: Content Enrichment
+- [ ] Academics page
+- [ ] Extracurricular page
+- [ ] Outreach page
+- [ ] Timetable page
+- [ ] Uniform page
+- [ ] Tuition page
+- [ ] Community page
+- [ ] Latest Updates page
+- [ ] Centres of Excellence page
+
+## Phase 5: Responsive Design
+- [ ] Global CSS fluid typography
+- [ ] Component mobile breakpoints
+- [ ] Page-specific responsive fixes
+
+## Phase 6: SEO Optimization
+- [ ] Schema.org on all pages
+- [ ] Meta tags audit
+- [ ] Sitemap update
+- [ ] Alt text audit
+
+## Phase 7: Login Portal Polish
+- [ ] Admin login — dedicated CSS/JS
+- [ ] Teacher login — dedicated CSS/JS
+
+## Phase 8: Final QA
+- [ ] All links working
+- [ ] All images loading
+- [ ] All animations smooth
+- [ ] Dark mode working
+- [ ] Forms showing feedback
+
+

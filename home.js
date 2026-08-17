@@ -320,4 +320,163 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize section effects
   initSectionEffects();
 
+
+  /* ========================================================================
+     5. PARALLAX HERO EFFECT
+     ========================================================================
+     The hero background image moves slightly slower than the scroll,
+     creating a subtle depth illusion. This is a classic premium effect
+     used by high-end websites. Only runs on desktop (saves mobile battery).
+     ======================================================================== */
+
+  function initParallaxHero() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    if (window.innerWidth < 768) return; // skip on mobile for performance
+
+    const heroBg = document.querySelector('.hero__bg');
+    if (!heroBg) return;
+
+    gsap.to(heroBg, {
+      yPercent: 25,         // image moves 25% slower than scroll
+      ease: 'none',         // linear — no easing for parallax
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true          // ties animation directly to scroll position
+      }
+    });
+  }
+
+  initParallaxHero();
+
+
+  /* ========================================================================
+     6. MAGNETIC BUTTON EFFECT
+     ========================================================================
+     Buttons with the '.btn' class gently pull toward the cursor when
+     hovered, creating a "magnetic" feel common on premium sites.
+     On mouse leave, the button springs back to its original position.
+     ======================================================================== */
+
+  function initMagneticButtons() {
+    if (typeof gsap === 'undefined') return;
+    if (window.innerWidth < 768) return; // touch devices don't need this
+
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        gsap.to(btn, {
+          x: x * 0.2,        // 20% of cursor distance — subtle pull
+          y: y * 0.2,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, {
+          x: 0,
+          y: 0,
+          duration: 0.5,
+          ease: 'elastic.out(1, 0.5)' // bouncy snap-back
+        });
+      });
+    });
+  }
+
+  initMagneticButtons();
+
+
+  /* ========================================================================
+     7. COUNTER ANIMATION (Stats Section)
+     ========================================================================
+     Animates numbers in the stats section from 0 to their target value
+     when they scroll into view. Uses GSAP for smooth counting. Falls back
+     to showing the final number if GSAP is unavailable.
+     ======================================================================== */
+
+  function initCounters() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    document.querySelectorAll('[data-count]').forEach(counter => {
+      const target = parseInt(counter.dataset.count, 10);
+      if (isNaN(target)) return;
+
+      const obj = { val: 0 };
+
+      ScrollTrigger.create({
+        trigger: counter,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => {
+          gsap.to(obj, {
+            val: target,
+            duration: 2,
+            ease: 'power1.out',
+            onUpdate: () => {
+              counter.textContent = Math.round(obj.val).toLocaleString('en-IN');
+            }
+          });
+        }
+      });
+    });
+  }
+
+  initCounters();
+
+
+  /* ========================================================================
+     8. SMOOTH LINK UNDERLINE ANIMATION
+     ========================================================================
+     All nav links and text links get a growing underline on hover.
+     This is purely done via CSS, but we add the animation class here
+     so it only applies when JS is loaded (progressive enhancement).
+     ======================================================================== */
+
+  function initSmoothUnderlines() {
+    document.querySelectorAll('.navbar__link, .footer__link, .breadcrumb__link').forEach(link => {
+      link.classList.add('smooth-underline');
+    });
+  }
+
+  initSmoothUnderlines();
+
+
+  /* ========================================================================
+     9. TILT EFFECT ON FEATURE CARDS
+     ========================================================================
+     Feature cards tilt subtly in 3D when the mouse moves over them.
+     Creates depth and interactivity. Only on desktop — mobile gets
+     standard touch interactions instead.
+     ======================================================================== */
+
+  function initCardTilt() {
+    if (window.innerWidth < 768) return;
+
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+
+        const rotateX = (0.5 - y) * 10;  // tilt up/down (max 5 degrees)
+        const rotateY = (x - 0.5) * 10;  // tilt left/right (max 5 degrees)
+
+        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        card.style.transition = 'transform 0.1s ease';
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale(1)';
+        card.style.transition = 'transform 0.5s ease';
+      });
+    });
+  }
+
+  initCardTilt();
+
 }); // END DOMContentLoaded

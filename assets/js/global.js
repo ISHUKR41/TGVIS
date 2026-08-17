@@ -683,3 +683,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 }); // END DOMContentLoaded
+
+
+/* ==========================================================================
+   13. GLOBAL ERROR HANDLER — Content Visibility Safety Net
+   ==========================================================================
+   If ANY script on the page throws an unhandled error, this handler
+   immediately force-reveals all hidden .reveal elements. This guarantees
+   that website visitors never see a blank page because of a JS crash.
+   
+   This runs OUTSIDE DOMContentLoaded so it catches errors from any script,
+   including third-party CDN scripts (GSAP, Lenis, Swiper, etc.).
+   ========================================================================== */
+
+window.addEventListener('error', () => {
+  document.querySelectorAll('.reveal:not(.revealed)').forEach(el => {
+    el.classList.add('revealed');
+  });
+});
+
+/* Also handle unhandled promise rejections (e.g., failed CDN fetches) */
+window.addEventListener('unhandledrejection', () => {
+  document.querySelectorAll('.reveal:not(.revealed)').forEach(el => {
+    el.classList.add('revealed');
+  });
+});

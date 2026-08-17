@@ -1308,3 +1308,562 @@
     font-size: var(--fs-xs, 0.875rem);
   }
 }
+
+
+/* ==========================================================================
+   PHASE 2 — PROFESSIONAL ANIMATIONS & MICRO-INTERACTIONS
+   ==========================================================================
+   These additions make the homepage feel premium, hand-crafted, and
+   polished — matching the quality of top Indian school websites like
+   DPS, Sunbeam, and The Heritage School.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   P2.1 HERO — FLOATING GRADIENT ORBS
+   --------------------------------------------------------------------------
+   Soft glowing orbs float behind the hero text creating depth and movement.
+   They're purely decorative and don't interfere with content readability.
+   -------------------------------------------------------------------------- */
+
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.15;
+  filter: blur(80px);
+}
+
+.hero::before {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #D4A843 0%, transparent 70%);
+  top: 10%;
+  left: -5%;
+  animation: floatOrb 8s ease-in-out infinite;
+}
+
+.hero::after {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #10B981 0%, transparent 70%);
+  bottom: 15%;
+  right: -3%;
+  animation: floatOrb 10s ease-in-out infinite reverse;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(20px, -30px) scale(1.05); }
+  50% { transform: translate(-15px, -50px) scale(0.95); }
+  75% { transform: translate(25px, -20px) scale(1.02); }
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.2 HERO TITLE — GRADIENT TEXT SHIMMER
+   --------------------------------------------------------------------------
+   A subtle light sweep passes across the gold gradient text every few
+   seconds, drawing attention without being distracting.
+   -------------------------------------------------------------------------- */
+
+.hero__title .text-gradient-gold {
+  background-size: 200% auto;
+  animation: textShimmer 4s ease-in-out infinite;
+}
+
+@keyframes textShimmer {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.3 GALLERY TILES — KEN BURNS SLOW ZOOM
+   --------------------------------------------------------------------------
+   A continuous, very slow zoom-and-pan effect on gallery images that
+   makes the photo gallery feel alive even without user interaction.
+   -------------------------------------------------------------------------- */
+
+.gallery-tile__img {
+  animation: kenBurns 20s ease-in-out infinite alternate;
+}
+
+.gallery-tile:nth-child(2) .gallery-tile__img {
+  animation-delay: -5s;
+  animation-direction: alternate-reverse;
+}
+
+.gallery-tile:nth-child(3) .gallery-tile__img {
+  animation-delay: -10s;
+}
+
+.gallery-tile:nth-child(4) .gallery-tile__img {
+  animation-delay: -3s;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes kenBurns {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.08) translate(-1%, -1%); }
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.4 TESTIMONIAL CARDS — GLASSMORPHISM
+   --------------------------------------------------------------------------
+   Frosted glass look on testimonial cards for a premium, modern feel.
+   -------------------------------------------------------------------------- */
+
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .testimonial-card {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.5 STATS SECTION — ANIMATED GRADIENT BORDER
+   --------------------------------------------------------------------------
+   A rotating gradient border around each stat card creates a glowing,
+   premium feel that draws the eye to the numbers.
+   -------------------------------------------------------------------------- */
+
+.stats-section__item {
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-section__item::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(212, 168, 67, 0.4) 50%,
+    transparent 70%
+  );
+  background-size: 300% 300%;
+  border-radius: inherit;
+  z-index: -1;
+  animation: borderGlow 4s linear infinite;
+}
+
+@keyframes borderGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.6 CTA BANNER — SHIMMER SWEEP
+   --------------------------------------------------------------------------
+   A light shimmer sweeps across the CTA banner periodically, making
+   the "Apply Now" section more attention-grabbing.
+   -------------------------------------------------------------------------- */
+
+.cta-banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 60%
+  );
+  animation: ctaShimmer 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes ctaShimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.7 MAGNETIC BUTTON LIFT
+   --------------------------------------------------------------------------
+   CTA buttons lift higher on hover with a soft shadow, creating a
+   tactile, premium feel. The arrow icon slides right.
+   -------------------------------------------------------------------------- */
+
+.hero__cta-group .btn {
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease,
+    background 0.3s ease;
+}
+
+.hero__cta-group .btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.hero__cta-group .btn:hover i {
+  transform: translateX(4px);
+  transition: transform 0.3s ease;
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.8 DIRECTORY CARDS — 3D TILT HOVER
+   --------------------------------------------------------------------------
+   Cards lift and subtly tilt on hover for a tactile, interactive feel.
+   -------------------------------------------------------------------------- */
+
+.directory-card {
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.4s ease,
+    border-color 0.3s ease;
+}
+
+.directory-card:hover {
+  transform: translateY(-6px) perspective(600px) rotateX(2deg);
+  box-shadow:
+    0 16px 40px rgba(13, 77, 43, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.directory-card:hover .directory-card__arrow {
+  transform: translate(3px, -3px);
+  transition: transform 0.3s ease;
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.9 FEATURE CARDS — ICON PULSE ON HOVER
+   --------------------------------------------------------------------------
+   The icon in feature cards gently pulses and glows when hovered,
+   drawing attention to each USP.
+   -------------------------------------------------------------------------- */
+
+.feature-card:hover .feature-card__icon {
+  animation: iconPulse 0.6s ease;
+  box-shadow: 0 0 20px rgba(13, 77, 43, 0.2);
+}
+
+@keyframes iconPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.10 NEWS TICKER — IMPROVED SMOOTH SCROLL
+   --------------------------------------------------------------------------
+   The ticker now has a very smooth, consistent speed with a gradient
+   fade at the edges so text doesn't cut off abruptly.
+   -------------------------------------------------------------------------- */
+
+.news-ticker {
+  position: relative;
+}
+
+.news-ticker::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(to left, var(--color-primary-dark, #0D4D2B), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.11 WELCOME SECTION IMAGE — FLOAT ANIMATION
+   --------------------------------------------------------------------------
+   The welcome section image gently floats up and down, giving the
+   section a living, breathing quality.
+   -------------------------------------------------------------------------- */
+
+.welcome__image-frame {
+  animation: gentleFloat 6s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.welcome__experience-badge {
+  animation: badgePulse 3s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(212, 168, 67, 0.2); }
+  50% { transform: scale(1.03); box-shadow: 0 6px 28px rgba(212, 168, 67, 0.35); }
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.12 SCROLL INDICATOR — BOUNCE ANIMATION
+   -------------------------------------------------------------------------- */
+
+.hero__scroll-indicator {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(10px); opacity: 0.6; }
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.13 SMOOTH LINK UNDERLINE ANIMATION
+   --------------------------------------------------------------------------
+   Applied via JS when scripts load. Creates a sleek growing underline
+   that expands from center on hover — much classier than the default.
+   -------------------------------------------------------------------------- */
+
+.smooth-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.smooth-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-secondary);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.smooth-underline:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.14 FEATURE CARD — HOVER GLOW EFFECT
+   --------------------------------------------------------------------------
+   On hover, feature cards get a soft glow behind them, making
+   the interaction feel premium and alive.
+   -------------------------------------------------------------------------- */
+
+.feature-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.feature-card:hover {
+  box-shadow:
+    0 20px 60px rgba(13, 77, 43, 0.08),
+    0 0 0 1px rgba(212, 168, 67, 0.1);
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.15 STATS SECTION — GRADIENT BORDER GLOW
+   --------------------------------------------------------------------------
+   Animated gradient border on the stats bar using a pseudo-element
+   that rotates continuously, creating a premium visual effect.
+   -------------------------------------------------------------------------- */
+
+.stats::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent,
+    var(--color-secondary),
+    var(--color-primary),
+    var(--color-secondary),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: statsGradientSlide 4s linear infinite;
+}
+
+@keyframes statsGradientSlide {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.16 RESPONSIVE MOBILE FIXES (320px — 480px)
+   --------------------------------------------------------------------------
+   Extra-small screens need special attention. These rules ensure
+   text doesn't overflow, cards stack properly, and spacing is tight.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 480px) {
+  /* Hero section adjustments for small screens */
+  .hero__content h1 {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+    line-height: 1.15;
+  }
+
+  .hero__content p {
+    font-size: var(--fs-sm);
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .hero__buttons {
+    flex-direction: column;
+    gap: var(--space-3);
+    width: 100%;
+  }
+
+  .hero__buttons .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Stack all grids to single column on tiny screens */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  /* Welcome section adjustments */
+  .welcome__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome__image-wrapper {
+    max-height: 280px;
+  }
+
+  /* Feature cards — full width */
+  .feature-card {
+    padding: var(--space-6);
+  }
+
+  /* Section spacing reduced on mobile */
+  .section {
+    padding: var(--space-10) 0;
+  }
+
+  /* Stats section — stack horizontally scrollable */
+  .stats__grid {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: var(--space-4);
+    padding: var(--space-2) 0;
+  }
+
+  .stats__item {
+    min-width: 140px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+
+  /* Testimonial card — less padding */
+  .testimonial-card {
+    padding: var(--space-6);
+  }
+
+  /* CTA banner — single column */
+  .cta__content {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-6);
+  }
+}
+
+/* Tablet adjustments (481px — 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero__content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+}
+
+/* Large desktop (1440px+) — wider content, bigger spacing */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1320px;
+  }
+
+  .section {
+    padding: var(--space-24) 0;
+  }
+}
+
+/* 4K screens (2560px+) — scale up typography */
+@media (min-width: 2560px) {
+  :root {
+    font-size: 18px; /* scale entire site up proportionally */
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   P2.17 ACCESSIBILITY — REDUCED MOTION
+   --------------------------------------------------------------------------
+   Users who prefer reduced motion get instant transitions and
+   no animations. This respects their system-level accessibility setting.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero__bg img {
+    animation: none;
+  }
+
+  .welcome__image-frame,
+  .welcome__experience-badge,
+  .hero__scroll-indicator {
+    animation: none;
+  }
+}

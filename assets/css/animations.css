@@ -46,6 +46,42 @@
   will-change: opacity, transform; /* Hint to browser for GPU acceleration */
 }
 
+/* When JavaScript is enabled, hide elements until they scroll into view.
+   Each direction variant starts from its own offset so the entrance
+   animation travels the correct path. */
+body.reveal-enabled .reveal:not(.revealed) {
+  opacity: 0;
+}
+
+body.reveal-enabled .reveal--up:not(.revealed) {
+  transform: translateY(40px);
+}
+
+body.reveal-enabled .reveal--down:not(.revealed) {
+  transform: translateY(-40px);
+}
+
+body.reveal-enabled .reveal--left:not(.revealed) {
+  transform: translateX(-40px);
+}
+
+body.reveal-enabled .reveal--right:not(.revealed) {
+  transform: translateX(40px);
+}
+
+body.reveal-enabled .reveal--scale:not(.revealed) {
+  transform: scale(0.85);
+}
+
+body.reveal-enabled .reveal--rotate:not(.revealed) {
+  transform: rotate(-5deg) translateY(20px);
+}
+
+body.reveal-enabled .reveal--blur:not(.revealed) {
+  filter: blur(10px);
+  transform: translateY(20px);
+}
+
 /* Revealed state — element is fully visible in its final position */
 .reveal.revealed {
   opacity: 1;

@@ -175,6 +175,49 @@
     ]
   }
   </script>
+
+  <!-- WebSite Schema — enables Google sitelinks search box potential -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "TGVIS — The Green Valley International School",
+    "alternateName": "TGVIS",
+    "url": "https://tgvis-bihta.vercel.app/"
+  }
+  </script>
+
+  <!-- Organization Schema — enhanced Google Knowledge Panel -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "The Green Valley International School",
+    "alternateName": "TGVIS",
+    "url": "https://tgvis-bihta.vercel.app/",
+    "logo": "https://tgvis-bihta.vercel.app/assets/images/logo/logo.png",
+    "email": "tgvisbihta@gmail.com",
+    "telephone": "+91 8935901010",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rameshwar Building, Bihta",
+      "addressLocality": "Bihta",
+      "addressRegion": "Bihar",
+      "postalCode": "801103",
+      "addressCountry": "IN"
+    },
+    "sameAs": [
+      "https://www.facebook.com/people/The-Green-Valley-International-School-Bihta/100088041550841/",
+      "https://maps.app.goo.gl/94xhFw4nFaQEhpw77"
+    ],
+    "foundingDate": "2020",
+    "numberOfEmployees": {
+      "@type": "QuantitativeValue",
+      "minValue": 20,
+      "maxValue": 50
+    }
+  }
+  </script>
   
   <!-- Favicon — the small icon in the browser tab -->
   <link rel="icon" type="image/png" href="assets/images/logo/logo.png">
@@ -444,7 +487,7 @@
   <section class="hero" id="hero">
     <!-- Background image of the school campus -->
     <div class="hero__bg">
-      <img src="assets/images/hero/campus-hero.png" alt="The Green Valley International School campus building in Bihta, Patna" class="img-cover" width="1600" height="900" fetchpriority="high">
+      <img src="assets/images/hero/campus-hero-new.jpg" alt="The Green Valley International School campus building in Bihta, Patna" class="img-cover" width="1600" height="900" fetchpriority="high">
     </div>
 
     <!-- Dark gradient overlay for text readability -->
@@ -558,7 +601,7 @@
         <!-- Left column: Image -->
         <div class="welcome__image-wrapper reveal reveal--left">
           <div class="welcome__image-frame">
-            <img src="assets/images/campus/tgvis-classroom.jpg" alt="Illustrative classroom learning scene" class="welcome__image" loading="lazy" width="1600" height="900">
+            <img src="assets/images/campus/classroom-new.jpg" alt="Students learning in a bright TGVIS classroom with a teacher explaining the solar system" class="welcome__image" loading="lazy" width="1600" height="900">
           </div>
           <!-- Experience badge overlaying the image -->
           <div class="welcome__experience-badge">
@@ -697,7 +740,7 @@
       <div class="home-updates__grid">
         <article class="home-update-card reveal stagger-1">
           <div class="home-update-card__image">
-            <img src="assets/images/events/cultural-event.png" alt="Students taking part in a school cultural programme" loading="lazy" width="1024" height="1024">
+            <img src="assets/images/events/cultural-event-new.jpg" alt="Students performing a traditional Indian dance at the TGVIS Annual Day celebration" loading="lazy" width="1600" height="900">
             <span class="home-update-card__tag">School life</span>
           </div>
           <div class="home-update-card__body">
@@ -709,7 +752,7 @@
         </article>
         <article class="home-update-card reveal stagger-2">
           <div class="home-update-card__image">
-            <img src="assets/images/labs/science-lab.png" alt="Science learning facilities at TGVIS" loading="lazy" width="1024" height="1024">
+            <img src="assets/images/labs/science-lab-new.jpg" alt="TGVIS students conducting chemistry experiments in the science laboratory" loading="lazy" width="1600" height="900">
             <span class="home-update-card__tag">Academics</span>
           </div>
           <div class="home-update-card__body">
@@ -721,7 +764,7 @@
         </article>
         <article class="home-update-card reveal stagger-3">
           <div class="home-update-card__image">
-            <img src="assets/images/campus/school-library.png" alt="Students reading and learning in the school library" loading="lazy" width="1024" height="1024">
+            <img src="assets/images/campus/library-new.jpg" alt="Students reading and discussing in the TGVIS school library" loading="lazy" width="1600" height="900">
             <span class="home-update-card__tag">For families</span>
           </div>
           <div class="home-update-card__body">
@@ -912,7 +955,7 @@
               </a>
             </div>
             <div class="programs__image">
-              <img src="assets/images/campus/tgvis-classroom.jpg" alt="Illustrative early learning classroom" class="rounded-lg" loading="lazy" width="1600" height="900">
+              <img src="assets/images/campus/classroom-new.jpg" alt="Students in the early learning classroom at TGVIS" class="rounded-lg" loading="lazy" width="1600" height="900">
             </div>
           </div>
         </div>
@@ -958,7 +1001,7 @@
               </a>
             </div>
             <div class="programs__image">
-              <img src="assets/images/campus/tgvis-sports.jpg" alt="Illustrative school sports activity" class="rounded-lg" loading="lazy" width="1600" height="900">
+              <img src="assets/images/sports/sports-ground.jpg" alt="Students playing cricket and football on the TGVIS school playground" class="rounded-lg" loading="lazy" width="1600" height="900">
             </div>
           </div>
         </div>
@@ -1059,15 +1102,15 @@
             without changing this layout. -->
       <div class="gallery-grid reveal">
         <div class="gallery-tile gallery-tile--wide" style="background:linear-gradient(135deg,#0D4D2B,#14713E);">
-           <img src="assets/images/campus/tgvis-campus-life.jpg" alt="Illustrative view of a welcoming school campus" class="gallery-tile__img" loading="lazy" width="1600" height="900">
+           <img src="assets/images/hero/campus-hero-new.jpg" alt="Aerial view of The Green Valley International School campus" class="gallery-tile__img" loading="lazy" width="1600" height="900">
            <div class="gallery-tile__overlay"><span>Campus Life</span></div>
         </div>
         <div class="gallery-tile" style="background:linear-gradient(135deg,#1A5C35,#0D4D2B);">
-           <img src="assets/images/labs/science-lab.png" alt="Students conducting experiments in the TGVIS science lab" class="gallery-tile__img" loading="lazy" width="1024" height="1024">
+           <img src="assets/images/labs/science-lab-new.jpg" alt="Students conducting chemistry experiments in the TGVIS science lab" class="gallery-tile__img" loading="lazy" width="1600" height="900">
            <div class="gallery-tile__overlay"><span>Science in Action</span></div>
         </div>
         <div class="gallery-tile" style="background:linear-gradient(135deg,#D4A843,#B8922F);">
-           <img src="assets/images/campus/tgvis-sports.jpg" alt="Illustrative school sports activity" class="gallery-tile__img" loading="lazy" width="1600" height="900">
+           <img src="assets/images/sports/sports-ground.jpg" alt="Students playing sports on the TGVIS school playground" class="gallery-tile__img" loading="lazy" width="1600" height="900">
            <div class="gallery-tile__overlay"><span>Sport & Wellbeing</span></div>
         </div>
         <div class="gallery-tile" style="background:linear-gradient(135deg,#10B981,#059669);">
@@ -1079,7 +1122,7 @@
            <div class="gallery-tile__overlay"><span>Our School Identity</span></div>
         </div>
         <div class="gallery-tile" style="background:linear-gradient(135deg,#7C3AED,#6D28D9);">
-           <img src="assets/images/labs/computer-lab.png" alt="Students working on computers in the TGVIS computer lab" class="gallery-tile__img" loading="lazy" width="1024" height="1024">
+           <img src="assets/images/labs/computer-lab-new.jpg" alt="Students learning coding in the TGVIS computer lab" class="gallery-tile__img" loading="lazy" width="1600" height="900">
            <div class="gallery-tile__overlay"><span>Digital Classrooms</span></div>
         </div>
       </div>
