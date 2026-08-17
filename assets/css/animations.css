@@ -1008,6 +1008,171 @@ body {
 }
 
 
+/* ---- Smooth Link Underline ----
+   Navigation and inline links get a line that grows from left on hover.
+   Used on footer links and breadcrumbs for a polished feel. */
+.footer__link,
+.breadcrumb__link {
+  position: relative;
+  display: inline-block;
+}
+
+.footer__link::after,
+.breadcrumb__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.footer__link:hover::after,
+.breadcrumb__link:hover::after {
+  width: 100%;
+}
+
+/* ---- 3D Card Perspective Tilt ----
+   Adds a subtle 3D effect to feature cards on hover.
+   The card tilts slightly towards the cursor direction. */
+.feature-card {
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px) rotateX(2deg) rotateY(-1deg);
+}
+
+.feature-card:hover .feature-card__icon {
+  transform: translateZ(20px) scale(1.08);
+}
+
+.feature-card__icon {
+  transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* ---- Parallax Float ----
+   Floating shapes in hero sections bob gently up and down.
+   Creates a "living" background without being distracting. */
+.floating-shape {
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+  animation: floatBob 8s ease-in-out infinite;
+}
+
+.floating-shape:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+
+.floating-shape:nth-child(3) {
+  animation-delay: -6s;
+  animation-duration: 12s;
+}
+
+@keyframes floatBob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-15px) rotate(3deg); }
+  66% { transform: translateY(10px) rotate(-2deg); }
+}
+
+/* ---- Counter Slot-Machine ----
+   Number counters "snap" into position with a slight overshoot. */
+.counter-value {
+  display: inline-block;
+  transform-origin: bottom center;
+  animation: counterSnap 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes counterSnap {
+  0% { transform: translateY(100%) scale(0.6); opacity: 0; }
+  60% { transform: translateY(-5%) scale(1.02); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ---- Glassmorphism Card Effect ----
+   Testimonial and info cards use a glass-like frosted effect
+   with backdrop blur for a modern, premium look. */
+.testimonial-card,
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: 
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.testimonial-card:hover,
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.15);
+}
+
+/* ---- Magnetic Button Hover ----
+   Primary CTA buttons grow slightly and cast a glowing shadow.
+   Subtle enough to be professional, visible enough to guide attention. */
+.btn--primary,
+.navbar__cta {
+  transition: 
+    transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.btn--primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 28px -6px rgba(13, 77, 43, 0.35);
+}
+
+/* ---- Page Hero Parallax Overlay ----
+   Hero background images have a subtle zoom on load. */
+.page-hero__bg {
+  transition: transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transform: scale(1.05);
+}
+
+.page-hero__bg.loaded,
+.page-hero .page-hero__bg {
+  transform: scale(1);
+}
+
+/* ---- Section Label Slide-In ----
+   Small label text above section titles slides in from left. */
+.section-label {
+  display: inline-block;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.revealed .section-label {
+  animation: labelSlide 0.5s 0.2s ease both;
+}
+
+@keyframes labelSlide {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ---- Divider Expand ----
+   The decorative divider line grows from center on reveal. */
+.divider {
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.revealed .divider {
+  transform: scaleX(1);
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   /* Respect visitors who prefer less motion across every animated element. */
   *,

@@ -1638,6 +1638,9 @@
 @media (max-width: 1024px) {
   .navbar__hamburger {
     display: flex;
+    /* Must be ABOVE the overlay (z-overlay) AND the mobile menu panel */
+    z-index: calc(var(--z-overlay) + 2);
+    position: relative;
   }
 
   .navbar__menu {
@@ -1647,6 +1650,7 @@
     width: 320px;
     max-width: 85%;
     height: 100vh;
+    height: 100dvh; /* Use dynamic viewport height on modern mobile browsers */
     background: var(--bg-secondary);
     flex-direction: column;
     align-items: flex-start;
@@ -1654,8 +1658,9 @@
     gap: var(--space-1);
     overflow-y: auto;
     overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     transition: right var(--transition-smooth);
-    z-index: var(--z-overlay);
+    z-index: calc(var(--z-overlay) + 1);
     box-shadow: var(--shadow-2xl);
   }
 
@@ -1667,11 +1672,22 @@
     color: var(--text-primary);
     width: 100%;
     padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
   }
 
   .navbar__link:hover {
     background: var(--bg-tertiary);
     color: var(--color-primary);
+  }
+
+  /* Rotate the dropdown arrow icon when submenu is open */
+  .navbar__item.open .navbar__link--dropdown i {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+  }
+
+  .navbar__link--dropdown i {
+    transition: transform 0.3s ease;
   }
 
   .navbar__dropdown {
@@ -1685,10 +1701,26 @@
     border-radius: var(--radius-md);
     display: none;
     margin-top: var(--space-2);
+    padding: var(--space-2);
   }
 
   .navbar__item.open .navbar__dropdown {
     display: block;
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  /* Smooth slide-down animation for mobile dropdown */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      max-height: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      max-height: 500px;
+      transform: translateY(0);
+    }
   }
 
   .navbar__actions {
