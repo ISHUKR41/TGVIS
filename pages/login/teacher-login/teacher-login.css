@@ -1,0 +1,50 @@
+/* ==========================================================================
+   TGVIS — Teacher Login Styles (Overrides shared login layout)
+   ==========================================================================
+   Imports the base login styles and adds teacher-specific blue theme overrides.
+   The teacher portal uses a professional blue gradient to visually distinguish
+   it from the student (green/gold) and admin (navy/red) portals.
+   ========================================================================== */
+
+@import url('../student-login/student-login.css');
+
+
+/* ---- Teacher-Specific Color Overrides ----
+   Professional blue gradient for the teacher portal side panel */
+
+.login-page__side {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #1e3a5f 50%, #0c2340 100%) !important;
+}
+
+/* Override highlight text to blue */
+.login-page__side-text h1 span {
+  color: #60a5fa !important;
+}
+
+/* Override feature icons to blue */
+.login-page__feature i {
+  color: #3B82F6 !important;
+  background: rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Override login card icon */
+.login-card__icon {
+  background: linear-gradient(135deg, #2563EB, #1D4ED8) !important;
+}
+
+/* Override submit button to blue */
+.login-form .btn--primary,
+.login-form button[type="submit"] {
+  background: linear-gradient(135deg, #2563EB, #1D4ED8) !important;
+}
+
+.login-form .btn--primary:hover,
+.login-form button[type="submit"]:hover {
+  background: linear-gradient(135deg, #1D4ED8, #1e40af) !important;
+}
+
+/* Override form input focus ring to blue */
+.form-input:focus {
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}

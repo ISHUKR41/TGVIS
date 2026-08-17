@@ -888,6 +888,126 @@ body {
   transition: opacity 0.4s ease;
 }
 
+
+/* --------------------------------------------------------------------------
+   8. PREMIUM MICRO-ANIMATIONS
+   --------------------------------------------------------------------------
+   Subtle, professional effects that add polish without causing lag.
+   These use GPU-accelerated properties (transform, opacity) only.
+   -------------------------------------------------------------------------- */
+
+/* ---- Gradient Text Shimmer ----
+   A moving light effect across gradient text, like a spotlight sweep.
+   Applied to .text-gradient and .text-gradient-gold elements. */
+@keyframes gradientShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.text-gradient,
+.text-gradient-gold {
+  background-size: 200% auto;
+  animation: gradientShimmer 6s linear infinite;
+}
+
+/* ---- Card Hover Glow ----
+   Feature cards get a subtle colored shadow on hover, creating a 
+   "glowing" effect that makes the card feel interactive. */
+.feature-card {
+  transition: 
+    transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+    box-shadow 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 20px 40px -12px rgba(16, 185, 129, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* ---- Icon Bounce on Card Hover ----
+   The icon inside feature cards does a subtle bounce when the 
+   card is hovered, drawing attention to the content. */
+.feature-card__icon {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.feature-card:hover .feature-card__icon {
+  transform: scale(1.12) rotate(-3deg);
+}
+
+/* ---- VMV Card Hover (Vision/Mission/Values) ----
+   Specialized hover for the about page VMV cards */
+.vmv-card {
+  transition: 
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.vmv-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.1);
+}
+
+/* ---- Team Card Hover ----
+   Leadership/team cards get a subtle upward lift with shadow */
+.team-card {
+  transition: 
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.08);
+}
+
+/* ---- Timeline Dot Pulse ----
+   Timeline dots on the about page pulse gently to show interactivity */
+.timeline__dot {
+  position: relative;
+}
+
+.timeline__dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+  transform: translate(-50%, -50%);
+  animation: timelinePulse 2.5s ease-in-out infinite;
+  opacity: 0;
+}
+
+@keyframes timelinePulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(2); opacity: 0.3; }
+}
+
+/* ---- Button Press Effect ----
+   All buttons get a subtle "press" scale on active click */
+.btn:active {
+  transform: scale(0.96);
+  transition-duration: 0.1s;
+}
+
+/* ---- Image Hover Zoom ----
+   Images in grid cards and about sections zoom subtly on hover */
+.about-grid__image img,
+.tuition-intro__image img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.about-grid__image:hover img,
+.tuition-intro__image:hover img {
+  transform: scale(1.04);
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   /* Respect visitors who prefer less motion across every animated element. */
   *,

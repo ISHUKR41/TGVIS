@@ -1,0 +1,53 @@
+/* ==========================================================================
+   TGVIS — Admin Login Styles (Overrides shared login layout)
+   ==========================================================================
+   This file imports the base login styles and adds admin-specific
+   color overrides. The admin portal uses a dark navy/red theme to 
+   visually distinguish it from student (green/gold) and teacher (blue) portals.
+   ========================================================================== */
+
+/* Import the shared login layout from student-login */
+@import url('../student-login/student-login.css');
+
+
+/* ---- Admin-Specific Color Overrides ----
+   Navy-to-dark gradient with coral-red accent for the admin portal.
+   This makes it instantly recognizable as the admin panel. */
+
+.login-page__side {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
+}
+
+/* Override the highlight span color in the side text */
+.login-page__side-text h1 span {
+  color: #e94560 !important;
+}
+
+/* Override the feature icon color */
+.login-page__feature i {
+  color: #e94560 !important;
+  background: rgba(233, 69, 96, 0.1) !important;
+}
+
+/* Override the login card icon gradient */
+.login-card__icon {
+  background: linear-gradient(135deg, #e94560, #c23152) !important;
+}
+
+/* Override the submit button */
+.login-form .btn,
+.login-form button[type="submit"] {
+  background: linear-gradient(135deg, #e94560, #c23152) !important;
+  color: white !important;
+}
+
+.login-form .btn:hover,
+.login-form button[type="submit"]:hover {
+  background: linear-gradient(135deg, #c23152, #a0283f) !important;
+}
+
+/* Override form input focus ring */
+.form-input:focus {
+  border-color: #e94560;
+  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.15);
+}
