@@ -92,14 +92,15 @@ document.addEventListener('DOMContentLoaded', () => {
      - 0px scroll: Transparent background
      - 80px+ scroll: Solid glass background with shadow
      - Mobile: Hamburger menu with slide-out panel
-     ======================================================================== */
 
-  const navbar = document.querySelector('.navbar');
-  const hamburger = document.querySelector('.navbar__hamburger');
-  const mobileMenu = document.querySelector('.navbar__menu');
-  const overlay = document.querySelector('.navbar__overlay');
-  const navLinks = document.querySelectorAll('.navbar__link');
-  const navItems = document.querySelectorAll('.navbar__item');
+     IMPORTANT — Why we use LIVE queries (not cached references):
+     On subpages the <nav id="navbar"> starts empty and is filled by
+     navbar.js during its own DOMContentLoaded handler. If global.js
+     caches element references at the top of its DOMContentLoaded handler,
+     those references may be null because the HTML hasn't been injected yet.
+     Using live queries inside each function guarantees the elements are
+     found even if global.js runs before navbar.js.
+     ======================================================================== */
 
   /**
    * handleNavbarScroll - Adds/removes the 'scrolled' class based on
@@ -107,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * a solid glassmorphism bar for better readability.
    */
   function handleNavbarScroll() {
+    const navbar = document.querySelector('.navbar');
     if (!navbar) return;
 
     // The threshold (80px) roughly matches the navbar height
@@ -124,14 +126,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---- MOBILE MENU TOGGLE ----
      Opens and closes the mobile slide-out navigation panel.
-     Also manages the dark overlay behind the menu. */
+     Also manages the dark overlay behind the menu.
+     
+     Uses LIVE DOM queries (not cached) to survive dynamic injection. */
 
   /**
    * toggleMobileMenu - Opens or closes the mobile navigation menu.
    * Manages the hamburger icon animation (lines → X), menu slide,
    * overlay visibility, and body scroll lock.
+   *
+   * All element lookups are done LIVE (not cached) because on subpages
+   * the navbar HTML is injected dynamically and may not exist when
+   * global.js first runs.
    */
   function toggleMobileMenu() {
+    const hamburger = document.querySelector('.navbar__hamburger');
+    const mobileMenu = document.querySelector('.navbar__menu');
+    const overlay    = document.querySelector('.navbar__overlay');
     if (!hamburger || !mobileMenu) return;
 
     const isOpen = hamburger.classList.contains('active');
@@ -154,6 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
    * Used when clicking overlay, clicking a nav link, or pressing Escape.
    */
   function closeMobileMenu() {
+    const hamburger = document.querySelector('.navbar__hamburger');
+    const mobileMenu = document.querySelector('.navbar__menu');
+    const overlay    = document.querySelector('.navbar__overlay');
     if (!hamburger || !mobileMenu) return;
 
     hamburger.classList.remove('active');
@@ -166,86 +180,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Unlock body scrolling
     document.body.style.overflow = '';
-  }
 
-  // Hamburger click event
-  if (hamburger) {
-    hamburger.addEventListener('click', toggleMobileMenu);
-  }
-
-  // Close menu when clicking the dark overlay
-  if (overlay) {
-    overlay.addEventListener('click', closeMobileMenu);
-  }
-
-  // Close menu when clicking any navigation link (page is changing)
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      // Only close on mobile — desktop hover menus should stay open
-      if (window.innerWidth <= 1024) {
-        closeMobileMenu();
-      }
+    // Also close any open dropdowns so the menu resets for next open
+    document.querySelectorAll('.navbar__item.open').forEach(item => {
+      item.classList.remove('open');
+      const toggle = item.querySelector('.navbar__link--dropdown');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
     });
-  });
+  }
 
-  /*
-   * Dropdown destinations are separate links from their parent headings.
-   * Close the mobile drawer when a visitor chooses one, otherwise the new
-   * page can briefly appear behind an open navigation panel on touch devices.
-   */
-  document.querySelectorAll('.navbar__dropdown-link').forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.innerWidth <= 1024) closeMobileMenu();
-    });
-  });
 
-  // Close menu on Escape key press (keyboard accessibility)
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeMobileMenu();
+  /* ---- EVENT DELEGATION FOR NAVBAR CLICKS ----
+     Instead of attaching listeners to individual elements (which may not
+     exist yet when navbar.js hasn't injected them), we use a single
+     delegated click handler on the document. This guarantees the
+     hamburger and dropdown toggles work on EVERY page — even subpages
+     where the navbar is injected dynamically. */
+
+  document.addEventListener('click', (e) => {
+    /* --- Hamburger toggle --- */
+    if (e.target.closest('.navbar__hamburger')) {
+      e.preventDefault();
+      toggleMobileMenu();
+      return;
     }
-  });
 
-  // Restore the page if the browser is resized from mobile to desktop while
-  // the drawer is open. This prevents a hidden overflow lock on desktop.
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 1024) closeMobileMenu();
-  }, { passive: true });
+    /* --- Dark overlay click → close menu --- */
+    if (e.target.closest('.navbar__overlay')) {
+      closeMobileMenu();
+      return;
+    }
 
-
-  /* ---- DROPDOWN MENUS (Mobile) ----
-     On mobile, dropdown menus are toggled by clicking (not hovering).
-     Each dropdown accordion-style — clicking one closes the others. */
-
-  navItems.forEach(item => {
-    const dropdownToggle = item.querySelector('.navbar__link--dropdown');
-
+    /* --- Dropdown parent link (e.g. "About ▾") --- */
+    const dropdownToggle = e.target.closest('.navbar__link--dropdown');
     if (dropdownToggle) {
-      dropdownToggle.addEventListener('click', (e) => {
-        /*
-         * Dropdown headings are navigation controls, not destination pages.
-         * Preventing the "#" fallback on every viewport keeps mouse, keyboard,
-         * and touch users on the page while desktop hover remains available.
-         */
-        e.preventDefault();
-        const isOpen = item.classList.contains('open');
-        dropdownToggle.setAttribute('aria-expanded', String(!isOpen));
+      /*
+       * Dropdown headings are navigation controls, not destination pages.
+       * Preventing the "#" fallback on every viewport keeps mouse, keyboard,
+       * and touch users on the page while desktop hover remains available.
+       */
+      e.preventDefault();
+      const parentItem = dropdownToggle.closest('.navbar__item');
+      if (!parentItem) return;
 
-        // On mobile, use an accordion so the slide-out menu stays compact.
-        if (window.innerWidth <= 1024) {
-          // Close all OTHER dropdowns first (accordion behavior)
-          navItems.forEach(otherItem => {
-            if (otherItem !== item) {
-              otherItem.classList.remove('open');
-              const otherToggle = otherItem.querySelector('.navbar__link--dropdown');
-              if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
-            }
-          });
+      const isOpen = parentItem.classList.contains('open');
+      dropdownToggle.setAttribute('aria-expanded', String(!isOpen));
 
-          // Toggle THIS dropdown
-          item.classList.toggle('open', !isOpen);
-        }
-      });
+      // On mobile, use an accordion so the slide-out menu stays compact.
+      if (window.innerWidth <= 1024) {
+        // Close all OTHER dropdowns first (accordion behavior)
+        document.querySelectorAll('.navbar__item.open').forEach(otherItem => {
+          if (otherItem !== parentItem) {
+            otherItem.classList.remove('open');
+            const otherToggle = otherItem.querySelector('.navbar__link--dropdown');
+            if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Toggle THIS dropdown
+        parentItem.classList.toggle('open', !isOpen);
+      }
+      return;
+    }
+
+    /* --- Dropdown destination link → close mobile menu --- */
+    if (e.target.closest('.navbar__dropdown-link')) {
+      if (window.innerWidth <= 1024) closeMobileMenu();
+      return;
+    }
+
+    /* --- Any top-level nav link → close mobile menu --- */
+    if (e.target.closest('.navbar__link') && !e.target.closest('.navbar__link--dropdown')) {
+      if (window.innerWidth <= 1024) closeMobileMenu();
+      return;
     }
   });
 
