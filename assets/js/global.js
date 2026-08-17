@@ -682,6 +682,88 @@ document.addEventListener('DOMContentLoaded', () => {
     el.textContent = currentYear;
   });
 
+  /* ========================================================================
+     13. SCROLL PROGRESS INDICATOR
+     ========================================================================
+     A thin gradient line at the top of the viewport that fills from left
+     to right as the user scrolls down the page. Gives visual feedback on
+     how far through the page content the visitor has read.
+
+     The bar is injected dynamically so no HTML changes are needed.
+     ======================================================================== */
+
+  function initScrollProgress() {
+    const bar = document.createElement('div');
+    bar.id = 'scrollProgress';
+    bar.setAttribute('aria-hidden', 'true');
+
+    /* Inline styles keep this self-contained — no external CSS dependency.
+       The gradient uses the school's brand green and gold colors. */
+    Object.assign(bar.style, {
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      height: '3px',
+      width: '0%',
+      background: 'linear-gradient(90deg, var(--color-primary), var(--color-secondary))',
+      zIndex: '99999',
+      transition: 'width 0.1s linear',
+      pointerEvents: 'none'
+    });
+
+    document.body.appendChild(bar);
+
+    /* Update the bar width on each scroll event. Uses requestAnimationFrame
+       to avoid layout thrashing on fast scrolls. */
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          bar.style.width = scrollPercent + '%';
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  initScrollProgress();
+
+
+  /* ========================================================================
+     14. ACTIVE SECTION HIGHLIGHTING
+     ========================================================================
+     As the user scrolls through the page, the nearest section's ID is
+     compared against the navbar dropdown links. The matching link gets
+     a subtle visual highlight so visitors know where they are.
+     ======================================================================== */
+
+  function initActiveSection() {
+    const sections = document.querySelectorAll('section[id]');
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          /* Remove active from all nav links, then add to the matching one */
+          document.querySelectorAll('.navbar__link').forEach(link => {
+            link.classList.remove('navbar__link--active');
+          });
+          const matchingLink = document.querySelector(`.navbar__link[href*="#${id}"]`);
+          if (matchingLink) matchingLink.classList.add('navbar__link--active');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    sections.forEach(section => observer.observe(section));
+  }
+
+  initActiveSection();
+
 }); // END DOMContentLoaded
 
 

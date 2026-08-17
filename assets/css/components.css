@@ -220,7 +220,8 @@
 }
 
 /* Active/current page indicator — a dot below the link text */
-.navbar__link.active::after {
+.navbar__link.active::after,
+.navbar__link--active::after {
   content: '';
   position: absolute;
   bottom: 2px;
@@ -230,6 +231,13 @@
   height: 6px;
   background: var(--color-secondary);
   border-radius: var(--radius-full);
+  animation: dotPop 0.3s ease both;
+}
+
+/* Subtle pop animation when the active dot appears */
+@keyframes dotPop {
+  from { transform: translateX(-50%) scale(0); }
+  to { transform: translateX(-50%) scale(1); }
 }
 
 /* Dropdown indicator arrow (for menus with sub-items) */
